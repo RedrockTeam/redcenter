@@ -1,0 +1,117 @@
+[ 2015-06-15T19:32:12+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/getinfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.004000s ]
+SQL: SELECT * FROM `user_member` WHERE `stu_num` = '2013213819' LIMIT 1   [ RunTime:0.060004s ]
+SQL: SELECT * FROM `user_member` WHERE `stu_num` = '2013213819' LIMIT 1   [ RunTime:0.049201s ]
+SQL: SHOW COLUMNS FROM `user_log` [ RunTime:0.000000s ]
+SQL: SELECT * FROM `user_log` WHERE `user_id` = 63888  [ RunTime:0.109200s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `user_log` WHERE `user_id` = 63888 LIMIT 1   [ RunTime:0.036201s ]
+
+[ 2015-06-15T19:32:35+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/getinfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003000s ]
+SQL: SELECT * FROM `user_member` WHERE `stu_num` = '2013213819' LIMIT 1   [ RunTime:0.058004s ]
+SQL: SELECT * FROM `user_member` WHERE `stu_num` = '2013213819' LIMIT 1   [ RunTime:0.049501s ]
+SQL: SHOW COLUMNS FROM `user_log` [ RunTime:0.002500s ]
+SQL: SELECT * FROM `user_log` WHERE `user_id` = 63888 LIMIT 2   [ RunTime:0.000000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `user_log` WHERE `user_id` = 63888 LIMIT 1   [ RunTime:0.036200s ]
+
+[ 2015-06-15T19:33:29+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/getinfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-15T19:33:31+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/getinfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-15T19:33:33+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/getinfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-15T19:33:38+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/getinfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002001s ]
+
+[ 2015-06-15T19:33:39+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/getinfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-15T19:33:46+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/getinfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-15T19:33:58+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/getinfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+
+[ 2015-06-15T19:35:35+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/getinfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-15T19:35:35+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/getinfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+
+[ 2015-06-15T19:35:56+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/getinfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.015600s ]
+SQL: SELECT * FROM `user_member` WHERE `stu_num` = '2013213819' LIMIT 1   [ RunTime:0.064603s ]
+SQL: SELECT * FROM `user_member` WHERE `stu_num` = '2013213819' LIMIT 1   [ RunTime:0.054003s ]
+SQL: SHOW COLUMNS FROM `user_log` [ RunTime:0.002000s ]
+SQL: SELECT * FROM `user_log` WHERE `user_id` = 63888 LIMIT 2   [ RunTime:0.000000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `user_log` WHERE `user_id` = 63888 LIMIT 1   [ RunTime:0.046800s ]
+

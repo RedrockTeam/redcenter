@@ -1,0 +1,592 @@
+[ 2015-06-11T11:54:12+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.031200s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.015600s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015600s ]
+
+[ 2015-06-11T12:12:28+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.051003s ]
+SQL: SELECT * FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.291017s ]
+
+[ 2015-06-11T12:12:38+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003001s ]
+SQL: SELECT * FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.057003s ]
+
+[ 2015-06-11T12:12:55+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.005000s ]
+SQL: SELECT * FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.071004s ]
+
+[ 2015-06-11T12:13:03+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-11T12:13:17+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.005000s ]
+SQL: SELECT * FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.056003s ]
+
+[ 2015-06-11T12:13:29+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.004000s ]
+SQL: SELECT * FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.061004s ]
+
+[ 2015-06-11T12:53:48+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003000s ]
+SQL: SELECT * FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.056003s ]
+
+[ 2015-06-11T12:53:51+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003000s ]
+SQL: SELECT * FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.059004s ]
+
+[ 2015-06-11T12:53:55+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003000s ]
+ERR: 错误的查询条件:[identify_code=>201321381]
+
+[ 2015-06-11T12:53:59+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.005001s ]
+ERR: 错误的查询条件:[identify_code=>201321381]
+
+[ 2015-06-11T12:54:03+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.005000s ]
+ERR: 错误的查询条件:[identify_code=>201321381]
+
+[ 2015-06-11T12:54:23+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005001s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.004000s ]
+ERR: 错误的查询条件:[identify_code=>201321381]
+
+[ 2015-06-11T12:54:29+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003001s ]
+SQL: SELECT * FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.053003s ]
+
+[ 2015-06-11T12:54:34+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.004000s ]
+ERR: 错误的查询条件:[identify_code=>201321381]
+
+[ 2015-06-11T12:54:39+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+
+[ 2015-06-11T12:54:47+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003000s ]
+ERR: 错误的查询条件:[identify_code=>20132138]
+
+[ 2015-06-11T12:54:51+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003000s ]
+ERR: 错误的查询条件:[identify_code=>201321381]
+
+[ 2015-06-11T12:54:55+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003000s ]
+SQL: SELECT * FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.057003s ]
+
+[ 2015-06-11T12:54:58+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-11T12:55:10+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.006001s ]
+ERR: 错误的查询条件:[identify_code=>201321381]
+
+[ 2015-06-11T12:55:51+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-11T17:15:16+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.015600s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015600s ]
+
+[ 2015-06-11T17:15:24+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.078004s ]
+SQL: SELECT * FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.362801s ]
+
+[ 2015-06-11T17:15:41+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-11T17:16:09+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003000s ]
+ERR: 错误的查询条件:[identify_code=>201321381]
+
+[ 2015-06-11T17:18:50+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.008001s ]
+
+[ 2015-06-11T17:19:14+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.005000s ]
+ERR: 错误的查询条件:[identify_code=>1265479]
+
+[ 2015-06-11T17:20:41+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.005001s ]
+SQL: SELECT * FROM `user_member` WHERE `identify_code` = 1265479 LIMIT 1   [ RunTime:0.070004s ]
+
+[ 2015-06-11T17:20:42+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.004001s ]
+SQL: SELECT * FROM `user_member` WHERE `identify_code` = 1265479 LIMIT 1   [ RunTime:0.070004s ]
+
+[ 2015-06-11T17:21:09+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003001s ]
+SQL: SELECT * FROM `user_member` WHERE `identify_code` = 1265479 LIMIT 1   [ RunTime:0.063003s ]
+
+[ 2015-06-11T17:22:25+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.009000s ]
+SQL: SELECT * FROM `user_member` WHERE `identify_code` = 1265479 LIMIT 1   [ RunTime:0.061003s ]
+
+[ 2015-06-11T17:22:30+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003000s ]
+SQL: SELECT * FROM `user_member` WHERE `identify_code` = 126547 LIMIT 1   [ RunTime:0.064004s ]
+
+[ 2015-06-11T17:22:38+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-11T17:22:43+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-11T17:23:26+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-11T17:27:29+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-11T17:30:11+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2015-06-11T17:30:19+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003000s ]
+SQL: SELECT * FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.057004s ]
+
+[ 2015-06-11T17:33:28+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.004000s ]
+SQL: SELECT `id`,`stu_num`,`stu_idcard`,`nickname`,`password`,`status`,`real_name`,`email`,`last_login_ip`,`last_login_time`,`score`,`gender`,`salt`,`headimg`,`weixin_visit_num`,`identify_code` FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.051002s ]
+
+[ 2015-06-11T17:33:32+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.004000s ]
+SQL: SELECT `id`,`stu_num`,`stu_idcard`,`nickname`,`password`,`status`,`real_name`,`email`,`last_login_ip`,`last_login_time`,`score`,`gender`,`salt`,`headimg`,`weixin_visit_num`,`identify_code` FROM `user_member` WHERE `identify_code` = 201321381 LIMIT 1   [ RunTime:0.063004s ]
+
+[ 2015-06-11T17:33:38+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003000s ]
+SQL: SELECT `id`,`stu_num`,`stu_idcard`,`nickname`,`password`,`status`,`real_name`,`email`,`last_login_ip`,`last_login_time`,`score`,`gender`,`salt`,`headimg`,`weixin_visit_num`,`identify_code` FROM `user_member` WHERE `stu_num` = 2013213810 LIMIT 1   [ RunTime:0.055003s ]
+
+[ 2015-06-11T17:33:40+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003000s ]
+SQL: SELECT `id`,`stu_num`,`stu_idcard`,`nickname`,`password`,`status`,`real_name`,`email`,`last_login_ip`,`last_login_time`,`score`,`gender`,`salt`,`headimg`,`weixin_visit_num`,`identify_code` FROM `user_member` WHERE `stu_num` = 2013213810 LIMIT 1   [ RunTime:0.054003s ]
+
+[ 2015-06-11T17:33:46+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003000s ]
+SQL: SELECT `id`,`stu_num`,`stu_idcard`,`nickname`,`password`,`status`,`real_name`,`email`,`last_login_ip`,`last_login_time`,`score`,`gender`,`salt`,`headimg`,`weixin_visit_num`,`identify_code` FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.060004s ]
+
+[ 2015-06-11T17:35:05+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.005000s ]
+SQL: SELECT `id`,`stu_num`,`stu_idcard`,`nickname`,`password`,`status`,`real_name`,`email`,`last_login_ip`,`last_login_time`,`score`,`gender`,`salt`,`headimg`,`weixin_visit_num`,`identify_code` FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.052003s ]
+
+[ 2015-06-11T17:35:42+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003000s ]
+SQL: SELECT `id`,`stu_num`,`stu_idcard`,`nickname`,`status`,`real_name`,`email`,`last_login_ip`,`last_login_time`,`score`,`gender`,`salt`,`headimg`,`weixin_visit_num`,`identify_code` FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.051003s ]
+
+[ 2015-06-11T17:36:10+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003000s ]
+SQL: SELECT `id`,`stu_num`,`stu_idcard`,`nickname`,`status`,`real_name`,`email`,`last_login_ip`,`last_login_time`,`score`,`gender`,`salt`,`headimg`,`weixin_visit_num`,`identify_code` FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.049002s ]
+
+[ 2015-06-11T17:36:13+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.004000s ]
+SQL: SELECT `id`,`stu_num`,`stu_idcard`,`nickname`,`status`,`real_name`,`email`,`last_login_ip`,`last_login_time`,`score`,`gender`,`salt`,`headimg`,`weixin_visit_num`,`identify_code` FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.059004s ]
+
+[ 2015-06-11T17:36:20+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.004000s ]
+SQL: SELECT `id`,`stu_num`,`stu_idcard`,`nickname`,`status`,`real_name`,`email`,`last_login_ip`,`last_login_time`,`score`,`gender`,`headimg`,`weixin_visit_num`,`identify_code` FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.047003s ]
+
+[ 2015-06-11T17:36:22+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003000s ]
+SQL: SELECT `id`,`stu_num`,`stu_idcard`,`nickname`,`status`,`real_name`,`email`,`last_login_ip`,`last_login_time`,`score`,`gender`,`headimg`,`weixin_visit_num`,`identify_code` FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.049003s ]
+
+[ 2015-06-11T17:36:31+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.004000s ]
+SQL: SELECT `id`,`stu_num`,`stu_idcard`,`nickname`,`status`,`real_name`,`email`,`last_login_ip`,`last_login_time`,`score`,`gender`,`salt`,`headimg`,`weixin_visit_num`,`identify_code` FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.050003s ]
+
+[ 2015-06-11T17:36:39+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003001s ]
+SQL: SELECT `id`,`stu_num`,`stu_idcard`,`nickname`,`status`,`real_name`,`email`,`last_login_ip`,`last_login_time`,`score`,`gender`,`headimg`,`weixin_visit_num`,`identify_code` FROM `user_member` WHERE `stu_num` = 2013213819 LIMIT 1   [ RunTime:0.054003s ]
+
+[ 2015-06-11T17:37:06+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003000s ]
+SQL: SELECT `id`,`stu_num`,`stu_idcard`,`nickname`,`status`,`real_name`,`email`,`last_login_ip`,`last_login_time`,`score`,`gender`,`headimg`,`weixin_visit_num`,`identify_code` FROM `user_member` WHERE `stu_num` = 2013213810 LIMIT 1   [ RunTime:0.052003s ]
+NOTIC: [8] Undefined index: salt D:\wamp\www\RedCenter\RedCenter\Api\Controller\HandleController.class.php 第 120 行.
+NOTIC: [8] Undefined index: password D:\wamp\www\RedCenter\RedCenter\Api\Controller\HandleController.class.php 第 121 行.
+
+[ 2015-06-11T17:37:48+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.003000s ]
+SQL: SELECT `id`,`stu_num`,`stu_idcard`,`nickname`,`status`,`real_name`,`email`,`last_login_ip`,`last_login_time`,`score`,`gender`,`headimg`,`weixin_visit_num`,`identify_code` FROM `user_member` WHERE `stu_num` = 2013213810 LIMIT 1   [ RunTime:0.045003s ]
+
+[ 2015-06-11T17:38:13+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.004000s ]
+SQL: SELECT `id`,`stu_num`,`stu_idcard`,`nickname`,`status`,`real_name`,`email`,`last_login_ip`,`last_login_time`,`score`,`gender`,`headimg`,`weixin_visit_num`,`identify_code` FROM `user_member` WHERE `stu_num` = 2013213810 LIMIT 1   [ RunTime:0.046003s ]
+
+[ 2015-06-11T17:38:15+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.004001s ]
+SQL: SELECT `id`,`stu_num`,`stu_idcard`,`nickname`,`status`,`real_name`,`email`,`last_login_ip`,`last_login_time`,`score`,`gender`,`headimg`,`weixin_visit_num`,`identify_code` FROM `user_member` WHERE `stu_num` = 2013213810 LIMIT 1   [ RunTime:0.057003s ]
+
+[ 2015-06-11T17:39:53+08:00 ] 127.0.0.1 /redcenter/index.php/Api/handle/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\RedCenter\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `user_member` [ RunTime:0.004000s ]
+SQL: SELECT `id`,`stu_num`,`stu_idcard`,`nickname`,`status`,`real_name`,`email`,`last_login_ip`,`last_login_time`,`score`,`gender`,`headimg`,`weixin_visit_num`,`identify_code` FROM `user_member` WHERE `stu_num` = 2013213810 LIMIT 1   [ RunTime:0.055004s ]
+NOTIC: [8] Undefined index: salt D:\wamp\www\RedCenter\RedCenter\Api\Controller\HandleController.class.php 第 120 行.
+NOTIC: [8] Undefined index: password D:\wamp\www\RedCenter\RedCenter\Api\Controller\HandleController.class.php 第 121 行.
+
