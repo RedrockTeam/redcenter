@@ -1,0 +1,427 @@
+.center(@top:0,@bottom:0) {
+  margin: @top auto @bottom auto;
+}
+
+.change_color(@start:#b8c4cb,@end:#f6f6f8) {
+  filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0, startColorStr=@start, endColorStr=@end); /*IE 6 7 8*/
+  background: -ms-linear-gradient(top, @start, @end); /* IE 10 */
+  background: -moz-linear-gradient(top, @start, @end); /*火狐*/
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(@start), to(@end)); /*谷歌*/
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(@start), to(@end)); /* Safari 4-5, Chrome 1-9*/
+  background: -webkit-linear-gradient(top, @start, @end); /*Safari5.1 Chrome 10+*/
+  background: -o-linear-gradient(top, @start, @end); /*Opera 11.10+*/
+}
+
+.border_radius(@pixel:4px) {
+  -moz-border-radius: @pixel; /* Gecko browsers */
+  -webkit-border-radius: @pixel; /* Webkit browsers */
+  border-radius: @pixel; /* W3C syntax */
+}
+
+.box_shadow(@x:1px,@y:1px,@color:#000,@r:1px,@fuzzy:1px) {
+  -webkit-box-shadow: @x @y @fuzzy @r @color;
+  -moz-box-shadow: @x @y @fuzzy @r @color;
+  box-shadow: @x @y @fuzzy @r @color;
+}
+
+.ellipsis() {
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
+.opacity(@x:0.5) {
+  opacity: @x;
+  filter: Alpha(opacity=@x);
+}
+
+.font_family(@font:Arial) {
+  font-family: @font, "Hiragino Sans GB", "Microsoft YaHei",
+  "WenQuanYi Micro Hei", sans-serif;
+}
+
+body { padding-top: 100px; }
+.alert{
+  word-wrap: break-word;
+}
+.form-group{
+  overflow: hidden;
+}
+.comp_label{
+  line-height: 30px;
+}
+.font_fa{
+  .font_family();
+}
+.navbar-fixed-top{
+  z-index: 2;
+}
+.nav_con_shadow{
+  .box_shadow(0,2px,#ddd);
+}
+.nav_user{
+  margin-top: 17px;
+}
+.nav_out{
+  margin-right: 36px;
+  margin-left: 26px;
+}
+.left_face{
+  width: 200px;
+  height: 200px;
+  overflow: hidden;   //删除
+  margin-top: 30px;
+}
+#intro{
+  height: 80px;
+  resize: none;
+}
+.form_font{
+  font-weight: normal;
+}
+.con_border{
+  border: 1px solid #ddd;
+  .border_radius();
+}
+.right_det{
+  border-top: transparent;
+  padding-top: 15px;
+  height: 747px;
+}
+.left_table{
+  margin-top: 10px;
+  text-align: center;
+}
+#right_nav_rule{
+  padding-right: 0;
+//  display: none;
+}
+#right_nav_center{
+  padding-right: 0;
+//  display: none;
+}
+#right_nav_exchange{
+  margin-bottom: 15px;
+//  display: none;
+}
+.right_det_contair{
+  height: 720px;
+  padding-right: 0;
+}
+#right_contair_rule{
+  margin-bottom: 15px;
+  table{
+    margin-bottom: 0;
+  }
+//  display: none;
+}
+#right_contair_center{
+//  display: none;
+}
+#right_contair_level{
+//  display: none;
+}
+#right_contair_exchange{
+//  margin-top: 15px;
+  height: 661px;
+  img{
+    width: 100%;
+  }
+  a{
+    width: 75px;
+  }
+//  display: none;
+}
+#right_contair_have{
+  height: 661px;
+  img{
+    height: 100px;
+    width: 100px;
+  }
+  span{
+    font-size: 16px;
+    margin-left: 40px;
+  }
+//  display: none;
+}
+#right_contair_help{
+  height: 661px;
+//  display: none;
+  div{
+    transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    -ms-tansition: all 1s ease;
+    -moz-tansition: all 1s ease;
+  }
+
+}
+.complete{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  form{
+    width: 400px;
+    .center(50px);
+    position: relative;
+    z-index: 3;
+  }
+//  display: none;
+}
+.complete_bac{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  right: 0;
+  background-color: #eee;
+  .opacity(0.8);
+}
+//.disable{
+//  background-color: #337ab7;
+//}
+.complete_head{
+  font-size: 16px;
+}
+#inputIntro{
+  height: 80px;
+  resize: none;
+}
+.comp_sp{
+  color: red;
+}
+.complete_info{
+//  width: 315px;
+//  float: left;
+  margin-right: 15px;
+  float: right;
+  margin-bottom: 0;
+  padding: 4px 10px;
+}
+.complete_sub{
+  width: 150px;
+//  margin-left: 172px;
+  display: block;
+  .center();
+}
+
+
+
+
+//footer start
+footer{
+  font-size: 10px;
+  width: 100%;
+  height: 305px;
+  margin-top: 100px;
+  padding-top: 1px;
+  background: url("../img/footer_background.jpg") center;
+  text-align: center;
+  line-height: 1.8;
+}
+footer > nav{
+  margin-bottom: 12px;
+}
+footer > nav a,
+footer > nav span{
+  padding: 1px 8px;
+  font-size: 1.4em;
+  color: #e1e1e1;
+}
+footer > nav a,
+footer > nav span{
+  display: inline-block;
+  border-left: 3px solid #787878;
+}
+footer > nav span{
+  border: none;
+}
+footer > nav span:hover{
+  cursor: pointer;
+}
+footer > p{
+  font-family: "宋体";
+  font-size: 1.2em;
+  color: #8d8d8d;
+}
+footer section{
+  width: 386px;
+  height: 87px;
+  margin: 47px auto;
+}
+footer .shareTo{
+  float: left;
+  width: 75px;
+  height: 75px;
+  margin-left: 36px;
+  background: url("../img/share_normal.png") no-repeat;
+  transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -ms-tansition: all 1s ease;
+  -moz-tansition: all 1s ease;
+}
+footer .shareTo:hover{
+  background: url("../img/share_hover.png") no-repeat;
+  transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -webkit-transform-origin: 50% 70%;
+  -moz-transform-origin: 50% 70%;
+  -ms-transform-origin: 50% 70%;
+  -o-transform-origin: 50% 70%;
+  transform-origin: 50% 70%;
+}
+footer .sina{
+  padding-top: 17px;
+}
+footer .tecent{
+  padding-top: 13px;
+}
+footer .renren{
+  padding-top: 20px;
+}
+//footer end
+
+
+
+//裁剪
+//上传图片表单
+.popover{
+  max-width: 100%;
+  z-index: 2;
+}
+#up_form{
+//  width: 260px;
+  padding: 10px;
+  .center();
+//  position: relative;
+  .up_content{
+    .up_box{
+      position: relative;
+      margin-bottom: 20px;
+      overflow: hidden;
+      &:hover{
+//        cursor: pointer;
+        .up_button{
+          background: #286090;
+        }
+      }
+//      &:active{
+//        .up_button{
+//          background: #1788df;
+//        }
+//
+//      }
+      #up_txt{
+        line-height: 30px;
+        float: left;
+        width: 190px;
+        height: 34px;
+        border: 1px solid #dedede;
+        border-radius: 4px;
+        margin-right: 25px;
+        .box_shadow(0,1px,#d9e6ed);
+        .ellipsis()
+      }
+//      .up_button{
+//        float: left;
+//        width: 100px;
+//        height: 30px;
+//        font-size: 18px;
+//        text-align: center;
+//        .border_radius();
+//        color: #ffffff;
+//        .change_color(#1ea3e6,#1788df);
+//        background-color: #1b97e3;
+//        margin-right: 20px;
+//        .box_shadow(0,1px,#d9e6ed);
+//      }
+      #up_file{
+        position: absolute;
+        left: 0;
+        top:0;
+        .opacity(0);
+//        width: 327px;
+        width: 100%;
+        height: 34px;
+        &:hover{
+          cursor: pointer;
+        }
+//        &:hover .up_button{
+//          background-color: #286090;
+//        }
+
+      }
+    }
+
+//    .up_submit{
+//      display: block;
+//      float: left;
+//      width: 100px;
+//      height: 30px;
+//      font-size: 18px;
+//      text-align: center;
+//      .border_radius();
+//      color: #ffffff;
+//      .change_color(#1ea3e6,#1788df);
+//      background-color: #1b97e3;
+//      border: 0;
+//      padding: 0;
+//      .box_shadow(0,1px,#d9e6ed);
+//      &:hover{
+//        background: #1ea3e6;
+//      }
+//      &:active{
+//        background: #1788df;
+//      }
+//    }
+  }
+}
+//上传图片表单end
+
+//裁剪预览
+.jcrop-holder #preview-pane {
+  display: block;
+  position: absolute;
+  z-index: 2000;
+  top: 10px;
+  right: -280px;
+  padding: 6px;
+  border: 1px rgba(0,0,0,.4) solid;
+  background-color: white;
+
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+
+  -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+}
+.jcrop-holder{
+  width: 300px;
+  height: 300px;
+}
+/* The Javascript code will set the aspect ratio of the crop
+   area based on the size of the thumbnail preview,
+   specified here */
+#preview-pane .preview-container {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+.cxbtn{
+//  margin-top: 10px;
+  margin: 5px;
+}
+.cut_close{
+  margin: 5px;
+  float: right;
+}
+//裁剪预览end
+
+//裁剪end

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!--<meta name="description" content="">-->
+    <!--<meta name="author" content="">-->
+    <!--标题图标-->
+    <!--<link rel="icon" href="../../favicon.ico">-->
+
+    <title>登陆</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/login.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!--<div class="container-center">-->
+<form id="form_login" class="container-center form-horizontal font_fa" action="{:U('Home/Login/loginHandle', '', '')}" method="post">
+    <h1 class="form-heading text-center">会员中心</h1>
+    <div class="form-group h4">
+        <label for="inputUser" class="form_font control-label col-md-3 col-lg-3 col-sm-3 col-xs-3">账号：</label>
+        <div class="col-md-9 col-lg-9 col-sm-9 col-xs-9">
+            <input name="user" type="text" id="inputUser" class="form-control" autofocus>
+        </div>
+    </div>
+    <div class="form-group h4">
+        <label for="inputPassword" class="form_font control-label col-md-3 col-lg-3 col-sm-3 col-xs-3">密码：</label>
+        <div class="col-md-9 col-lg-9 col-sm-9 col-xs-9">
+            <input name="password" type="password" id="inputPassword" class="form-control" autofocus>
+        </div>
+    </div>
+
+    <div class="checkbox clearfix">
+        <label class="form_remember">
+            <input type="checkbox" value="remember"> 记住密码
+        </label>
+        <a href="#" class="form_forget">忘记密码?</a>
+    </div>
+
+    <button class="btn btn-lg btn-primary form_sub center-block" type="submit">登陆</button>
+</form>
+
+
+</body>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/form_check.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/login.js"></script>
+</html>
