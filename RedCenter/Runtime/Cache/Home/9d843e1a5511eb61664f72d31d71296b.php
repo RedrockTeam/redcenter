@@ -13,9 +13,9 @@
     <title>会员中心</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/redcenterold/RedCenter/Home/Public/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/redcenterold/RedCenter/Home/Public/css/jquery.Jcrop.min.css" type="text/css" />
-    <link href="/redcenterold/RedCenter/Home/Public/css/red_center.css" rel="stylesheet">
+    <link href="/redcenter/RedCenter/Home/Public/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/redcenter/RedCenter/Home/Public/css/jquery.Jcrop.min.css" type="text/css" />
+    <link href="/redcenter/RedCenter/Home/Public/css/red_center.css" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -36,7 +36,7 @@
         <div class="row col-lg-3 col-md-3 col-sm-3 col-md-offset-1 col-lg-offset-1 col-sm-offset-1">
             <div class="con_border">
                 <a role="button" tabindex="0" class="left_face thumbnail center-block" title="自定义头像" data-container="body" data-toggle="popover" data-placement="right">
-                    <img src="/redcenterold/RedCenter/Home/Public/<?php echo ($headImage); ?>"  alt="face">
+                    <img src="/redcenter/RedCenter/Home/Public/<?php echo ($headImage); ?>"  alt="face">
                 </a>
                 <form id="det_form" class="form-horizontal font_fa" action="#">
                     <div class="form-group h4">
@@ -432,17 +432,17 @@
         <section>
             <div class="shareTo sina">
                 <a target="_blank" href="http://weibo.com/redrockweekly">
-                    <img src="/redcenterold/RedCenter/Home/Public/img/sina.png" />
+                    <img src="/redcenter/RedCenter/Home/Public/img/sina.png" />
                 </a>
             </div>
             <div class="shareTo tecent">
                 <a target="_blank" href="http://t.qq.com/redrock_cqupt">
-                    <img src="/redcenterold/RedCenter/Home/Public/img/tecent.png" />
+                    <img src="/redcenter/RedCenter/Home/Public/img/tecent.png" />
                 </a>
             </div>
             <div class="shareTo renren">
                 <a target="_blank" href="http://page.renren.com/601264336">
-                    <img src="/redcenterold/RedCenter/Home/Public/img/renren.png" />
+                    <img src="/redcenter/RedCenter/Home/Public/img/renren.png" />
                 </a>
             </div>
         </section>
@@ -458,12 +458,12 @@
     </footer>
 </body>
 <script>
-    var imgSrc = "/redcenterold/RedCenter/Home/Public/<?php echo ($headImage); ?>";
+    var imgSrc = "/redcenter/RedCenter/Home/Public/<?php echo ($headImage); ?>";
 </script>
-<script type="text/javascript" src="/redcenterold/RedCenter/Home/Public/js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="/redcenterold/RedCenter/Home/Public/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/redcenterold/RedCenter/Home/Public/js/jquery.Jcrop.min.js"></script>
-<script type="text/javascript" src="/redcenterold/RedCenter/Home/Public/js/form_check.js"></script>
-<script type="text/javascript" src="/redcenterold/RedCenter/Home/Public/js/cut.Jcrop.js"></script>
-<script type="text/javascript" src="/redcenterold/RedCenter/Home/Public/js/red_center.js"></script>
+<script type="text/javascript" src="/redcenter/RedCenter/Home/Public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/redcenter/RedCenter/Home/Public/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/redcenter/RedCenter/Home/Public/js/jquery.Jcrop.min.js"></script>
+<script type="text/javascript" src="/redcenter/RedCenter/Home/Public/js/form_check.js"></script>
+<script type="text/javascript" src="/redcenter/RedCenter/Home/Public/js/cut.Jcrop.js"></script>
+<script type="text/javascript" src="/redcenter/RedCenter/Home/Public/js/red_center.js"></script>
 </html>
