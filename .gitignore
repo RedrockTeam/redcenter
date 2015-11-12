@@ -1,5 +1,5 @@
 .DS_Store
 .idea
 RedCenter/Runtime
-ThinkPHP
+#ThinkPHP
 RedCenter/Common/Conf/config.php
