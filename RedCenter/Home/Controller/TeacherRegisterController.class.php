@@ -14,8 +14,6 @@ class TeacherRegisterController extends Controller{
         $str = new String();
         $csrf_token = $str->randString(32);
         session('csrf_token', $csrf_token);
-        session('lalala', 'asdf');
-        var_dump(session('csrf_token'));
         $this->assign('csrf_token', $csrf_token);
         $this->display();
     }
@@ -26,11 +24,7 @@ class TeacherRegisterController extends Controller{
             $this->error('405 method not allow');
         }
         $data = I('post.');
-        var_dump($data);
-//        $csrf_token = session('csrf_token');
-        var_dump(session('csrf_token'));
-        var_dump($_SESSION);
-        return;
+        $csrf_token = session('csrf_token');
         if($csrf_token !== $data['csrf_token']) {
             $this->error('csrf');
         }
