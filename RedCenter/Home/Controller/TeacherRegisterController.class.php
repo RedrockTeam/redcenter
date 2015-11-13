@@ -24,8 +24,9 @@ class TeacherRegisterController extends Controller{
             $this->error('405 method not allow');
         }
         $data = I('post.');
-
+        var_dump($data);
         $csrf_token = session('csrf_token');
+        var_dump($csrf_token);
         if($csrf_token !== $data['csrf_token']) {
             $this->error('csrf');
         }
