@@ -63,6 +63,7 @@ class TeacherRegisterController extends Controller{
         if(mail($data['email'].'@cqupt.edu.cn', $subject, $content, 'from:redrock@cqupt.edu.cn')) {
             M('email_verify')->add($row);
             $this->success('注册成功, 请在12小时内前往教师邮箱激活账号~');
+            return;
         }
         $this->error('好像出了点小问题...');
     }
@@ -81,7 +82,7 @@ class TeacherRegisterController extends Controller{
         }
         M('email_verify')->where(array('id' => $row['id']))->save(array('status' => 0));
         $data = array(
-            'stu_num' => $row['stu_num'],
+            'stu_num' => '',
             'email' => $row['email'],
             'password' => $row['password'],
             'nickname' => $row['nickname'],
@@ -89,7 +90,7 @@ class TeacherRegisterController extends Controller{
             'status' => 1,
             'score' => 0,
             'weixin_visit_num' => 0,
-            'identify_code' => 0
+            'identify_code' => $row['stu_num']
         );
         if(M('user_member')->add($data)) {
             $this->success('激活成功', U('Index/login'));
