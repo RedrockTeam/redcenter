@@ -58,10 +58,8 @@ class TeacherRegisterController extends Controller{
             'status' => 1
         );
         $subject = '=?UTF-8?B?'.base64_encode('认证邮件').'?=';
-        $url = $_SERVER['HTTP_HOST'].U('TeacherRegister/emailVerify')."?code=".$verify_code;
+        $url = 'http://'.$_SERVER['HTTP_HOST'].U('TeacherRegister/emailVerify')."?code=".$verify_code;
         $content = "点击链接验证邮箱\r\n$url";
-        var_dump(mail($data['email'].'@cqupt.edu.cn', $subject, $content, 'from:redrock@cqupt.edu.cn'));
-        return;
         if(mail($data['email'].'@cqupt.edu.cn', $subject, $content, 'from:redrock@cqupt.edu.cn')) {
             M('email_verify')->add($row);
             $this->success('注册成功, 请在12小时内前往教师邮箱激活账号~');
