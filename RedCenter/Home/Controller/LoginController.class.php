@@ -20,11 +20,11 @@ class LoginController extends Controller{
             'password' => $password
         );
         $re = $this->curl($data, $uri);
-        var_dump($re);
-        return;
         switch ($re['status']) {
             case '200':
                 session('stunum', $re['userInfo']['stu_num']);
+                var_dump(session('stunum'));
+                return;
                 $this->redirect('Home/Index/index');
                 break;
             case '408':
