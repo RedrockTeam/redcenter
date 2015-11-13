@@ -94,6 +94,7 @@ class TeacherRegisterController extends Controller{
         );
         if(M('user_member')->add($data)) {
             $this->success('激活成功', U('Index/login'));
+            return;
         }
         $this->error('好像出了点小问题...');
     }
