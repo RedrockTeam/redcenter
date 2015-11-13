@@ -9,8 +9,6 @@ class IndexController extends CommonController {
      * 前台 用户中心
      */
     public function index(){
-        var_dump($_SESSION);
-        return;
         if(is_null(session('stunum'))){
             $this->redirect('Home/Index/login');
         }
