@@ -14,6 +14,7 @@ class TeacherRegisterController extends Controller{
         $str = new String();
         $csrf_token = $str->randString(32);
         session('csrf_token', $csrf_token);
+        var_dump(session('csrf_token'));
         $this->assign('csrf_token', $csrf_token);
         $this->display();
     }
