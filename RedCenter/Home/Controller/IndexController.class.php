@@ -10,6 +10,7 @@ class IndexController extends CommonController {
      */
     public function index(){
         var_dump($_SESSION);
+        return;
         if(is_null(session('stunum'))){
             $this->redirect('Home/Index/login');
         }
