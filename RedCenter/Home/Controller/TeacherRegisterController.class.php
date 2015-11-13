@@ -27,6 +27,7 @@ class TeacherRegisterController extends Controller{
         var_dump($data);
         $csrf_token = session('csrf_token');
         var_dump($csrf_token);
+        return;
         if($csrf_token !== $data['csrf_token']) {
             $this->error('csrf');
         }
