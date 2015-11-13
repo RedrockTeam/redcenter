@@ -105,7 +105,7 @@ class HandleController extends Controller {
         if(!$_user || empty($passwd)) return $this->_return(408);
 
         strlen($_user) == 10 ? $map['stu_num'] = $_user : $map['identify_code'] = $_user;
-        $userRecord = M('user_member')->field('password, salt',true)->where($map)->find();//如果有密码, 必须使用密码登录, 不然才可以身份证后六位
+        $userRecord = M('user_member')->where($map)->find();//如果有密码, 必须使用密码登录, 不然才可以身份证后六位
         if(empty($userRecord)) return $this->_return(409);
         if($userRecord['password'] == '') {
             //verify
