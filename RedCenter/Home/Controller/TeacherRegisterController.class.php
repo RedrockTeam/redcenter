@@ -29,7 +29,7 @@ class TeacherRegisterController extends Controller{
             $this->error('csrf');
         }
         if($data['email'] == '' || $data['username'] == '' || $data['nickname'] == '') {
-            $this->error('参数错误');
+            $this->error('所有数据都要填...');
         }
 
         if(mb_strlen($data['username']) > 30 || mb_strlen($data['nickname']) > 30) {
