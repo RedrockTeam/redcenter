@@ -56,6 +56,7 @@ class TeacherRegisterController extends Controller{
             'nickname' => $data['nickname'],
             'verify_code' => $verify_code,
             'password' => $password,
+            'gender'    => $data['gender'],
             'status' => 1
         );
         $subject = '=?UTF-8?B?'.base64_encode('认证邮件').'?=';
@@ -92,7 +93,8 @@ class TeacherRegisterController extends Controller{
             'status' => 1,
             'score' => 0,
             'weixin_visit_num' => 0,
-            'identify_code' => $row['stu_num']
+            'identify_code' => $row['stu_num'],
+            'gender' => $row['gender']
         );
         if(M('user_member')->add($data)) {
             $this->success('激活成功', U('Index/login'));
