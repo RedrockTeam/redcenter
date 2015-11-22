@@ -18,6 +18,7 @@ class TeacherRegisterController extends Controller{
         $this->display();
     }
 
+    //注册方法
     public function register() {
 
         if(!IS_POST) {
@@ -68,6 +69,7 @@ class TeacherRegisterController extends Controller{
         $this->error('好像出了点小问题...');
     }
 
+    //邮件验证
     public function emailVerify() {
         $code = I('get.code', '');
         $row = M('email_verify')->where(array('verify_code' => $code))->find();
@@ -97,5 +99,23 @@ class TeacherRegisterController extends Controller{
             return;
         }
         $this->error('好像出了点小问题...');
+    }
+
+    //教师绑定
+    public function teacherBindVerify() {
+        if(!IS_POST) {
+            $this->ajaxReturn(array('status' => 405, 'info' => 'Method Not Allowed'));
+        }
+        $input = I('post.');
+        $data = M('user_member')->where(array('identify_code' => $input['identify_code']))->field('salt, identify_code, password, email, nickname, gender')->find();
+        if(!$data) {
+            $this->ajaxReturn(array('status' => 403, 'info' => '验证失败'));
+        }
+        $password =  md5(md5($input['password']).$data['salt']);
+        if($password == $data['password']) {
+            unset($data['password']);
+            unset($data['salt']);
+            return ['status' => 200, 'info' => 'Success', 'data' => $data];
+        }
     }
 }
