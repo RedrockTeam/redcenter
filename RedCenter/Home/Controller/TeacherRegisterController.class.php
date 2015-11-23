@@ -92,7 +92,7 @@ class TeacherRegisterController extends Controller{
             'password' => $row['password'],
             'nickname' => $row['nickname'],
             'salt' => $row['salt'],
-            'status' => 1,
+            'status' => '1',
             'score' => 0,
             'weixin_visit_num' => 0,
             'identify_code' => $row['stu_num'],
