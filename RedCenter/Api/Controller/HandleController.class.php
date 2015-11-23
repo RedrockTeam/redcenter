@@ -100,7 +100,7 @@ class HandleController extends Controller {
 
 
     public function login(){
-        $_user = I('post.user', 0, 'int');
+        $_user = I('post.user', 0);
         $passwd = I('post.password');
         if(!$_user || empty($passwd)) return $this->_return(408);
 
