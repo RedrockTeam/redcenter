@@ -63,7 +63,7 @@ class TeacherRegisterController extends Controller{
         $url = 'http://'.$_SERVER['HTTP_HOST'].U('TeacherRegister/emailVerify')."?code=".$verify_code;
         $content = "点击链接验证邮箱\r\n$url";
         $email = $data['email'].'@cqupt.edu.cn';
-        file_get_contents("http://hongyan.cqupt.edu.cn/mail.php?sub=$subject&content=$content&email=$email");
+        $this->curl_api('http://hongyan.cqupt.edu.cn/mail.php', array('subject' => $subject, 'content' => $content, 'email' => $email));
 //        if(mail($email, $subject, $content, 'from:redrock@cqupt.edu.cn')) {
             M('email_verify')->add($row);
             $this->success('注册成功, 请在12小时内前往教师邮箱激活账号~', '', 10);
@@ -103,6 +103,21 @@ class TeacherRegisterController extends Controller{
             return;
         }
         $this->error('好像出了点小问题...');
+    }
+    /*curl通用函数*/
+    private function curl_api($url, $data=''){
+        // 初始化一个curl对象
+        $ch = curl_init();
+        curl_setopt ( $ch, CURLOPT_URL, $url );
+        curl_setopt ( $ch, CURLOPT_POST, 1 );
+        curl_setopt ( $ch, CURLOPT_HEADER, 0 );
+        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
+        curl_setopt ( $ch, CURLOPT_POSTFIELDS, $data );
+        // 运行curl，获取网页。
+        $contents = json_decode(curl_exec($ch));
+        // 关闭请求
+        curl_close($ch);
+        return $contents;
     }
 
     //教师绑定
