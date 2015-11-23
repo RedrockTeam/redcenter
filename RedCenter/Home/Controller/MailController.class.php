@@ -518,7 +518,7 @@ class MailController extends Controller{
      * @return bool
      */
     function SmtpConnect() {
-        if($this->smtp == NULL) { $this->smtp = new SMTP(); }
+        if($this->smtp == NULL) { $this->smtp = new \SMTP(); }
 
         $this->smtp->do_debug = $this->SMTPDebug;
         $hosts = explode(";", $this->Host);
