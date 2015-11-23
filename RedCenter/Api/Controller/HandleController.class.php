@@ -112,7 +112,7 @@ class HandleController extends Controller {
             if(strlen($passwd) == 6 || strlen($passwd) == 5){
                 //这里进入身份证判断, 验证静默失败
                 $passwdLower = strtolower($passwd);
-                if($passwdLower == strtolower(substr($userRecord['stu_idcard'], -6))){
+                if($passwdLower == strtolower(substr($userRecord['stu_idcard'], -6)) || $passwdLower == strtolower(substr($userRecord['stu_idcard'], -5))){
                     unset($userRecord['password']);
                     unset($userRecord['salt']);
                     return $this->_return(200, array(
