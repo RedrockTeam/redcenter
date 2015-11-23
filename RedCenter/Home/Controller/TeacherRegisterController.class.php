@@ -65,7 +65,7 @@ class TeacherRegisterController extends Controller{
         $email = $data['email'].'@cqupt.edu.cn';
         $return = $this->curl_api('hongyan.cqupt.edu.cn/phpmail/test.php', array('subject' => $subject, 'content' => $content, 'email' => $email));
         var_dump($return);
-        if($return['status'] == 200) {
+        if($return->status == 200) {
             M('email_verify')->add($row);
             $this->success('注册成功, 请在12小时内前往教师邮箱激活账号~', '', 10);
             return;
