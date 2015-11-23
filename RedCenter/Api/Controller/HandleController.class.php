@@ -109,7 +109,7 @@ class HandleController extends Controller {
         if(empty($userRecord)) return $this->_return(409);
 //        if(!$userRecord['password']) {//有密码的就不能后6位登录了!!! by Lich
             //verify
-            if(strlen($passwd) == 6){
+            if(strlen($passwd) == 6 || strlen($passwd) == 5){
                 //这里进入身份证判断, 验证静默失败
                 $passwdLower = strtolower($passwd);
                 if($passwdLower == strtolower(substr($userRecord['stu_idcard'], -6))){
