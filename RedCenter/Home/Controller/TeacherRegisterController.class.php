@@ -66,7 +66,7 @@ class TeacherRegisterController extends Controller{
         $return = $this->curl_api('hongyan.cqupt.edu.cn/phpmail/test.php', array('subject' => $subject, 'content' => $content, 'email' => $email));
         if($return->status == 200) {
             M('email_verify')->add($row);
-            $this->success('注册成功, 请在12小时内前往教师邮箱激活账号~', '', 10);
+            $this->success('注册成功, 请在12小时内前往学校教师邮箱激活账号~', 'http://mail.cqupt.edu.cn/', 10);
             return;
         }
         $this->error('好像出了点小问题...');
@@ -99,7 +99,7 @@ class TeacherRegisterController extends Controller{
             'gender' => $row['gender']
         );
         if(M('user_member')->add($data)) {
-            $this->success('激活成功', U('Index/login'));
+            $this->success('激活成功, 请记住您的账号和密码, 小帮手绑定请用此账号和密码~', U('Index/login'));
             return;
         }
         $this->error('好像出了点小问题...');
