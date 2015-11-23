@@ -64,11 +64,11 @@ class TeacherRegisterController extends Controller{
         $content = "点击链接验证邮箱\r\n$url";
         $email = $data['email'].'@cqupt.edu.cn';
         file_get_contents("http://hongyan.cqupt.edu.cn/mail.php?sub=$subject&content=$content&email=$email");
-        if(mail($email, $subject, $content, 'from:redrock@cqupt.edu.cn')) {
+//        if(mail($email, $subject, $content, 'from:redrock@cqupt.edu.cn')) {
             M('email_verify')->add($row);
             $this->success('注册成功, 请在12小时内前往教师邮箱激活账号~', '', 10);
             return;
-        }
+//        }
         $this->error('好像出了点小问题...');
     }
 
