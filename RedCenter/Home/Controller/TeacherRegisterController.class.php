@@ -63,12 +63,13 @@ class TeacherRegisterController extends Controller{
         $url = 'http://'.$_SERVER['HTTP_HOST'].U('TeacherRegister/emailVerify')."?code=".$verify_code;
         $content = "点击链接验证邮箱\r\n$url";
         $email = $data['email'].'@cqupt.edu.cn';
-        $this->curl_api('http://hongyan.cqupt.edu.cn/mail.php', array('subject' => $subject, 'content' => $content, 'email' => $email));
-//        if(mail($email, $subject, $content, 'from:redrock@cqupt.edu.cn')) {
+        $return = $this->curl_api('hongyan.cqupt.edu.cn/phpmail/test.php', array('subject' => $subject, 'content' => $content, 'email' => $email));
+        var_dump($return);
+        if($return['status'] == 200) {
             M('email_verify')->add($row);
             $this->success('注册成功, 请在12小时内前往教师邮箱激活账号~', '', 10);
             return;
-//        }
+        }
         $this->error('好像出了点小问题...');
     }
 
@@ -140,38 +141,4 @@ class TeacherRegisterController extends Controller{
         }
     }
 
-    public function test() {
-        $mail = new MailController();
-
-        $mail->IsSMTP();       // send via SMTP
-        $mail->Host     = "mail.cqupt.edu.cn"; // SMTP servers
-        $mail->SMTPAuth = true;     // turn on SMTP authentication
-        $mail->Username = "lich";  // SMTP username
-        $mail->Password = "redrock.cqupt.edu.cn"; // SMTP password
-
-        $mail->From     = "redrock@cqupt.edu.cn";
-        $mail->FromName = "redrock";
-
-        $mail->AddAddress("yangqf1@cqupt.edu.cn");
-
-
-        $mail->IsHTML(true);                               // send as HTML
-        $mail->CharSet = "GB2312"; //字符设置
-        $mail->Encoding = "base64"; //编码方式
-
-        $mail->Subject  = "ttttt";
-        $mail->Body     = "ttttt";
-
-        if(!$mail->Send())
-        {
-            echo "<p style=\"color: red;padding: 5px;\">";
-            echo "测试邮件没有发送成功，错误信息： <br>". $mail->ErrorInfo;
-            echo "<br></p>";
-
-        }
-        else{
-            echo "<br>ok!";
-
-        }
-    }
 }
