@@ -99,7 +99,7 @@ class TeacherRegisterController extends Controller{
             'gender' => $row['gender']
         );
         if(M('user_member')->add($data)) {
-            $this->success('激活成功, 请记住您的账号和密码, 小帮手绑定请用此账号和密码~', U('Index/login'));
+            $this->success('激活成功, 请记住您的账号和密码, 小帮手绑定请用此账号和密码~', 'http://redrock.cqupt.edu.cn/shuangshijia/');
             return;
         }
         $this->error('好像出了点小问题...');
