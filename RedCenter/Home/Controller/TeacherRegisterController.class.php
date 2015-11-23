@@ -139,4 +139,39 @@ class TeacherRegisterController extends Controller{
             $this->ajaxReturn(array('status' => 403, 'info' => '验证失败'));
         }
     }
+
+    public function test() {
+        $mail = new MailController();
+
+        $mail->IsSMTP();       // send via SMTP
+        $mail->Host     = "mail.cqupt.edu.cn"; // SMTP servers
+        $mail->SMTPAuth = true;     // turn on SMTP authentication
+        $mail->Username = "lich";  // SMTP username
+        $mail->Password = "redrock.cqupt.edu.cn"; // SMTP password
+
+        $mail->From     = "redrock@cqupt.edu.cn";
+        $mail->FromName = "redrock";
+
+        $mail->AddAddress("yangqf1@cqupt.edu.cn");
+
+
+        $mail->IsHTML(true);                               // send as HTML
+        $mail->CharSet = "GB2312"; //字符设置
+        $mail->Encoding = "base64"; //编码方式
+
+        $mail->Subject  = "ttttt";
+        $mail->Body     = "ttttt";
+
+        if(!$mail->Send())
+        {
+            echo "<p style=\"color: red;padding: 5px;\">";
+            echo "测试邮件没有发送成功，错误信息： <br>". $mail->ErrorInfo;
+            echo "<br></p>";
+
+        }
+        else{
+            echo "<br>ok!";
+
+        }
+    }
 }
