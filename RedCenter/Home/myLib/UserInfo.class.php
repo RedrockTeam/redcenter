@@ -84,10 +84,10 @@ class UserInfo {
             $logCount = M('user_log')->where(array('user_id' => $this->uid, 'project' => $project))->count();
         }
 
-        return [
+        return array(
             'logCount' => $logCount,
             'log' => $log
-        ];
+        );
     }
 
     public function getRule($project = null){
