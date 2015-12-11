@@ -15,7 +15,8 @@ function isFull($stu_num, $act, $pro){
     //将今天结束的年月日时分秒，转换成unix时间戳 (结束示例：2014-03-11 23:59:59)
     $day_end= mktime(23,59,59,$m,$d,$y);
 
-    $userid = M('user_member')->where(array('stu_num' => $stu_num))->find()['id'];
+    $user = M('user_member')->where(array('stu_num' => $stu_num))->find();
+    $userid = $user['id'];
     $desc = $act['description'];
     //create_time > ".$day_start." and create_time < ".$day_end." and user_id = ".$userid." and project = ".$pro." and action = ".$desc
     $Model = new \Think\Model();

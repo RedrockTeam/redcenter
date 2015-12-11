@@ -19,10 +19,7 @@ class LoginController extends Controller{
             'user' => $username,
             'password' => $password
         );
-
         $re = $this->curl($data, $uri);
-        var_dump($re);
-        return;
         switch ($re['status']) {
             case '200':
                 session('stunum', $re['userInfo']['stu_num']);
