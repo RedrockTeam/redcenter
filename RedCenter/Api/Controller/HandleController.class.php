@@ -19,7 +19,8 @@ class HandleController extends Controller {
 
         //验证type是否选择查询分数
         if($type == 'getScore'){
-            $score = M('user_member')->where(array('stu_num' => $stu_num))->find()['score'];
+            $score_obj = M('user_member')->where(array('stu_num' => $stu_num))->find();
+            $score = $score_obj['score'];
             if(is_null($score)){
                 send_http_status('403');
                 $this->ajaxReturn(array(
@@ -44,7 +45,8 @@ class HandleController extends Controller {
             }
         }
         //根据project_id得到的project的值
-        $pro = M('project_token')->where(array('project_id' => $pro_id))->find()['project'];
+        $pro_obj = M('project_token')->where(array('project_id' => $pro_id))->find();
+        $pro = $pro_obj['project'];
         if(!$pro){
             send_http_status('403');
             $this->ajaxReturn(array(
@@ -78,7 +80,8 @@ class HandleController extends Controller {
             ),'json');
         }else{
             //向user_log表添加一条数据
-            $userid = M('user_member')->where(array('stu_num' => $stu_num))->find()['id'];
+            $user = M('user_member')->where(array('stu_num' => $stu_num))->find();
+            $userid = $user['id'];
             $data['user_id'] = $userid;
             $data['create_time'] = time();
             $data['project'] = $pro;
@@ -86,10 +89,12 @@ class HandleController extends Controller {
             $data['score'] = $act['once'];
             M('user_log')->data($data)->add();
             //在总分的基础上加分
-            $personSumScore = M('user_member')->where(array('stu_num' => $stu_num))->find()['score'];
+            $personSumScore_obj = M('user_member')->where(array('stu_num' => $stu_num))->find();
+            $personSumScore = $personSumScore_obj['score'];
             $personSumScore += $act['once'];
             if($personSumScore < 0){$personSumScore = 0;}
-            $id = M('user_member')->where(array('stu_num' => $stu_num))->find()['id'];
+            $user = M('user_member')->where(array('stu_num' => $stu_num))->find();
+            $id = $user['id'];
             M('user_member')->data(array('id' => $id, 'score' => $personSumScore))->save();
 
             $this->ajaxReturn(array(
