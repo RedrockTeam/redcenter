@@ -134,7 +134,7 @@ class TeacherRegisterController extends Controller{
         if($password == $data['password']) {
             unset($data['password']);
             unset($data['salt']);
-            $this->ajaxReturn(['status' => 200, 'info' => 'Success', 'data' => $data]);
+            $this->ajaxReturn(array('status' => 200, 'info' => 'Success', 'data' => $data));
         } else {
             $this->ajaxReturn(array('status' => 403, 'info' => '验证失败'));
         }
