@@ -107,9 +107,6 @@ class HandleController extends Controller {
     public function login(){
         $_user = I('post.user', 0);
         $passwd = I('post.password');
-        var_dump($_user);
-        var_dump($passwd);
-        return;
         if(!$_user || empty($passwd)) return $this->_return(408);
 
         strlen($_user) == 10 ? $map['stu_num'] = $_user : $map['identify_code'] = $_user;
