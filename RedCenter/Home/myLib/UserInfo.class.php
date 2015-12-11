@@ -22,7 +22,8 @@ class UserInfo {
             $this->stunum = $stunum;
         }
         $this->info = M('user_member')->where(array('stu_num' => $this->stunum))->find();
-        $this->uid = M('user_member')->where(array('stu_num' => $this->stunum))->find()['id'];
+        $user = M('user_member')->where(array('stu_num' => $this->stunum))->find();
+        $this->uid = $user['id'];
     }
 
     public function getSelfInfo(){
@@ -122,8 +123,8 @@ class UserInfo {
         }
         $map['min_score']  = array('ELT',$score);
         $map['max_score']  = array('EGT',$score);
-        $level = M('user_level')->where($map)->find()['level'];
-
+        $level_obj = M('user_level')->where($map)->find();
+        $level = $level_obj['level'];
         return $level;
     }
 
