@@ -165,7 +165,7 @@ class HandleController extends Controller {
         strlen($_user) == 10 ? $map['stu_num'] = $_user : $map['identify_code'] = $_user;
         $userRecord = M('user_member')->where($map)->find();
         if(empty($userRecord)) return $this->_return(409);
-//        if(!$userRecord['password']) {//有密码的就不能后6位登录了!!! by Lich
+        if(!$userRecord['password']) {//有密码的就不能后6位登录了!!! by Lich
             //verify
             if(strlen($passwd) == 6 || strlen($passwd) == 5){
                 //这里进入身份证判断, 验证静默失败
@@ -178,7 +178,7 @@ class HandleController extends Controller {
                     ));
                 }
             }
-//        }
+        }
         //下面是ucenter密码判断
         $encodedPassword = md5(md5($passwd).$userRecord['salt']);
         if($encodedPassword == $userRecord['password']){
