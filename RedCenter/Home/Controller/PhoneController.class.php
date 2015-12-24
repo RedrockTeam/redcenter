@@ -54,9 +54,9 @@ class PhoneController extends Controller {
         if(IS_POST){
             $this->ajaxReturn(array(
                 'headImage' => $headImage,
-                'rankList_month' => $rankList_month;
-                'all_scores' => $all_scores;
-                'rankchange' => $rankchange;
+                'rankList_month' => $rankList_month,
+                'all_scores' => $all_scores,
+                'rankchange' => $rankchange,
                 'info' => $info
             ));
         }else{
