@@ -4,6 +4,7 @@ use Think\Controller;
 use Home\myLib\UserInfo;
 
 class HandleController extends Controller {
+    private $userinfo;
     public function index(){
         if(!IS_POST){
             send_http_status('403');
@@ -15,12 +16,39 @@ class HandleController extends Controller {
         $type = I('post.type');
         $stu_num = I('post.stu');
         $token = I('post.token');
-        $pro_id = I('post.id');//应用名称, 例如cyxbs
+        $pro_id = I('post.id');//应用名称, 例如cyxbs代表重邮小帮手；BTdown代表BT当铺
+        $this->userinfo = M('user_member')->where(array('stu_num' => $stu_num))->find();
 
+        $last_log_time = M('user_log')->where(array('user_id' => $this->userinfo['id']))->order('id desc')->find()['create_time'];
+        //验证学号是否正确
+        if($this->userinfo){
+            if(date('m',$last_log_time) != date('m')){
+                $save['score_month'] = 0;
+                $save['last_month_rank'] = $this->userinfo['month_rank'];
+                $save['month_rank'] = 0;
+                M('user_member')->where(array('stu_num' => $stu_num))->save($save);
+                unset($save);//$save用的太多了  还用用完就清除吧
+            }
+            //如果本次加分记录和上次加分记录处不是同一年，上年积分置0，再进行本次加分
+            if(date('Y',$last_log_time) != date('Y')){
+                $save['score'] = 0;
+                $save['last_year_rank'] = $this->userinfo['year_rank'];
+                $save['year_rank'] = 0;
+                M('user_member')->where(array('stu_num' => $stu_num))->save($save);
+                unset($save);
+            }
+            //user_member表已更新，需重新获取数据
+            $this->userinfo = M('user_member')->where(array('stu_num' => $stu_num))->find();
+        }else{
+            send_http_status('403');
+            $this->ajaxReturn(array(
+                'error' => 'token error',
+                'status' => 403
+            ),'json');
+        }
         //验证type是否选择查询分数
         if($type == 'getScore'){
-            $score_obj = M('user_member')->where(array('stu_num' => $stu_num))->find();
-            $score = $score_obj['score'];
+            $score = $this->userinfo['score'];
             if(is_null($score)){
                 send_http_status('403');
                 $this->ajaxReturn(array(
@@ -54,15 +82,14 @@ class HandleController extends Controller {
                 'status' => 403
             ),'json');
         }
-        //验证学号是否正确
-        $stu = M('user_member')->where(array('stu_num' => $stu_num))->find();
-        if(!$stu){
+       /* //验证学号是否正确
+        if(!$this->userinfo){
             send_http_status('403');
             $this->ajaxReturn(array(
                 'error' => 'token error',
                 'status' => 403
             ),'json');
-        }
+        }*/
         //验证token是否正确
         $testToken = generateToken($pro_id,$stu_num,$type);
         if($testToken != $token){
@@ -79,26 +106,52 @@ class HandleController extends Controller {
                 'status' => 403
             ),'json');
         }else{
+           /* $last_log_time = M('user_log')->where(array('user_id' => $this->userinfo['id']))->order('id desc')->find()['create_time'];
+            
+            //如果本次加分记录和上次加分记录处不是同一月，上月积分置0，再进行本次加分
+            if(date('m',$last_log_time) != date('m')){
+                $save['score_month'] = 0;
+                $save['last_month_rank'] = $this->userinfo['month_rank'];
+                $save['month_rank'] = 0;
+                M('user_member')->where(array('stu_num' => $stu_num))->save($save);
+            }
+            //如果本次加分记录和上次加分记录处不是同一年，上年积分置0，再进行本次加分
+            if(date('Y',$last_log_time) != date('Y')){
+                $save['score'] = 0;
+                $save['last_year_rank'] = $this->userinfo['year_rank'];
+                $save['year_rank'] = 0;
+                M('user_member')->where(array('stu_num' => $stu_num))->save($save);
+            }
+
+            //user_member表已更新，需重新获取数据
+            $this->userinfo = M('user_member')->where(array('stu_num' => $stu_num))->find();*/
             //向user_log表添加一条数据
-            $user = M('user_member')->where(array('stu_num' => $stu_num))->find();
-            $userid = $user['id'];
-            $data['user_id'] = $userid;
+            $data['user_id'] = $this->userinfo['id'];
             $data['create_time'] = time();
             $data['project'] = $pro;
             $data['action'] = $act['description'];
             $data['score'] = $act['once'];
             M('user_log')->data($data)->add();
-            //在总分的基础上加分
-            $personSumScore_obj = M('user_member')->where(array('stu_num' => $stu_num))->find();
-            $personSumScore = $personSumScore_obj['score'];
-            $personSumScore += $act['once'];
-            if($personSumScore < 0){$personSumScore = 0;}
-            $user = M('user_member')->where(array('stu_num' => $stu_num))->find();
-            $id = $user['id'];
-            M('user_member')->data(array('id' => $id, 'score' => $personSumScore))->save();
-
+            unset($data);
+            //在年度总分的基础上加分,值不能为负，最低为0
+            $save['score'] = $this->userinfo['score']+$act['once'] < 0 ? 0 : $this->userinfo['score']+$act['once'];
+            //在总经验的基础上加分,值不能为负，最低为0
+            $save['experience'] = $this->userinfo['experience']+$act['once'] < 0 ? 0 : $this->userinfo['experience']+$act['once'];
+            //在该月总积分的基础上加分,值不能为负，最低为0
+            $save['score_month'] = $this->userinfo['score_month']+$act['once'] < 0 ? 0 : $this->userinfo['score_month']+$act['once'];
+            $save['score_update_time'] = time();//最后1次更新积分的时间
+            $save['id'] = $this->userinfo['id'];
+            M('user_member')->save($save);
+            unset($save);
+            //user_member更新,分数改变后，月排名和年排名可能会变化 ，通过userinfo类里的方法算得排名
+            $userinfo_object = new userInfo($stu_num);
+            $data['month_rank'] = $userinfo_object->getSelfRank_month();
+            $data['year_rank'] = $userinfo_object->getSelfRank();
+            M('user_member')->where(array('stu_num', $stu_num))->save($data);
+            unset($data);
             $this->ajaxReturn(array(
-                'status' => 200
+                'status' => 200,
+                'data' => $last_log_time,
             ),'json');
         }
     }

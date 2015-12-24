@@ -1,0 +1,83 @@
+body {
+  margin: 0 auto;
+  width: 100%;
+  font-family: "Microsoft YaHei";
+  max-width: 10rem;
+}
+.full-width {
+  width: 100%;
+}
+.page-width {
+  width: 9.0625rem;
+}
+.auto-center {
+  margin: 0 auto;
+}
+#container-explain > h1 {
+  margin-top: 0.4375rem;
+  margin-bottom: 0.625rem;
+  height: 1.09375rem;
+  border: 1px solid #ffa825;
+  text-align: center;
+  line-height: 1.09375rem;
+  font-size: 0.625rem;
+  /* px */
+  font-weight: normal;
+}
+#container-explain > h2 {
+  margin-bottom: 0.375rem;
+  line-height: 0.46875rem;
+  font-size: 0.46875rem;
+  /* px */
+  border-left: 0.15625rem solid #ffa825;
+  /* px */
+  text-indent: 0.3125rem;
+  font-weight: normal;
+}
+#container-explain > p {
+  color: #666;
+  font-size: 0.375rem;
+  /*px*/
+  margin-bottom: 0.625rem;
+}
+#prize {
+  padding: 0;
+  text-align: center;
+  border-collapse: collapse;
+  margin-bottom: 0.625rem;
+}
+#prize > tbody {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+#prize tr {
+  margin: 0;
+  height: 1.04688rem;
+}
+#prize td {
+  margin: 0;
+  border: 1px solid #ccc;
+  border-spacing: 0;
+}
+#prize .col-1 {
+  width: 2.32813rem;
+}
+#prize .col-2 {
+  width: 4.40625rem;
+}
+#prize .col-3 {
+  width: 2.23438rem;
+}
+footer {
+  padding-top: 0.34375rem;
+  padding-bottom: 0.34375rem;
+  color: #4b4b4b;
+  background-color: #2f2f2f;
+}
+footer > p {
+  margin: 0.125rem 0;
+  /*px*/
+  text-align: center;
+  font-size: 0.375rem;
+}

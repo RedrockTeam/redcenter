@@ -22,38 +22,134 @@ class UserInfo {
             $this->stunum = $stunum;
         }
         $this->info = M('user_member')->where(array('stu_num' => $this->stunum))->find();
+        $this->info['level'] = $this->getLevel();
         $user = M('user_member')->where(array('stu_num' => $this->stunum))->find();
         $this->uid = $user['id'];
     }
 
     public function getSelfInfo(){
+        $this->info['level'] = $this->getLevel($this->info['experience']);
         return $this->info;
     }
 
-    //获取排名
-    public function getSelfRank(){
-        $selfScore = $this->info['score'];
-        $map['score'] = array('gt',$selfScore);
-        $selfRank = M('user_member')->where($map)->count()+1;
-
-        return $selfRank;
+    //获取积分
+    public function getAllScore(){
+        $projects = array('weixin'=>'微信','BTdown'=>'BTdown铺','market'=>'拾货','jsns'=>'锦瑟南山','zscy'=>'掌上重邮');
+        $thisMonth = date('m');
+        $thisYear = date('Y');
+        $month_days = date('t',strtotime($thisYear.'-'.$thisMonth.'-01'));    //本月的最后一天是几号
+        $month_start =  mktime(0,0,0,$thisMonth,1,$thisYear);
+        $month_end = mktime(23,59,59,$thisMonth,$month_days,$thisYear);
+        $year_start = mktime(0,0,0,1,1,$thisYear);
+        $year_end = mktime(23,59,59,12,31,$thisYear);
+        $all_scores = array();
+    //月度积分
+        $time['create_time'] = array('BETWEEN',"$month_start,$month_end");
+        $all_scores['byMonth']['total'] = 0;
+        foreach ($projects as $key => $value) {
+            $logs = M('user_log')->where(array('user_id' => $this->info['id'], 'project' => "$value"))->where($time)->select();
+            $all_scores['byMonth']["$key"] = 0;
+            foreach ($logs as $once) {
+                $all_scores['byMonth']["$key"] += $once['score'];
+            }
+            $all_scores['byMonth']['total'] += $all_scores['byMonth']["$key"]; 
+        }
+    //年度积分
+        $time['create_time'] = array('BETWEEN',"$year_start,$year_end");
+        $all_scores['byYear']['total'] = 0;
+        foreach ($projects as $key => $value) {
+            $logs = M('user_log')->where(array('user_id' => $this->info['id'], 'project' => "$value"))->where($time)->select();
+            $all_scores['byYear']["$key"] = 0;
+            foreach ($logs as $once) {
+                $all_scores['byYear']["$key"] += $once['score'];
+            }
+            $all_scores['byYear']['total'] += $all_scores['byYear']["$key"]; 
+        }
+        
+         return $all_scores;
     }
 
+    //获取年度排名
+    public function getSelfRank(){
+        $where['score'] = array('EGT',$this->info['score']);
+        $res = M('user_member')->where($where)->order('score desc,score_update_time ')->select();
+        $i = 1;
+        foreach ($res as $value) {
+            if($value['stu_num'] != $this->stunum)
+                $i++;
+            else
+                break;
+        }
+        return $i;   
+    }
+
+    //获取月度排名
+    public function getSelfRank_month(){
+        $where['score_month'] = array('EGT',$this->info['score_month']);
+        $res = M('user_member')->where($where)->order('score_month desc,score_update_time ')->select();
+        $i = 1;
+        foreach ($res as $value) {
+            if($value['stu_num'] != $this->stunum)
+                $i++;
+            else
+                break;
+        }
+        return $i;   
+    }
+    
+    //获取排名变化
+    public function rankChange(){
+        $last_month_rank = $this->info['last_month_rank'];
+        $last_year_rank = $this->info['last_year_rank'];
+        $change['rankchange_month'] = $this->info['last_month_rank']==0 ? 0 : $this->info['last_month_rank'] - $this->info['month_rank']; 
+        $change['rankchange_year'] = $this->info['last_year_rank']==0 ? 0 : $this->info['last_year_rank'] - $this->info['year_rank'];
+        return $change;
+    }
+
+
+    //获取年度积分排行    本期暂时没用到
     public function getRankList($num = null){
         if(is_null($num)){
-            $rankList = M('user_member')->order('score desc')->select();
+            $rankList = M('user_member')->order('score desc,score_update_time ')->select();
         }else{
-            $rankList = M('user_member')->order('score desc')->limit($num)->select();
+            $rankList = M('user_member')->order('score desc,score_update_time ')->limit($num)->select();
         }
         $re = array();
-        foreach($rankList as $each){
-            $level = $this->getLevel($each['score']);
-            $each['level'] = $level;
-            array_push($re, $each);
+        foreach($rankList as $key => $each){
+            if($each['score'] == 0 || $each['score'] < 0)
+                unset($rankList["$key"]);
+            else{
+                $level = $this->getLevel($each['experience']);
+                $each['level'] = $level;
+                $each['num'] = $key + 1; 
+                array_push($re, $each);
+            }
         }
 
         return $re;
     }
+
+    //获取每月积分排行   本期的新需求
+    public function getRankList_month($num = null){
+        if(is_null($num)){
+            $result = M('user_member')->order('score_month desc,score_update_time ')->select();
+        }else{
+            $result = M('user_member')->order('score_month desc,score_update_time ')->limit($num)->select();
+        }
+        $rankList_month = array();
+        foreach ($result as $key => $each) {
+            if($each['score_month'] == 0 || $each['score_month'] < 0)
+                unset($result["$key"]);
+            else{
+                $level = $this->getLevel($each['experience']);
+                $each['level'] = $level;
+                $each['num'] = $key + 1; 
+                array_push($rankList_month, $each);
+            }
+        }
+
+        return $rankList_month;
+    }  
 
     public function getHeadImg(){
         if($this->info['headimg'] == ""){
@@ -117,14 +213,14 @@ class UserInfo {
         }
     }
 
-    public function getLevel($score = null){
-        if(is_null($score)){
-            $score = $this->info['score'];
+    public function getLevel($experience = null){
+        if(is_null($experience)){
+            $experience = $this->info['experience'];
         }
-        $map['min_score']  = array('ELT',$score);
-        $map['max_score']  = array('EGT',$score);
-        $level_obj = M('user_level')->where($map)->find();
-        $level = $level_obj['level'];
+        $map['min_experience']  = array('ELT',$experience);
+        $map['max_experience']  = array('EGT',$experience);
+        $level = M('user_level')->where($map)->find()['level'];
+
         return $level;
     }
 

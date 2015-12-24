@@ -1,122 +1,132 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/VIP_phone.css">
-    <title>会员中心</title>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>RedCenter</title>
+	<link rel="stylesheet" href="__PUBLIC__/css_phone/reset.css">
+	<link rel="stylesheet" href="__PUBLIC__/css_phone/RedCenter.css">
+	<script src="__PUBLIC__/js_phone/flexible.js"></script>
 </head>
-<body>
-    <div class="header">
-        <div class="header_center">
-            <img class="header_logo" src="__PUBLIC__/img/red.png" alt="红岩"/>
-            <h1 class="header_title">会员中心</h1>
-        </div>
-    </div>
-    <div class="content">
-        <div class="personal_info">
-            <div class="basic_info">
-                <img class="face" src="__PUBLIC__/{$headImage}" alt="头像" />
-                <div class="na_nu">
-                    <p class="name">{$info['nickname']}</p>
-                    <p class="num">{$info['stu_num']}</p>
-                </div>
-            </div>
-            <div class="basic_integral">
-                <div>
-                    <p class="inte_name">总积分</p>
-                    <p class="inte_value">{$info['score']}分</p>
-                </div>
-                <div>
-                    <p class="inte_name">排名</p>
-                    <p class="inte_value">第{$self}名</p>
-                </div>
-            </div>
-            <div class="all_detail">
-                <div class="detail">
-                    <img class="det_img" src="__PUBLIC__/img/talk.png" alt="图标">
-                    <p class="det_name">重邮小帮手微信端</p>
-                    <p class="det_value">{$weixin}分</p>
-                </div>
-                <div class="detail">
-                    <img class="det_img" src="__PUBLIC__/img/bt.png" alt="图标">
-                    <p class="det_name">BT down铺</p>
-                    <p class="det_value">敬请期待</p>
-                </div>
-                <div class="detail">
-                    <img class="det_img" src="__PUBLIC__/img/sell.png" alt="图标">
-                    <p class="det_name">拾货</p>
-                    <p class="det_value">敬请期待</p>
-                </div>
-            </div>
-        </div>
-        <div class="rank">
-            <div class="detail">
-                <img class="det_img" src="__PUBLIC__/img/rank.png" alt="排名">
-                <p class="det_name">积分排行榜</p>
-            </div>
-            <volist name="rank" id="vo">
-                <div class="detail">
-                    <p class="rank_n">{$key+1}</p>
-                    <p class="det_name rank_name">{$vo.nickname}</p>
-                    <p class="det_value">{$vo.score}分</p>
-                </div>
-            </volist>
-        </div>
-    </div>
+<body> 
+	<div id="info-wrap" class="full-width">
+		<div id="info" class="auto-center">
+			<div id="head" class="float-left">
+				<img src="__PUBLIC__/img_phone/head.jpg" alt="head-image">
+			</div>
+			<div id="stu-info" class="float-left">
+				<h2 id="stu-name">{$info.real_name}<span class="bolder">{$info.level}</span></h2>
+				<p id="stu-id" class="color-c9  bolder">{$info.stu_num}</p>
+			</div>
+		</div>
+	</div>
+	<div id="score-wrap">
+		<ul class="full-width auto-center">
+			<li id="month-score" class="border-btm-1">
+				<p class="score float-left">
+					<span>当月积分:</span>
+					<span class="value-score float-right">{$info.score_month}分</span>
+				</p>
+				<p class="score float-right">
+					<span class="rank-score">当月排名:</span>
+					<span class="float-right">
+						{$info.month_rank}
+						<img src="__PUBLIC__/img_phone/rose.png" alt="上升">
+					</span>
+				</p>
+			</li>
+			<li id="year-score"  class="clear">
+				<p class="score float-left">
+					<span>年度积分:</span>
+					<span class="value-score float-right">{$info.score}分</span>
+				</p>
+				<p class="score float-right">
+					<span class="rank-score">年度排名:</span>
+					<span class=" float-right">
+						{$info.year_rank}
+						<img src="__PUBLIC__/img_phone/decline.png" alt="下降">
+					</span>
+				</p>
+			</li>
+		</ul>
+	</div>
+	<div id="exchange-btn-wrap" class="full-width">
+		<a href="{:U('Home/Phone/integral_rule')}" id="exchange-btn" class="page-width auto-center">积分兑换规则详情</a>
+	</div>
 
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-    <script>
-        wx.config({
-            //debug: true,
-            appId: '{$signPackage["appId"]}',
-            timestamp: '{$signPackage["timestamp"]}',
-            nonceStr: '{$signPackage["nonceStr"]}',
-            signature: '{$signPackage["signature"]}',
-            jsApiList: [
-                'hideAllNonBaseMenuItem',
-                'onMenuShareTimeline',
-                'onMenuShareAppMessage',
-                'onMenuShareQQ',
-                'onMenuShareWeibo',
-                'previewImage'
-            ]
-        });
-        var share = {
-            title: "会员中心",
-            desc: "会员中心",
-            link: "http://hongyan.cqupt.edu.cn/RedCenter/index.php/Intro/",
-            img: "http://hongyan.cqupt.edu.cn/RedCenter/RedCenter/Home/Public/img/top.png"
-        };
-        wx.ready(function () {
-            //分享到朋友圈
-            wx.onMenuShareTimeline({
-                title: share.title, // 分享标题
-                link: share.link, // 分享链接
-                imgUrl: share.img, // 分享图标
-                success: function () {
-                    // 用户确认分享后执行的回调函数
-                },
-                cancel: function () {
-                    // 用户取消分享后执行的回调函数
-                }
-            });
-            //分享给朋友
-            wx.onMenuShareAppMessage({
-                title: share.title, // 分享标题
-                desc: share.desc, // 分享描述
-                link: share.link, // 分享链接
-                imgUrl: share.img, // 分享图标
-                type: '', // 分享类型,music、video或link，不填默认为link
-                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-                success: function () {
-                    // 用户确认分享后执行的回调函数
-                },
-                cancel: function () {
-                    // 用户取消分享后执行的回调函数
-                }
-            });
-        });
-    </script>
+	<div id="select-product-wrap" class="full-width">
+		<ul>
+			<li class="product-list">
+				<img src="__PUBLIC__/img_phone/wechat.png" class="float-left product-icon" alt="BTdown">
+				<p class="border-btm-1 product-name">	
+					重邮小帮手微信端
+					<span class="float-right">{$all_scores.byMonth.weixin}分</span>
+				</p>
+			</li>
+			<li class="product-list">
+				<img src="__PUBLIC__/img_phone/btdown.png" class="float-left product-icon" alt="BTdown">
+				<p class="border-btm-1 product-name">	
+					BTdown
+					<span class="float-right">{$all_scores.byMonth.BTdown}分</span>
+				</p>
+			</li>
+			<li class="product-list">
+				<img src="__PUBLIC__/img_phone/shihuo.png" class="float-left product-icon" alt="BTdown">
+				<p class="product-name">	
+					拾货
+					<span class="float-right">{$all_scores['byMonth']['market']}分</span>
+				</p>
+			</li>
+		</ul>		
+	</div>
+	<div id="integral-list-wrap">
+		<div id="tille-integral-list" class="full-width border-btm-1">
+			<span class="bold">当月积分排行</span>
+		</div>
+		<ul id="integral-list" class="border-btm-1">
+			<foreach name='rankList_month' item='data'>
+				<li class="border-btm-1">
+					<span class="first">{$data.num}</span>
+					<p>{$data.real_name}</p>
+				</li>
+			</foreach>
+			<!-- <li class="border-btm-1">
+				<span class="second">2</span>
+				<p>冯秋明</p>
+			</li>
+			<li class="border-btm-1">
+				<span class="third">3</span>
+				<p>冯秋明</p>
+			</li>
+			<li class="border-btm-1">
+				<span>4</span>
+				<p>冯秋明</p>
+			</li>
+			<li class="border-btm-1">
+				<span>5</span>
+				<p>冯秋明</p>
+			</li>
+			<li class="border-btm-1">
+				<span>6</span>
+				<p>冯秋明</p>
+			</li>
+			<li class="border-btm-1">
+				<span>7</span>
+				<p>冯秋明</p>
+			</li>
+			<li class="border-btm-1">
+				<span>8</span>
+				<p>冯秋明</p>
+			</li>
+			<li class="border-btm-1">
+				<span>9</span>
+				<p>冯秋明</p>
+			</li>
+			<li class="border-btm-1">
+				<span>10</span>
+				<p>冯秋明</p>
+			</li> -->
+		</ul>
+	</div>
+<script src="__PUBLIC__/js_phone/redcenter.js"></script>
 </body>
 </html>
