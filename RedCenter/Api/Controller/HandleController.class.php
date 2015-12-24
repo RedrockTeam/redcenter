@@ -19,7 +19,8 @@ class HandleController extends Controller {
         $pro_id = I('post.id');//应用名称, 例如cyxbs代表重邮小帮手；BTdown代表BT当铺
         $this->userinfo = M('user_member')->where(array('stu_num' => $stu_num))->find();
 
-        $last_log_time = M('user_log')->where(array('user_id' => $this->userinfo['id']))->order('id desc')->find()['create_time'];
+        $log_res = M('user_log')->where(array('user_id' => $this->userinfo['id']))->order('id desc')->find();
+        $last_log_time = $log_res['create_time'];
         //验证学号是否正确
         if($this->userinfo){
             if(date('m',$last_log_time) != date('m')){

@@ -76,6 +76,7 @@ $stunum = '2014211547';
 
         //年度积分排行榜（前10）  暂没用到
         //$rankList = $userInfo->getRankList(10);
+        
         //月度积分排行榜（前10）  本期新需求
         $rankList_month = $userInfo->getRankList_month(10);
         

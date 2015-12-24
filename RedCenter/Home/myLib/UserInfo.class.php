@@ -219,9 +219,9 @@ class UserInfo {
         }
         $map['min_experience']  = array('ELT',$experience);
         $map['max_experience']  = array('EGT',$experience);
-        $level = M('user_level')->where($map)->find()['level'];
+        $res = M('user_level')->where($map)->find();
 
-        return $level;
+        return $res['level'];
     }
 
     //获取等级明细
