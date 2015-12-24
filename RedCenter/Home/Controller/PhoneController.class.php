@@ -11,15 +11,7 @@ class PhoneController extends Controller {
         $jssdk = new JSSDK($this->appid, $this->appSecret); //cyxbs
         $signPackage = $jssdk->GetSignPackage();
         $this->assign("signPackage", $signPackage);
-        /*var_dump($signPackage);
-        array (size=6)
-            'appId' => string 'wx81a4a4b77ec98ff4' (length=18)
-            'nonceStr' => string 'zfS8FmYAN597zmbp' (length=16)
-            'timestamp' => int 1449832108
-            'url' => string 'http://localhost/redcenter/index.php/Home/Newphone/index' (length=56)
-            'signature' => string 'f8f935c7844141574f33335c2fd98b38c17f8961' (length=40)
-            'rawString' => string 'jsapi_ticket=&noncestr=zfS8FmYAN597zmbp&timestamp=1449832108&url=http://localhost/redcenter/index.php/Home/Newphone/index' (length=121)
-        */
+        
         //判断方法
         if(IS_POST){
             $stunum = I('post.stu');
@@ -27,7 +19,7 @@ class PhoneController extends Controller {
             //根据stunum获取个人信息和总分数
             $stunum = I('get.stu');
         }
-$stunum = '2014211547';
+
         $userInfo = new UserInfo($stunum);
         $info = $userInfo->getSelfInfo();
 
@@ -44,39 +36,9 @@ $stunum = '2014211547';
             $Model->save($data);
         }
 
-   /* //年度积分：
-        //1.目前还只有微信应用
-        $weixinInfo = M('user_log')->where(array('user_id' => $info['id'], 'project' => '微信'))->select();
-        $weixinScore = 0;
-        foreach($weixinInfo as $value){
-            $weixinScore = $value[score]+$weixinScore;
-        }
-        //2.查询在BT的积分
-        //3.查询在拾货的积分
-        //4.查询在锦瑟南山的积分
-        //5.查询在掌上重邮的积分
-
-    //月度积分:
-        //1.目前还只有微信应用
-        $thisMonth = date('m');
-        $thisYear = date('Y');
-        $month_days = date('t',strtotime($thisYear.'-'.$thisMonth.'-01'));    //本月的最后一天是几号
-        $month_start =  mktime(0,0,0,$thisMonth,1,$thisYear);
-        $month_end = mktime(23,59,59,$thisMonth,$month_days,$thisYear);
-        $time['create_time'] = array('BETWEEN',"$month_start,$month_end");
-        $weixinInfo = M('user_log')->where(array('user_id' => $info['id'], 'project' => '微信'))->where($time)->select();
-        $weixinScore_month = 0;
-        foreach($weixinInfo as $value){
-            $weixinScore_month = $value[score]+$weixinScore_month;
-        }*/
-        //2.查询在BT的积分
-        //3.查询在拾货的积分
-        //4.查询在锦瑟南山的积分
-        //5.查询在掌上重邮的积分
-
         //年度积分排行榜（前10）  暂没用到
         //$rankList = $userInfo->getRankList(10);
-        
+
         //月度积分排行榜（前10）  本期新需求
         $rankList_month = $userInfo->getRankList_month(10);
         
@@ -86,13 +48,15 @@ $stunum = '2014211547';
         //获取头像
         $headImage = $userInfo->getHeadImg();
 
+        //各种积分
+        $all_scores = $userInfo->getAllScore();
 
         if(IS_POST){
             $this->ajaxReturn(array(
                 'headImage' => $headImage,
-                'selfRank' => $selfRank,
-                'rankList' => $rankList,
-                'weixinScore' => $weixinScore,
+                'rankList_month' => $rankList_month;
+                'all_scores' => $all_scores;
+                'rankchange' => $rankchange;
                 'info' => $info
             ));
         }else{
@@ -100,7 +64,7 @@ $stunum = '2014211547';
             $this->assign('rankList_month', $rankList_month);
             $this->assign('info', $info);
             $this->assign('rankchange',$rankchange);
-            $this->assign('all_scores',$userInfo->getAllScore());
+            $this->assign('all_scores',$all_scores);
             $this->display();
             //var_dump($headImage);
             //var_dump($rankList_month);
