@@ -66,6 +66,7 @@ class PhoneController extends Controller {
             $this->assign('rankchange',$rankchange);
             $this->assign('all_scores',$all_scores);
             $this->display();
+            
             //var_dump($headImage);
             //var_dump($rankList_month);
             //var_dump($info);
