@@ -85,7 +85,7 @@ class TeacherRegisterController extends Controller{
         if((time() - $row['time']) > (12*3600) ) {
             $this->error('验证超时');
         }
-        M('email_verify')->where(array('id' => $row['id']))->save(array('status' => 0));
+        M('email_verify')->where(array('email' => $row['email']))->save(array('status' => 0));
         $data = array(
             'stu_num' => '',
             'email' => $row['email'],
