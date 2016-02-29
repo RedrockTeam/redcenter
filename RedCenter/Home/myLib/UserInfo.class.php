@@ -22,8 +22,10 @@ class UserInfo {
             $this->stunum = $stunum;
         }
         $this->info = M('user_member')->where(array('stu_num' => $this->stunum))->find();
-        $this->info['level'] = $this->getLevel();
         $this->uid = $this->info['id'];
+        $this->updateRank();
+        $this->info = M('user_member')->where(array('stu_num' => $this->stunum))->find();
+        $this->info['level'] = $this->getLevel();
     }
 
     public function getSelfInfo(){
@@ -68,6 +70,33 @@ class UserInfo {
          return $all_scores;
     }
 
+
+    //更新排名
+    public function updateRank(){
+        $where['score'] = array('EGT',$this->info['score']);
+        $res = M('user_member')->where($where)->order('score desc,score_update_time ')->select();
+        $i = 1;
+        foreach ($res as $value) {
+            if($value['stu_num'] != $this->stunum)
+                $i++;
+            else
+                break;
+        }
+        $save['year_rank'] = $i;
+
+        $where['score_month'] = array('EGT',$this->info['score_month']);
+        $res = M('user_member')->where($where)->order('score_month desc,score_update_time ')->select();
+        $i = 1;
+        foreach ($res as $value) {
+            if($value['stu_num'] != $this->stunum)
+                $i++;
+            else
+                break;
+        }
+        $save['month_rank'] = $i;
+        $save['id'] = $this->uid;
+        M('user_member')->save($save);
+    }
     //获取年度排名
     public function getSelfRank(){
         $where['score'] = array('EGT',$this->info['score']);
@@ -154,9 +183,9 @@ class UserInfo {
 
     public function getHeadImg(){
         if($this->info['headimg'] == ""){
-            if($this->info['gender'] == "男" or $info['gender'] == "m"){
+            if($this->info['gender'] == "男" or $this->info['gender'] == "m"){
                 $headImage = "img/m.png";
-            }elseif($this->info['gender'] == "女" or $info['gender'] == "f"){
+            }elseif($this->info['gender'] == "女" or $this->info['gender'] == "f"){
                 $headImage = "img/f.png";
             }
         }

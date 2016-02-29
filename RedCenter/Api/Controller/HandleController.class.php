@@ -148,18 +148,18 @@ class HandleController extends Controller {
             unset($save);
             //user_member更新,分数改变后，月排名和年排名可能会变化 ，通过userinfo类里的方法算得排名
             $userinfo_object = new userInfo($stu_num);
-            $data['month_rank'] = $userinfo_object->getSelfRank_month();
+            /*$data['month_rank'] = $userinfo_object->getSelfRank_month();
             $data['year_rank'] = $userinfo_object->getSelfRank();
             $data['id'] = $uid;
-            M('user_member')->save($data);
+            M('user_member')->save($data);*/
             
             $this->ajaxReturn(array(
                 'status' => 200,
                 'data' => $last_log_time,
                 'stu_num' => $stu_num,
-                'uid' => $data['id'],
+/*                'uid' => $data['id'],
                 'month_rank' => $data['month_rank'],
-                'year_rank' => $data['year_rank']
+                'year_rank' => $data['year_rank']*/
             ),'json');
         }
     }
