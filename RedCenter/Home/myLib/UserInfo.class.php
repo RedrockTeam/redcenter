@@ -97,7 +97,7 @@ class UserInfo {
         $save['id'] = $this->uid;
         M('user_member')->save($save);
     }
-    //获取年度排名
+    /*//获取该年排名
     public function getSelfRank(){
         $where['score'] = array('EGT',$this->info['score']);
         $res = M('user_member')->where($where)->order('score desc,score_update_time ')->select();
@@ -111,7 +111,7 @@ class UserInfo {
         return $i;   
     }
 
-    //获取月度排名
+    //获取该月排名
     public function getSelfRank_month(){
         $where['score_month'] = array('EGT',$this->info['score_month']);
         $res = M('user_member')->where($where)->order('score_month desc,score_update_time ')->select();
@@ -124,7 +124,7 @@ class UserInfo {
         }
         return $i;   
     }
-    
+    */
     //获取排名变化
     public function rankChange(){
         $last_month_rank = $this->info['last_month_rank'];
