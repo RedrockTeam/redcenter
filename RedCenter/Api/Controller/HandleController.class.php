@@ -146,8 +146,9 @@ class HandleController extends Controller {
             $save['id'] = $this->userinfo['id'];
             M('user_member')->save($save);
             unset($save);
-            //user_member更新,分数改变后，月排名和年排名可能会变化 ，通过userinfo类里的方法算得排名
+            //user_member更新,分数改变后，月排名和年排名可能会变化 ，通过userinfo类的构造方法跟新排名
             $userinfo_object = new userInfo($stu_num);
+
             /*$data['month_rank'] = $userinfo_object->getSelfRank_month();
             $data['year_rank'] = $userinfo_object->getSelfRank();
             $data['id'] = $uid;
@@ -156,10 +157,7 @@ class HandleController extends Controller {
             $this->ajaxReturn(array(
                 'status' => 200,
                 'data' => $last_log_time,
-                'stu_num' => $stu_num,
-/*                'uid' => $data['id'],
-                'month_rank' => $data['month_rank'],
-                'year_rank' => $data['year_rank']*/
+                'stu_num' => $stu_num
             ),'json');
         }
     }
