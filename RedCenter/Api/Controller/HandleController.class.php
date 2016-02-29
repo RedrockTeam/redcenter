@@ -18,6 +18,7 @@ class HandleController extends Controller {
         $token = I('post.token');
         $pro_id = I('post.id');//应用名称, 例如cyxbs代表重邮小帮手；BTdown代表BT当铺
         $this->userinfo = M('user_member')->where(array('stu_num' => $stu_num))->find();
+        $uid = $this->userinfo['id'];
 
         $log_res = M('user_log')->where(array('user_id' => $this->userinfo['id']))->order('id desc')->find();
         $last_log_time = $log_res['create_time'];
@@ -128,7 +129,8 @@ class HandleController extends Controller {
             $this->userinfo = M('user_member')->where(array('stu_num' => $stu_num))->find();*/
             //向user_log表添加一条数据
             $data['user_id'] = $this->userinfo['id'];
-            $data['create_time'] = time();
+            $now = time();
+            $data['create_time'] = $now;
             $data['project'] = $pro;
             $data['action'] = $act['description'];
             $data['score'] = $act['once'];
@@ -140,7 +142,7 @@ class HandleController extends Controller {
             $save['experience'] = $this->userinfo['experience']+$act['once'] < 0 ? 0 : $this->userinfo['experience']+$act['once'];
             //在该月总积分的基础上加分,值不能为负，最低为0
             $save['score_month'] = $this->userinfo['score_month']+$act['once'] < 0 ? 0 : $this->userinfo['score_month']+$act['once'];
-            $save['score_update_time'] = time();//最后1次更新积分的时间
+            $save['score_update_time'] = $now;//最后1次更新积分的时间
             $save['id'] = $this->userinfo['id'];
             M('user_member')->save($save);
             unset($save);
@@ -148,11 +150,16 @@ class HandleController extends Controller {
             $userinfo_object = new userInfo($stu_num);
             $data['month_rank'] = $userinfo_object->getSelfRank_month();
             $data['year_rank'] = $userinfo_object->getSelfRank();
-            M('user_member')->where(array('stu_num', $stu_num))->save($data);
-            unset($data);
+            $data['id'] = $uid;
+            M('user_member')->save($data);
+            
             $this->ajaxReturn(array(
                 'status' => 200,
                 'data' => $last_log_time,
+                'stu_num' => $stu_num,
+                'uid' => $data['id'],
+                'month_rank' => $data['month_rank'],
+                'year_rank' => $data['year_rank']
             ),'json');
         }
     }

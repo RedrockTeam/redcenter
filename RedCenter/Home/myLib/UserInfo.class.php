@@ -23,12 +23,11 @@ class UserInfo {
         }
         $this->info = M('user_member')->where(array('stu_num' => $this->stunum))->find();
         $this->info['level'] = $this->getLevel();
-        $user = M('user_member')->where(array('stu_num' => $this->stunum))->find();
-        $this->uid = $user['id'];
+        $this->uid = $this->info['id'];
     }
 
     public function getSelfInfo(){
-        $this->info['level'] = $this->getLevel($this->info['experience']);
+//        $this->info['level'] = $this->getLevel($this->info['experience']);
         return $this->info;
     }
 
