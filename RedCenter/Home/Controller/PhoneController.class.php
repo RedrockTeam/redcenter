@@ -36,6 +36,9 @@ class PhoneController extends Controller {
             $Model->save($data);
         }
 
+        if(date('Y/m',$info['score_update_time']) != date('Y/m')){
+            $this->firstUse($stunum);
+        }
         //年度积分排行榜（前10）  暂没用到
         //$rankList = $userInfo->getRankList(10);
 
@@ -77,5 +80,19 @@ class PhoneController extends Controller {
 
     public function integral_rule(){
         $this->display();
+    }
+
+    public function firstUse($stunum){
+        $url = 'http://hongyan.cqupt.edu.cn/RedCenter/Api/Handle/index';
+        $tmpArr = array('cyxbs',"$stunum",'firstUse');
+        sort($tmpArr, SORT_STRING);
+        $t = md5( sha1( implode( $tmpArr, '|' ) ) );
+        //$t = generateToken('cyxbs',$stunum,'firstUse');
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "type=firstUse&stu=$stunum&id=cyxbs&token=".$t);
+        //$output = json_decode(curl_exec($ch),TRUE);
     }
 }
