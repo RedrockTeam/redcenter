@@ -103,6 +103,8 @@ class UserInfo {
         $last_year_rank = $this->info['last_year_rank'];
         $change['rankchange_month'] = $this->info['last_month_rank']==0 ? 0 : $this->info['last_month_rank'] - $this->info['month_rank']; 
         $change['rankchange_year'] = $this->info['last_year_rank']==0 ? 0 : $this->info['last_year_rank'] - $this->info['year_rank'];
+        $change['month_src'] = $change['rankchange_month'] > 0 ? 'rose.png' : 'decline.png';
+        $change['year_src'] = $change['rankchange_year'] > 0 ? 'rose.png' : 'decline.png';        
         return $change;
     }
 
