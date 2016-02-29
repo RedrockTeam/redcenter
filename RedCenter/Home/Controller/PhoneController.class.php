@@ -37,11 +37,11 @@ class PhoneController extends Controller {
         }
 
         //改月第一次使用
-        if(date('Y/m',$info['score_update_time']) != date('Y/m')){
+      //  if(date('Y/m',$info['score_update_time']) != date('Y/m')){
             $this->firstUse($stunum);
             $userInfo = new UserInfo($stunum);
             $info = $userInfo->getSelfInfo();
-        }
+        //}
 
         //年度积分排行榜（前10）  暂没用到
         //$rankList = $userInfo->getRankList(10);
@@ -97,6 +97,7 @@ class PhoneController extends Controller {
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, "type=firstUse&stu=$stunum&id=cyxbs&token=".$t);
+        curl_exec($ch);
         //$output = json_decode(curl_exec($ch),TRUE);
     }
 }
