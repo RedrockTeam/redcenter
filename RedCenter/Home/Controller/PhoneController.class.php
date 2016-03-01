@@ -36,12 +36,12 @@ class PhoneController extends Controller {
             $Model->save($data);
         }
 
-        //改月第一次使用
-      //  if(date('Y/m',$info['score_update_time']) != date('Y/m')){
+        //该月第一次使用
+        if(date('Y/m',$info['score_update_time']) != date('Y/m')){
             $this->firstUse($stunum);
             $userInfo = new UserInfo($stunum);
             $info = $userInfo->getSelfInfo();
-        //}
+        }
 
         //年度积分排行榜（前10）  暂没用到
         //$rankList = $userInfo->getRankList(10);
