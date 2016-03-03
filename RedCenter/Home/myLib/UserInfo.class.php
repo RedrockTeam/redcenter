@@ -71,7 +71,7 @@ class UserInfo {
     }
 
 
-    //更新排名
+    //在首页展示排名时,此次排名与上次的可能发生变化.应先通过比较分数获取新排名,更新到数据库
     public function updateRank(){
         $where['score'] = array('EGT',$this->info['score']);
         $res = M('user_member')->where($where)->order('score desc,score_update_time ')->select();
@@ -97,7 +97,8 @@ class UserInfo {
         $save['id'] = $this->uid;
         M('user_member')->save($save);
     }
-    /*//获取该年排名
+
+    //获取该年排名
     public function getSelfRank(){
         $where['score'] = array('EGT',$this->info['score']);
         $res = M('user_member')->where($where)->order('score desc,score_update_time ')->select();
@@ -124,7 +125,7 @@ class UserInfo {
         }
         return $i;   
     }
-    */
+
     //获取排名变化
     public function rankChange(){
         $last_month_rank = $this->info['last_month_rank'];
