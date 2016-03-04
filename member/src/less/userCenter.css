@@ -1,0 +1,35 @@
+.content-right {
+  width: 733px;
+  padding-left: 190px;
+  margin: auto;
+}
+.content-link {
+  width: 240px;
+  height: 96px;
+}
+.content-title {
+  height: 20px;
+  margin-top: 23px;
+  margin-bottom: 17px;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 20px;
+}
+.content-title-bar {
+  width: 4px;
+  height: 20px;
+  background-color: #3cdcc0;
+  margin-right: 8px;
+  float: left;
+}
+.content-contain {
+  width: 731px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 0 1px #dddddd;
+  -moz-box-shadow: 0 0 0 1px #dddddd;
+  box-shadow: 0 0 0 1px #dddddd;
+}
+.content-mTitle {
+  font-size: 16px;
+  color: #4691ea;
+}
