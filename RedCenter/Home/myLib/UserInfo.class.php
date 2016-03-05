@@ -89,22 +89,24 @@ class UserInfo {
 
         $where['score_month'] = array('EGT',$this->info['score_month']);
         //$res = M('user_member')->where($where)->order('score_month desc,score_update_time ')->select();
-        $M = new \Think\Model(); $res = $M->query("select * from user_member where score_month >= 6 ORDER BY score_month DESC ,score_update_time ASC ");
+        $M = new \Think\Model(); $res = $M->query("select * from user_member where score_month >=".$this->info['score_month']." ORDER BY score_month DESC ,score_update_time ASC ");
         echo $this->info['score_month']."\n";var_dump($res);echo "\n";
-        $i = 1;
-        echo "本人学号:".$this->stunum."foreach前排名:".$this->info['month_rank']."\n";
-        foreach ($res as $value) {
-            echo "第".$i."次,学号:".$value['stu_num'].",";
-            if($value['stu_num'] != $this->stunum)
-                $i++;
-            else
-                break;
-            echo "执行一次后:".$i."\n";
-        }
-        $save['month_rank'] = $i;
-        $save['id'] = $this->uid;
-        M('user_member')->save($save);
-        echo "最后排名:".$i."=".$save['month_rank'];
+        $r = M('user_member')->where($where)->order('score_month desc,score_update_time asc')->select();
+        echo "\n";var_dump($r);
+//        $i = 1;
+//        echo "本人学号:".$this->stunum."foreach前排名:".$this->info['month_rank']."\n";
+//        foreach ($res as $value) {
+//            echo "第".$i."次,学号:".$value['stu_num'].",";
+//            if($value['stu_num'] != $this->stunum)
+//                $i++;
+//            else
+//                break;
+//            echo "执行一次后:".$i."\n";
+//        }
+//        $save['month_rank'] = $i;
+//        $save['id'] = $this->uid;
+//        M('user_member')->save($save);
+//        echo "最后排名:".$i."=".$save['month_rank'];
         die();
     }
 
