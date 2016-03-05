@@ -92,7 +92,7 @@ class UserInfo {
         $i = 1;
         echo "本人学号:".$this->stunum."foreach前排名:".$this->info['month_rank']."\n";
         foreach ($res as $value) {
-            echo "第".$i."次,学号:".value['stu_num'].",";
+            echo "第".$i."次,学号:".$value['stu_num'].",";
             if($value['stu_num'] != $this->stunum)
                 $i++;
             else
