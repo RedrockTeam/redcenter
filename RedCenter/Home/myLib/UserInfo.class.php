@@ -89,6 +89,7 @@ class UserInfo {
 
         $where['score_month'] = array('EGT',$this->info['score_month']);
         $res = M('user_member')->where($where)->order('score_month desc,score_update_time ')->select();
+        echo $this->info['score_month']."\n";var_dump($res);die();
         $i = 1;
         echo "本人学号:".$this->stunum."foreach前排名:".$this->info['month_rank']."\n";
         foreach ($res as $value) {
