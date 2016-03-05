@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../less/common.css"/>
     <link rel="stylesheet" href="../less/prizes.css">
-    <title>会员中心</title>
+    <script type="text/javascript" src="../../lib/jquery.min.js"></script>
+    <title>领奖规则</title>
 </head>
 <body>
     <div class="header">
@@ -12,48 +13,74 @@
             <img src="../img/logo.png" alt="logo" class="header-left-logo">
         </div>
         <div class="header-right">
-            <div class="header-right-tips">
-                <img src="../img/helper.png" alt="tipImg">
-                <span>重邮小帮手：您的账号有一条新的消息~</span>
-            </div>
+                <a class="header-right-tips" href="#">
+                    <img src="../img/helper.png" alt="tipImg">
+                    <span>重邮小帮手：您的账号有一条新的消息~</span>
+                </a>
             <div class="header-right-user">
                 <div class="header-user-face">
                     <img src="../img/face.jpg" alt="face">
                 </div>
                 <span>最多六个字啊</span>
                 <button class="header-user-show" type="button"></button>
+                <ul class="header-user-detail">
+                    <a href="#">
+                        <li class="header-user-select header-user-set">
+                            账户设置
+                            <span class="header-set-img"></span>
+                        </li>
+                    </a>
+                    <a href="#">
+                        <li class="header-user-select header-user-out">
+                            退出登录
+                            <span class="header-out-img"></span>
+                        </li>
+                    </a>
+
+                </ul>
             </div>
         </div>
+
     </div>
     <div class="content">
         <ul class="content-left">
-            <li class="content-left-li">
-                <div class="content-li-bar"></div>
-                <span class="content-li-img"></span>
-                <span class="content-li-name">用户中心</span>
-            </li>
-            <li class="content-left-li">
-                <div class="content-li-bar"></div>
-                <span class="content-li-img"></span>
-                <span class="content-li-name">我的产品</span>
-            </li>
-            <li class="content-left-li">
-                <div class="content-li-bar"></div>
-                <span class="content-li-img"></span>
-                <span class="content-li-name">数据查询</span>
-            </li>
-            <li class="content-left-li">
-                <div class="content-li-bar"></div>
-                <span class="content-li-img"></span>
-                <span class="content-li-name">帮助中心</span>
-            </li>
-            <li class="content-left-li">
-                <div class="content-li-bar"></div>
-                <span class="content-li-img"></span>
-                <span class="content-li-name">领奖规则</span>
-            </li>
+            <a href="#">
+                <li class="content-left-li">
+                    <div class="content-li-bar"></div>
+                    <span class="content-li-img"></span>
+                    <span>用户中心</span>
+                </li>
+            </a>
+            <a href="#">
+                <li class="content-left-li">
+                    <div class="content-li-bar"></div>
+                    <span class="content-li-img"></span>
+                    <span>我的产品</span>
+                </li>
+            </a>
+            <a href="#">
+                <li class="content-left-li">
+                    <div class="content-li-bar"></div>
+                    <span class="content-li-img"></span>
+                    <span>数据查询</span>
+                </li>
+            </a>
+            <a href="#">
+                <li class="content-left-li">
+                    <div class="content-li-bar"></div>
+                    <span class="content-li-img"></span>
+                    <span>帮助中心</span>
+                </li>
+            </a>
+            <a href="#">
+                <li class="content-left-li">
+                    <div class="content-li-bar"></div>
+                    <span class="content-li-img"></span>
+                    <span>领奖规则</span>
+                </li>
+            </a>
         </ul>
-        <div id="prizes-info">
+                <div id="prizes-info">
             <h2 id="info-title">&nbsp;领奖规则</h2>  
             <div id="info-content">
                 <h3 id="info-content-title">会员中心 "月积分新计划" 规则</h3>
@@ -105,6 +132,17 @@
                 <p id="statement">最终解释权归重庆邮电大学红岩网校工作站所属     红岩网校工作站运营维护部 2015.12</p>
             </div>      
         </div>
+        <footer>
+            <p>
+                <a href="##" class="link">关于红岩网校</a> |
+                <a href="##" class="link">开发团队</a> |
+                <a href="##" class="link">指出错误</a> |
+                <a href="##" class="link">管理入口</a>
+            </p>
+            <p>地址:重庆市南岸区南山街道崇文路2号重庆邮电大学 联系电话:62461084 / 62487910</p>
+            <p>本网站由红岩网校工作站负责开发管理,不经红岩网校委员会书面同意,不得进行转载</p>
+        </footer>
     </div>
 </body>
+<script type="text/javascript" src="../js/common.js"></script>
 </html>

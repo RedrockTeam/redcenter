@@ -1,7 +1,7 @@
 /**
  * Created by zxy on 2016/3/3.
  */
-//;(function($){
+;(function($){
     var $selectImg = $('.content-li-img'),
         imgLen = $selectImg.length,
         $select = $('.content-left-li');
@@ -22,5 +22,21 @@
         $(this).find('.content-li-bar').css('width','4px');
         //console.log(parseInt($img.css('background-position')));
     });
+
+
+
+
+    window.onload = window.onresize = function() {
+        var docWidth = document.documentElement.offsetWidth;
+        console.log(docWidth);
+        setFixedLeft($('.content-left'));
+        setFixedLeft($('.header-left'));
+        function setFixedLeft(obj) {
+            obj.css('left', docWidth/2-496);
+            if(docWidth < 1080) {
+                obj.css('left', 0);
+            }
+        }
+    }
     //alert(1);
-//}(jQuery));
+}(jQuery));
