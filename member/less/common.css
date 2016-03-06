@@ -239,3 +239,7 @@ footer .link {
   font-size: 14px;
   color: #506477;
 }
+footer .link:hover {
+  color: transparent;
+  text-shadow: 0 0 2px #506477 ;
+}

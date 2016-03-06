@@ -11,6 +11,7 @@ ul {
   width: 773px;
   margin: 0 auto;
   padding-left: 220px;
+  overflow: hidden;
 }
 #data-center-title {
   margin-top: 24px;
@@ -45,6 +46,7 @@ ul {
   height: 480px;
   border: 1px solid #e5e5e5;
   overflow: hidden;
+  background-color: #fff;
 }
 .data-list li {
   padding-left: 15px;
