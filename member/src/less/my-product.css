@@ -12,12 +12,12 @@ ul {
   padding-left: 220px;
   width: 800px;
 }
-#added-product {
+.added-product {
   margin: 26px 0 13px 0;
   font-size: 18px;
   font-weight: 500;
 }
-#added-product span {
+.added-product span {
   position: relative;
   top: 3px;
   display: inline-block;
@@ -27,6 +27,7 @@ ul {
   background-color: #3bddc0;
 }
 #info-added-product {
+  margin-bottom: 50px;
   border: 1px solid #ccc;
   border-collapse: collapse;
 }
@@ -70,4 +71,13 @@ ul {
 }
 #info-added-product .product-operation {
   width: 90px;
+}
+#can-add-product {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+}
+#can-add-product td {
+  width: 372px;
+  height: 91px;
+  line-height: 91px;
 }
