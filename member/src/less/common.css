@@ -206,6 +206,8 @@ body {
 footer {
   display: block;
   margin: 0 auto;
+  padding-top: 30px;
+  padding-left: 190px;
   width: 800px;
   text-align: center;
 }
