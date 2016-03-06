@@ -55,4 +55,32 @@ class IndexController extends CommonController {
     public function signUp(){
         $this->display();
     }
+
+    public function changeInfo(){
+        if(IS_POST){
+            $where['stu_num'] = session('stunum');
+            $info['headimg'] = $this->savePic();
+            $info['myshop'] = I('post.myshop');
+            $info['mysign'] = I('post.mysign');
+            $info['nickname'] = I('post.nickname');
+            M('user_member')->where($where)->save($info);
+        }
+    }
+
+    private function savePic(){
+        $upload = new \Think\Upload();                      // 实例化上传类
+        $upload->maxSize = 3145728;                         // 设置附件上传大小
+        $upload->exts = array('jpg', 'gif', 'png', 'jpeg'); // 设置附件上传类型
+        $upload->rootPath = './RedCenter/Home/Public/head_img';            // 设置附件上传根目录
+        $upload->autoSub = false;
+        $upload->savePath = '';
+        $upload->saveName = time() . '_' . session('stunum');              // 设置上传文件名
+        $info = $upload->uploadOne($_FILES['photo']);       //执行上传方法
+        if (!$info) {                                       // 上传错误提示错误信息
+                $this->error($upload->getError());
+        } else {                                              // 上传成功 获取上传文件信息
+            return $info['savename'];
+        }
+
+    }
 }

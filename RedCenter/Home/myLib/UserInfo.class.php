@@ -6,7 +6,7 @@
  * Time: 13:34
  */
 namespace Home\myLib;
-
+use \Think\Model;
 class UserInfo {
 
     private $stunum;
@@ -52,6 +52,7 @@ class UserInfo {
             $all_scores['byMonth']["$key"] = 0;
             foreach ($logs as $once) {
                 $all_scores['byMonth']["$key"] += $once['score'];
+                if($all_scores['byMonth']["$key"] <0 )    $all_scores['byMonth']["$key"] = 0;
             }
             $all_scores['byMonth']['total'] += $all_scores['byMonth']["$key"]; 
         }
@@ -63,8 +64,10 @@ class UserInfo {
             $all_scores['byYear']["$key"] = 0;
             foreach ($logs as $once) {
                 $all_scores['byYear']["$key"] += $once['score'];
+                if($all_scores['byYear']["$key"] <0 )     $all_scores['byYear']["$key"] = 0;
             }
-            $all_scores['byYear']['total'] += $all_scores['byYear']["$key"]; 
+            $all_scores['byYear']['total'] += $all_scores['byYear']["$key"];
+
         }
         
          return $all_scores;
@@ -73,8 +76,9 @@ class UserInfo {
 
     //在首页展示排名时,此次排名与上次的可能发生变化.应先通过比较分数获取新排名,更新到数据库
     public function updateRank(){
-        $where['score'] = array('EGT',$this->info['score']);
-        $res = M('user_member')->where($where)->order('score desc,score_update_time ')->select();
+        //$where['score'] = array('EGT',$this->info['score']);
+        //$res = M('user_member')->where($where)->order('score desc,score_update_time ')->select();
+        $M = new \Think\Model(); $res = $M->query("select * from user_member where score >=".$this->info['score']." ORDER BY score DESC ,score_update_time ASC ");
         $i = 1;
         foreach ($res as $value) {
             if($value['stu_num'] != $this->stunum)
@@ -84,18 +88,23 @@ class UserInfo {
         }
         $save['year_rank'] = $i;
 
-        $where['score_month'] = array('EGT',$this->info['score_month']);
-        $res = M('user_member')->where($where)->order('score_month desc,score_update_time ')->select();
+        //$where['score_month'] = array('EGT',$this->info['score_month']);
+        //$res = M('user_member')->where($where)->order('score_month desc,score_update_time ')->select();
+        $M = new \Think\Model(); $res = $M->query("select * from user_member where score_month >=".$this->info['score_month']." ORDER BY score_month DESC ,score_update_time ASC ");
         $i = 1;
+        //echo "本人学号:".$this->stunum."foreach前排名:".$this->info['month_rank']."\n";
         foreach ($res as $value) {
+          //  echo "第".$i."次,学号:".$value['stu_num'].",";
             if($value['stu_num'] != $this->stunum)
                 $i++;
             else
                 break;
+            //echo "执行一次后:".$i."\n";
         }
         $save['month_rank'] = $i;
         $save['id'] = $this->uid;
         M('user_member')->save($save);
+        //echo "最后排名:".$i."=".$save['month_rank'];
     }
 
     //获取该年排名
@@ -132,8 +141,8 @@ class UserInfo {
         $last_year_rank = $this->info['last_year_rank'];
         $change['rankchange_month'] = $this->info['last_month_rank']==0 ? 0 : $this->info['last_month_rank'] - $this->info['month_rank']; 
         $change['rankchange_year'] = $this->info['last_year_rank']==0 ? 0 : $this->info['last_year_rank'] - $this->info['year_rank'];
-        $change['month_src'] = $change['rankchange_month'] > 0 ? 'rose.png' : 'decline.png';
-        $change['year_src'] = $change['rankchange_year'] > 0 ? 'rose.png' : 'decline.png';        
+        $change['month_src'] = $change['rankchange_month'] >= 0 ? 'rose.png' : 'decline.png';
+        $change['year_src'] = $change['rankchange_year'] >= 0 ? 'rose.png' : 'decline.png';
         return $change;
     }
 
