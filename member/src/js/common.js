@@ -1,7 +1,7 @@
 /**
  * Created by zxy on 2016/3/3.
  */
-//;(function($){
+;(function($){
     var $selectImg = $('.content-li-img'),
         imgLen = $selectImg.length,
         $select = $('.content-left-li');
@@ -22,5 +22,4 @@
         $(this).find('.content-li-bar').css('width','4px');
         //console.log(parseInt($img.css('background-position')));
     });
-    //alert(1);
-//}(jQuery));
+}(jQuery));
