@@ -47,9 +47,7 @@ a {
   padding: 6px 26px 6px 23px;
   background-color: #eeeef1;
   color: #000;
-  -moz-border-radius: 50px;
   /* Gecko browsers */
-  -webkit-border-radius: 50px;
   /* Webkit browsers */
   border-radius: 50px;
   /* W3C syntax */
@@ -86,9 +84,7 @@ a {
 .header-user-face {
   width: 42px;
   height: 42px;
-  -moz-border-radius: 50px;
   /* Gecko browsers */
-  -webkit-border-radius: 50px;
   /* Webkit browsers */
   border-radius: 50px;
   /* W3C syntax */
@@ -124,8 +120,6 @@ a {
   color: #666666;
   font-size: 14px;
   background-color: #fff;
-  -webkit-box-shadow: 0 0 1px 1px #e3e3e3;
-  -moz-box-shadow: 0 0 1px 1px #e3e3e3;
   box-shadow: 0 0 1px 1px #e3e3e3;
 }
 .header-user-select span {
