@@ -33,6 +33,9 @@ ul {
   border-collapse: collapse;
   background-color: #fff;
 }
+#info-added-product tr {
+  width: 743px;
+}
 #info-added-product th {
   font-size: 14px;
   font-weight: 500;
@@ -66,10 +69,10 @@ ul {
 }
 #info-added-product .product-decribe {
   padding-right: 80px;
-  width: 240px;
+  width: 254px;
 }
 #info-added-product .product-added-time {
-  width: 152px;
+  width: 155px;
 }
 #info-added-product .product-operation {
   width: 90px;
