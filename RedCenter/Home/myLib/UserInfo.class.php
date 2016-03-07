@@ -270,4 +270,56 @@ class UserInfo {
 
         return $levelRule;
     }
+
+    //获取帮助中心的文章
+    public function getHelp(){
+        $link = json_decode($this->info['link_id']);
+        $link[] = 10;
+        $where['for_who'] = array('IN',$link);
+        $help = M('help_center')->where($where)->select();
+        $num['stu_num'] = $this->stunum;
+        $save['read_help'] = count($help);
+        M('user_member')->where($num)->save($save);
+        return $help;
+    }
+
+    //获取消息
+    public function getNew(){
+        $link = json_decode($this->info['link_id']);
+        $link[] = 10;
+        $where['for_who'] = array('IN',$link);
+        $new = M('new_center')->where($where)->select();
+        $num['stu_num'] = $this->stunum;
+        $save['read_news'] = count($new);
+        M('user_member')->where($num)->save($save);
+        return $new;
+    }
+
+    //新发布的未读的帮助文章数目
+    public function newHelpNum(){
+        $link = json_decode($this->info['link_id']);
+        $link[] = 10;
+        $where['for_who'] = array('IN',$link);
+        $total = M('help_center')->where($where)->count('id');
+        $read_help = M('user_member')->where(array('stu_num'=>$this->stunum))->find()['read_help'];
+        $num = $total - $read_help;
+        return $num;
+    }
+
+    //新发布的未读的消息数目
+    public function newNewsNum(){
+        $link = json_decode($this->info['link_id']);
+        $link[] = 10;
+        $where['for_who'] = array('IN',$link);
+        $total = M('new_center')->where($where)->count('id');
+        $read_news = M('user_member')->where(array('stu_num'=>$this->stunum))->find()['read_news'];
+        $num = $total - $read_news;
+        return $num;
+    }
+
+    //获取网校产品链接情况
+    public function getLink(){
+        $res = D('Lnik')->getLink();
+        return $res;
+    }
 }

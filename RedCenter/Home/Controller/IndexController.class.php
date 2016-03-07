@@ -44,7 +44,15 @@ class IndexController extends CommonController {
 
         //积分等级
         $this->assign('levelRule', $userInfo->getLevelRule());
-//dd($userInfo->getLevelRule());
+        //dd($userInfo->getLevelRule());
+
+        //帮助中心文章
+        $this->assgin('help',$userInfo->getHelp());
+        //获取消息中文章
+        $this->assign('new',$userInfo->getNew());
+
+
+
         $this->display();
     }
 
@@ -63,8 +71,13 @@ class IndexController extends CommonController {
             $info['myshop'] = I('post.myshop');
             $info['mysign'] = I('post.mysign');
             $info['nickname'] = I('post.nickname');
-            M('user_member')->where($where)->save($info);
-        }
+            $res = M('user_member')->where($where)->save($info);
+            if($res)
+                $this->ajaxReturn(true);
+            else
+                $this->ajaxReturn(false);
+        }else
+            $this->ajaxReturn(false);
     }
 
     private function savePic(){
@@ -82,5 +95,34 @@ class IndexController extends CommonController {
             return $info['savename'];
         }
 
+    }
+
+    public function changLink(){
+        $res = D('Link')->changLink(I('post.type'),I('post.linkId'));
+        //$this->ajaxReturn(true);
+    }
+
+    public function linkInfo(){
+        $stunum = session('stunum');
+        $userInfo = new UserInfo($stunum);
+        $linkInfo = $userInfo->getLink();
+        $this->ajaxReturn($linkInfo);
+    }
+
+    public function test(){
+
+        $userInfo = new UserInfo('2014211547');
+        $info = $userInfo->getSelfInfo();
+        //取帮助文章
+        //var_dump($userInfo->getHelp());
+
+        //取未读帮助数目
+        //var_dump($userInfo->newHelpNum());
+
+        //取消息
+        var_dump($userInfo->getNew());
+
+        //取未读消息数目
+        var_dump($userInfo->newNewsNum());
     }
 }
