@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../less/common-admin.css"/>
+    <link rel="stylesheet" href="../less/user-manage.css">
+    <script type="text/javascript" src="../../lib/jquery.min.js"></script>
+    <title>会员中心</title>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <img src="../img/logo.png" alt="logo" class="header-left-logo">
+        </div>
+        <div class="header-right">
+                <a class="header-right-tips" href="#">
+                    <img src="../img/helper.png" alt="tipImg">
+                    <span>重邮小帮手：您的账号有一条新的消息~</span>
+                </a>
+            <div class="header-right-user">
+                <div class="header-user-face">
+                    <img src="../img/face.jpg" alt="face">
+                </div>
+                <span>最多六个字啊</span>
+                <button class="header-user-show" type="button"></button>
+                <ul class="header-user-detail">
+                    <a href="#">
+                        <li class="header-user-select header-user-set">
+                            账户设置
+                            <span class="header-set-img"></span>
+                        </li>
+                    </a>
+                    <a href="#">
+                        <li class="header-user-select header-user-out">
+                            退出登录
+                            <span class="header-out-img"></span>
+                        </li>
+                    </a>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="content">
+        <ul class="content-left">
+            <a href="#">
+                <li class="content-left-li">
+                    <div class="content-li-bar"></div>
+                    <span class="content-li-img"></span>
+                    <span>用户管理</span>
+                </li>
+            </a>
+            <a href="#">
+                <li class="content-left-li">
+                    <div class="content-li-bar"></div>
+                    <span class="content-li-img"></span>
+                    <span>消息发布</span>
+                </li>
+            </a>
+            <a href="#">
+                <li class="content-left-li">
+                    <div class="content-li-bar"></div>
+                    <span class="content-li-img"></span>
+                    <span>数据查询</span>
+                </li>
+            </a>
+            <a href="#">
+                <li class="content-left-li">
+                    <div class="content-li-bar"></div>
+                    <span class="content-li-img"></span>
+                    <span>帮助发布</span>
+                </li>
+            </a>
+        </ul>
+
+        <div id="user-manage-content">
+            <h2 class="content-title">
+                <span class="content-title-bar"></span>
+                用户管理
+            </h2>
+
+            <form id="search-stu" action="##" method="POST">
+                <select name="type">
+                    <option value="name">按姓名</option>
+                    <option value="stuId">按学号</option>
+                    <option value="stuId">联系方式</option>
+                </select>
+                <input type="text" placeholder="输入用户信息搜索">
+                <button type="submit">搜索</button>
+                <span id="add-user"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAMAAADqmnyMAAAAaVBMVEUAAABGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkeqXCAkvAAAAInRSTlMA6nSPZ/bBBftqPC4M1biuq6Kbi4Z7XVgU4tnSxrKAT0YZGP87cQAAAIlJREFUGNNtj9kSgyAMRdlxwaW2Wruq/P9HGgiOZMb7lDlzwg0sZjX81deMpNYeojuXw4fHPHN4S1DkUF6ZCllBqtpkKpitpUW6gnkcD/V79tzlAZcCWOOYk8OnGWR21AQPlsIYUSbYAfwzsj6rsK7VHM6Lnp1a7jG8r9DaDALy05+nie6b0wR1B7zMEKHTufN5AAAAAElFTkSuQmCC" alt="">新增用户</span>
+            </form>
+            <table id="search-result">
+                <tr>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>学号</th>
+                    <th>邮箱</th>
+                    <th>联系方式</th>
+                    <th>身份证号</th>
+                    <th>操作</th>
+                </tr>
+                <tr>
+                    <td>冯秋明</td>
+                    <td>男</td>
+                    <td>62461084</td>
+                    <td>i@zeroling.com</td>
+                    <td>1323775468</td>
+                    <td>416841651351635146</td>
+                    <td>
+                        <img class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAANlBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+t8Ac9AAAAEXRSTlMAtB7u3fQP4dvJmIh3YFQ3S4Jl9n8AAABWSURBVBjTvc45DoAwDETRScDZF3z/y0JsKYQCiYpXjX41UJaYqWPV+XJAhW2gkUhmQCT2++SZImDYYrJs8JpcrkDN7k6yZPyWXGlAK3ri+/uVpPRMCSfttAbPZox/fgAAAABJRU5ErkJggg==">
+                        <img  class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAVFBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+uAXCOAAAAG3RSTlMA+SDxqtJJUk4VD8u+tTsmBtyui19G7ddbMAnz5jM8AAAAdElEQVQY01XJWQKCMBRD0RSr0pHK4JT971MetMi7fzmBbhkL4Cbb6nAzTAWRNXMXIS0M527LrbI/vKDWREiLkBZ3UL9Jj088aNzFP6+VFl+SCDo2isF/0yp/cobBA2ea+ZoGTVm2JkAT84neQg/qLJC1hQE/MiUMK+A/fBQAAAAASUVORK5CYII=" >
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <footer>
+            <p>
+                <a href="##" class="link">关于红岩网校</a> |
+                <a href="##" class="link">开发团队</a> |
+                <a href="##" class="link">指出错误</a> |
+                <a href="##" class="link">管理入口</a>
+            </p>
+            <p>地址:重庆市南岸区南山街道崇文路2号重庆邮电大学 联系电话:62461084 / 62487910</p>
+            <p>本网站由红岩网校工作站负责开发管理,不经红岩网校委员会书面同意,不得进行转载</p>
+        </footer>
+    </div>
+</body>
+<script type="text/javascript" src="../js/common.js"></script>
+</html>
