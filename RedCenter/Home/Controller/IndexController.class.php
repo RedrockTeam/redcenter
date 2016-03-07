@@ -4,7 +4,6 @@ use Think\Controller;
 use Home\myLib\UserInfo;
 
 class IndexController extends CommonController {
-
     /**
      * 前台 用户中心
      */
@@ -99,7 +98,10 @@ class IndexController extends CommonController {
 
     public function changLink(){
         $res = D('Link')->changLink(I('post.type'),I('post.linkId'));
-        //$this->ajaxReturn(true);
+        if($res)
+            $this->ajaxReturn(true);
+        else
+            $this->ajaxReturn(false);
     }
 
     public function linkInfo(){
@@ -109,20 +111,58 @@ class IndexController extends CommonController {
         $this->ajaxReturn($linkInfo);
     }
 
+    public function getHelp(){
+        $userInfo = getUinfo();
+        $res = $userInfo->getHelp(I('post.page'));
+        $this->ajaxReturn($res);
+    }
+
+    public function getNew(){
+        $userInfo = getUinfo();
+        $res = $userInfo->getNew(I('post.page'));
+        $this->ajaxReturn($res);
+    }
+
+
+
     public function test(){
 
         $userInfo = new UserInfo('2014211547');
         $info = $userInfo->getSelfInfo();
+        $res = $userInfo->getLink();
+        var_dump($res);
         //取帮助文章
-        //var_dump($userInfo->getHelp());
+        //var_dump($userInfo->getHelp(2));
 
         //取未读帮助数目
         //var_dump($userInfo->newHelpNum());
 
         //取消息
-        var_dump($userInfo->getNew());
+        //var_dump($userInfo->getNew());
 
         //取未读消息数目
-        var_dump($userInfo->newNewsNum());
+        //var_dump($userInfo->newNewsNum());
+    }
+
+    public function index2(){
+        if(is_null(session('stunum'))){
+            $this->redirect('Home/Index/login');
+        }
+        $stunum = session('stunum');
+        $userInfo = new UserInfo($stunum);
+
+        $info = $userInfo->getSelfInfo();
+        $newHelpNum = $userInfo->newHelpNum();
+        $newNewsNum = $userInfo->newNewsNum();
+        $linkInfo = $userInfo->getLink();
+        $all_scores = $userInfo->getAllScore();
+
+        $this->assign('info',$info);
+        $this->assign('newHelpNum',$newHelpNum);
+        $this->assign('newNewsNum',$newNewsNum);
+        $this->assign('linkNum',count($linkInfo['linked']));
+        $this->assign('all_scores',$all_scores);
+
+        $this->display();
     }
 }

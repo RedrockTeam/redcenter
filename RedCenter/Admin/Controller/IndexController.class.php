@@ -15,3 +15,24 @@ class IndexController extends CommonController {
         $this->redirect('Admin/Login/index');
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+/*array(
+    'total_num' =>'43',
+    'article' => array(
+        '0'=>array('title'=>'重邮小帮手','content'=>'afsasf','for_who'=>'重邮小帮手','time'=>'8:34:34'),
+        '1'=>array('title'=>'重邮小帮手','content'=>'afsasf','for_who'=>'重邮小帮手','time'=>'8:34:34'),
+        '2'=>array('title'=>'重邮小帮手','content'=>'afsasf','for_who'=>'重邮小帮手','time'=>'8:34:34'),
+        '3'=>array('title'=>'重邮小帮手','content'=>'afsasf','for_who'=>'重邮小帮手','time'=>'8:34:34'),
+        '4'=>array('title'=>'重邮小帮手','content'=>'afsasf','for_who'=>'重邮小帮手','time'=>'8:34:34'),
+    )
+)*/

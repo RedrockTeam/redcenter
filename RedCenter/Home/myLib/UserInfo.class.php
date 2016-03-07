@@ -29,7 +29,8 @@ class UserInfo {
     }
 
     public function getSelfInfo(){
-//        $this->info['level'] = $this->getLevel($this->info['experience']);
+//      $this->info['level'] = $this->getLevel($this->info['experience']);
+        $this->info['last_time']= date('Y/m/d',$this->info['last_login_time']);
         return $this->info;
     }
 
@@ -272,27 +273,35 @@ class UserInfo {
     }
 
     //获取帮助中心的文章
-    public function getHelp(){
+    public function getHelp($page){
         $link = json_decode($this->info['link_id']);
         $link[] = 10;
         $where['for_who'] = array('IN',$link);
-        $help = M('help_center')->where($where)->select();
+        $total = M('help_center')->where($where)->count();
+        $begin = $page ? ($page-1)*5 : 0;
+        $help = M('help_center')->where($where)->order('time desc')->limit($begin,5)->select();
         $num['stu_num'] = $this->stunum;
-        $save['read_help'] = count($help);
+        $save['read_help'] = $total;
         M('user_member')->where($num)->save($save);
-        return $help;
+        $res['total'] = $total;
+        $res['article'] = $help;
+        return $res;
     }
 
     //获取消息
-    public function getNew(){
+    public function getNew($page){
         $link = json_decode($this->info['link_id']);
         $link[] = 10;
         $where['for_who'] = array('IN',$link);
-        $new = M('new_center')->where($where)->select();
+        $total = M('new_center')->where($where)->count();
+        $begin = $page ? ($page-1)*5 : 0;
+        $new = M('new_center')->where($where)->order('time desc')->limit($begin,5)->select();
         $num['stu_num'] = $this->stunum;
-        $save['read_news'] = count($new);
+        $save['read_news'] = $total;
         M('user_member')->where($num)->save($save);
-        return $new;
+        $res['total'] = $total;
+        $res['article'] = $new;
+        return $res;
     }
 
     //新发布的未读的帮助文章数目
@@ -300,7 +309,7 @@ class UserInfo {
         $link = json_decode($this->info['link_id']);
         $link[] = 10;
         $where['for_who'] = array('IN',$link);
-        $total = M('help_center')->where($where)->count('id');
+        $total = M('help_center')->where($where)->count();
         $read_help = M('user_member')->where(array('stu_num'=>$this->stunum))->find()['read_help'];
         $num = $total - $read_help;
         return $num;
@@ -319,7 +328,7 @@ class UserInfo {
 
     //获取网校产品链接情况
     public function getLink(){
-        $res = D('Lnik')->getLink();
+        $res = D('Link')->getLink();
         return $res;
     }
 }
