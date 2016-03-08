@@ -2,6 +2,7 @@
 namespace Home\Controller;
 use Think\Controller;
 use Home\myLib\UserInfo;
+use Think\Upload;
 
 class IndexController extends CommonController {
     /**
@@ -46,7 +47,7 @@ class IndexController extends CommonController {
         //dd($userInfo->getLevelRule());
 
         //帮助中心文章
-        $this->assgin('help',$userInfo->getHelp());
+        $this->assign('help',$userInfo->getHelp());
         //获取消息中文章
         $this->assign('new',$userInfo->getNew());
 
@@ -60,6 +61,10 @@ class IndexController extends CommonController {
     }
 
     public function signUp(){
+        $this->display();
+    }
+
+    public function upload(){
         $this->display();
     }
 
@@ -80,10 +85,10 @@ class IndexController extends CommonController {
     }
 
     private function savePic(){
-        $upload = new \Think\Upload();                      // 实例化上传类
+        $upload = new Upload();                      // 实例化上传类
         $upload->maxSize = 3145728;                         // 设置附件上传大小
         $upload->exts = array('jpg', 'gif', 'png', 'jpeg'); // 设置附件上传类型
-        $upload->rootPath = './RedCenter/Home/Public/head_img';            // 设置附件上传根目录
+        $upload->rootPath = './RedCenter/Home/Public/head_img/';            // 设置附件上传根目录
         $upload->autoSub = false;
         $upload->savePath = '';
         $upload->saveName = time() . '_' . session('stunum');              // 设置上传文件名
@@ -91,6 +96,7 @@ class IndexController extends CommonController {
         if (!$info) {                                       // 上传错误提示错误信息
                 $this->error($upload->getError());
         } else {                                              // 上传成功 获取上传文件信息
+            var_dump($info);
             return $info['savename'];
         }
 
@@ -128,9 +134,15 @@ class IndexController extends CommonController {
     public function test(){
 
         $userInfo = new UserInfo('2014211547');
-        $info = $userInfo->getSelfInfo();
-        $res = $userInfo->getLink();
+
+
+        //$info = $userInfo->getSelfInfo();
+
+        $res = $userInfo->getAllScore();
         var_dump($res);
+
+        //$res = $userInfo->getLink();
+
         //取帮助文章
         //var_dump($userInfo->getHelp(2));
 
