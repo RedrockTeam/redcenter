@@ -1,0 +1,104 @@
+h2,
+ul,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style: none;
+}
+#data-center-content {
+  width: 773px;
+  margin: 0 auto;
+  padding-left: 220px;
+  overflow: hidden;
+}
+#data-center-title {
+  margin-top: 24px;
+  border-left: 5px solid #3bddc0;
+  font-size: 20px;
+  font-weight: 500;
+}
+.data-list-title {
+  position: relative;
+  padding-left: 40px;
+  width: 200px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 40px;
+  color: #9d9d9d;
+  background-color: #eeeef1;
+}
+.data-list-title .data-list-icon {
+  position: absolute;
+  top: 9px;
+  left: 10px;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url("../img/xbt.png");
+}
+.data-list {
+  float: left;
+  margin-top: 15px;
+  margin-right: 10px;
+  width: 240px;
+  height: 480px;
+  border: 1px solid #e5e5e5;
+  overflow: hidden;
+  background-color: #fff;
+}
+.data-list li {
+  padding-left: 15px;
+  padding-right: 12px;
+  width: 213px;
+  line-height: 49px;
+  clear: left;
+}
+.data-list .data-describe {
+  float: left;
+  font-size: 12px;
+}
+.data-list .data-data {
+  float: right;
+  font-size: 14px;
+}
+.data-list .cut-line {
+  margin-left: -15px;
+  width: 240px;
+  border-bottom: 1px solid #ccc;
+}
+.data-list .product-name {
+  font-size: 16px;
+  font-weight: 500;
+}
+.product-data-show li {
+  height: auto;
+}
+.product-info-list-wrap {
+  overflow: hidden;
+}
+#score-wrap {
+  padding-left: 15px;
+}
+#score-wrap .score-list {
+  margin-top: 16px;
+  width: 185px;
+  height: 42px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  line-height: 42px;
+  cursor: pointer;
+}
+#score-wrap .score-list:hover {
+  color: #fff;
+  background-color: #fec66a;
+}
+#score-wrap .data-describe {
+  float: left;
+  font-size: 12px;
+}
+#score-wrap .data-data {
+  float: right;
+  font-size: 14px;
+}
