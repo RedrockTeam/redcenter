@@ -1,98 +1,92 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html lang="zh-CN">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="__PUBLIC__/v2/less/common.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/v2/less/userCenter.css"/>
+    {$resource}
+    <script type="text/javascript" src="__PUBLIC__/v2/js/jquery.min.js"></script>
     <title>会员中心</title>
-    <link rel="stylesheet" href="__PUBLIC__/css/style.default.css" type="text/css" />
 </head>
-<body class="withvernav">
-<div class="bodywrapper">
-    <div class="topheader">
-        <div class="left">
-            <h1 class="logo">REDROCK.<span>会员中心</span></h1>
-            <span class="slogan">后台管理系统</span>
-            <div class="search">
-                <form action="" method="post">
-                    <input type="text" name="keyword" id="keyword" value="请输入" />
-                    <button class="submitbutton"></button>
-                </form>
-            </div><!--search-->
-            <br clear="all" />
-        </div><!--left-->
-        <div class="right">
-            <div class="userinfo">
-                <img src="__PUBLIC__/images/thumbs/avatar.png" alt="" />
-                <span>管理员</span>
-            </div><!--userinfo-->
-            <div class="userinfodrop">
-                <div class="avatar">
-                    <a href=""><img src="__PUBLIC__/images/thumbs/avatarbig.png" alt="" /></a>
-                    <div class="changetheme">
-                        切换主题: <br />
-                        <a class="default"></a>
-                        <a class="blueline"></a>
-                        <a class="greenline"></a>
-                        <a class="contrast"></a>
-                        <a class="custombg"></a>
-                    </div>
-                </div><!--avatar-->
-                <div class="userdata">
-                    <h4>{$user_name}</h4>
-                    <span class="email">{$user_email}</span>
-                    <ul>
-                        <li><a href="editprofile.html">编辑资料</a></li>
-                        <li><a href="accountsettings.html">账号设置</a></li>
-                        <li><a href="help.html">帮助</a></li>
-                        <li><a href="{:U('Admin/Index/logout');}">退出</a></li>
-                    </ul>
-                </div><!--userdata-->
-            </div><!--userinfodrop-->
-        </div><!--right-->
-    </div><!--topheader-->
+<body>
+<div class="header">
+    <div class="header-left">
+        <img src="__PUBLIC__/v2/img/logo.png" alt="logo" class="header-left-logo">
+    </div>
+    <div class="header-right">
+        <a class="header-right-tips" href="#">
+            <img src="__PUBLIC__/v2/img/helper.png" alt="tipImg">
+            <span>重邮小帮手：您的账号有一条新的消息~</span>
+        </a>
+        <div class="header-right-user">
+            <div class="header-user-face">
+                <img src="__PUBLIC__/v2/img/face.jpg" alt="face">
+            </div>
+            <span>{$user_name}</span>
+            <button class="header-user-show" type="button"></button>
+            <ul class="header-user-detail">
+                <a href="#">
+                    <li class="header-user-select header-user-set">
+                        账户设置
+                        <span class="header-set-img"></span>
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="header-user-select header-user-out">
+                        退出登录
+                        <span class="header-out-img"></span>
+                    </li>
+                </a>
 
-    <div class="header">
-        <ul class="headermenu">
-            <li class="current"><a href="{:U('Admin/Index/index')}"><span class="icon icon-flatscreen"></span>首页</a></li>
-            <li><a href="{:U('Admin/Rbac/index')}"><span class="icon icon-pencil"></span>用户权限</a></li>
-            <li><a href="#"><span class="icon icon-message"></span>应用管理</a></li>
-            <li><a href="{:U('Admin/Score/scoreDetail')}"><span class="icon icon-chart"></span>积分管理</a></li>
-        </ul>
-    </div><!--header-->
+            </ul>
+        </div>
+    </div>
 
-    <div class="vernav2 iconmenu">
-        <ul>
-            <li><a href="#formsub" class="editor">用户权限</a>
-                <span class="arrow"></span>
-                <ul id="formsub">
-                    <li><a href="{:U('Admin/Rbac/index')}">用户列表</a></li>
-                    <li><a href="{:U('Admin/Rbac/role')}">权限列表</a></li>
-                    <li><a href="{:U('Admin/Rbac/node')}">节点列表</a></li>
-                </ul>
+</div>
+<div class="content">
+    <ul class="content-left">
+        <a href="__CONTROLLER__/userManager">
+            <li class="content-left-li">
+                <div class="content-li-bar"></div>
+                <span class="content-li-img"></span>
+                <span>用户管理</span>
             </li>
-            <li><a href="#project" class="elements">应用管理</a>
-                <span class="arrow"></span>
-                <ul id="project">
-                    <li><a href="#">应用列表</a></li>
-
-                </ul>
+        </a>
+        <a href="#">
+            <li class="content-left-li">
+                <div class="content-li-bar"></div>
+                <span class="content-li-img"></span>
+                <span>消息发布</span>
             </li>
-            <li><a href="#integral" class="support">积分管理</a>
-                <span class="arrow"></span>
-                <ul id="integral">
-                    <li><a href="{:U('Admin/Score/scoreDetail')}">积分细则</a></li>
-                    <li><a href="{:U('Admin/Score/scoreLevel')}">积分等级</a></li>
-
-                </ul>
+        </a>
+        <a href="#">
+            <li class="content-left-li">
+                <div class="content-li-bar"></div>
+                <span class="content-li-img"></span>
+                <span>数据查询</span>
             </li>
-        </ul>
-        <a class="togglemenu"></a>
-        <br /><br />
-    </div><!--leftmenu-->
-    <div class="centercontent">
+        </a>
+        <a href="#">
+            <li class="content-left-li">
+                <div class="content-li-bar"></div>
+                <span class="content-li-img"></span>
+                <span>帮助发布</span>
+            </li>
+        </a>
+    </ul>
+
             {__CONTENT__}
-        <br clear="all" />
-    </div><!-- centercontent -->
-</div><!--bodywrapper-->
+<footer>
+    <p>
+        <a href="##" class="link">关于红岩网校</a> |
+        <a href="##" class="link">开发团队</a> |
+        <a href="##" class="link">指出错误</a> |
+        <a href="##" class="link">管理入口</a>
+    </p>
+    <p>地址:重庆市南岸区南山街道崇文路2号重庆邮电大学 联系电话:62461084 / 62487910</p>
+    <p>本网站由红岩网校工作站负责开发管理,不经红岩网校委员会书面同意,不得进行转载</p>
+</footer>
+</div>
 </body>
+<script type="text/javascript" src="__PUBLIC__/v2/js/common.js"></script>
 </html>

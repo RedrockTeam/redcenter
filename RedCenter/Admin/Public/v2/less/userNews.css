@@ -1,0 +1,38 @@
+.content-contain {
+  width: 649px;
+  padding: 24px 47px 97px 47px;
+  background-color: #fff;
+  border: 1px solid #e8e8e8;
+}
+.contain-title {
+  font-size: 20px;
+  color: #4691ea;
+  margin-top: 0;
+  margin-bottom: 23px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e8e8e8;
+}
+.contain-title span {
+  font-size: 12px;
+  color: #a9a9a9;
+  float: right;
+  margin-top: 6px;
+}
+.contain-title-from {
+  margin-right: 33px;
+}
+.contain-img {
+  width: 100%;
+  border: 1px solid #e8e8e8;
+  margin-bottom: 22px;
+}
+.contain-text {
+  margin: 0;
+  font-size: 12px;
+  font-family: SimSun, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  color: #666666;
+  text-indent: 2em;
+  line-height: 21px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
