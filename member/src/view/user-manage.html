@@ -81,38 +81,71 @@
             </h2>
 
             <form id="search-stu" action="##" method="POST">
-                <select name="type">
-                    <option value="name">按姓名</option>
-                    <option value="stuId">按学号</option>
-                    <option value="stuId">联系方式</option>
-                </select>
-                <input type="text" placeholder="输入用户信息搜索">
-                <button type="submit">搜索</button>
+                <ul class="search-sel">
+                    <div class="search-sel-butt">
+                        <span></span>
+                    </div>
+                    <div class="search-sel-li search-sel-first">按姓名</div>
+                    <li class="search-sel-li">按姓名</li>
+                    <li class="search-sel-li">按学号</li>
+                    <li class="search-sel-li">联系方式</li>
+                    <li class="search-sel-li">身份证号</li>
+                    <select name="type">
+                        <option value="name">按姓名</option>
+                        <option value="stuId">按学号</option>
+                        <option value="phone">联系方式</option>
+                        <option value="identity">身份证号</option>
+
+                    </select>
+                </ul>
+
+                <input name="search" type="text" placeholder="输入用户信息搜索">
                 <span id="add-user"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAMAAADqmnyMAAAAaVBMVEUAAABGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkeqXCAkvAAAAInRSTlMA6nSPZ/bBBftqPC4M1biuq6Kbi4Z7XVgU4tnSxrKAT0YZGP87cQAAAIlJREFUGNNtj9kSgyAMRdlxwaW2Wruq/P9HGgiOZMb7lDlzwg0sZjX81deMpNYeojuXw4fHPHN4S1DkUF6ZCllBqtpkKpitpUW6gnkcD/V79tzlAZcCWOOYk8OnGWR21AQPlsIYUSbYAfwzsj6rsK7VHM6Lnp1a7jG8r9DaDALy05+nie6b0wR1B7zMEKHTufN5AAAAAElFTkSuQmCC" alt="">新增用户</span>
+                <button type="submit">搜索</button>
             </form>
-            <table id="search-result">
-                <tr>
-                    <th>姓名</th>
-                    <th>性别</th>
-                    <th>学号</th>
-                    <th>邮箱</th>
-                    <th>联系方式</th>
-                    <th>身份证号</th>
-                    <th>操作</th>
-                </tr>
-                <tr>
-                    <td>冯秋明</td>
-                    <td>男</td>
-                    <td>62461084</td>
-                    <td>i@zeroling.com</td>
-                    <td>1323775468</td>
-                    <td>416841651351635146</td>
-                    <td>
-                        <img class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAANlBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+t8Ac9AAAAEXRSTlMAtB7u3fQP4dvJmIh3YFQ3S4Jl9n8AAABWSURBVBjTvc45DoAwDETRScDZF3z/y0JsKYQCiYpXjX41UJaYqWPV+XJAhW2gkUhmQCT2++SZImDYYrJs8JpcrkDN7k6yZPyWXGlAK3ri+/uVpPRMCSfttAbPZox/fgAAAABJRU5ErkJggg==">
-                        <img  class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAVFBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+uAXCOAAAAG3RSTlMA+SDxqtJJUk4VD8u+tTsmBtyui19G7ddbMAnz5jM8AAAAdElEQVQY01XJWQKCMBRD0RSr0pHK4JT971MetMi7fzmBbhkL4Cbb6nAzTAWRNXMXIS0M527LrbI/vKDWREiLkBZ3UL9Jj088aNzFP6+VFl+SCDo2isF/0yp/cobBA2ea+ZoGTVm2JkAT84neQg/qLJC1hQE/MiUMK+A/fBQAAAAASUVORK5CYII=" >
-                    </td>
-                </tr>
-            </table>
+            <div class="search-contain">
+                <table id="search-result">
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>性别</th>
+                            <th>学号</th>
+                            <th>邮箱</th>
+                            <th>联系方式</th>
+                            <th>身份证号</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>冯秋明</td>
+                            <td>男</td>
+                            <td>62461084</td>
+                            <td>i@zeroling.com</td>
+                            <td>1323775468</td>
+                            <td>416841651351635146</td>
+                            <td>
+                                <img class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAANlBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+t8Ac9AAAAEXRSTlMAtB7u3fQP4dvJmIh3YFQ3S4Jl9n8AAABWSURBVBjTvc45DoAwDETRScDZF3z/y0JsKYQCiYpXjX41UJaYqWPV+XJAhW2gkUhmQCT2++SZImDYYrJs8JpcrkDN7k6yZPyWXGlAK3ri+/uVpPRMCSfttAbPZox/fgAAAABJRU5ErkJggg==">
+                                <img  class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAVFBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+uAXCOAAAAG3RSTlMA+SDxqtJJUk4VD8u+tTsmBtyui19G7ddbMAnz5jM8AAAAdElEQVQY01XJWQKCMBRD0RSr0pHK4JT971MetMi7fzmBbhkL4Cbb6nAzTAWRNXMXIS0M527LrbI/vKDWREiLkBZ3UL9Jj088aNzFP6+VFl+SCDo2isF/0yp/cobBA2ea+ZoGTVm2JkAT84neQg/qLJC1hQE/MiUMK+A/fBQAAAAASUVORK5CYII=" >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>冯秋明</td>
+                            <td>男</td>
+                            <td>62461084</td>
+                            <td>i@zeroling.com</td>
+                            <td>1323775468</td>
+                            <td>416841651351635146</td>
+                            <td>
+                                <img class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAANlBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+t8Ac9AAAAEXRSTlMAtB7u3fQP4dvJmIh3YFQ3S4Jl9n8AAABWSURBVBjTvc45DoAwDETRScDZF3z/y0JsKYQCiYpXjX41UJaYqWPV+XJAhW2gkUhmQCT2++SZImDYYrJs8JpcrkDN7k6yZPyWXGlAK3ri+/uVpPRMCSfttAbPZox/fgAAAABJRU5ErkJggg==">
+                                <img  class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAVFBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+uAXCOAAAAG3RSTlMA+SDxqtJJUk4VD8u+tTsmBtyui19G7ddbMAnz5jM8AAAAdElEQVQY01XJWQKCMBRD0RSr0pHK4JT971MetMi7fzmBbhkL4Cbb6nAzTAWRNXMXIS0M527LrbI/vKDWREiLkBZ3UL9Jj088aNzFP6+VFl+SCDo2isF/0yp/cobBA2ea+ZoGTVm2JkAT84neQg/qLJC1hQE/MiUMK+A/fBQAAAAASUVORK5CYII=" >
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
         </div>
         <footer>
             <p>
@@ -127,4 +160,45 @@
     </div>
 </body>
 <script type="text/javascript" src="../js/common.js"></script>
+<script>
+    //搜索栏动画
+    var stu = document.querySelector('#search-stu>input');
+    stu.onfocus = function(e){
+        this.style.width = '342px';
+        this.style.borderColor = '#C0C0C0';
+    };
+    stu.onblur = function(e){
+        this.style.cssText = '';
+    };
+
+    //select控制
+    var select = document.getElementsByTagName('select')[0],
+            selUl = document.querySelector('.search-sel'),
+            selLi = document.querySelectorAll('.search-sel-li'),
+            selOp = document.getElementsByTagName('option'),
+            selLiFirst = document.querySelector('.search-sel-first');
+    selUl.onclick = function(e){
+        e = e||window.e;
+        var target = e.target|| e.srcElement,
+                i;
+        if(target.tagName.toLowerCase() === 'li'){
+            selLiFirst.innerHTML = target.innerHTML;
+            for(i = 1;i<5;i++){
+                selLi[i].style.display = 'none';
+                if(target.innerHTML === selOp[i-1].innerHTML)select.value = selOp[i-1].value;
+            }
+        }else {
+            var liDis = window.getComputedStyle?window.getComputedStyle(selLi[1],null).display:selLi[1].currentStyle.display;
+            if(liDis === 'none'){
+                for(i = 1;i<5;i++){
+                    selLi[i].style.display = 'block';
+                }
+            }else {
+                for(i = 1;i<5;i++){
+                    selLi[i].style.display = 'none';
+                }
+            }
+        }
+    }
+</script>
 </html>
