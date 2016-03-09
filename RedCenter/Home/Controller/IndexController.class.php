@@ -175,8 +175,6 @@ class IndexController extends CommonController {
 
     public function test(){
 
-if('03-09 22:00' <'12-09 22:22')
-echo "asfd";
         //$res = $userInfo->getLink();
 
         //取帮助文章

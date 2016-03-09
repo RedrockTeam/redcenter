@@ -196,8 +196,9 @@ class UserInfo {
         return $rankList_month;
     }  
 
+    //同于PC端头像
     public function getHeadImg(){
-        $headImage = $this->info['headimg'];
+        $headImage = 'head_img/'.$this->info['headimg'];
         if($this->info['headimg'] == ""){
             if($this->info['gender'] == "男" or $this->info['gender'] == "m"){
                 $headImage = "img/m.png";
