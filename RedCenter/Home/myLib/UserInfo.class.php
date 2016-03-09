@@ -36,7 +36,12 @@ class UserInfo {
 
     //获取积分
     public function getAllScore(){
-        $projects = array('weixin'=>'微信','BTdown'=>'BTdown铺','market'=>'拾货','jsns'=>'锦瑟南山','zscy'=>'掌上重邮');
+        //$projects = array('weixin'=>'微信','BTdown'=>'BTdown铺','market'=>'拾货','jsns'=>'锦瑟南山','zscy'=>'掌上重邮');
+        $project_token = M('project_token')->select();
+        $projects = array();
+        foreach ($project_token as $value) {
+            $projects[$value['project_id']] = $value['project'];
+        }
         $thisMonth = date('m');
         $thisYear = date('Y');
         $month_days = date('t',strtotime($thisYear.'-'.$thisMonth.'-01'));    //本月的最后一天是几号
@@ -276,7 +281,7 @@ class UserInfo {
     public function getHelp($page){
         $link = json_decode($this->info['link_id']);
         $link[] = 10;
-        $where['for_who'] = array('IN',$link);
+        $where['pro_id'] = array('IN',$link);
         $total = M('help_center')->where($where)->count();
         $begin = $page ? ($page-1)*5 : 0;
         $help = M('help_center')->where($where)->order('time desc')->limit($begin,5)->select();
@@ -292,7 +297,7 @@ class UserInfo {
     public function getNew($page){
         $link = json_decode($this->info['link_id']);
         $link[] = 10;
-        $where['for_who'] = array('IN',$link);
+        $where['pro_id'] = array('IN',$link);
         $total = M('new_center')->where($where)->count();
         $begin = $page ? ($page-1)*5 : 0;
         $new = M('new_center')->where($where)->order('time desc')->limit($begin,5)->select();
@@ -308,7 +313,7 @@ class UserInfo {
     public function newHelpNum(){
         $link = json_decode($this->info['link_id']);
         $link[] = 10;
-        $where['for_who'] = array('IN',$link);
+        $where['pro_id'] = array('IN',$link);
         $total = M('help_center')->where($where)->count();
         $read_help = M('user_member')->where(array('stu_num'=>$this->stunum))->find()['read_help'];
         $num = $total - $read_help;
@@ -319,7 +324,7 @@ class UserInfo {
     public function newNewsNum(){
         $link = json_decode($this->info['link_id']);
         $link[] = 10;
-        $where['for_who'] = array('IN',$link);
+        $where['pro_id'] = array('IN',$link);
         $total = M('new_center')->where($where)->count('id');
         $read_news = M('user_member')->where(array('stu_num'=>$this->stunum))->find()['read_news'];
         $num = $total - $read_news;
