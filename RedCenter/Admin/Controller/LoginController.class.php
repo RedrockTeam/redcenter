@@ -18,7 +18,6 @@ class LoginController extends Controller {
 
 		$username = I('post.username');
 		$password = I('post.password');
-		$user = M('user_member')->where(array('stu_num' => $username))->find();
         $uri = "http://hongyan.cqupt.edu.cn/RedCenter/Api/Handle/login";
         // 参数数组
         $data = array(
@@ -28,7 +27,12 @@ class LoginController extends Controller {
         $re = $this->curl($data, $uri);
         switch ($re['status']) {
             case '200':
-                $this->successHandle($user);
+                $user = M('admin_user')->where(array('stu_num' => $username))->find();
+                if($user){
+                    $this->successHandle($user);
+                }else{
+                    $this->error('你不是管理员');
+                }
                 break;
             case '408':
                 $this->error('用户名或密码错误');
@@ -42,15 +46,15 @@ class LoginController extends Controller {
     }
 
     private function successHandle($user){
+        $condition = array('stu_num' => $user['stu_num'],'is_lock' => '0');
         $data = array(
-            'id' => $user['id'],
             'last_login_time' => time(),
             'last_login_ip' => get_client_ip(),
         );
-        M('user_member')->save($data);
+        M('user_member')->where($condition)->save($data);
 
         session(C('USER_AUTH_KEY'), $user['id']);
-        session('user_name', $user['nickname']);
+        session('user_name', $user['real_name']);
         session('user_email', $user['email']);
         session('user_login_time', date('Y-m-d H:i:s', $user['last_login_time']));
         session('user_login_ip', $user['last_login_ip']);
@@ -60,8 +64,8 @@ class LoginController extends Controller {
             session(C('ADMIN_AUTH_KEY'), true);
         }
         //读取用户权限
-        $Rbac = new \Org\Util\Rbac();
-        $Rbac->saveAccessList();
+        //$Rbac = new \Org\Util\Rbac();
+        //$Rbac->saveAccessList();
 
         $this->success('登陆成功', __ROOT__ . '/index.php/Admin/Index/index');
     }

@@ -2,312 +2,240 @@
 namespace Admin\Controller;
 use Think\Controller;
 /**
-* 
+ * create by Nobup
+ * e-mail mail@vekwu.com
 */
 class RbacController extends CommonController {
 
-	//用户列表
-	public function index(){
-		//取出用户信息
-		$User = D('UserRelation');
+    public function listUser(){
+        $page = I('get.page',1);
+        if(!is_numeric($page))
+            $this->error("分页请求错误!");
+        $page = intval($page);
+        $users = M('user_member');
+        $user_count = $users->count();
+        $result = $users->page($page,10)->select();
+        $result = array('count' => $user_count, 'every_page_num' => 10) + $result;
+        $this->ajaxReturn(json_encode($result));
 
-		$searchNum = I('search');
-		if ($searchNum !== "") {   //按nickname查询
-
-			$count = $User->field('password', true)->relation(true)
-						  ->where(array('stu_num' => $searchNum))
-						  ->count();
-
-			$Page = new \Think\Page($count,10);// 实例化分页类
-
-			$list = $User->field('password', true)->relation(true)
-                         ->order(array('stu_num' => 'desc'))
-						 ->limit($Page->firstRow.','.$Page->listRows)
-						 ->where(array('stu_num' => $searchNum))
-						 ->select();
-		}else{
-
-			$count = $User->field('password', true)->relation(true)
-						  ->count();
-
-			$Page = new \Think\Page($count,10);// 实例化分页类
-
-			$list = $User->field('password', true)->relation(true)
-                         ->order(array('stu_num' => 'desc'))
-						 ->limit($Page->firstRow.','.$Page->listRows)
-						 ->select();
-		}
-    	$show = $Page->show();// 分页显示输出
-    	$this->assign('list',$list);// 赋值数据集
-    	$this->assign('show',$show);// 赋值分页输出
-        $this->assign('user_email', session(user_email));
-        $this->assign('user_name', session(user_name));
-        $this->display();
-	}
-
-	//角色列表
-	public function role(){
-		$role = M('role')->select();
-		$this->assign('role',$role)->display();
-	}
-
-	//部门列表
-	public function dept(){
-		$dept = M('department')->select();
-		$this->assign('dept',$dept)->display();
-	}
-
-	//节点列表
-	public function node(){
-		$field = array('id', 'name', 'title', 'pid');
-		$node = M('node')->field($field)->order('sort')->select();
-		$node = node_merge($node);
-		$this->assign('node',$node)->display();
-	}
-
-	//添加用户界面
-	public function addUser(){
-		$role = M('role')->select();
-		$this->assign('role', $role);
-
-		$this->display();
-	}
-
-	//添加用户表单管理
-	public function addUserHandle(){
-
-        $rules = array(
-            array('stu_num','10','请输入正确的学号!', 1, 'length'),
-            array('stu_num','verify_stu','学号已存在!', 1, 'function'),
-            array('stu_idcard','6','请输入身份证后六位!',1,'length'),
-            array('email','email','请输入正确的邮箱!',1,),
-            array('nickname','require','请填写昵称!',2),
-            array('realname','require','请填写真实姓名!',1),
-            array('password','require','请填写密码!',1),
-        );
-        $User = M("user_member"); // 实例化User对象
-        if (!$User->validate($rules)->create()){
-            // 如果创建失败 表示验证没有通过 输出错误提示信息
-            $this->error($User->getError());
-        }else{
-            // 验证通过 可以进行其他数据操作
-//            dd(I('post.'));
-            $user = array(
-                'stu_num' => I('stu_num'),
-                'stu_idcard' => I('stu_idcard'),
-                'password' => I('password', '', 'md5'),
-                'email' => I('email'),
-                'nickname' => I('nickname'),
-                'real_name' => I('realname'),
-                'last_login_time' => time(),
-                'last_login_ip' => get_client_ip(),
-                'status' => '1'
-            );
-
-            //所属权限
-            $role = array();
-            if($uid = M('user_member')->add($user)){
-                    $role[] = array(
-                        'role_id' => I('role'),
-                        'user_id' => $uid
-                    );
-                //添加权限
-                M('user_role')->addAll($role);
-
-                $this->success('添加用户成功', U('Admin/Rbac/index'));
-            }else{
-                $this->error('添加用户失败');
-            }
-        }
-	}
-
-	//删除用户表单管理
-	public function deleteUser(){
-		$r1 = M('user_member')->where(array('id' => I('uid')))->delete();
-		$r2 = M('user_role')->where(array('user_id' =>I('uid')))->delete();
-
-		if ($r1 && $r2 ) {
-			$this->success('删除用户成功');
-		}else{
-			$this->error('删除用户失败');
-		}
-	}
-
-    //修改用户信息
-    public function setRole(){
-        $uid = I('uid');
-
-        $user = D('UserRelation')->field('password', true)->relation(true)->find($uid);
-        $this->assign('user', $user);
-        $role = M('role')->select();
-        $this->assign('role', $role);
-        $this->display();
     }
 
-    //修改用户信息处理
-    public function setRoleHandle(){
-        $rules = array(
-            array('stu_num','10','请输入正确的学号!', 1, 'length'),
-            array('stu_idcard','6','请输入身份证后六位!',1,'length'),
-            array('email','email','请输入正确的邮箱!',1,),
-            array('nickname','require','请填写昵称!',2),
-            array('realname','require','请填写真实姓名!',1),
-            array('password','require','请填写密码!',1),
-        );
-        $User = M("user_member"); // 实例化User对象
-        if (!$User->validate($rules)->create()){
-            // 如果创建失败 表示验证没有通过 输出错误提示信息
-            $this->error($User->getError());
+    /**
+     * 取得管理员列表，需要超级管理员权限
+     */
+    public function listAdminUser(){
+        if(!checkSuperUser()){
+            $this->error('你不是超级管理员');
+            return;
+        }
+        $page = I('get.page',1);
+        if(!is_numeric($page))
+            $this->error("分页请求错误!");
+        $page = intval($page);
+        $users = M('admin_user');
+        $user_count = $users->count();
+        $result = $users->page($page,10)->select();
+        $result = array('count' => $user_count, 'every_page_num' => 10) + $result;
+        $this->ajaxReturn(json_encode($result));
+    }
+
+    /**
+     * 增加管理员，需要超级管理员权限
+     */
+    public function addAdminUser(){
+		if(!checkSuperUser()){
+			$this->error('你不是超级管理员');
+			return;
+		}
+		$data = array('stu_num' => I('post.stu_num'),
+						'email' => I('post.email'),
+						'real_name' => I('post.real_name'),
+						'gender' => I('post.gender')
+					);
+		//验证提交内容是否为空
+		foreach($data as $value){
+			if(empty($value)){
+				$this->ajaxReturn('null');
+				return;
+			}
+		}
+
+		$user = M('user_member');
+		$result = $user->where(array('stu_num' => $data['stu_num']))->find();
+		if(!$result){
+			$this->ajaxReturn('nouser')；
+			return;
+		}
+		$admin_user = M('admin_user');
+		$result = $admin_user->add($data);
+		if($result){
+			$this->ajaxReturn('ok');
+		}else{
+			$this->ajaxReturn('fail');
+		}
+    }
+
+    /**
+     * 删除管理员，需要超级管理员权限
+     */
+    public function delAdminUser(){
+        if(!checkSuperUser()){
+            $this->error('你不是超级管理员');
+            return;
+        }
+        $condition = array('stu_num' => I('post.stu_num'));
+        $user = M('admin_user');
+        $result = $user->where($condition)->delete();
+        if($result){
+            $this->ajaxReturn('ok');
         }else{
-            // 验证通过 可以进行其他数据操作
-//            dd(I('post.'));
-            $user = array(
-                'stu_num' => I('stu_num'),
-                'stu_idcard' => I('stu_idcard'),
-                'password' => I('password', '', 'md5'),
-                'email' => I('email'),
-                'nickname' => I('nickname'),
-                'real_name' => I('realname'),
-                'last_login_time' => time(),
-                'last_login_ip' => get_client_ip(),
-                'status' => '1'
-            );
-
-            //所属权限
-            $u_id = I('uid');
-            if($uid = M('user_member')->where("id=%d",$u_id)->save($user)){
-                $role = array(
-                    'role_id' => I('role'),
-                    'user_id' => $u_id
-                );
-                //添加权限
-                M('user_role')->where("user_id=%d",$u_id)->save($role);
-
-                $this->success('修改信息成功', U('Admin/Rbac/index'));
-            }else{
-                $this->error('修改信息失败');
-            }
+            $this->ajaxReturn('fail');
         }
     }
 
-	//添加角色
-	public function addRole(){
-		$this->display();
+	/**
+	 * 增加用户，需要超级管理员你权限
+ 	*/
+	public function addUser() {
+		if (!checkSuperUser()) {
+			$this->ajaxReturn('un_authed');
+			return;
+		}
+		$real_name = I('post.name');
+		$gender = I('post.gender');
+		$stu_num = I('post.stuid');
+		$phone = I('phone');
+		$id_card = I('id_card');
+		$email = I('e_mail');
+
+		if (empty($stu_num)) {
+			$this->ajaxReturn('1');// 学号为空
+			return;
+		}
+
+		if (empty($real_name)) {
+			$this->ajaxReturn('2');// 姓名为空
+			return;
+		}
+
+		$data = array(
+			'stu_num' => $stu_num,
+			'real_name' => $real_name,
+			'gender' => $gender,
+			'stu_idcard' => $id_card,
+			//'phone' => $phone, //当前数据表中无此字段
+			'email' => $email
+		);
+
+		$result = $user->add($data);
+		if ($result) {
+			$this->ajaxReturn('ok');
+			return;
+		} else {
+			$this->ajaxReturn('fail');
+			return;
+		}
 	}
 
-	//添加角色表单处理
-	public function addRoleHandle(){
-		if (!I('name') || !I('remark')) {
-			$this->error('名称或描述不能为空');
+	/**
+	 * 编辑用户，需要超级管理员权限
+	 */
+	public function editUser(){
+		if(!checkSuperUser()){
+			$this->ajaxReturn('un_authed');
+			return;
 		}
-		$result = M('role')->add(I('post.'));
+		$real_name = I('post.name');
+		$gender = I('post.gender');
+		$stu_num = I('post.stuid');
+		$phone = I('phone');
+		$id_card = I('id_card');
+		$email = I('e_mail');
 
+		if(empty($stu_num)){
+			$this->ajaxReturn('1');// 用户名为空
+			return;
+		}
+
+		$data = array(
+			'real_name' => $real_name,
+			'gender' => $gender,
+			'stu_idcard' => $id_card,
+			//'phone' => $phone, //当前数据表中无此字段
+			'email' => $email
+		);
+		$condition = array('stu_num' => $stu_num);
+
+		$user = M('user_member');
+		$result = $user->where($condition)->save($data);
 		if($result){
-			$this->success('添加角色成功', U('Admin/Rbac/role'));
+			$this->ajaxReturn('2');//更新成功
+			return;
 		}else{
-			$this->error('添加失败');
+			$this->ajaxReturn('3');//更新失败
+			return;
 		}
 	}
 
-	//删除角色表单管理
-	public function deleteRole(){
-		$r1 = M('role')->where(array('id' => I('rid')))->delete();
-		$r2 = M('user_role')->where(array('role_id' =>I('rid')))->delete();
-		$r3 = M('access')->where(array('role_id' =>I('rid')))->delete();
-		if ($r1 || $r2 || $r3) {
-			$this->success('删除角色成功');
-		}else{
-			$this->error('删除角色失败');
+	/**
+	 * 删除用户，需要超级管理员权限
+	 */
+	public function delUser(){
+		if(!checkSuperUser()){
+			$this->ajaxReturn('un_authed');
+			return;
 		}
+		$stu_num = I('post.stu_num');
+		$user = M('user_member');
+		$condition = array('stu_num' => $stu_num);
+		//此处两种方法删除用户，推荐第二种软删除，但是数据库需要增加字段.
+		$result = $user->where($condition)->delete();
+		//$result = $user->where($condition)->save('is_delete=1');
+		if($result){
+			$this->ajaxReturn('ok');
+			return;
+		}else{
+			$this->ajaxReturn('fail');
+			return;
+		}
+
 	}
 
-	//添加节点
-	public function addNode(){
-		$pid = I('get.pid', 0, 'intval');
-		$level = I('level', 1, 'intval');
-		$this->assign('pid', $pid);
-		$this->assign('level', $level);
-		switch ($this->level) {
-			case 1:
-				$this->type = '应用';
-				break;	
-			case 2:
-				$this->type = '控制器';
+	/**
+	 * 搜索用户
+	 */
+	public function searchUser(){
+		$type = I('post.type','name');
+		$search_content = I('post.content','');
+		if(empty($search_content)){
+			$this->ajaxReturn("请输入内容!");
+			return;
+		}
+		$type_array = array('name','stuid','phone');
+		if(!in_array($type,$type_array))
+			$type = 'name';
+
+		$user = M('user_member');
+		switch($type){
+			case 'name':
+				$type = 'real_name';
 				break;
-			case 3:
-				$this->type = '方法';
+			case 'stuid':
+				$type = 'stu_num';
+				break;
+			case 'phone':
+				$type = 'phone';
+				break;
+			default:
+				$type = 'name';
 				break;
 		}
 
-		$this->display();
+		$condition = array($type => array('like','%'.$search_content.'%'));
+		$result = $user->where($condition)->select();
+		//header("Content-Type:text/html;charset=utf-8");
+		//var_dump($result);
 	}
 
-	//添加节点表单处理
-	public function addNodeHandle(){
-
-		$result = M('node')->add(I('post.'));
-
-		if($result){
-			$this->success('添加应用成功', U('Admin/Rbac/node'));
-		}else{
-			$this->error('添加失败');
-		}
-	}
-
-	//删除节点表单处理
-	public function deleteNode(){
-		$r1 = M('node')->where(array('id' => I('id')))->delete();
-		$r2 = M('access')->where(array('node_id' =>I('id')))->delete();
-		if ($r1 || $r2) {
-			$this->success('删除节点成功');
-		}else{
-			$this->error('删除节点失败');
-		}
-	}
-
-	//给角色配置权限
-	public function access(){
-		$rid = I('rid', 0, 'intval');
-
-		$field = array('id', 'name', 'title', 'pid');
-		$node = M('node')->order('sort')->field($field)->select();
-		
-		//原有权限
-		$access = M('access')->where(array('role_id' => $rid))->getField('node_id', true);
-
-		$node = node_merge($node,$access);
-
-		$this->assign('node', $node);
-		$this->assign('rid', $rid);
-		$this->display();
-	}
-
-	//修改权限
-	public function setAccess(){
-		$rid = I('rid', 0, 'intval');
-		$db = M('access');
-
-		//清空原权限
-		$db->where(array('role_id' => $rid))->delete();
-
-		//组合新权限
-		$data= array();
-		foreach (I('access') as $v) {
-			$tmp = explode('_', $v);
-			$data[] = array(
-				'role_id' => $rid,
-				'node_id' => $tmp[0],
-				'level' => $tmp[1]
-				);
-		}
-
-		//插入新权限
-		$result = $db->addAll($data);
-		if($result){
-			$this->success('修改权限成功', U('Admin/Rbac/role'));
-		}else{
-			$this->error('修改失败');
-		}
-	}
 }
 ?>
