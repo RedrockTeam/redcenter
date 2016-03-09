@@ -23,6 +23,9 @@ class LoginController extends Controller{
         switch ($re['status']) {
             case '200':
                 session('stunum', $re['userInfo']['stu_num']);
+                $where['stu_num'] = $re['userInfo']['stu_num'];
+                $data['weixin_visit_num'] = $re['userInfo']['weixin_visit_num'] + 1;
+                M('user_member')->where($where)->save($data);
                 $this->redirect('Home/Index/index');
                 break;
             case '408':

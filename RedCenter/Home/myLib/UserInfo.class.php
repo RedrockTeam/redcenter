@@ -12,7 +12,6 @@ class UserInfo {
     private $stunum;
     private $info;
     private $uid;
-
     public function __construct($stunum){
         //获取学号长度, 如果是9位, 判断是否是留学生
         $len = strlen($stunum);
@@ -198,6 +197,7 @@ class UserInfo {
     }  
 
     public function getHeadImg(){
+        $headImage = $this->info['headimg'];
         if($this->info['headimg'] == ""){
             if($this->info['gender'] == "男" or $this->info['gender'] == "m"){
                 $headImage = "img/m.png";
@@ -205,7 +205,6 @@ class UserInfo {
                 $headImage = "img/f.png";
             }
         }
-
         return $headImage;
     }
 
@@ -283,8 +282,8 @@ class UserInfo {
         $link[] = 10;
         $where['pro_id'] = array('IN',$link);
         $total = M('help_center')->where($where)->count();
-        $begin = $page ? ($page-1)*5 : 0;
-        $help = M('help_center')->where($where)->order('time desc')->limit($begin,5)->select();
+        $begin = $page ? ($page-1)*6 : 0;
+        $help = M('help_center')->where($where)->order('time desc')->limit($begin,6)->select();
         $num['stu_num'] = $this->stunum;
         $save['read_help'] = $total;
         M('user_member')->where($num)->save($save);
