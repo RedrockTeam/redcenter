@@ -82,6 +82,8 @@ li {
 #select-product #sec-product-wrap {
   position: absolute;
   top: 100%;
+  left: 0;
+  display: none;
   width: 100%;
   background-color: #fff;
 }
@@ -90,6 +92,9 @@ li {
   border-left: 1px solid #e5e5e5;
   border-right: 1px solid #e5e5e5;
   height: 100%;
+}
+#select-product #sec-product-wrap > li:hover {
+  background-color: #5298f0;
 }
 #select-product #sec-product-wrap > li > a {
   display: inline-block;
