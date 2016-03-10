@@ -83,7 +83,7 @@
                 <div class="row">
                     <label for="visible-range">可见范围</label> 
                     <span class="select">
-                        <span class="dot-border">
+                        <span class="dot-border dot-border-choosed">
                             <span class="dot"></span>
                         </span>
                         所有人可见
@@ -118,8 +118,23 @@
                         </li>
                     </ul>
                 </div>
-
+			<script id="container" name="content" type="text/plain">
+			    妈个鸡,变基佬
+			</script>
             </form>
+        	
+        	    <!-- 配置文件 -->
+        	    <script type="text/javascript" src="../ueditor/ueditor.config.js"></script>
+        	    <!-- 编辑器源码文件 -->
+        	    <script type="text/javascript" src="../ueditor/ueditor.all.js"></script>
+        	    <!-- 实例化编辑器 -->
+        	    <script type="text/javascript">
+        	        var ue = UE.getEditor('container', {
+        	        	toolbars: [
+        	        	    ['bold', 'simpleupload','link','fontsize']
+        	        	],
+        	        });
+            </script>
         </div>
         <footer>
             <p>

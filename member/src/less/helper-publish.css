@@ -39,6 +39,7 @@ li {
   width: 115px;
   border: 1px solid #e3e5ec;
   background-color: #fff;
+  cursor: pointer;
 }
 #helper-content .select .dot-border {
   position: relative;
@@ -47,8 +48,14 @@ li {
   display: inline-block;
   width: 17px;
   height: 17px;
-  border: 1px solid #5298f0;
+  border: 1px solid #eee;
   border-radius: 50%;
+}
+#helper-content .select .dot-border-choosed {
+  border-color: #5298f0;
+}
+#helper-content .select .dot-border-choosed .dot {
+  background-color: #5298f0;
 }
 #helper-content .select .dot {
   display: inline-block;
@@ -57,7 +64,7 @@ li {
   top: -2px;
   width: 9px;
   height: 9px;
-  background-color: #5298f0;
+  background-color: #eee;
   border-radius: 50%;
 }
 #select-product {
@@ -99,4 +106,8 @@ li {
 #select-product #sec-product-wrap > li > a {
   display: inline-block;
   padding: 10px 15px;
+}
+#choosed-product {
+  display: inline-block;
+  width: 80px;
 }
