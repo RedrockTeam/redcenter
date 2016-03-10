@@ -1,5 +1,6 @@
 <?php
 namespace Home\Controller;
+use Org\Util\String;
 use Think\Controller;
 use Home\myLib\UserInfo;
 use Think\Upload;
@@ -90,8 +91,9 @@ class IndexController extends CommonController {
         $upload->exts = array('jpg', 'gif', 'png', 'jpeg'); // 设置附件上传类型
         $upload->rootPath = './RedCenter/Home/Public/head_img/';            // 设置附件上传根目录
         $upload->autoSub = false;
+        $upload->replace = true;                        //存在同名图片就进行覆盖
         $upload->savePath = '';
-        $upload->saveName = time() . '_' . session('stunum');              // 设置上传文件名
+        $upload->saveName = 'head_'.session('stunum');              // 设置上传文件名
         $info = $upload->uploadOne($_FILES['photo']);       //执行上传方法
         if (!$info) {                                       // 上传错误提示错误信息
                 $this->error($upload->getError());
@@ -102,7 +104,37 @@ class IndexController extends CommonController {
 
     }
 
-    public function changLink(){
+    public function changePass(){
+        $old_pass = I('post.old_pass');
+        $new_pass = I('post.new_pass');
+        $conf_pass = I('post.conf_pass');
+        $where['stu_num'] = session('stunum');
+        $user = M('user_member')->where($where)->find();
+        if(!$user['password']){   //password字段为空,说明没有修改过,密码仍是后5,6位
+            if(substr($user['stu_idcard'],-6) == strtolower($old_pass) || substr($user['stu_idcard'],-5) == strtolower($old_pass)){
+                if($new_pass == $conf_pass){
+                    $str = new String();
+                    $save['salt'] = $str->randString(6);
+                    $save['password'] = md5(md5($new_pass).$save['salt']);
+                    M('user_member')->where($where)->save($save);
+                    $this->ajaxReturn(true);
+                }
+            }else
+               $this->ajaxReturn(false);//原密码错误
+        }else{
+            if($user['password'] == md5(md5($old_pass).$user['salt']) ){
+                if($new_pass == $conf_pass){
+                    $save['password'] = md5(md5($new_pass).$user['salt']);
+                    M('user_member')->where($where)->save($save);
+                    $this->ajaxReturn(true);
+                }
+            }else
+                $this->ajaxReturn(false);//原密码错误
+        }
+
+    }
+
+    public function changeLink(){
         $res = D('Link')->changLink(I('post.type'),I('post.linkId'));
         if($res)
             $this->ajaxReturn(true);
@@ -111,8 +143,9 @@ class IndexController extends CommonController {
     }
 
     public function linkInfo(){
-        $stunum = session('stunum');
-        $userInfo = new UserInfo($stunum);
+//        $stunum = session('stunum');
+//        $userInfo = new UserInfo($stunum);
+        $userInfo = getUinfo();
         $linkInfo = $userInfo->getLink();
         $this->ajaxReturn($linkInfo);
     }
@@ -129,17 +162,18 @@ class IndexController extends CommonController {
         $this->ajaxReturn($res);
     }
 
+    public function basicInfo(){
+        $userInfo = getUinfo();
+        $info = $userInfo->getSelfInfo();
+        $basicInfo['nickname'] = $info['nickname'];
+        $basicInfo['headimg'] = $userInfo->getHeadImg();
+        $basicInfo['myshop'] = $info['myshop'];
+        $basicInfo['mysign'] = $info['mysign'];
+        $this->ajaxReturn($basicInfo);
+    }
 
 
     public function test(){
-
-        $userInfo = new UserInfo('2014211547');
-
-
-        //$info = $userInfo->getSelfInfo();
-
-        $res = $userInfo->getAllScore();
-        var_dump($res);
 
         //$res = $userInfo->getLink();
 

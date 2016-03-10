@@ -53,7 +53,8 @@ class PhoneController extends Controller {
         $rankchange = $userInfo->rankChange();
 
         //获取头像
-        $headImage = $userInfo->getHeadImg();
+        $headImage = $info['headimg'] ? 'head_img/'.$info['headimg'] : "img_phone/head.jpg";
+        //$headImage = $userInfo->getHeadImg();
 
         //各种积分
         $all_scores = $userInfo->getAllScore();
