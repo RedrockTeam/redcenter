@@ -100,8 +100,6 @@ p {
 .basic-info .basic-face .basic-face-pic {
   width: 90px;
   height: 90px;
-  -moz-border-radius: 45px;
-  -webkit-border-radius: 45px;
   border-radius: 45px;
   position: relative;
 }
@@ -118,8 +116,6 @@ p {
   top: 0;
   z-index: 9;
   border: 1px solid #6ba5e9;
-  -moz-border-radius: 45px;
-  -webkit-border-radius: 45px;
   border-radius: 45px;
 }
 .basic-info .basic-face .basic-face-hover:hover {
