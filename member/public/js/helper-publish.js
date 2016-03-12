@@ -5,24 +5,6 @@ var sec_select = doc.querySelector('#sec-product-wrap');
 var choose_select = doc.querySelector('#dot-border-choosed');
 
 
-function addClassName(ele, className) {
-	var preClass = ' ' +  ele.className;
-	var reg = new RegExp(' ' + className);
-	if(reg.test(' ' + preClass)) {
-		return;
-	}
-	ele.className += ' ' + className;
-}
-
-
-function removeClassName(ele, className) {
-	var preClass = ' ' +  ele.className;
-	ele.className = preClass.replace(' ' + className, '').trim();
-
-}
-
-
-
 select[0].addEventListener('click', function() {
 	addClassName(select[0].children[0], 'dot-border-choosed');
 	removeClassName(select[1].children[0], 'dot-border-choosed');
