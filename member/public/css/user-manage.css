@@ -157,17 +157,3 @@ select {
   margin-right: 10px;
   cursor: pointer;
 }
-#not-yet-search {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  color: #ddd;
-}
-#not-yet-search > img {
-  margin-top: 100px;
-  display: inline-block;
-}
-#not-yet-search > p {
-  font-size: 30px;
-  text-align: center;
-}
