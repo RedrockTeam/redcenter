@@ -3,48 +3,24 @@
  */
 
 //侧栏图标
-;(function($){
-    var $selectImg = $('.content-li-img'),
-        imgLen = $selectImg.length,
-        $select = $('.content-left-li');
-    for(var i = 0; i < imgLen; i++){
-        $($selectImg[i]).css('background-position-x', 24 * i + 'px');
-    }
-    $select.on('click', function(e){
-        var $checked = $('.content-li-clicked'),
-            $oldImg = $checked.find('.content-li-img'),
-            $img = $(this).find('.content-li-img');
-
-        if($checked.length){
-            $oldImg.css('background-position-y', 0);
-            $checked.find('.content-li-bar').css('width', 0);
-            $checked.removeClass('content-li-clicked');
+;(function(){
+    var selectImg = document.querySelectorAll('.content-li-img'),
+        imgLen = selectImg.length,
+        list = document.querySelector('.content-left');
+    for(var i = 0;i < imgLen;i++)selectImg[i].style.backgroundPositionX = 24*i+'px';
+    list.addEventListener('click',function(e){
+        e = e||window.event;
+        var target = e.target || e.srcElement;
+        if(target.nodeName.toLowerCase() !== 'li')target = target.parentElement;
+        var checked = document.querySelector('.content-li-clicked'),
+            img = target.querySelector('.content-li-img');
+        if(checked){
+            checked.childNodes[3].style.backgroundPositionY = 0;
+            checked.querySelector('.content-li-bar').style.width = 0;
+            checked.className = "content-left-li";
         }
-        
-        $(this).addClass('content-li-clicked');
-        $img.css('background-position-y', 24 + 'px');
-        $(this).find('.content-li-bar').css('width','4px');
+        target.className = "content-left-li content-li-clicked";
+        img.style.backgroundPositionY = 24+'px';
+        target.querySelector('.content-li-bar').style.width = '4px';
     });
-
-
-    // 对侧边栏定位
-/*    function fixedSideBar() {
-        var docWidth = document.documentElement.offsetWidth;
-
-        setFixedLeft($('.content-left'));
-        setFixedLeft($('.header-left'));
-
-        function setFixedLeft(obj) {
-            obj.css('left', docWidth/2-496);
-            if(docWidth < 1080) {
-                obj.css('left', 0);
-            }
-        }
-
-    }
->>>>>>> 2b8fa2c53e0650e28178aac03aef93beff8c2fbb
-
-    window.addEventListener('load', fixedSideBar);
-    window.addEventListener('resize', fixedSideBar);*/
-    
-}(jQuery));
+})();
