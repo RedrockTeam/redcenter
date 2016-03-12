@@ -180,8 +180,8 @@
             selOp = document.getElementsByTagName('option'),
             selLiFirst = document.querySelector('.search-sel-first');
     selUl.onclick = function(e){
-        e = e||window.e;
-        var target = e.target|| e.srcElement,
+        e = e||window.event;
+        var target = e.target||e.srcElement,
                 i;
         if(target.tagName.toLowerCase() === 'li'){
             selLiFirst.innerHTML = target.innerHTML;

@@ -9,11 +9,15 @@ ul {
 a {
   text-decoration: none;
 }
+img {
+  border: 0;
+}
 .header {
   height: 67px;
   width: 100%;
   background-color: #fff;
   position: fixed;
+  z-index: 10;
 }
 .header-left {
   height: 67px;
@@ -115,6 +119,7 @@ a {
   top: 55px;
   left: 12px;
   display: none;
+  z-index: 10;
 }
 .header-user-select {
   height: 58px;

@@ -8,14 +8,24 @@
         imgLen = selectImg.length,
         list = document.querySelector('.content-left');
     for(var i = 0;i < imgLen;i++)selectImg[i].style.backgroundPositionX = 24*i+'px';
-    list.addEventListener('click',function(e){
+    function addEven(target,event_name,handler,useCapture){
+        useCapture = useCapture||false;
+        if(target.addEventListener){
+            target.addEventListener(event_name,handler,useCapture);
+        }else if(target.attachEvent){
+            target.attachEvent("on"+event_name,handler);
+        }else{
+            target["on"+event_name] = handler;
+        }
+    }
+    addEven(list,'click',function(e){
         e = e||window.event;
         var target = e.target || e.srcElement;
         if(target.nodeName.toLowerCase() !== 'li')target = target.parentElement;
         var checked = document.querySelector('.content-li-clicked'),
             img = target.querySelector('.content-li-img');
         if(checked){
-            checked.childNodes[3].style.backgroundPositionY = 0;
+            checked.querySelector('.content-li-img').style.backgroundPositionY = 0;
             checked.querySelector('.content-li-bar').style.width = 0;
             checked.className = "content-left-li";
         }
