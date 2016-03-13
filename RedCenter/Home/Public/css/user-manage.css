@@ -1,0 +1,159 @@
+form,
+select {
+  margin: 0;
+  padding: 0;
+}
+#user-manage-content {
+  margin: 0 auto;
+  width: 773px;
+  padding-left: 220px;
+}
+.search-sel {
+  width: 121px;
+  height: 48px;
+  margin: 0 8px 0 0;
+  padding: 0;
+  position: relative;
+  border-top: 1px solid #dcdcdc;
+  background-color: #fff;
+  float: left;
+}
+.search-sel-li {
+  height: 49px;
+  padding-left: 19px;
+  line-height: 49px;
+  font-size: 14px;
+  background-color: #fff;
+  font-family: SimSun, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  border: 0 solid #dcdcdc;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  display: none;
+}
+.search-sel-li:hover {
+  background-color: #F8F8F8;
+}
+.search-sel-first {
+  display: block;
+}
+.search-sel-first:hover {
+  background-color: #fff;
+}
+.search-sel-butt {
+  width: 41px;
+  height: 49px;
+  border-left: 1px solid #dcdcdc;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.search-sel-butt span {
+  width: 0;
+  height: 0;
+  border-top: 11px solid #7db8fd;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+#search-stu {
+  font-size: 15px;
+  font-family: Mircosoft YaHei, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+#search-stu select,
+#search-stu input,
+#search-stu button {
+  font-size: 14px;
+  outline: none;
+}
+#search-stu select {
+  outline: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+#search-stu input {
+  height: 18px;
+  width: 214px;
+  padding: 15px 15px;
+  outline: none;
+  font-size: 15px;
+  border: 1px solid #dcdcdc;
+  transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
+  /* Firefox 4 */
+  -webkit-transition: all 0.5s ease 0s;
+  /* Safari 和 Chrome */
+  -o-transition: all 0.5s ease 0s;
+  /* Opera */
+}
+#search-stu input:hover {
+  border-color: #C0C0C0;
+  width: 342px;
+}
+#search-stu button {
+  height: 50px;
+  padding: 15px 40px;
+  margin-right: 15px;
+  font-size: 18px;
+  border: 1px solid #4593ea;
+  cursor: pointer;
+  float: right;
+  color: #fff;
+  background-color: #4593ea;
+}
+#search-stu #add-user {
+  height: 18px;
+  padding: 15px 15px;
+  background-color: #fff;
+  font-size: 18px;
+  color: #4691ea;
+  cursor: pointer;
+  float: right;
+  border: 1px solid #4593ea;
+}
+#search-stu #add-user img {
+  position: relative;
+  top: 2px;
+}
+.search-contain {
+  height: 456px;
+  width: 100%;
+  margin-top: 15px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+#search-result {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 3px;
+}
+#search-result tr {
+  height: 32px;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #f8f8f8;
+}
+#search-result tr:hover {
+  background-color: #F8F8F8;
+}
+#search-result td,
+#search-result th {
+  padding: 15px;
+  text-align: left;
+  font-size: 14px;
+  color: #666;
+}
+#search-result th {
+  font-weight: 500;
+  background-color: #eeeef1;
+}
+#search-result .result-operation {
+  margin-right: 10px;
+  cursor: pointer;
+}

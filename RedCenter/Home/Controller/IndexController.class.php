@@ -174,7 +174,8 @@ class IndexController extends CommonController {
 
 
     public function test(){
-
+        var_dump($_SERVER);
+        echo "<br>".U('TeacherRegister/emailvertify');
         //$res = $userInfo->getLink();
 
         //取帮助文章
@@ -190,11 +191,11 @@ class IndexController extends CommonController {
         //var_dump($userInfo->newNewsNum());
     }
 
-    public function index2(){
+    public function userCenter(){
         if(is_null(session('stunum'))){
             $this->redirect('Home/Index/login');
         }
-        $stunum = session('stunum');
+        /*$stunum = session('stunum');
         $userInfo = new UserInfo($stunum);
 
         $info = $userInfo->getSelfInfo();
@@ -207,8 +208,38 @@ class IndexController extends CommonController {
         $this->assign('newHelpNum',$newHelpNum);
         $this->assign('newNewsNum',$newNewsNum);
         $this->assign('linkNum',count($linkInfo['linked']));
-        $this->assign('all_scores',$all_scores);
+        $this->assign('all_scores',$all_scores);*/
 
         $this->display();
+    }
+
+    public function selfInfo(){
+        $userInfo = getUinfo();
+        $data = $userInfo->getSelfInfo();
+        var_dump($data);//$this->ajaxReturn($data);
+    }
+
+    public function newHelpNum(){
+        $userInfo = getUinfo();
+        $data = $userInfo->newHelpNum();
+        var_dump($data);//$this->ajaxReturn($data);
+    }
+
+    public function newNewsNum(){
+        $userInfo = getUinfo();
+        $data = $userInfo->newNewsNum();
+        var_dump($data);//$this->ajaxReturn($data);
+    }
+
+    public function linkNum(){
+        $userInfo = getUinfo();
+        $data = $userInfo->getLink();
+        $this->ajaxReturn(count(($data['linked'])));
+    }
+
+    public function all_scores(){
+        $userInfo = getUinfo();
+        $data = $userInfo->getAllScore();
+        $this->ajaxReturn($data);
     }
 }
