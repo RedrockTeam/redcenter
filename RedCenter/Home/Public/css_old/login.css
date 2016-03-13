@@ -1,0 +1,48 @@
+body {
+  background-color: #eee;
+}
+.font_fa {
+  font-family: Arial, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+.form_font {
+  font-weight: normal;
+}
+.container-center {
+  width: 400px;
+  margin: 150px auto 0 auto;
+}
+.form-heading {
+  margin-bottom: 50px;
+}
+.form_forget {
+  float: right;
+  cursor: pointer;
+}
+.form_remember {
+  margin-left: 108px;
+}
+.form_sub {
+  width: 180px;
+  margin-top: 20px;
+}
+.complete_head {
+  font-size: 16px;
+}
+#inputIntro {
+  height: 80px;
+  resize: none;
+}
+.complete_info {
+  float: left;
+  margin-left: 74px;
+  margin-bottom: 0;
+  padding: 4px 10px;
+}
+#form_change {
+  display: none;
+}
+@media (max-width: 768px) {
+  a.col-xs-12 {
+    margin-top: 10px;
+  }
+}

@@ -24,9 +24,10 @@ class LoginController extends Controller{
             case '200':
                 session('stunum', $re['userInfo']['stu_num']);
                 $where['stu_num'] = $re['userInfo']['stu_num'];
-                $data['weixin_visit_num'] = $re['userInfo']['weixin_visit_num'] + 1;
-                M('user_member')->where($where)->save($data);
-                $this->redirect('Home/Index/index');
+                $save['weixin_visit_num'] = $re['userInfo']['weixin_visit_num'] + 1;
+                M('user_member')->where($where)->save($save);
+                //$this->redirect('Home/Index/index');
+                $this->redirect('Home/Index/userCenter');
                 break;
             case '408':
                 $this->error('用户名或密码错误');
