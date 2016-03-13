@@ -44,6 +44,7 @@ function removeClass(ele, className) {
     addEven(list,'click',function(e){
         e = e||window.event;
         var target = e.target || e.srcElement;
+        if(target.nodeName.toLowerCase() === 'ul')return;
         if(target.nodeName.toLowerCase() !== 'li')target = target.parentElement;
         var checked = document.querySelector('.content-li-clicked'),
             img = target.querySelector('.content-li-img');
