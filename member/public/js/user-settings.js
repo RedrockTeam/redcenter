@@ -1,41 +1,79 @@
-$(function(){
+;(function(){
+	
+	var list = document.querySelector('.set-list'),
+		title = list.querySelectorAll('.set-title'),
+		form = document.querySelectorAll('form');
+		underline = document.querySelector('.set-title-underline'),
+		input =document.querySelectorAll('input')
+	
 
-    var Li = $('.set-title');
-    //滑动导航
-    Li.mouseover(function(){
-        var liindex = Li.index(this);
-        var liWidth = Li.width();
-        $('.set-title-underline').animate({'left' : liindex * liWidth +10+ 'px'},300);
-    })
-    //切换
-    Li.click(function(){
-        var liindex = Li.index(this);
-        $('.set-info').eq(liindex).fadeIn(100).siblings('form.set-info').hide();
-    })
-    //判断昵称长度
-    var name = $('.basic-massage input').eq(0);
-    $('.basic-info tr td button').click(function(){
-        if(name.val().length >6 ){
-            $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;昵称不可以超过6个字哦!</span>');
+	//切换
+	var timer =null
+	function goUnderline(speed,left){
+		timer=setInterval(function(){
+			if(underline.offsetLeft == left){
+			clearInterval(timer);
+			}else{
+				underline.style.left =  underline.offsetLeft +speed/90+'px';
+				//console.log(underline.offsetLeft);
+			}	
+		},300/90);	
+	}
+	
+	addEven(title[1],'mouseover',function(){
+		goUnderline(88,88);
+		title[1].className = 'set-title set-title-hover';
+		title[0].className = 'set-title';
+		form[1].style.display = 'block';
+		form[0].style.display = 'none';
+
+	})
+
+	addEven(title[0],'mouseover',function(){
+		goUnderline(-88,8);
+		title[0].className = 'set-title set-title-hover';
+		title[1].className = 'set-title';
+		form[0].style.display = 'block';
+		form[1].style.display = 'none';
+
+	})
+
+	//ie placeholder
+
+	var label =document.querySelectorAll('.set-label'),
+		laLen = label.length;
+		safe =document.querySelector('.safe-info');
+
+	function placeholder(nodes) {
+       if(nodes.length && !("placeholder" in document.createElement('input'))){
+          for(i=0;i<nodes.length;i++){
+            nodes[i].index = i;
+            nodes[i].onfocus = function(){
+              	console.log(this.index);
+                    if(label[this.index].style.display == 'block'){
+                     label[this.index].style.display ='none';
+                }               
+            }
+            nodes[i].onblur = function(){
+                if(this.value == ''){
+                    label[this.index].style.display = 'block';
+                     
+                }              
+            }  
+            label[i].onclick = function(){
+              	this.style.display ='none';
+            }
+            nodes[i].onmouseout = function(){
+                if(this.value == ''){
+                    label[this.index].style.display = 'block';
+                     
+                }              
+            }                                       
+            label[i].style.display = 'block'; 
+                        
         }
-    })
-    //判断密码
-    var input_password = $('.input-password');
-    var password_btn = $('.set-info p button')
-    input_password.eq(1).blur(function(){
-        $('.set-info p span').remove();
-        if($(this).val() == input_password.eq(0).val()){
-           password_btn.after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;密码不可以和原密码相同哦!</span>');
-        }
+    }
+ }    
 
-    }) 
-
-    input_password.eq(2).blur(function(){
-        $('.set-info p span').remove();
-        if($(this).val() != input_password.eq(1).val()){
-           password_btn.after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;两次输入密码不一致哦!</span>');
-        }
-
-    })    
-
-});
+    placeholder(input);
+})();
