@@ -213,6 +213,48 @@ class IndexController extends CommonController {
         $this->display();
     }
 
+    public function dataCenter(){
+        if(is_null(session('stunum'))){
+            $this->redirect('Home/Index/login');
+        }
+        $this->display('dataCenter');
+    }
+
+    public function helpCenter(){
+        if(is_null(session('stunum'))){
+            $this->redirect('Home/Index/login');
+        }
+        $this->display();
+    }
+
+    public function myProduct(){
+        if(is_null(session('stunum'))){
+            $this->redirect('Home/Index/login');
+        }
+        $this->display();
+    }
+
+    public function prizes(){
+        if(is_null(session('stunum'))){
+            $this->redirect('Home/Index/login');
+        }
+        $this->display();
+    }
+
+    public function userSettings(){
+        if(is_null(session('stunum'))){
+            $this->redirect('Home/Index/login');
+        }
+        $this->display();
+    }
+
+    public function userNews(){
+        if(is_null(session('stunum'))){
+            $this->redirect('Home/Index/login');
+        }
+        $this->display();
+    }
+
     public function selfInfo(){
         $userInfo = getUinfo();
         $data = $userInfo->getSelfInfo();
