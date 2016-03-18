@@ -42,16 +42,17 @@ p{
   font-size: 0;
   margin-bottom: 10px;
   position: relative;
+  
   .set-title {
     float: left;
     width: 80px; 
     line-height: 32px;
     height: 32px;
     font-size: 14px;
-    color: #666;
+    color:#666;
     text-align: center;
   }
-  .set-title:hover{
+  .set-title-hover{
     color: #4890e7;
   }
   .set-title-underline{
@@ -60,7 +61,8 @@ p{
     background-color: #4890e7;
     position: absolute;
     top: 32px;
-    left: 10px;
+    left: 8px;
+    
   }
   .set-title-onepx{
     background-color: #ebebeb;
@@ -69,12 +71,12 @@ p{
     float: left;
   }
 }
-.set-info{
-  display: none;
-}
-.show{
-  display: block;
-}
+// .set-info{
+//   display: none;
+// }
+// .show{
+//   display: block;
+// }
 .basic-info {
   cellpadding:11px;
   display: block;
@@ -114,7 +116,8 @@ p{
       height: 90px;
       -moz-border-radius: 45px; 
       -webkit-border-radius: 45px; 
-      border-radius: 45px; 
+      border-radius: 45px;
+      overflow: hidden; 
       position: relative;
     }
     .basic-face-hover{
@@ -141,6 +144,14 @@ p{
   }
   .basic-massage{
     padding-left:25px;
+    position: relative;
+    .set-label{
+      position: absolute;
+      top: 25px;
+      left: 40px;
+      color: #666;
+      display: none;
+    }
   }
   .basic-massage input{
     width: 524px;
@@ -148,6 +159,9 @@ p{
     line-height: 50px;
     text-indent: 15px;
   }
+  // .basic-massage input:focus{
+  //   outline: 1px solid #4890e7;
+  // }
   button{
     width: 140px;
     height: 46px;
@@ -158,12 +172,25 @@ p{
     color: #fff;
   }
 }
-
+.safe-info{
+  display: none;
+  .password{
+    position: relative;
+    height: 72px;
+    .set-label{
+      position: absolute;
+      top: 35px;
+      left: 15px;
+      color: #666;
+      display: none;
+    }
+  }
+}
 
   .change-password{
     font-size: 12px;
     color:#999;
-    height: 36px;
+    height: 31px;
     line-height: 31px;
   }
   .input-password{
@@ -171,15 +198,15 @@ p{
     line-height: 50px;
     width: 512px;
     border: 1px solid #d8d8d8;
-    margin-bottom: 22px;
+    //margin-bottom: 22px;
     text-indent: 9px;
     color: #cdcdcd;
     font-size: 14px; 
     
   }
-  .input-password:focus{
-    outline: 1px solid #4890e7;
-  }
+  // .input-password:focus{
+  //   outline: 1px solid #4890e7;
+  // }
   button{
     width: 140px;
     height: 46px;
