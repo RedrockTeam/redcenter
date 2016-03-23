@@ -2,23 +2,23 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="__PUBLIC__/css/common.css"/>
-    <link rel="stylesheet" href="__PUBLIC__/css/user-settings.css"/>
+    <link rel="stylesheet" href="../public/css/common.css"/>
+    <link rel="stylesheet" href="../public/css/user-settings.css"/>
     <title>会员中心</title>
 </head>
 <body>
     <div class="header">
         <div class="header-left">
-            <img src="__PUBLIC__/img/logo.png" alt="logo" class="header-left-logo">
+            <img src="../public/img/logo.png" alt="logo" class="header-left-logo">
         </div>
         <div class="header-right">
                 <a class="header-right-tips" href="#">
-                    <img src="__PUBLIC__/img/helper.png" alt="tipImg">
+                    <img src="../public/img/helper.png" alt="tipImg">
                     <span>重邮小帮手：您的账号有一条新的消息~</span>
                 </a>
             <div class="header-right-user">
                 <div class="header-user-face">
-                    <img src="__PUBLIC__/img/face.jpg" alt="face">
+                    <img src="../public/img/face.jpg" alt="face">
                 </div>
                 <span>最多六个字啊</span>
                 <button class="header-user-show" type="button"></button>
@@ -85,22 +85,22 @@
                 账户设置
             </h2>
             <ul class="set-list">
-                <a href="#">
-                    <li class="set-title">基本信息</li>
-                    <li class="set-title-underline"></li>
+                <a href="#" class='set-a'>
+                    <li class="set-title set-title-hover">基本信息</li> 
+                    <li class="set-title-underline" ></li>
                 </a>
                 <div class="set-title-onepx"></div>
-                <a href="#">
+                <a href="#" class='set-a'>
                     <li class="set-title">安全信息</li>
                 </a> 
             </ul>
-            <form action="url" method="post" target="hidden_frame" class="set-info show">
+            <form action="url" method="post" target="hidden_frame" class="set-info">
                 <table class="basic-info">
                     <tr class="basic-face-info">
                         <td class="basic-bar" id="basic-face-bar" cellspacing="25px">头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像</td>
                         <td class ="basic-face">
                             <div class="basic-face-pic">
-                                <img src="__PUBLIC__/img/basic-face.png" alt="basic-face-pic">
+                                <img src="../public/img/basic-face.png" alt="basic-face-pic">
                                 <div class="basic-face-hover">点击上传
                                 </div>
                             </div> 
@@ -109,18 +109,22 @@
                     <tr>
                         <td class="basic-bar">昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</td>
                         <td class ="basic-massage">
+                            <label class="set-label">最多六个字啊</label>
                             <input type="text" placeholder="最多六个字啊">
+                            
                         </td>
                     </tr>
                     <tr>
                         <td class="basic-bar">我的店铺</td>
                         <td class ="basic-massage">
+                            <label class="set-label">小铺纸</label>
                             <input type="text" placeholder="小铺纸">
                         </td>
                      </tr>
                     <tr>
                         <td class="basic-bar">个性签名</td>
                         <td class ="basic-massage">
+                            <label class="set-label">我不做大哥好多年!!</label>
                             <input type="text" placeholder="我不做大哥好多年!!">
                         </td>
                     </tr>
@@ -131,30 +135,38 @@
                     </tr>
                 </table>
             </form>
-            <form action="url" method="post" target="hidden_frame" class="set-info">
+            <form action="url" method="post" target="hidden_frame" class="safe-info">
                 <p class="change-password">修改密码</p>
-                <input type="password" class="input-password" placeholder="请输入原始密码">
-                <input type="password" class="input-password" placeholder="输入新密码">
-                 <input type="password" class="input-password" placeholder="再次输入新密码">
-                 <p>
+                <p class='password'>
+                    <label class="set-label">请输入原始密码</label><br>
+                    <input type="password" class="input-password" placeholder="请输入原始密码">
+                </p>
+                <p class='password'>
+                    <label class="set-label">输入新密码</label><br>
+                    <input type="password" class="input-password" placeholder="输入新密码"><br>
+                </p>
+                <p class='password'>
+                    <label class="set-label">再次输入新密码</label><br>
+                    <input type="password" class="input-password" placeholder="再次输入新密码">
+                </p>
+                <p>
                     <button type="sublime">确定修改</button>
                 </p>
             </form>
         </div>
-        <div id="footer">
+        <footer>
             <p>
                 <a href="##" class="link">关于红岩网校</a> |
                 <a href="##" class="link">开发团队</a> |
-                <a href="##" class="git link">指出错误</a> |
+                <a href="##" class="link">指出错误</a> |
                 <a href="##" class="link">管理入口</a>
             </p>
             <p>地址:重庆市南岸区南山街道崇文路2号重庆邮电大学 联系电话:62461084 / 62487910</p>
             <p>本网站由红岩网校工作站负责开发管理,不经红岩网校委员会书面同意,不得进行转载</p>
-        </div>
-           
+        </footer>
     </div>
     <iframe class="no-renew-form" name='hidden_frame'></iframe>
 </body>
-<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
-<script type="text/javascript" src="__PUBLIC__/js/user-settings.js"></script>
+<script type="text/javascript" src="../public/js/common.js"></script>
+<script type="text/javascript" src="../public/js/user-settings.js"></script>
 </html>
