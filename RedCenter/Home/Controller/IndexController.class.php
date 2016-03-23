@@ -4,6 +4,7 @@ use Org\Util\String;
 use Think\Controller;
 use Home\myLib\UserInfo;
 use Think\Upload;
+use Think\Model;
 
 class IndexController extends CommonController {
     /**
@@ -174,6 +175,8 @@ class IndexController extends CommonController {
 
 
     public function test(){
+        $a =  new Model();$res = $a->query("select stu_num from user_member where score >=".'0'." ORDER BY score DESC ,score_update_time ASC ");
+        var_dump($res);
         var_dump($_SERVER);
         echo "<br>".U('TeacherRegister/emailvertify');
         //$res = $userInfo->getLink();
