@@ -83,7 +83,7 @@ class UserInfo {
     public function updateRank(){
         //$where['score'] = array('EGT',$this->info['score']);
         //$res = M('user_member')->where($where)->order('score desc,score_update_time ')->select();
-        $M = new \Think\Model(); $res = $M->query("select * from user_member where score >=".$this->info['score']." ORDER BY score DESC ,score_update_time ASC ");
+        $M = new \Think\Model(); $res = $M->query("select stu_num from user_member where score >=".$this->info['score']." ORDER BY score DESC ,score_update_time ASC ");
         $i = 1;
         foreach ($res as $value) {
             if($value['stu_num'] != $this->stunum)
@@ -95,7 +95,7 @@ class UserInfo {
 
         //$where['score_month'] = array('EGT',$this->info['score_month']);
         //$res = M('user_member')->where($where)->order('score_month desc,score_update_time ')->select();
-        $M = new \Think\Model(); $res = $M->query("select * from user_member where score_month >=".$this->info['score_month']." ORDER BY score_month DESC ,score_update_time ASC ");
+        $M = new \Think\Model(); $res = $M->query("select stu_num from user_member where score_month >=".$this->info['score_month']." ORDER BY score_month DESC ,score_update_time ASC ");
         $i = 1;
         //echo "本人学号:".$this->stunum."foreach前排名:".$this->info['month_rank']."\n";
         foreach ($res as $value) {

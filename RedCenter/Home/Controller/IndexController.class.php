@@ -14,48 +14,52 @@ class IndexController extends CommonController {
         if(is_null(session('stunum'))){
             $this->redirect('Home/Index/login');
         }
-        $stunum = session('stunum');
-        $userInfo = new UserInfo($stunum);
-        $info = $userInfo->getSelfInfo();
-
-        //用户基本信息
-        $this->assign('nickName', $info['nickname']);
-        $this->assign('selfRank', $userInfo->getSelfRank());
-        $this->assign('selfScore', $info['score']);
-        $this->assign('rankList', $userInfo->getRankList(4));
-        $this->assign('headImage', $userInfo->getHeadImg());
-
-        //我的中心
-        $this->assign('userLog', $userInfo->getLog());  //所有动态
-        $this->assign('BTdownLog', $userInfo->getLog(null,'BTdown铺'));
-        $this->assign('marketLog', $userInfo->getLog(null,'拾货'));
-        $this->assign('jsnsLog', $userInfo->getLog(null,'锦瑟南山'));
-        $this->assign('zscyLog', $userInfo->getLog(null,'掌上重邮'));
-        $this->assign('cyxbsLog', $userInfo->getLog(null,'微信'));
-
-        //积分细则
-        $this->assign('rule', $userInfo->getRule());
-        $this->assign('BTdownRule', $userInfo->getRule('BTdown铺'));
-        $this->assign('marketRule', $userInfo->getRule('拾货'));
-        $this->assign('jsnsnRule', $userInfo->getRule('锦瑟南山'));
-        $this->assign('zscyRule', $userInfo->getRule('掌上重邮'));
-        $this->assign('cyxbsRule', $userInfo->getRule('微信'));
-
-        //用户等级
-        $this->assign('userLevel', $userInfo->getLevel());
-
-        //积分等级
-        $this->assign('levelRule', $userInfo->getLevelRule());
-        //dd($userInfo->getLevelRule());
-
-        //帮助中心文章
-        $this->assign('help',$userInfo->getHelp());
-        //获取消息中文章
-        $this->assign('new',$userInfo->getNew());
-
-
-
-        $this->display();
+        $this->display('userCenter');
+//        if(is_null(session('stunum'))){
+//            $this->redirect('Home/Index/login');
+//        }
+//        $stunum = session('stunum');
+//        $userInfo = new UserInfo($stunum);
+//        $info = $userInfo->getSelfInfo();
+//
+//        //用户基本信息
+//        $this->assign('nickName', $info['nickname']);
+//        $this->assign('selfRank', $userInfo->getSelfRank());
+//        $this->assign('selfScore', $info['score']);
+//        $this->assign('rankList', $userInfo->getRankList(4));
+//        $this->assign('headImage', $userInfo->getHeadImg());
+//
+//        //我的中心
+//        $this->assign('userLog', $userInfo->getLog());  //所有动态
+//        $this->assign('BTdownLog', $userInfo->getLog(null,'BTdown铺'));
+//        $this->assign('marketLog', $userInfo->getLog(null,'拾货'));
+//        $this->assign('jsnsLog', $userInfo->getLog(null,'锦瑟南山'));
+//        $this->assign('zscyLog', $userInfo->getLog(null,'掌上重邮'));
+//        $this->assign('cyxbsLog', $userInfo->getLog(null,'微信'));
+//
+//        //积分细则
+//        $this->assign('rule', $userInfo->getRule());
+//        $this->assign('BTdownRule', $userInfo->getRule('BTdown铺'));
+//        $this->assign('marketRule', $userInfo->getRule('拾货'));
+//        $this->assign('jsnsnRule', $userInfo->getRule('锦瑟南山'));
+//        $this->assign('zscyRule', $userInfo->getRule('掌上重邮'));
+//        $this->assign('cyxbsRule', $userInfo->getRule('微信'));
+//
+//        //用户等级
+//        $this->assign('userLevel', $userInfo->getLevel());
+//
+//        //积分等级
+//        $this->assign('levelRule', $userInfo->getLevelRule());
+//        //dd($userInfo->getLevelRule());
+//
+//        //帮助中心文章
+//        $this->assign('help',$userInfo->getHelp());
+//        //获取消息中文章
+//        $this->assign('new',$userInfo->getNew());
+//
+//
+//
+//        $this->display();
     }
 
     public function login(){
@@ -87,18 +91,18 @@ class IndexController extends CommonController {
     }
 
     private function savePic(){
-        $upload = new Upload();                      // 实例化上传类
-        $upload->maxSize = 3145728;                         // 设置附件上传大小
-        $upload->exts = array('jpg', 'gif', 'png', 'jpeg'); // 设置附件上传类型
-        $upload->rootPath = './RedCenter/Home/Public/head_img/';            // 设置附件上传根目录
+        $upload = new Upload();                                          // 实例化上传类
+        $upload->maxSize = 3145728;                                      // 设置附件上传大小
+        $upload->exts = array('jpg', 'gif', 'png', 'jpeg');              // 设置附件上传类型
+        $upload->rootPath = './RedCenter/Home/Public/head_img/';         // 设置附件上传根目录
         $upload->autoSub = false;
-        $upload->replace = true;                        //存在同名图片就进行覆盖
+        $upload->replace = true;                                         //存在同名图片就进行覆盖
         $upload->savePath = '';
-        $upload->saveName = 'head_'.session('stunum');              // 设置上传文件名
-        $info = $upload->uploadOne($_FILES['photo']);       //执行上传方法
-        if (!$info) {                                       // 上传错误提示错误信息
+        $upload->saveName = 'head_'.session('stunum');                   // 设置上传文件名
+        $info = $upload->uploadOne($_FILES['photo']);                    //执行上传方法
+        if (!$info) {                                                    // 上传错误提示错误信息
                 $this->error($upload->getError());
-        } else {                                              // 上传成功 获取上传文件信息
+        } else {                                                         // 上传成功 获取上传文件信息
             var_dump($info);
             return $info['savename'];
         }
@@ -144,8 +148,6 @@ class IndexController extends CommonController {
     }
 
     public function linkInfo(){
-//        $stunum = session('stunum');
-//        $userInfo = new UserInfo($stunum);
         $userInfo = getUinfo();
         $linkInfo = $userInfo->getLink();
         $this->ajaxReturn($linkInfo);
@@ -220,7 +222,7 @@ class IndexController extends CommonController {
         if(is_null(session('stunum'))){
             $this->redirect('Home/Index/login');
         }
-        $this->display('dataCenter');
+        $this->display();
     }
 
     public function helpCenter(){
