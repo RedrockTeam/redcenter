@@ -162,7 +162,7 @@ class IndexController extends CommonController {
     public function getNew(){
         $userInfo = getUinfo();
         $res = $userInfo->getNew(I('post.page'));
-        $this->ajaxReturn($res);
+        var_dump($res);//$this->ajaxReturn($res);
     }
 
     public function basicInfo(){
@@ -263,19 +263,19 @@ class IndexController extends CommonController {
     public function selfInfo(){
         $userInfo = getUinfo();
         $data = $userInfo->getSelfInfo();
-        var_dump($data);//$this->ajaxReturn($data);
+        $this->ajaxReturn($data);
     }
 
     public function newHelpNum(){
         $userInfo = getUinfo();
         $data = $userInfo->newHelpNum();
-        var_dump($data);//$this->ajaxReturn($data);
+        $this->ajaxReturn($data);
     }
 
     public function newNewsNum(){
         $userInfo = getUinfo();
         $data = $userInfo->newNewsNum();
-        var_dump($data);//$this->ajaxReturn($data);
+        $this->ajaxReturn($data);
     }
 
     public function linkNum(){
