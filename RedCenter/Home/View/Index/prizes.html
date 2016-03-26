@@ -12,7 +12,7 @@
             <img src="__PUBLIC__/img/logo.png" alt="logo" class="header-left-logo">
         </div>
         <div class="header-right">
-                <a class="header-right-tips" href="#">
+                <a class="header-right-tips" href="{:U('Home/Index/userNews')}">
                     <img src="__PUBLIC__/img/helper.png" alt="tipImg">
                     <span>重邮小帮手：您的账号有一条新的消息~</span>
                 </a>
@@ -23,13 +23,13 @@
                 <span>最多六个字啊</span>
                 <button class="header-user-show" type="button"></button>
                 <ul class="header-user-detail">
-                    <a href="#">
+                    <a href="{:U('Home/Index/userSettings')}">
                         <li class="header-user-select header-user-set">
                             账户设置
                             <span class="header-set-img"></span>
                         </li>
                     </a>
-                    <a href="#">
+                    <a href="{:U('Home/Login/logout')}">
                         <li class="header-user-select header-user-out">
                             退出登录
                             <span class="header-out-img"></span>
@@ -43,35 +43,35 @@
     </div>
     <div class="content">
         <ul class="content-left">
-            <a href="#">
+            <a href="{:U('Home/Index/Index')}">
                 <li class="content-left-li">
                     <div class="content-li-bar"></div>
                     <span class="content-li-img"></span>
                     <span>用户中心</span>
                 </li>
             </a>
-            <a href="#">
+            <a href="{:U('Home/Index/myProduct')}">
                 <li class="content-left-li">
                     <div class="content-li-bar"></div>
                     <span class="content-li-img"></span>
                     <span>我的产品</span>
                 </li>
             </a>
-            <a href="#">
+            <a href="{:U('Home/Index/dataCenter')}">
                 <li class="content-left-li">
                     <div class="content-li-bar"></div>
                     <span class="content-li-img"></span>
                     <span>数据查询</span>
                 </li>
             </a>
-            <a href="#">
+            <a href="{:U('Home/Index/helpCenter')}">
                 <li class="content-left-li">
                     <div class="content-li-bar"></div>
                     <span class="content-li-img"></span>
                     <span>帮助中心</span>
                 </li>
             </a>
-            <a href="#">
+            <a href="{:U('Home/Index/prizes')}">
                 <li class="content-left-li">
                     <div class="content-li-bar"></div>
                     <span class="content-li-img"></span>
@@ -134,10 +134,10 @@
 
         <div id="footer">
             <p>
-                <a href="##" class="link">关于红岩网校</a> |
+                <a href="http://hongyan.cqupt.edu.cn/" class="link">关于红岩网校</a> |
                 <a href="##" class="link">开发团队</a> |
                 <a href="##" class="link">指出错误</a> |
-                <a href="##" class="link">管理入口</a>
+                <a href="{:U('Admin/Login/Index')}" class="link">管理入口</a>
             </p>
             <p>地址:重庆市南岸区南山街道崇文路2号重庆邮电大学 联系电话:62461084 / 62487910</p>
             <p>本网站由红岩网校工作站负责开发管理,不经红岩网校委员会书面同意,不得进行转载</p>
