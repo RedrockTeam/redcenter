@@ -155,13 +155,13 @@ class IndexController extends CommonController {
 
     public function getHelp(){
         $userInfo = getUinfo();
-        $res = $userInfo->getHelp(I('post.page'));
+        $res = $userInfo->getHelp(I('get.page'));
         $this->ajaxReturn($res);
     }
 
     public function getNew(){
         $userInfo = getUinfo();
-        $res = $userInfo->getNew(I('post.page'));
+        $res = $userInfo->getNew(I('get.page'));
         var_dump($res);//$this->ajaxReturn($res);
     }
 
