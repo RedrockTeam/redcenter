@@ -14,13 +14,13 @@
     <div class="header-right">
         <a class="header-right-tips" href="{:U('Home/Index/userNews')}">
             <img src="__PUBLIC__/img/helper.png" alt="tipImg">
-            <span>重邮小帮手：您的账号有一条新的消息~</span>
+            <span id="user-message">重邮小帮手：您的账号有一条新的消息~</span>
         </a>
         <div class="header-right-user">
             <div class="header-user-face">
-                <img src="__PUBLIC__/img/face.jpg" alt="face">
+                <img id="user-header" src="__PUBLIC__/img/face.jpg" alt="face">
             </div>
-            <span>最多六个字啊</span>
+            <span id="user-name">最多六个字啊</span>
             <button class="header-user-show" type="button"></button>
             <ul class="header-user-detail">
                 <a href="{:U('Home/Index/userSettings')}">
@@ -85,7 +85,7 @@
                     <img src="__PUBLIC__/img/help.png" alt="新的帮助">
                     <div class="content-link-detail">
                         <span>新的帮助</span>
-                        <em>36524</em>
+                        <em id="new-helper">36524</em>
                     </div>
 
                 </div>
@@ -95,7 +95,7 @@
                     <img src="__PUBLIC__/img/project.png" alt="新的帮助">
                     <div class="content-link-detail">
                         <span>产品数量</span>
-                        <em>3</em>
+                        <em id="product-num">3</em>
                     </div>
 
                 </div>
@@ -105,7 +105,7 @@
                     <img src="__PUBLIC__/img/score.png" alt="新的帮助">
                     <div class="content-link-detail">
                         <span>我的积分</span>
-                        <em>365</em>
+                        <em id="my-score">365</em>
                     </div>
 
                 </div>
@@ -124,7 +124,7 @@
                         <img src="__PUBLIC__/img/helper.png" alt="图标">
                         <div class="contain-new-detail">
                             <h3>BTdown铺我是标题
-                                <span class="new-unread">未读</span>
+                                <span class="new-unread" id="unread-label">未读</span>
                             </h3>
                             <span class="new-time">昨天22:19<img src="__PUBLIC__/img/time.png" alt="时间"></span>
                             <p class="new-text">我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容</p>
@@ -187,26 +187,13 @@
                         <img src="__PUBLIC__/img/front.png" alt="上一页">
                     </li>
                 </a>
-                <a href="#">
+
+
+                <a class="page-sub" href="#">
                     <li class="contain-page">1</li>
                 </a>
-                <a href="#">
-                    <li class="contain-page">2</li>
-                </a>
-                <a href="#">
-                    <li class="contain-page">3</li>
-                </a>
-                <a href="#">
-                    <li class="contain-page">4</li>
-                </a>
-                <a href="#">
-                    <li class="contain-page">5</li>
-                </a>
-                <li class="contain-page contain-page-more">...</li>
-                <a href="#">
-                    <li class="contain-page">12</li>
-                </a>
-                <a href="#">
+                
+                <a href="#" id="user-new-next-page">
                     <li class="contain-page">
                         <img src="__PUBLIC__/img/next.png" alt="下一页">
                     </li>
@@ -226,5 +213,7 @@
     </div>
 </div>
 </body>
+<script src="__PUBLIC__/js/jquery.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script src="__PUBLIC__/js/userCenter.js"></script>
 </html>

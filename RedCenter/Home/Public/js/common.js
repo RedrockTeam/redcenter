@@ -58,3 +58,15 @@ function removeClass(ele, className) {
         target.querySelector('.content-li-bar').style.width = '4px';
     });
 })();
+
+
+$.post(':U("Home/Index/BasicInfo")', function(res) {
+    var res = JSON.parse(res);
+    $('#user-header').attr('src', res.headimg);
+    $('#user-name').text(res.nickname);
+});
+
+$.psot(':U("Home/Index/newNewsNum")', function(res) {
+    var res = JSON.parse(res);
+    $('user-message').text('您有'+ res + '条消息');
+})
