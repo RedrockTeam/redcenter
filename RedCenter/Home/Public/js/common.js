@@ -60,13 +60,14 @@ function removeClass(ele, className) {
 })();
 
 
-$.post(':U("Home/Index/BasicInfo")', function(res) {
-    var res = JSON.parse(res);
+/*
+$.post("basicInfo", function(res) {
+    var res = res;
     $('#user-header').attr('src', res.headimg);
     $('#user-name').text(res.nickname);
 });
 
-$.psot(':U("Home/Index/newNewsNum")', function(res) {
+$.post("newNewsNum", function(res) {
     var res = JSON.parse(res);
     $('user-message').text('您有'+ res + '条消息');
-})
+})*/

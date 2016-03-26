@@ -162,7 +162,7 @@ class IndexController extends CommonController {
     public function getNew(){
         $userInfo = getUinfo();
         $res = $userInfo->getNew(I('get.page'));
-        var_dump($res);//$this->ajaxReturn($res);
+        $this->ajaxReturn($res);
     }
 
     public function basicInfo(){
