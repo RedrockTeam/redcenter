@@ -80,13 +80,13 @@
             </a>
         </ul>
         <div id="user-settings-content">
-            <h2 id="user-settings-title">
-                <div class="user-settings-title-bar"></div>
-                账户设置
-            </h2>
-            <ul class="set-list">
+           <h2 id="user-settings-title">
+               <div class="user-settings-title-bar"></div>
+               账户设置
+           </h2>
+           <ul class="set-list">
                 <a href="#">
-                    <li class="set-title set-title-show">基本信息</li>
+                    <li class="set-title set-title-show" id="basic-title">基本信息</li>
                     <li class="set-title-underline"></li>
                 </a>
                 <div class="set-title-onepx"></div>
@@ -94,57 +94,69 @@
                     <li class="set-title">安全信息</li>
                 </a> 
             </ul>
-            <form action="" method="post"class="set-info show">
-                <table class="basic-info">
-                    <tr class="basic-face-info">
-                        <td class="basic-bar" id="basic-face-bar" cellspacing="25px">头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像</td>
-                        <td class ="basic-face">
-                            <div class="basic-face-pic">
-                                <img src="../__PUBLIC__/img/basic-face.png" alt="basic-face-pic" >
+            <div class="set-info set-show">
+                <from class="basic-info">
+                   <table>
+                        <tr class="basic-face">
+                           <td class="basic-face-bar">头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像</td>
+                           <td class="basic-face-info">
+                            <div class="face">
+                                 <img src="/__PUBLIC__/img/basic-face.png" alt="basic-face-pic" >
                                 <div class="basic-face-hover">点击上传
-                                </div>
-
+                                </div>   
                             </div>
-                            
-                            
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="basic-bar">昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</td>
-                        <td class ="basic-massage">
+                           </td>
+                        </tr>
+                        <tr class="basic">
+                           <td class="basic-bar">昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</td>
+                           <td class="basic-massage"> 
                             <input type="text" placeholder="最多六个字啊">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="basic-bar">我的店铺</td>
-                        <td class ="basic-massage">
-                            <input type="text" placeholder="小铺纸">
-                        </td>
-                     </tr>
-                    <tr>
-                        <td class="basic-bar">个性签名</td>
-                        <td class ="basic-massage">
-                            <input type="text" placeholder="我不做大哥好多年!!">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <button type="submit">确定修改</button>
-                        </td>
-                    </tr>
-                </table>
-            </form>
-            <form action="" method="post" class="set-info">
-                <p class="change-password">修改密码</p>
-                <input type="password" class="input-password" placeholder="请输入原始密码">
-                <input type="password" class="input-password" placeholder="输入新密码">
-                 <input type="password" class="input-password" placeholder="再次输入新密码">
-                 <p>
-                    <button type="sublime">确定修改</button>
-                </p>
-
-            </form>
-        </div>
+                            </td>
+                        </tr>
+                        <tr class="basic">
+                            <td class="basic-bar">我的店铺</td>
+                            <td class ="basic-massage">
+                                <input type="text" placeholder="小铺纸">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="basic-bar">个性签名</td>
+                            <td class ="basic-massage">
+                                <input type="text" placeholder="我不做大哥好多年!!">
+                            </td>
+                        </tr>
+                   </table>
+                </from>
+                <button class="set-btn basic-btn">确定修改</button>
+            </div>
+            <div class="set-info ">
+                <from class="safe-info ">
+                    <table>
+                        <tr>
+                            <td class = "safe-title">
+                                修改密码:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="safe-input">
+                                <input type="password" class="input-password" placeholder="请输入原始密码">
+                            </td>
+                        </tr>
+                        <tr>
+                           <td class="safe-input">
+                               <input type="password" class="input-password" placeholder="输入新密码">
+                           </td>
+                        </tr>
+                        <tr>
+                            <td class="safe-input">
+                                 <input type="password" class="input-password" placeholder="再次输入新密码">
+                            </td>
+                        </tr>
+                    </table>
+                </from>
+                <button class="set-btn safe-btn">确定修改</button>
+            </div>
+       </div>
         <footer>
             <p>
                 <a href="http://hongyan.cqupt.edu.cn/" class="link">关于红岩网校</a> |
