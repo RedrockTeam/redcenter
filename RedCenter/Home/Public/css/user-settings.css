@@ -49,7 +49,10 @@ p {
   color: #666;
   text-align: center;
 }
-.set-list .set-title-hover {
+.set-list .set-title:hover {
+  color: #4890e7;
+}
+.set-list .set-title-show {
   color: #4890e7;
 }
 .set-list .set-title-underline {
@@ -58,13 +61,19 @@ p {
   background-color: #4890e7;
   position: absolute;
   top: 32px;
-  left: 8px;
+  left: 10px;
 }
 .set-list .set-title-onepx {
   background-color: #ebebeb;
   height: 32px;
   width: 1px;
   float: left;
+}
+.set-info {
+  display: none;
+}
+.show {
+  display: block;
 }
 .basic-info {
   cellpadding: 11px;
@@ -97,7 +106,6 @@ p {
   -moz-border-radius: 45px;
   -webkit-border-radius: 45px;
   border-radius: 45px;
-  overflow: hidden;
   position: relative;
 }
 .basic-info .basic-face .basic-face-hover {
@@ -123,14 +131,6 @@ p {
 }
 .basic-info .basic-massage {
   padding-left: 25px;
-  position: relative;
-}
-.basic-info .basic-massage .set-label {
-  position: absolute;
-  top: 25px;
-  left: 40px;
-  color: #666;
-  display: none;
 }
 .basic-info .basic-massage input {
   width: 524px;
@@ -138,7 +138,7 @@ p {
   line-height: 50px;
   text-indent: 15px;
 }
-.basic-info button {
+button {
   width: 140px;
   height: 46px;
   line-height: 46px;
@@ -147,24 +147,10 @@ p {
   font-size: 16px;
   color: #fff;
 }
-.safe-info {
-  display: none;
-}
-.safe-info .password {
-  position: relative;
-  height: 72px;
-}
-.safe-info .password .set-label {
-  position: absolute;
-  top: 35px;
-  left: 15px;
-  color: #666;
-  display: none;
-}
 .change-password {
   font-size: 12px;
   color: #999;
-  height: 31px;
+  height: 36px;
   line-height: 31px;
 }
 .input-password {
@@ -172,11 +158,15 @@ p {
   line-height: 50px;
   width: 512px;
   border: 1px solid #d8d8d8;
+  margin-bottom: 22px;
   text-indent: 9px;
   color: #cdcdcd;
   font-size: 14px;
 }
-button {
+.input-password:focus {
+  outline: 1px solid #4890e7;
+}
+.btn-chang-password {
   width: 140px;
   height: 46px;
   background-color: #4890e7;
