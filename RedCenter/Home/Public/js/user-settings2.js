@@ -2,8 +2,9 @@ $(function(){
 
     var Li = $('.set-title');
     var name = $('.basic-massage input').eq(0);
+    var input_massage = $('.basic .basic-massage input');
     var input_password = $('.input-password');
-    var password_btn = $('.set-info p button');
+    // var password_btn = $('.set-info p button');
 
 
     //滑动导航切换
@@ -12,61 +13,69 @@ $(function(){
         var liWidth = Li.width();
         Li.removeClass('set-title-show');
         $(this).addClass('set-title-show');
-        $('.set-title-underline').animate({'left' : liindex * liWidth +8+ 'px'},300);
+        $('.set-title-underline').animate({'left' : liindex * (liWidth+24) -2+ 'px'},300);
         // $('.set-info').eq(liindex).fadeIn(100).siblings('form.set-info').hide();
-        $('.set-info').removeClass('show');
-        $('.set-info').eq(liindex).addClass('show');
+        $('.set-info').removeClass('set-show');
+        $('.set-info').eq(liindex).addClass('set-show');
     })  
-
-
-    //切换
-    // Li.click(function(){
-    //     var liindex = Li.index(this);
-    //     $('.set-info').eq(liindex).fadeIn(100).siblings('form.set-info').hide();
-    //     $(this).addClass('set-title-show');
-    // })
 
     //判断昵称长度
     
-    $('.basic-info tr td button').click(function(){
+    name.blur(function(){
         if(name.val().length >6 ){
-            $('.basic-info tr td span').remove();
-            $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;昵称不可以超过6个字哦!</span>');
+            $('.set-info p').remove();
+            $(this).after('<p style ="color:red;font-size:12px;">昵称不可以超过6个字哦!</p>');
         }
     })
 
-    //判断密码
+    //表单验证
+
     input_password.eq(1).blur(function(){
-        $('.set-info p span').remove();
+        $('.set-info  p').remove();
         if($(this).val() === input_password.eq(0).val() && $(this).val() !==''){
-           password_btn.after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;密码不可以和原密码相同哦!</span>');
+           $(this).after('<p style ="color:red;font-size:12px;">密码不可以和原密码相同哦!</p>');
         }
 
     }) 
 
     input_password.eq(2).blur(function(){
-        $('.set-info p span').remove();
+        $('.set-info  p').remove();
         if($(this).val() !== input_password.eq(1).val()){
-           password_btn.after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;两次输入密码不一致哦!</span>');
+           $(this).after('<p style ="color:red;font-size:12px;">两次输入密码不一致哦!</p>');
         }
 
-    })    
-
-    password_btn.click(function(){
-        if(input_password.siblings('input.input-password').val() === ''){
-            $('.set-info p span').remove();
-            $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请填写信息!</span>');
-        }
     })
 
-   //表单
-   $('.basic-info tr td button').click(function(){
-     $.post('U("Home/Index/set")', $('.set-info').eq(0).serialize(),function(){
-        $('.basic-info tr td span').remove();
-            $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;修改成功!</span>');
-     })
+    $('.basic-btn').click(function(){
+       $('.set-info span').remove();
+     if( input_massage.val()===''){
+        $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请输入信息哦!</sapn>');
+      }
+    })
+
+    $('.safe-btn').click(function(){
+       $('.set-info span').remove();
+     if( input_password.val()===''){
+        $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请输入信息哦!</sapn>');
+      }
+    })
+
+   //交互
+   $('.basic-btn').click(function(){
+       
+      $('.set-info span').remove();
+      if( input_massage.val()===''){
+        $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请输入信息哦!</sapn>');
+        return false;
+      }else{
+
+        $.post('U("Home/Index/set")', $('.basic-info').serialize(),function(){
+           $(this).after('<span style ="color:green;font-size:12px;">&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
+        })
+      }      
    })
 
+   //验证密码是否正确
     input_password.eq(0).blur(function(){
         $.post('U("Home/Index/setPassword")'),$(this).val(),function(date,status){
             if(this.value !== password){
@@ -75,12 +84,18 @@ $(function(){
         }    
     })
 
-    password_btn.click(function(){
-     $.post('U("Home/Index/setPassword")', $('.set-info').eq(1).serialize(),function(){
-        $('.set-info p span').remove();
-            $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;修改成功!</span>');
-     })
-   })
+    $('.safe-btn').click(function(){
+      
+      $('.set-info span').remove();
+      if( input_password.val()===''){
+        $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请输入信息哦!</sapn>');
+      }else{
+         $.post('U("Home/Index/setPassword")', $('.set-info').eq(1).serialize(),function(){
+          $(this).after('<span style ="color:green;font-size:12px;">&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
+        })
+      }
+    })
+   
 
 
 });
