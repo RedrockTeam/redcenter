@@ -10,10 +10,46 @@ class IndexController extends CommonController {
     /**
      * 前台 用户中心
      */
-    public function index(){
-        if(is_null(session('stunum'))){
-            $this->redirect('Home/Index/login');
+
+    public function __call($method,$args){
+        $this->display();
+    }
+
+    public function returnData(){
+        $type = I('post.dataType');
+        switch($type){
+            case '' :
+                $this->ajaxReturn(array('errorInfo'=>'bad request'));
+                break;
+
+            case 'linkNum' :
+                $this->ajaxReturn(count($this->uinfo->getLink()['linked']));
+                break;
+
+            case 'changeLink' :
+                $this->changeLink();
+                break;
+
+            case 'changePass' :
+                $this->changePass();
+                break;
+
+            case 'changeInfo' :
+                $this->changeInfo();
+                break;
+
+            default :
+                $this->ajaxReturn($this->uinfo->$type());
+                break;
         }
+
+
+    }
+
+    public function index(){
+//        if(is_null(session('stunum'))){
+//            $this->redirect('Home/Index/login');
+//        }
         $this->display('userCenter');
 //        if(is_null(session('stunum'))){
 //            $this->redirect('Home/Index/login');
@@ -62,17 +98,17 @@ class IndexController extends CommonController {
 //        $this->display();
     }
 
-    public function login(){
-        $this->display();
-    }
+//    public function login(){
+//        $this->display();
+//    }
 
-    public function signUp(){
-        $this->display();
-    }
-
-    public function upload(){
-        $this->display();
-    }
+//    public function signUp(){
+//        $this->display();
+//    }
+//
+//    public function upload(){
+//        $this->display();
+//    }
 
     public function changeInfo(){
         if(IS_POST){
@@ -147,32 +183,32 @@ class IndexController extends CommonController {
             $this->ajaxReturn(false);
     }
 
-    public function linkInfo(){
-        $userInfo = getUinfo();
-        $linkInfo = $userInfo->getLink();
-        $this->ajaxReturn($linkInfo);
-    }
+//    public function getLink(){
+//        $userInfo = getUinfo();
+//        $linkInfo = $userInfo->getLink();
+//        $this->ajaxReturn($this->uinfo->getLink());
+//    }
 
-    public function getHelp(){
-        $userInfo = getUinfo();
-        $res = $userInfo->getHelp(I('get.page'));
-        $this->ajaxReturn($res);
-    }
+//    public function getHelp(){
+//        $userInfo = getUinfo();
+//        $res = $userInfo->getHelp(I('get.page'));
+//        $this->ajaxReturn($this->uinfo->getHelp(I('get.page')));
+//    }
 
-    public function getNew(){
-        $userInfo = getUinfo();
-        $res = $userInfo->getNew(I('get.page'));
-        $this->ajaxReturn($res);
-    }
+//    public function getNew(){
+//        $userInfo = getUinfo();
+//        $res = $userInfo->getNew(I('get.page'));
+//        $this->ajaxReturn($this->uinfo->getNew(I('get.page')));
+//    }
 
     public function basicInfo(){
-        $userInfo = getUinfo();
-        $info = $userInfo->getSelfInfo();
-        $basicInfo['nickname'] = $info['nickname'];
-        $basicInfo['headimg'] = $userInfo->getHeadImg();
-        $basicInfo['myshop'] = $info['myshop'];
-        $basicInfo['mysign'] = $info['mysign'];
-        $this->ajaxReturn($basicInfo);
+//        $userInfo = getUinfo();
+//        $info = $userInfo->getSelfInfo();
+//        $basicInfo['nickname'] = $info['nickname'];
+//        $basicInfo['headimg'] = $userInfo->getHeadImg();
+//        $basicInfo['myshop'] = $info['myshop'];
+//        $basicInfo['mysign'] = $info['mysign'];
+        $this->ajaxReturn($this->uinfo->basicInfo());
     }
 
 
@@ -196,10 +232,10 @@ class IndexController extends CommonController {
         //var_dump($userInfo->newNewsNum());
     }
 
-    public function userCenter(){
-        if(is_null(session('stunum'))){
-            $this->redirect('Home/Index/login');
-        }
+//    public function userCenter(){
+//        if(is_null(session('stunum'))){
+//            $this->redirect('Home/Index/login');
+//        }
         /*$stunum = session('stunum');
         $userInfo = new UserInfo($stunum);
 
@@ -215,78 +251,82 @@ class IndexController extends CommonController {
         $this->assign('linkNum',count($linkInfo['linked']));
         $this->assign('all_scores',$all_scores);*/
 
-        $this->display();
-    }
+//        $this->display();
+//    }
 
-    public function dataCenter(){
-        if(is_null(session('stunum'))){
-            $this->redirect('Home/Index/login');
-        }
-        $this->display();
-    }
+//    public function dataCenter(){
+//        if(is_null(session('stunum'))){
+//            $this->redirect('Home/Index/login');
+//        }
+//        $this->display();
+//    }
 
-    public function helpCenter(){
-        if(is_null(session('stunum'))){
-            $this->redirect('Home/Index/login');
-        }
-        $this->display();
-    }
+//    public function helpCenter(){
+//        if(is_null(session('stunum'))){
+//            $this->redirect('Home/Index/login');
+//        }
+//        $this->display();
+//    }
 
-    public function myProduct(){
-        if(is_null(session('stunum'))){
-            $this->redirect('Home/Index/login');
-        }
-        $this->display();
-    }
+//    public function myProduct(){
+//        if(is_null(session('stunum'))){
+//            $this->redirect('Home/Index/login');
+//        }
+//        $this->display();
+//    }
 
-    public function prizes(){
-        if(is_null(session('stunum'))){
-            $this->redirect('Home/Index/login');
-        }
-        $this->display();
-    }
+//    public function prizes(){
+//        if(is_null(session('stunum'))){
+//            $this->redirect('Home/Index/login');
+//        }
+//        $this->display();
+//    }
 
-    public function userSettings(){
-        if(is_null(session('stunum'))){
-            $this->redirect('Home/Index/login');
-        }
-        $this->display();
-    }
+//    public function userSettings(){
+//        if(is_null(session('stunum'))){
+//            $this->redirect('Home/Index/login');
+//        }
+//        $this->display();
+//    }
 
-    public function userNews(){
-        if(is_null(session('stunum'))){
-            $this->redirect('Home/Index/login');
-        }
-        $this->display();
-    }
+//    public function userNews(){
+//        if(is_null(session('stunum'))){
+//            $this->redirect('Home/Index/login');
+//        }
+//        $this->display();
+//    }
 
-    public function selfInfo(){
-        $userInfo = getUinfo();
-        $data = $userInfo->getSelfInfo();
-        $this->ajaxReturn($data);
-    }
+//    public function getSelfInfo(){    //获取所有字段
+        //$userInfo = getUinfo();
+        //$data = getUinfo()->getSelfInfo();
+        //$this->ajaxReturn(getUinfo()->getSelfInfo());
+//    }
 
-    public function newHelpNum(){
-        $userInfo = getUinfo();
-        $data = $userInfo->newHelpNum();
-        $this->ajaxReturn($data);
-    }
+//    public function newHelpNum(){
+//        $userInfo = getUinfo();
+//        $data = $userInfo->newHelpNum();
+//        $this->ajaxReturn(getUinfo()->newHelpNum());
+//  }
 
-    public function newNewsNum(){
-        $userInfo = getUinfo();
-        $data = $userInfo->newNewsNum();
-        $this->ajaxReturn($data);
-    }
+//    public function newNewsNum(){
+//        $userInfo = getUinfo();
+//        $data = $userInfo->newNewsNum();
+//        $this->ajaxReturn(getUinfo()->newNewsNum());
+//    }
 
-    public function linkNum(){
-        $userInfo = getUinfo();
-        $data = $userInfo->getLink();
-        $this->ajaxReturn(count(($data['linked'])));
-    }
+//    public function linkNum(){
+//        $userInfo = getUinfo();
+//        $data = $userInfo->getLink();
+//        $this->ajaxReturn(count((getUinfo()->getLink()['linked'])));
+//    }
 
-    public function all_scores(){
-        $userInfo = getUinfo();
-        $data = $userInfo->getAllScore();
-        $this->ajaxReturn($data);
-    }
+//    public function getAllScore(){
+//        $userInfo = getUinfo();
+//        $data = $userInfo->getAllScore();
+//        $this->ajaxReturn(getUinfo()->getAllScore());
+//    }
+
+
+
+
 }

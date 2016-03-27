@@ -68,7 +68,7 @@ $(function(){
    })
 
     input_password.eq(0).blur(function(){
-        $.post('U("Home/Index/setPassword")'),$(this).val(),function(date,status){
+        $.post('{:U("Home/Index/setPassword")}'),$(this).val(),function(date,status){
             if(this.value !== password){
                 alert('密码不正确');
                 }
@@ -76,7 +76,7 @@ $(function(){
     })
 
     password_btn.click(function(){
-     $.post('U("Home/Index/setPassword")', $('.set-info').eq(1).serialize(),function(){
+     $.post('{:U("Home/Index/setPassword")}', $('.set-info').eq(1).serialize(),function(){
         $('.set-info p span').remove();
             $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;修改成功!</span>');
      })

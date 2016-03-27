@@ -9,9 +9,11 @@ namespace Home\Controller;
 use Think\Controller;
 
 class CommonController extends Controller {
+    protected $uinfo;
     public function _initialize(){
-//        if(!isset(session("stunum"))) {
-//            $this->redirect('Home/Login/login');
-//        }
+        if(is_null(session('stunum'))){
+            $this->redirect('Home/Login/index');
+        }
+        $this->uinfo = new \Home\myLib\UserInfo(session('stunum'));
     }
 }

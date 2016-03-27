@@ -30,6 +30,9 @@ class UserInfo {
     public function getSelfInfo(){
 //      $this->info['level'] = $this->getLevel($this->info['experience']);
         $this->info['last_time']= date('Y/m/d',$this->info['last_login_time']);
+        $this->info['headImage'] = $this->getHeadImg();
+        unset($this->info['stu_idcard']);
+        unset($this->info['password']);
         return $this->info;
     }
 
@@ -201,9 +204,9 @@ class UserInfo {
         $headImage = 'head_img/'.$this->info['headimg'];
         if($this->info['headimg'] == ""){
             if($this->info['gender'] == "男" or $this->info['gender'] == "m"){
-                $headImage = "img/m.png";
+                $headImage = "head_img/m.png";
             }elseif($this->info['gender'] == "女" or $this->info['gender'] == "f"){
-                $headImage = "img/f.png";
+                $headImage = "head_img/f.png";
             }
         }
         return $headImage;

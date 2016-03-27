@@ -191,7 +191,7 @@
                 <a class="page-sub" href="#">
                     <li class="contain-page">1</li>
                 </a>
-                
+
                 <a href="#" id="user-new-next-page">
                     <li class="contain-page">
                         <img src="__PUBLIC__/img/next.png" alt="下一页">
@@ -216,27 +216,27 @@
 <script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
 <!--<script src="__PUBLIC__/js/userCenter.js"></script>-->
 <script >
-    $.post('{:U("Home/Index/newHelpNum")}', function(res) {
+    $.post('{:U("Home/Index/returnData")}', 'dataType=newHelpNum',function(res) {
         var res = JSON.parse(res);
         $('#new-helper').text(res);
     });
-    $.post('{:U("Home/Index/linkNum")}', function(res) {
+    $.post('{:U("Home/Index/returnData")}', 'dataType=linkNum',function(res) {
         var res = JSON.parse(res);
         $('#product-num').text(res);
     });
 
 
-    $.post('{:U("Home/Index/selfInfo")}', function(res) {
+    $.post('{:U("Home/Index/returnData")}', 'dataType=getSelfInfo',function(res) {
         var res = res;
         $('#my-score').text(res.score);
     });
 
 
-    $.post('{:U("Home/Index/newNewsNum")}', function(res) {
+    $.post('{:U("Home/Index/returnData")}', 'dataType=newNewsNum',function(res) {
         var res = JSON.parse(res);
         $('#user-message').text('重邮小帮手:您的账号有'+ res + '条新消息~');
     })
-    $.post('{:U("Home/Index/getNew")}', function(res) {
+    $.post('{:U("Home/Index/returnData")}', 'dataType=getNew',function(res) {
         var res = res;
         var page_num = parseInt(res.total) / 5;
 
@@ -248,7 +248,7 @@
             $('.contain-pageG').append($page_sub_fragment);
         }
         res.article.forEach(function(item, index, arr) {
-            $('.contain-pageG').append('<a href="##">' +
+            $('.contain-newG').append('<a href="##">' +
                     '<li class="contain-new">' +
                     '<img src="__PUBLIC__/img/'+item.pro_id + '.png" alt="图标">' +
                     '<div class="contain-new-detail">' +
@@ -269,13 +269,13 @@
         }
 
     });
-    $.post("basicInfo", function(res) {
+    $.post("{:U('Home/Index/returnData')}", 'dataType=getSelfInfo',function(res) {
         var res = res;
-        $('#user-header').attr('src', '__PUBLIC__/' +res.headimg);
+        $('#user-header').attr('src', '__PUBLIC__/' +res.headImage);
         $('#user-name').text(res.nickname);
     });
 
-    $.post("newNewsNum", function(res) {
+    $.post("{:U('Home/Index/returnData')}", 'dataType=newNewsNum',function(res) {
         var res = JSON.parse(res);
         $('user-message').text('您有'+ res + '条消息');
     })
