@@ -66,3 +66,31 @@ a {
   height: 0;
   overflow: hidden;
 }
+.contain-pageG {
+  list-style-type: none;
+  float: right;
+  padding: 0;
+  margin: 19px 34px 15px 0;
+}
+.contain-page {
+  float: left;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  color: #999999;
+  font-size: 12px;
+}
+.contain-page:hover {
+  background-color: #eaeaea;
+  color: #747474;
+  -moz-border-radius: 2px;
+  /* Gecko browsers */
+  -webkit-border-radius: 2px;
+  /* Webkit browsers */
+  border-radius: 2px;
+  /* W3C syntax */
+}
+.contain-page img {
+  vertical-align: middle;
+}

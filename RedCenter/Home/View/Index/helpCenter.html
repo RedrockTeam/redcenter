@@ -141,6 +141,24 @@
                 
                 
             </ul>
+            <ol class="contain-pageG">
+                <a href="#">
+                    <li class="contain-page">
+                        <img src="../public/img/front.png" alt="上一页">
+                    </li>
+                </a>
+
+
+                <a class="page-sub" href="#">
+                    <li class="contain-page">1</li>
+                </a>
+                
+                <a href="#" id="user-new-next-page">
+                    <li class="contain-page">
+                        <img src="../public/img/next.png" alt="下一页">
+                    </li>
+                </a>
+            </ol>
         </div>
         <div id="footer">
             <p>
@@ -155,4 +173,27 @@
     </div>
 </body>
 <script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+    $.post('{:U("Home/Index/getHelp")}'),function(res){
+        var res = res;
+
+        res.article.forEach(function(item,index,arr){
+            $('#helper-list-wrap').append('<li class="help-list">'+
+                    '<a href="">'+
+                       ' <h3 class="helper-title"+ title="我是标题">'+'<span class="helper-product-name">['+ item.pro_name + ']</span>'+ item.title + '</h3>
+                        <div class="helper-content">
+                        <img class="helper-img" src="../public/img/helper-img.png" alt="">
+
+                            <p >'+ item.content +'</p>
+                        </div>
+                    </a>
+                </li>';
+                )
+        })
+
+    }
+})
+</script>
 </html>

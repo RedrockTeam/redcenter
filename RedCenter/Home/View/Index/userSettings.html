@@ -95,7 +95,7 @@
                 </a> 
             </ul>
             <div class="set-info set-show">
-                <from class="basic-info">
+                <form class="basic-info" name="changeInfo">
                    <table>
                         <tr class="basic-face">
                            <td class="basic-face-bar">头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像</td>
@@ -108,29 +108,29 @@
                            </td>
                         </tr>
                         <tr class="basic">
-                           <td class="basic-bar">昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</td>
+                           <td class="basic-bar" >昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</td>
                            <td class="basic-massage"> 
-                            <input type="text" placeholder="最多六个字啊">
+                            <input type="text" name="nickname" placeholder="最多六个字啊">
                             </td>
                         </tr>
                         <tr class="basic">
                             <td class="basic-bar">我的店铺</td>
                             <td class ="basic-massage">
-                                <input type="text" placeholder="小铺纸">
+                                <input type="text" name="myshop" placeholder="小铺纸">
                             </td>
                         </tr>
                         <tr>
                             <td class="basic-bar">个性签名</td>
                             <td class ="basic-massage">
-                                <input type="text" placeholder="我不做大哥好多年!!">
+                                <input type="text" name="mysign" placeholder="我不做大哥好多年!!">
                             </td>
                         </tr>
                    </table>
-                </from>
+                </form>
                 <button class="set-btn basic-btn">确定修改</button>
             </div>
             <div class="set-info ">
-                <from class="safe-info ">
+                <form class="safe-info " name="changePass">
                     <table>
                         <tr>
                             <td class = "safe-title">
@@ -139,21 +139,22 @@
                         </tr>
                         <tr>
                             <td class="safe-input">
-                                <input type="password" class="input-password" placeholder="请输入原始密码">
+                                <input type="password"  name="old_pass" class="input-password" placeholder="请输入原始密码">
                             </td>
                         </tr>
                         <tr>
                            <td class="safe-input">
-                               <input type="password" class="input-password" placeholder="输入新密码">
+                               <input type="password" name="new_pass" class="input-password" placeholder="输入新密码">
                            </td>
                         </tr>
                         <tr>
                             <td class="safe-input">
-                                 <input type="password" class="input-password" placeholder="再次输入新密码">
+                                 <input type="password" name="conf_pass" class="input-password" placeholder="再次输入新密码">
                             </td>
                         </tr>
                     </table>
-                </from>
+                </form>
+                <div class="div"></div>
                 <button class="set-btn safe-btn">确定修改</button>
             </div>
        </div>
@@ -173,4 +174,46 @@
 <script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
 <script src="__PUBLIC__/js/jquery.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/user-settings2.js"></script>
+<script type="text/javascript">
+  $(function(){
+
+
+     交互
+   $('.basic-btn').click(function(){
+       
+      $('.set-info span').remove();
+      if( input_massage.val()===''){
+        $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请输入信息哦!</sapn>');
+        return false;
+      }else{
+
+        $.post("{:U('Homde/Index/returnData')}", 'dataType=changeInfo&' + $('.basic-info').serialize(),function(){
+           $(this).after('<span style ="color:green;font-size:12px;">&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
+        })
+      }      
+   })
+
+   //验证密码是否正确
+    input_password.eq(0).blur(function(){
+        $.post("{:U('Homde/Index/returnData')}"),$(this).val(),function(date,status){
+            if(this.value !== old_pass){
+                alert('密码不正确');
+                }
+        }    
+    })
+
+    $('.safe-btn').click(function(){
+      
+      $('.set-info span').remove();
+      if( input_password.val()===''){
+        $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请输入信息哦!</sapn>');
+      }else{
+         $.post("{:U('Homde/Index/returnData')}", 'dataType=changePass&' + $('.safe-info').serialize(),function(){
+          $(this).after('<span style ="color:green;font-size:12px;">&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
+        })
+      }
+    })
+   
+  })
+</script>
 </html>
