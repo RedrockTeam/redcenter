@@ -219,4 +219,73 @@
     </div>
 </body>
 <script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+
+    //我的账户展示
+    $.post('{:U("Home/Index/info.last_login_time")}',function(res){
+        $('#data-time').text(res);
+        $('#score-wrap .data-data').eq(0).text(res);
+    })
+
+    $.post('{:U("Home/Index/info.weixin_visit_time")}',function(res){
+        $('.data-data').eq(1).text(res);
+    })
+
+    $.post('{:U("Home/Index/info.score_month")}',function(res){
+        $('.data-data').eq(2).text(res);
+    })
+
+    $.post('{:U("Home/Index/data")}',function(res){
+        var res = res;
+        var page_num = (parseInt(res.total)-6) / 9;
+
+        res.data.forEach(function(item, index, arr){
+            $('.data-list>ul').eq(0).append('<li>'+
+                        '<span class="data-describe">'+'登录'+ item.pro_name +'次数'+'</span>'
+                        +'<span class="data-data">'+ item.pro_num +'</span>'+
+                    '</li>')
+        })
+    })
+
+
+    //产品数据展示 
+    $.post('{:U("Home/Index/data")}',function(res){
+        var res = res;
+        res.data.forEach(function(item, index, arr){
+             $('#product-data-show>ul').append('<li>'+
+                        '<h3 class="product-name">'+item.pro_name+'</h3>'
+                        +'<div class="cut-line">'+'</div>'
+                    +'</li>');
+
+        })
+        res.data.behavior.forEach(function(item,index,arr){
+             $('#product-data-show>ul .product-name').append(
+                '<div class="product-info-list-wrap">'
+                        +    '<span class="data-describe">'+item.beh_title+'</span>'
+                        +    '<span class="data-data">'+item.beh_num+'</span>'
+                        +'</div>'
+                        );
+        })
+
+    })
+
+
+
+    //数据互动
+    $.post('{:U("Home/Index/data")}',function(res){
+        var res = res;
+        res.data.forEach(function(item,index,arr){
+            $('#score-wrap').append('<li class="score-list">'
+                        +'<span class="product-name">'+item.pro_name+'</span>'
+                        +'<span class="data-data">'+score+'</span>'
+                    +'</li>')
+
+        })
+    })
+        
+})
+   
+</script>
 </html>

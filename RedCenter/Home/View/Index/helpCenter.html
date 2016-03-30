@@ -175,22 +175,30 @@
 <script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
 <script type="text/javascript">
-    $(function(){
+$(function(){
     $.post('{:U("Home/Index/getHelp")}'),function(res){
         var res = res;
+        var page_num = parseInt(res.total) / 6;
+        var $page_sub_fragment = $('.page-sub').eq(0);
+        var $next_page_fragment = $('#user-new-next-page');
+
+        $next_page_fragment.remove();
+        for(var i = 0; i < page_num; i ++) {
+            $page_sub_fragment.find(i).text(i+1);
+            $('.contain-pageG').append($page_sub_fragment);
+        }
 
         res.article.forEach(function(item,index,arr){
-            $('#helper-list-wrap').append('<li class="help-list">'+
-                    '<a href="">'+
-                       ' <h3 class="helper-title"+ title="我是标题">'+'<span class="helper-product-name">['+ item.pro_name + ']</span>'+ item.title + '</h3>
-                        <div class="helper-content">
-                        <img class="helper-img" src="../public/img/helper-img.png" alt="">
-
-                            <p >'+ item.content +'</p>
-                        </div>
-                    </a>
-                </li>';
-                )
+            $('#helper-list-wrap').append('<li class="help-list">'
+                    +'<a href="">'
+                    +' <h3 class="helper-title"+ title="我是标题">' 
+                    + '<span class="helper-product-name">['+  item.pro_name  +']</span>'+ item.title +'</h3>'
+                    +'<div class="helper-content">'
+                    +'<img class="helper-img" src="../public/img/helper-img.png" alt="">'
+                    +'<p >'+ item.content +'</p>'
+                    +       '</div>'
+                    +   '</a>'
+                    +'</li>');
         })
 
     }
