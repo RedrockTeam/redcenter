@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="__PUBLIC__/css/common-admin.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/user-manage.css">
+    <title>会员中心</title>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <img src="__PUBLIC__/img/logo.png" alt="logo" class="header-left-logo">
+        </div>
+        <div class="header-right">
+                <a class="header-right-tips" href="#">
+                    <img src="__PUBLIC__/img/helper.png" alt="tipImg">
+                    <span>重邮小帮手：您的账号有一条新的消息~</span>
+                </a>
+            <div class="header-right-user">
+                <div class="header-user-face">
+                    <img src="__PUBLIC__/img/face.jpg" alt="face">
+                </div>
+                <span>最多六个字啊</span>
+                <button class="header-user-show" type="button"></button>
+                <ul class="header-user-detail">
+                    <a href="#">
+                        <li class="header-user-select header-user-set">
+                            账户设置
+                            <span class="header-set-img"></span>
+                        </li>
+                    </a>
+                    <a href="#">
+                        <li class="header-user-select header-user-out">
+                            退出登录
+                            <span class="header-out-img"></span>
+                        </li>
+                    </a>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="content">
+        <ul class="content-left">
+            <a href="#">
+                <li class="content-left-li">
+                    <div class="content-li-bar"></div>
+                    <span class="content-li-img"></span>
+                    <span>用户管理</span>
+                </li>
+            </a>
+            <a href="#">
+                <li class="content-left-li">
+                    <div class="content-li-bar"></div>
+                    <span class="content-li-img"></span>
+                    <span>消息发布</span>
+                </li>
+            </a>
+            <a href="#">
+                <li class="content-left-li">
+                    <div class="content-li-bar"></div>
+                    <span class="content-li-img"></span>
+                    <span>数据查询</span>
+                </li>
+            </a>
+            <a href="#">
+                <li class="content-left-li">
+                    <div class="content-li-bar"></div>
+                    <span class="content-li-img"></span>
+                    <span>帮助发布</span>
+                </li>
+            </a>
+        </ul>
+
+        <div id="user-manage-content">
+            <h2 class="content-title">
+                <span class="content-title-bar"></span>
+                用户管理
+            </h2>
+
+            <form id="search-stu" action="##" method="POST">
+                <ul class="search-sel">
+                    <div class="search-sel-butt">
+                        <span></span>
+                    </div>
+                    <div class="search-sel-li search-sel-first">按姓名</div>
+                    <li class="search-sel-li">按姓名</li>
+                    <li class="search-sel-li">按学号</li>
+                    <li class="search-sel-li">联系方式</li>
+                    <li class="search-sel-li">身份证号</li>
+                    <select name="type">
+                        <option value="name">按姓名</option>
+                        <option value="stuId">按学号</option>
+                        <option value="phone">联系方式</option>
+                        <option value="identity">身份证号</option>
+
+                    </select>
+                </ul>
+
+                <input name="search" type="text" placeholder="输入用户信息搜索">
+                <span id="add-user"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAMAAADqmnyMAAAAaVBMVEUAAABGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkeqXCAkvAAAAInRSTlMA6nSPZ/bBBftqPC4M1biuq6Kbi4Z7XVgU4tnSxrKAT0YZGP87cQAAAIlJREFUGNNtj9kSgyAMRdlxwaW2Wruq/P9HGgiOZMb7lDlzwg0sZjX81deMpNYeojuXw4fHPHN4S1DkUF6ZCllBqtpkKpitpUW6gnkcD/V79tzlAZcCWOOYk8OnGWR21AQPlsIYUSbYAfwzsj6rsK7VHM6Lnp1a7jG8r9DaDALy05+nie6b0wR1B7zMEKHTufN5AAAAAElFTkSuQmCC" alt="">新增用户</span>
+                <button type="submit" class="search-btn">搜索</button>
+            </form>
+            <div class="search-contain">
+                <table id="search-result">
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>性别</th>
+                            <th>学号</th>
+                            <th>邮箱</th>
+                            <th>联系方式</th>
+                            <th>身份证号</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>冯秋明</td>
+                            <td>男</td>
+                            <td>62461084</td>
+                            <td>i@zeroling.com</td>
+                            <td>1323775468</td>
+                            <td>416841651351635146</td>
+                            <td class="edit-btn">
+                                <img class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAANlBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+t8Ac9AAAAEXRSTlMAtB7u3fQP4dvJmIh3YFQ3S4Jl9n8AAABWSURBVBjTvc45DoAwDETRScDZF3z/y0JsKYQCiYpXjX41UJaYqWPV+XJAhW2gkUhmQCT2++SZImDYYrJs8JpcrkDN7k6yZPyWXGlAK3ri+/uVpPRMCSfttAbPZox/fgAAAABJRU5ErkJggg==">
+                                <img  class="result-operation edit" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAVFBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+uAXCOAAAAG3RSTlMA+SDxqtJJUk4VD8u+tTsmBtyui19G7ddbMAnz5jM8AAAAdElEQVQY01XJWQKCMBRD0RSr0pHK4JT971MetMi7fzmBbhkL4Cbb6nAzTAWRNXMXIS0M527LrbI/vKDWREiLkBZ3UL9Jj088aNzFP6+VFl+SCDo2isF/0yp/cobBA2ea+ZoGTVm2JkAT84neQg/qLJC1hQE/MiUMK+A/fBQAAAAASUVORK5CYII=" >
+                            </td>
+                            <td class="finish-btn"><button type="submit">完成</button></td>
+                        </tr>
+                        <tr>
+                            <td>冯秋明</td>
+                            <td>男</td>
+                            <td>62461084</td>
+                            <td>i@ahahh.com</td>
+                            <td>66666666</td>
+                            <td>4666666666666</td>
+                            <td class="edit-btn">
+                                <img class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAANlBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+t8Ac9AAAAEXRSTlMAtB7u3fQP4dvJmIh3YFQ3S4Jl9n8AAABWSURBVBjTvc45DoAwDETRScDZF3z/y0JsKYQCiYpXjX41UJaYqWPV+XJAhW2gkUhmQCT2++SZImDYYrJs8JpcrkDN7k6yZPyWXGlAK3ri+/uVpPRMCSfttAbPZox/fgAAAABJRU5ErkJggg==">
+                                <img  class="result-operation edit" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAVFBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+uAXCOAAAAG3RSTlMA+SDxqtJJUk4VD8u+tTsmBtyui19G7ddbMAnz5jM8AAAAdElEQVQY01XJWQKCMBRD0RSr0pHK4JT971MetMi7fzmBbhkL4Cbb6nAzTAWRNXMXIS0M527LrbI/vKDWREiLkBZ3UL9Jj088aNzFP6+VFl+SCDo2isF/0yp/cobBA2ea+ZoGTVm2JkAT84neQg/qLJC1hQE/MiUMK+A/fBQAAAAASUVORK5CYII=" >
+                            </td>
+                            <td class="finish-btn"><button type="submit">完成</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+               <!--  <div id="not-yet-search">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE8AAABMCAMAAAAbfhoaAAAAhFBMVEUAAADd3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d0OruX3AAAAK3RSTlMA4OkE01sH1s2SSwvJ2fgZLuQm87x+58J5ZDYR7pRQsIs9qZpsRR+2VYZxVLLO9wAAAmFJREFUWMPt1tmSojAUBuCfDuJCI7IIuOG+tHn/9xulTFj6MN0nmaq58b+yTPGRhFMngX1mxXYUZU5eXGyUmkvkK9Ee9gkDqRPZz9BPZSMba28um1mHtl6ctsASnv+I92OEjufX2grwD01vhzx4ZfgtLpmgEIqbODdAbBpeikwyk650pazl9NTeQxcOk/vU3KV6dA5gMVWjDtcbhnrvRrLKUQDlWlUg04tixXlX9d/WB5aRrJLxvPUSKkepk4dA7FY/TyxvetbcV2sTZkCYPtcOlnfT3Kk9kO2rQkwFyztp7tYdSkpAzC/geHPN7ZPvW6FeVnvZuCebKve6432Qr+t6OaPjEVl0vc/fcauc5O4w88SW5HYw9I4kd4ChNye51DP0FiTnrmDmldOeJmHm7ZOeJmHmxRHZJCYw80K3p47NPD8luQJmnjiQ3BiG3pjktsLQK0gu99XeeoTHr+NQcdsVyzuTdZypOhZpJjjefk1xyb4+nIbEeke93iSh6rhUwwPJ8/RxTZ9Oy4TnLWJ1XDfz1Wj/LM/PnOdxnbe5o67zq+R5Z31cN3LV33MnGZ56ILkBYkxd2gaS6fmB6iJ1rw8u9bfgesvHSOfe+DFrfAuGp5bbuTfWtyz/KrmeGMruvXFQ17lke0tZJ788C7EA5YmfPfre6MPGE6P2UTYBSM/9pTfr3O7vRh7dlpND6cHAo5cbFDEASy+evnrdtvQBvkcvN5jPoGLn5Y+pXW9qatbeTDq7emr23nmxAiw8Im/v7fV4rvjf8zv/1XMG3OxIzyJv7+1ZepENQ9xfRh//Iqny/gAKLsfAQfUbHwAAAABJRU5ErkJggg==" alt="">
+                    <p>请输入搜索信息</p> -->
+                   <!--  <img src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/4QNvaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6RjE3OEUyNjBEMThFRTUxMUIwRTRBN0JDQUJBNkNDRjciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Q0Y0QTA0QzNGODIyMTFFNUI0MENGMTAyMjkwREIxOTUiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Q0Y0QTA0QzJGODIyMTFFNUI0MENGMTAyMjkwREIxOTUiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4QTRDNDdCRDdCRjZFNTExQTM3ODk4NzRFQkRDRDJCMCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFRjc4RTI2MEQxOEVFNTExQjBFNEE3QkNBQkE2Q0NGNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6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" alt=""> -->
+               <!--  </div> -->  
+            </div>
+
+        </div>
+        <div id="footer">
+            <p>
+                <a href="##" class="link">关于红岩网校</a> |
+                <a href="##" class="link">开发团队</a> |
+                <a href="##" class="link">指出错误</a> |
+                <a href="##" class="link">管理入口</a>
+            </p>
+            <p>地址:重庆市南岸区南山街道崇文路2号重庆邮电大学 联系电话:62461084 / 62487910</p>
+            <p>本网站由红岩网校工作站负责开发管理,不经红岩网校委员会书面同意,不得进行转载</p>
+            
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/userMassage.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+<script>
+
+    //搜索交互
+    $('.search-btn').click(function(){
+        
+        var search_sort = $('.search-sel-first').text();
+        $.post('{:U("Home/Index/getUserMassage")}',{
+            search_sort: search_sort
+        },function(res){
+            $('#not-yet-search>th').css('font-size','12px');
+            $('#search-result').css('display','block');
+
+            var res = res;
+
+            res.user.forEach(function(item,index,arr){
+                $('tbody').append('<tr>'+
+                            '<td>'+user_name+'</td>'
+                            +'<td>'+user_sex+'</td>'
+                            +'<td>'+user_num+'</td>'
+                            +'<td>'+user_email+'</td>'
+                            +'<td>'+user_phone_num+'</td>'
+                            +'<td>'+user_IDcard+'</td>'
+                            +'<td class="edit-btn">'
+                                +'<img class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAANlBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+t8Ac9AAAAEXRSTlMAtB7u3fQP4dvJmIh3YFQ3S4Jl9n8AAABWSURBVBjTvc45DoAwDETRScDZF3z/y0JsKYQCiYpXjX41UJaYqWPV+XJAhW2gkUhmQCT2++SZImDYYrJs8JpcrkDN7k6yZPyWXGlAK3ri+/uVpPRMCSfttAbPZox/fgAAAABJRU5ErkJggg==">'
+                                +'<img  class="result-operation edit" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAVFBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+uAXCOAAAAG3RSTlMA+SDxqtJJUk4VD8u+tTsmBtyui19G7ddbMAnz5jM8AAAAdElEQVQY01XJWQKCMBRD0RSr0pHK4JT971MetMi7fzmBbhkL4Cbb6nAzTAWRNXMXIS0M527LrbI/vKDWREiLkBZ3UL9Jj088aNzFP6+VFl+SCDo2isF/0yp/cobBA2ea+ZoGTVm2JkAT84neQg/qLJC1hQE/MiUMK+A/fBQAAAAASUVORK5CYII=" >'
+                            +'</td>'
+                            +'<td class="finish-btn">'+'<button type="submit">'+'完成'+'</button>'+'</td>'
+                        +'</tr>')
+           })
+        })
+    })
+
+
+
+    //编辑按钮
+    var $finish_btn = $('.finish-btn');
+    var $edit = $('.edit');
+    var $edit_btn = $('.edit-btn')
+    var len =  $edit.length;
+    $edit.click(function(e){
+        $(this).parent().next().css('display','block');
+        for(var i=3;i<6;i++){
+            var value = $(this).parent().siblings().eq(i).text()
+            $(this).parent().siblings().eq(i).html('<input class="result-info" type="text" value=" '+ value +' ">' +'</input>');
+            // if(i==4){
+            //      $(this).parent().siblings().eq(i).css('width','94px');
+            // }
+        }
+        $(this).parent().siblings().css('padding','5px');
+        $(this).parent().css('display','none');
+   })
+
+    //完成按钮交互
+    $('.finish-btn').click(function(res){
+
+        for(var i=3;i<6;i++){
+                var text = $(this).parent().siblings().eq(i).val()
+                $(this).parent().siblings().eq(i).html(text);
+                console.log($(this).parent().children().siblings().eq(i).val());
+            }
+        // var user_email = $(this).parent().siblings().eq(3).val();
+        // var user_phone_num = $(this).parent().siblings().eq(4).val();
+        // var user_IDcard = $(this).parent().siblings().eq(5).val();
+        // $.post('{:U("Home/Index/getUserMassage")}',{
+        //     user_email:user_email,
+        //     user_phone_num:user_phone_num,
+        //     user_IDcard:user_IDcard
+        // },function(){
+        //     for(var i=3;i<6;i++){
+        //         var text = $(this).parent().siblings().eq(i).val()
+        //         $(this).parent().siblings().eq(i).test(text);
+        //     }
+        // })
+    })
+
+    
+    
+</script>
+</html>
