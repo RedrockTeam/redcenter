@@ -175,18 +175,18 @@
 <script src="__PUBLIC__/js/jquery.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/user-settings2.js"></script>
 <script type="text/javascript">
-  $(function(){
+$(function(){
 
+    var input_password = $('.input-password'),
+        input_massage = $('.basic .basic-massage input');
 
      //交互
-   $('.basic-btn').click(function(){
-       
+   $('.basic-btn').click(function(){      
       $('.set-info span').remove();
       if( input_massage.val()===''){
-        $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请输入信息哦!</sapn>');
+        $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;昵称不能为空!</sapn>');
         return false;
       }else{
-
         $.post("{:U('Homde/Index/returnData')}", 'dataType=changeInfo&' + $('.basic-info').serialize(),function(){
            $(this).after('<span style ="color:green;font-size:12px;">&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
         })
@@ -195,25 +195,32 @@
 
    //验证密码是否正确
     input_password.eq(0).blur(function(){
+        $('.set-info  p').remove();
         $.post("{:U('Homde/Index/returnData')}"),$(this).val(),function(date,status){
             if(this.value !== old_pass){
-                alert('密码不正确');
+                 $(this).after('<p style ="color:red;font-size:12px;">密码错误!</p>');
                 }
         }    
     })
 
     $('.safe-btn').click(function(){
-      
-      $('.set-info span').remove();
-      if( input_password.val()===''){
-        $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请输入信息哦!</sapn>');
-      }else{
-         $.post("{:U('Homde/Index/returnData')}", 'dataType=changePass&' + $('.safe-info').serialize(),function(){
-          $(this).after('<span style ="color:green;font-size:12px;">&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
+        var i=0;
+        $('.safe-info input').map(function(){
+            var a = $(this).val();
+            if(a===''){
+                i++;
+            }
         })
-      }
+        $('.set-info span').remove();
+        if( i===3){
+            $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请输入信息哦!</sapn>');
+         }else{
+            $.post("{:U('Homde/Index/returnData')}", 'dataType=changePass&' + $('.safe-info').serialize(),function(){
+            $(this).after('<span style ="color:green;font-size:12px;">&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
+            })
+        }
     })
    
-  })
+})
 </script>
 </html>
