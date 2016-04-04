@@ -169,6 +169,7 @@
 <script type="text/javascript" src="__PUBLIC__/js/userMassage.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
 <script>
+$(function(){
 
     //搜索交互
     $('.search-btn').click(function(){
@@ -222,28 +223,31 @@
 
     //完成按钮交互
     $('.finish-btn').click(function(res){
+        var text = new Array();
 
         for(var i=3;i<6;i++){
-                var text = $(this).parent().siblings().eq(i).val()
-                $(this).parent().siblings().eq(i).html(text);
-                console.log($(this).parent().children().siblings().eq(i).val());
+             text[i] = $(this).parent().children().siblings().eq(i).children().val();
+             // $(this).parent().children().siblings().eq(i).text(text[i])
             }
-        // var user_email = $(this).parent().siblings().eq(3).val();
-        // var user_phone_num = $(this).parent().siblings().eq(4).val();
-        // var user_IDcard = $(this).parent().siblings().eq(5).val();
-        // $.post('{:U("Home/Index/getUserMassage")}',{
-        //     user_email:user_email,
-        //     user_phone_num:user_phone_num,
-        //     user_IDcard:user_IDcard
-        // },function(){
-        //     for(var i=3;i<6;i++){
-        //         var text = $(this).parent().siblings().eq(i).val()
-        //         $(this).parent().siblings().eq(i).test(text);
-        //     }
-        // })
+            // $(this).css('display','none');
+            // $(this).prev().css('display','block');
+        var user_email = text[3];
+        var user_phone_num =text[4];
+        var user_IDcard = text[5];
+
+        $.post('{:U("Home/Index/getUserMassage")}',{
+            user_email: user_email,
+            user_phone_num: user_phone_num,
+            user_IDcard: user_IDcard
+        },function(){
+            for(var i=3;i<6;i++){
+                $(this).parent().children().siblings().eq(i).text(text[i]);
+            }
+            $(this).css('display','none');
+            $(this).prev().css('display','block');
+        })
     })
 
-    
-    
+})
 </script>
 </html>
