@@ -17,6 +17,7 @@ class IndexController extends CommonController {
 
     public function returnData(){
         $type = I('post.dataType');
+//        $type = 'linkInfo';
         switch($type){
             case '' :
                 $this->ajaxReturn(array('errorInfo'=>'bad request'));
@@ -200,15 +201,15 @@ class IndexController extends CommonController {
 //        $this->ajaxReturn($this->uinfo->getNew(I('get.page')));
 //    }
 
-    public function basicInfo(){
+//    public function basicInfo(){
 //        $userInfo = getUinfo();
 //        $info = $userInfo->getSelfInfo();
 //        $basicInfo['nickname'] = $info['nickname'];
 //        $basicInfo['headimg'] = $userInfo->getHeadImg();
 //        $basicInfo['myshop'] = $info['myshop'];
 //        $basicInfo['mysign'] = $info['mysign'];
-        $this->ajaxReturn($this->uinfo->basicInfo());
-    }
+//        $this->ajaxReturn($this->uinfo->basicInfo());
+//    }
 
 
     public function test(){
