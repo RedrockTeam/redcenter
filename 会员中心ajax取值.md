@@ -81,7 +81,7 @@ Array
 返回：2     //单个数字
 ##链接产品信息：
 	
-参数：dataType = 'linInfo'
+参数：dataType = 'linkInfo'
 
 返回：数组
 <pre>
