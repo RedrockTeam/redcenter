@@ -83,34 +83,26 @@
             <div id="content-my-product">
                 <h2 class="added-product"><span></span>已添加的产品</h2>
                 <table id="info-added-product">
-                    <tr>
+                    <tr class="linked-row">
                         <th class="product-name">产品名称</th>
                         <th class="product-decribe">描述</th>
                         <th class="product-added-time">添加时间</th>
                         <th class="product-operation">操作</th>
                     </tr>
                     <tr>
-                        <td class="product-name"><img src="__PUBLIC__/img/zscy-logo.png" alt="">掌上重邮</td>
+                        <td class="product-name"><img src="__PUBLIC__/img/1.png" alt="">掌上重邮</td>
                         <td class="product-decribe">BTdown铺是用来用来下载资源铺是用来用的个来下载资源的应用</td>
                         <td>2014/02/03</td>
-                        <td><a href="##">取消链接</a></td>
+                        <td><a href="##" data-id="1">取消链接</a></td>
                     </tr>
-                    <tr>
-                        <td class="product-name"><img src="__PUBLIC__/img/zscy-logo.png" alt="">掌上重邮</td>
-                        <td class="product-decribe">BTdown铺是用来用来下载资源铺是用来用的个来下载资源的应用</td>
-                        <td>2014/02/03</td>
-                        <td><a href="##">取消链接</a></td>
-                    </tr>
-                    <tr>
-                        <td class="product-name"><img src="__PUBLIC__/img/zscy-logo.png" alt="">掌上重邮</td>
-                        <td class="product-decribe">BTdown铺是用来用来下载资源铺是用来用的个来下载资源的应用</td>
-                        <td>2014/02/03</td>
-                        <td><a href="##">取消链接</a></td>
-                    </tr>
+                    
                 </table>
                 <h2 class="added-product"><span></span>您还可以添加</h2>
                 <table id="can-add-product">
-                    <tr>
+                <tbody class="can-add-product-tbody">
+                    
+                </tbody>
+                    <!-- <tr>
                         <td class="can-add-product-item">
                             <img src="__PUBLIC__/img/face.jpg" alt="">
                             <p>
@@ -144,7 +136,7 @@
                         </p>
                         <span class="add-button">添加</span>
                     </td>
-                </tr>
+                </tr> -->
                 </table>
             </div>
         </div>
@@ -162,8 +154,64 @@
     </div>
 </body>
 <script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
-<!-- <script type="text/javascript" src="__PUBLIC__/js/angular.min.js"></script>
-<script type="text/javascript" src="__PUBLIC__/js/angular-route.min.js"></script>
-<script type="text/javascript" src="__PUBLIC__/js/app.js"></script> -->
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="__PUBLIC__/js/myProduct.js"></script> -->
+<script type="text/javascript">
+    $.post('{:U("Home/Index/returnData")}','dataType=linkInfo', function(res) {
+        console.log(res);
+        // var res = JSON.parse(res);
+        if(res.linked !== null) {
+            var tr = '';
+            res.linked.forEach( function(item, index,arr) {
+                tr +=  '<tr>' +
+                            '<td class="product-name">' + 
+                                '<img src="__PUBLIC__/img/'+ item.id + '.png"'+ 
+                                item.project + '</td>' + 
+                            '<td class="product-decribe"></td>' +
+                            '<td>2014/02/03</td>' +
+                            '<td>' + 
+                            ' <a href="##" data-id="' + item.id + '>取消链接</a>' +
+                            '</td>' +
+                        'tr';
+            });
+            $('#info-added-product').append(str);
+        }
+        if(res.unlinked !== null) {
+            var canAdd = '';
+            res.unlinked.forEach( function(item, index) {
+                if((index%2) == 0) canAdd += '<tr>';
+                canAdd += '<td class="can-add-product-item">' + 
+                                '<img src="__PUBLIC__/img/' + item.id + '.jpg">'+
+                                '<p>'+
+                                    '<span class="can-add-product-name">BTdown铺</span>'+
+                                    '<span class="can-add-product-decribe">'+
+                                        '这里是产品描述,然而并没有东西' +
+                                    '</span>'+ 
+                                '</p>'+
+                                '<span class="add-button" data-id="' +item.id+ '"">添加</span>'+
+                            '</td>';
+            });
+            $('.can-add-product-tbody').append(canAdd);
+        }
+    });
+    $('#info-added-product').on('click', function(event) {
+        if (event.target.tagName.toLowerCase() === 'a') {
+            var id = event.target.getAttribute('data-id');
+            $.post('{:U("Home/Index/returnData")}','dataType=changeLink&changeType=del&linkId=' + id, function(res) {
+                console.log(res);
+                location.reload();
+            });
+        }
+    });
 
+    $('#can-add-product').on('click', function(event) {
+        if (event.target.className  === 'add-button') {
+            var id = event.target.getAttribute('data-id');
+            $.post('{:U("Home/Index/returnData")}','dataType=changeLink&changeType=add&linkId=' + id, function(res) {
+                console.log(res);
+                location.reload();
+            });
+        }
+    });
+</script>
 </html>
