@@ -39,6 +39,8 @@ class IndexController extends CommonController {
                 $this->changeInfo();
                 break;
             default :
+                if(!method_exists('UserInfo',$type));
+                    $this->ajaxReturn(array('errorInfo'=>'this function does not exist'));
                 $this->ajaxReturn($this->uinfo->$type());
                 break;
         }

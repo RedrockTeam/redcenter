@@ -5,11 +5,18 @@
 采用post传参,所有url值为{:U('Home/Index/Return')},必传参数：dataType
 
 
-##如果值传错了的话：
+##如果dataType不是指定的值：
 	
-参数：dataType = ''
+
+参数：dataType = ''    //为空
 
 返回：{"errorInfo":"bad request"}
+  
+`------------------------------------------`
+
+参数:dataType =  //不是指定的值而且非空
+
+返回:{"errorInfo":"this function does not exist"}
 
 ##用户基本信息(网名，头像，店铺，个性签名)
 	
