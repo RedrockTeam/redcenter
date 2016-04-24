@@ -172,7 +172,7 @@ Array
 
 返回：0 单个数字
 
-##未读新消息个数
+##各种积分
 	
 参数：dataType = 'getAllScore'
 
