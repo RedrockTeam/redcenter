@@ -36,6 +36,15 @@ class UserInfo {
         return $this->info;
     }
 
+    public function basicInfo(){
+        return array(
+            'nickname' => $this->info['nickname'],
+            'hedimg' => $this->getHeadImg(),
+            'myshop' => $this->myshop,
+            'mysign' => $this->mysign
+        );
+    }
+
     //获取积分
     public function getAllScore(){
         //$projects = array('weixin'=>'微信','BTdown'=>'BTdown铺','market'=>'拾货','jsns'=>'锦瑟南山','zscy'=>'掌上重邮');
