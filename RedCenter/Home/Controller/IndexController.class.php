@@ -17,6 +17,7 @@ class IndexController extends CommonController {
 
     public function returnData(){
         $type = I('post.dataType');
+        $type = 'changeLink';
         switch($type){
             case '' :
                 $this->ajaxReturn(array('errorInfo'=>'bad request'));
@@ -37,7 +38,6 @@ class IndexController extends CommonController {
             case 'changeInfo' :
                 $this->changeInfo();
                 break;
-
             default :
                 $this->ajaxReturn($this->uinfo->$type());
                 break;
@@ -176,7 +176,7 @@ class IndexController extends CommonController {
     }
 
     public function changeLink(){
-        $res = D('Link')->changLink(I('post.type'),I('post.linkId'));
+        $res = D('Link')->changLink(I('post.changeType'),I('post.linkId'));
         if($res)
             $this->ajaxReturn(true);
         else
