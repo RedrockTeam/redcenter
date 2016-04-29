@@ -17,7 +17,7 @@ class IndexController extends CommonController {
 
     public function returnData(){
         $type = I('post.dataType');
-//        $type = 'linkInfo';
+//        $type = 'newNewsNum';
         switch($type){
             case '' :
                 $this->ajaxReturn(array('errorInfo'=>'bad request'));
@@ -39,7 +39,7 @@ class IndexController extends CommonController {
                 $this->changeInfo();
                 break;
             default :
-                if(!method_exists('UserInfo',$type));
+                if(!method_exists($this->uinfo,$type))
                     $this->ajaxReturn(array('errorInfo'=>'this function does not exist'));
                 $this->ajaxReturn($this->uinfo->$type());
                 break;

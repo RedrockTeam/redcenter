@@ -344,7 +344,7 @@ class UserInfo {
     }
 
     //获取网校产品链接情况
-    public function linkInfo(   ){
+    public function linkInfo(){
         $res = D('Link')->getLink();
         return $res;
     }
