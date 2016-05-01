@@ -63,7 +63,7 @@ class RbacController extends CommonController {
 		$user = M('user_member');
 		$result = $user->where(array('stu_num' => $data['stu_num']))->find();
 		if(!$result){
-			$this->ajaxReturn('nouser')；
+			$this->ajaxReturn('nouser');
 			return;
 		}
 		$admin_user = M('admin_user');
