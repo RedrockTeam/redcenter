@@ -17,7 +17,7 @@ class IndexController extends CommonController {
 
     public function returnData(){
         $type = I('post.dataType');
-//        $type = 'newNewsNum';
+//        $type = 'linkinfo';
         switch($type){
             case '' :
                 $this->ajaxReturn(array('errorInfo'=>'bad request'));
