@@ -103,23 +103,7 @@
                     
                 </tbody>
                     <!-- <tr>
-                        <td class="can-add-product-item">
-                            <img src="__PUBLIC__/img/face.jpg" alt="">
-                            <p>
-                                <span class="can-add-product-name">BTdown铺</span>
-                                <span class="can-add-product-decribe">重邮小帮手是齐全的微信公众号的发鞥及恢复干啥的啊</span>
-                            </p>
-                            <span class="add-button">添加</span>
-                        </td>
-                        <td class="can-add-product-item">
-                            <img src="__PUBLIC__/img/face.jpg" alt="">
-                            <p>
-                                <span class="can-add-product-name">BTdown铺</span>
-                                <span class="can-add-product-decribe">重邮小帮手是齐全的微信公众号的发鞥及恢复干啥的啊</span>
-                            </p>
-                            <span class="add-button">添加</span>
-                        </td>
-                    </tr><tr>
+
                     <td class="can-add-product-item">
                         <img src="__PUBLIC__/img/face.jpg" alt="">
                         <p>
@@ -158,8 +142,6 @@
 <!-- <script type="text/javascript" src="__PUBLIC__/js/myProduct.js"></script> -->
 <script type="text/javascript">
     $.post('{:U("Home/Index/returnData")}','dataType=linkInfo', function(res) {
-        console.log(res);
-        // var res = JSON.parse(res);
         if(res.linked !== null) {
             var tr = '';
             res.linked.forEach( function(item, index,arr) {
@@ -183,7 +165,7 @@
                 canAdd += '<td class="can-add-product-item">' + 
                                 '<img src="__PUBLIC__/img/' + item.id + '.jpg">'+
                                 '<p>'+
-                                    '<span class="can-add-product-name">BTdown铺</span>'+
+                                    '<span class="can-add-product-name">'+item.project+'</span>'+
                                     '<span class="can-add-product-decribe">'+
                                         '这里是产品描述,然而并没有东西' +
                                     '</span>'+ 
@@ -198,8 +180,9 @@
         if (event.target.tagName.toLowerCase() === 'a') {
             var id = event.target.getAttribute('data-id');
             $.post('{:U("Home/Index/returnData")}','dataType=changeLink&changeType=del&linkId=' + id, function(res) {
-                console.log(res);
-                location.reload();
+                 $.post('{:U("Home/Index/returnData")}','dataType=linkInfo', function(res) {
+                    console.log(res);
+                 })
             });
         }
     });
@@ -207,9 +190,11 @@
     $('#can-add-product').on('click', function(event) {
         if (event.target.className  === 'add-button') {
             var id = event.target.getAttribute('data-id');
+            console.log(id);
             $.post('{:U("Home/Index/returnData")}','dataType=changeLink&changeType=add&linkId=' + id, function(res) {
-                console.log(res);
-                location.reload();
+                $.post('{:U("Home/Index/returnData")}','dataType=linkInfo', function(res) {
+                    console.log(res);
+                 });
             });
         }
     });
