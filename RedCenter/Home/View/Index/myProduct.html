@@ -23,7 +23,7 @@
             <span>最多六个字啊</span>
             <button class="header-user-show" type="button"></button>
             <ul class="header-user-detail">
-                <a href="">
+                <a href="{:U('Home/Index/userSettings')}">
                     <li class="header-user-select header-user-set">
                         账户设置
                         <span class="header-set-img"></span>
@@ -143,18 +143,19 @@
 <script type="text/javascript">
     $.post('{:U("Home/Index/returnData")}','dataType=linkInfo', function(res) {
         if(res.linked !== null) {
-            var tr = '';
+            var str = '';
             res.linked.forEach( function(item, index,arr) {
-                tr +=  '<tr>' +
-                        '<td class="product-name">' +
-                        '<img src="__PUBLIC__/img/'+ item.id + '.png"'+
-                        item.project + '</td>' +
-                        '<td class="product-decribe"></td>' +
+                str +=  '<tr>' +
+                            '<td class="product-name">' +
+                                '<img src="__PUBLIC__/img/'+ item.id + '.png">'+
+                                item.project + 
+                            '</td>' +
+                            '<td class="product-decribe">'+ item.description +'</td>' +
                         '<td>2014/02/03</td>' +
                         '<td>' +
-                        ' <a href="##" data-id="' + item.id + '>取消链接</a>' +
+                        ' <a href="##" data-id="' + item.id + '">取消链接</a>' +
                         '</td>' +
-                        'tr';
+                        '</tr>';
             });
             $('#info-added-product').append(str);
         }
@@ -163,15 +164,13 @@
             res.unlinked.forEach( function(item, index) {
                 if((index%2) == 0) canAdd += '<tr>';
                 canAdd += '<td class="can-add-product-item">' +
-                        '<img src="__PUBLIC__/img/' + item.id + '.jpg">'+
-                        '<p>'+
-                        '<span class="can-add-product-name">'+item.project+'</span>'+
-                        '<span class="can-add-product-decribe">'+
-                        '这里是产品描述,然而并没有东西' +
-                        '</span>'+
-                        '</p>'+
-                        '<span class="add-button" data-id="' +item.id+ '"">添加</span>'+
-                        '</td>';
+                            '<img src="__PUBLIC__/img/' + item.id + '.jpg">'+
+                            '<p>'+
+                                '<span class="can-add-product-name">'+item.project+'</span>'+
+                                '<span class="can-add-product-decribe">'+ item.description + '</span>'+
+                            '</p>'+
+                            '<span class="add-button" data-id="' +item.id+ '"">添加</span>'+
+                          '</td>';
             });
             $('.can-add-product-tbody').append(canAdd);
         }
@@ -181,8 +180,8 @@
             var id = event.target.getAttribute('data-id');
             $.post('{:U("Home/Index/returnData")}','dataType=changeLink&changeType=del&linkId=' + id, function(res) {
                 $.post('{:U("Home/Index/returnData")}','dataType=linkInfo', function(res) {
-                    console.log(res);
-                })
+                    location.reload();
+                });
             });
         }
     });
@@ -193,7 +192,7 @@
             console.log(id);
             $.post('{:U("Home/Index/returnData")}','dataType=changeLink&changeType=add&linkId=' + id, function(res) {
                 $.post('{:U("Home/Index/returnData")}','dataType=linkInfo', function(res) {
-                    console.log(res);
+                    location.reload();
                 });
             });
         }

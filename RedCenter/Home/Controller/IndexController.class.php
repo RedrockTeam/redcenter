@@ -177,6 +177,8 @@ class IndexController extends CommonController {
     }
 
     public function changeLink(){
+        $_POST['chengeType'] ='add';
+        $_POST['linkId'] = 3;
         $res = D('Link')->changLink(I('post.changeType'),I('post.linkId'));
         if($res)
             $this->ajaxReturn(true);
