@@ -348,4 +348,12 @@ class UserInfo {
         $res = D('Link')->getLink();
         return $res;
     }
+
+    //在个产品上的登录次数
+    public function logTime(){
+        $ZSCY = M('user_log')->where(array('project'=>'掌上重邮','action'=>'第一次登陆掌上重邮','user_id'=>$this->uid))->count('id');
+        $cyxbs = M('user_log')->where(array('project'=>'微信','action'=>'当天第一次使用','user_id'=>$this->uid))->count('id');
+        $visit_time = M('user_member')->where(array('stu_num'=>$this->stunum))->find()['weixin_visit_num'];
+        return array('zscy'=>$ZSCY,'cyxbs'=>$cyxbs,'hyzx'=>$visit_time);
+    }
 }

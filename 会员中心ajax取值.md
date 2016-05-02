@@ -206,3 +206,16 @@ Array
 
 )
 </pre>
+
+##产品登录次数
+	
+参数：dataType = 'logTime'
+
+返回：数组,只返回当前可用的三个产品的次数,其他为0
+<pre>
+array(
+    'zscy' => 23,
+    'hyzx' => 34,
+    'cyxbs' => 45
+)
+</pre>
