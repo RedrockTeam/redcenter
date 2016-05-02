@@ -84,14 +84,14 @@ class HandleController extends Controller {
                 'status' => 403
             ),'json');
         }
-       /* //验证学号是否正确
-        if(!$this->userinfo){
-            send_http_status('403');
-            $this->ajaxReturn(array(
-                'error' => 'token error',
-                'status' => 403
-            ),'json');
-        }*/
+        /* //验证学号是否正确
+         if(!$this->userinfo){
+             send_http_status('403');
+             $this->ajaxReturn(array(
+                 'error' => 'token error',
+                 'status' => 403
+             ),'json');
+         }*/
         //验证token是否正确
         $testToken = generateToken($pro_id,$stu_num,$type);
         if($testToken != $token){
