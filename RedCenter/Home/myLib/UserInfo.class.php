@@ -36,6 +36,15 @@ class UserInfo {
         return $this->info;
     }
 
+    public function basicInfo(){
+        return array(
+            'nickname' => $this->info['nickname'],
+            'hedimg' => $this->getHeadImg(),
+            'myshop' => $this->myshop,
+            'mysign' => $this->mysign
+        );
+    }
+
     //获取积分
     public function getAllScore(){
         //$projects = array('weixin'=>'微信','BTdown'=>'BTdown铺','market'=>'拾货','jsns'=>'锦瑟南山','zscy'=>'掌上重邮');
@@ -335,7 +344,7 @@ class UserInfo {
     }
 
     //获取网校产品链接情况
-    public function getLink(){
+    public function linkInfo(){
         $res = D('Link')->getLink();
         return $res;
     }

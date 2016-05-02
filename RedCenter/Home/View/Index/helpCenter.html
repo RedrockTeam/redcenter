@@ -84,7 +84,7 @@
                 帮助中心
             </h2>
             <ul id="helper-list-wrap">
-                <li class="help-list">
+                <!-- <li class="help-list">
                     <a href="">
                         <h3 class="helper-title" title="我是标题标题是我我是标题标题是我"><span class="helper-product-name">[掌上重邮]</span>我是标题标题是我我是标题标题是我</h3>
                         <div class="helper-content">
@@ -138,13 +138,13 @@
                         </div>
                     </a>
                 </li>
-                
+                 -->
                 
             </ul>
             <ol class="contain-pageG">
                 <a href="#">
                     <li class="contain-page">
-                        <img src="../public/img/front.png" alt="上一页">
+                        <img class="pre-page" src="../public/img/front.png" alt="上一页">
                     </li>
                 </a>
 
@@ -155,7 +155,7 @@
                 
                 <a href="#" id="user-new-next-page">
                     <li class="contain-page">
-                        <img src="../public/img/next.png" alt="下一页">
+                        <img class="next-page" src="../public/img/next.png" alt="下一页">
                     </li>
                 </a>
             </ol>
@@ -175,10 +175,36 @@
 <script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
 <script type="text/javascript">
-$(function(){
-    $.post('{:U("Home/Index/getHelp")}'),function(res){
+function renderItem(item, index,arr) {
+    $('#helper-list-wrap').append(
+        '<li class="help-list">'
+            +'<a href="">'
+                +'<h3 class="helper-title"+ title="我是标题">' 
+            + '<span class="helper-product-name">['+  item.pro_name  +']</span>'+ item.title +'</h3>'
+            +'<div class="helper-content">'
+            +'<img class="helper-img" src="../public/img/helper-img.png" alt="">'
+            +'<p >'+ item.content +'</p>'
+            +       '</div>'
+            +   '</a>'
+        +'</li>');
+};
+function getPage(pageIndex) {
+    $.post('{:U("Home/Index/returnData")}', "dataType=getHelp&page=" + pageIndex, function(res){
+        if(res.article)
+            res.article.forEach(renderItem);
+    });
+}
+
+
+
+var totle = 0;
+var pageIndex = 1;
+var pageNum = 
+    $.post('{:U("Home/Index/returnData")}', "dataType=getHelp", function(res){
+        // console.log('test');
         var res = res;
-        var page_num = parseInt(res.total) / 6;
+        totle = res.total;
+        page_num = parseInt(res.total) / 6;
         var $page_sub_fragment = $('.page-sub').eq(0);
         var $next_page_fragment = $('#user-new-next-page');
 
@@ -187,21 +213,27 @@ $(function(){
             $page_sub_fragment.find(i).text(i+1);
             $('.contain-pageG').append($page_sub_fragment);
         }
+        if(res.article)
+            res.article.forEach(renderItem);
+    });
 
-        res.article.forEach(function(item,index,arr){
-            $('#helper-list-wrap').append('<li class="help-list">'
-                    +'<a href="">'
-                    +' <h3 class="helper-title"+ title="我是标题">' 
-                    + '<span class="helper-product-name">['+  item.pro_name  +']</span>'+ item.title +'</h3>'
-                    +'<div class="helper-content">'
-                    +'<img class="helper-img" src="../public/img/helper-img.png" alt="">'
-                    +'<p >'+ item.content +'</p>'
-                    +       '</div>'
-                    +   '</a>'
-                    +'</li>');
-        })
-
-    }
-})
+    $('.contain-pageG').on('click', function(events) {
+        var target = events.target;
+        if(target.className === 'pre-page') {
+            var prePageIndex = pageIndex;
+            pageIndex = --pageIndex < 1 ? 1 : pageIndex;
+            if(prePageIndex === pageIndex) return;
+            getPage(pageIndex);
+        }
+        if(target.className === 'next-page') {
+            var prePageIndex = pageIndex;
+            pageIndex = ++pageIndex > pageNum ? pageNum : pageIndex;
+            if(prePageIndex === pageIndex) return;
+            getPage(pageIndex);
+        }
+        if((parseInt(target.innerHTML)) !== NaN) {
+            getPage(parseInt(target.innerHTML));
+        }
+    });
 </script>
 </html>

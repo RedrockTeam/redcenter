@@ -37,8 +37,9 @@ class IndexController extends CommonController {
             case 'changeInfo' :
                 $this->changeInfo();
                 break;
-
             default :
+                if(!method_exists($this->uinfo,$type))
+                    $this->ajaxReturn(array('errorInfo'=>'this function does not exist'));
                 $this->ajaxReturn($this->uinfo->$type());
                 break;
         }
@@ -176,7 +177,9 @@ class IndexController extends CommonController {
     }
 
     public function changeLink(){
-        $res = D('Link')->changLink(I('post.type'),I('post.linkId'));
+        $_POST['chengeType'] ='add';
+        $_POST['linkId'] = 3;
+        $res = D('Link')->changLink(I('post.changeType'),I('post.linkId'));
         if($res)
             $this->ajaxReturn(true);
         else
@@ -201,15 +204,15 @@ class IndexController extends CommonController {
 //        $this->ajaxReturn($this->uinfo->getNew(I('get.page')));
 //    }
 
-    public function basicInfo(){
+//    public function basicInfo(){
 //        $userInfo = getUinfo();
 //        $info = $userInfo->getSelfInfo();
 //        $basicInfo['nickname'] = $info['nickname'];
 //        $basicInfo['headimg'] = $userInfo->getHeadImg();
 //        $basicInfo['myshop'] = $info['myshop'];
 //        $basicInfo['mysign'] = $info['mysign'];
-        $this->ajaxReturn($this->uinfo->basicInfo());
-    }
+//        $this->ajaxReturn($this->uinfo->basicInfo());
+//    }
 
 
     public function test(){
