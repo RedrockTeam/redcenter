@@ -60,42 +60,42 @@ $(function(){
       }
     })
 
-   //交互
-   $('.basic-btn').click(function(){
+   // //交互
+   // $('.basic-btn').click(function(){
        
-      $('.set-info span').remove();
-      if( input_massage.val()===''){
-        $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请输入信息哦!</sapn>');
-        return false;
-      }else{
+   //    $('.set-info span').remove();
+   //    if( input_massage.val()===''){
+   //      $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请输入信息哦!</sapn>');
+   //      return false;
+   //    }else{
 
-        $.post('U("Home/Index/set")', $('.basic-info').serialize(),function(){
-           $(this).after('<span style ="color:green;font-size:12px;">&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
-        })
-      }      
-   })
+   //      $.post('U("Home/Index/set")', $('.basic-info').serialize(),function(){
+   //         $(this).after('<span style ="color:green;font-size:12px;">&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
+   //      })
+   //    }      
+   // })
 
-   //验证密码是否正确
-    input_password.eq(0).blur(function(){
-        $.post('{:U("Home/Index/setPassword")}'),$(this).val(),function(date,status){
-            if(this.value !== password){
-                alert('密码不正确');
-                }
-        }    
-    })
+   // //验证密码是否正确
+   //  input_password.eq(0).blur(function(){
+   //      $.post('{:U("Home/Index/setPassword")}'),$(this).val(),function(date,status){
+   //          if(this.value !== password){
+   //              alert('密码不正确');
+   //              }
+   //      }    
+   //  })
 
 
-    $('.safe-btn').click(function(){
+   //  $('.safe-btn').click(function(){
       
-      $('.set-info span').remove();
-      if( input_password.val()===''){
-        $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请输入信息哦!</sapn>');
-      }else{
-         $.post('U("Home/Index/setPassword")', $('.set-info').eq(1).serialize(),function(){
-          $(this).after('<span style ="color:green;font-size:12px;">&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
-        })
-      }
-    })
+   //    $('.set-info span').remove();
+   //    if( input_password.val()===''){
+   //      $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请输入信息哦!</sapn>');
+   //    }else{
+   //       $.post('U("Home/Index/setPassword")', $('.set-info').eq(1).serialize(),function(){
+   //        $(this).after('<span style ="color:green;font-size:12px;">&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
+   //      })
+   //    }
+   //  })
    
 
 
