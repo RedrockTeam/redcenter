@@ -50,7 +50,7 @@ class ForgetPasswordController extends Controller {
 
     //重置密码页面
     public function reset(){
-        $token = I('get.token', '');
+        $token = I('get.code', '');
         $row = M('email_verify')->where(array('verify_code' => $token))->find();
         if(!$row) {
             $this->error('无效链接');
