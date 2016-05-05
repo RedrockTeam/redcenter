@@ -86,7 +86,7 @@ class ForgetPasswordController extends Controller {
         }
         $str = new String();
         $salt = $str->randString(6);
-        $pwd = md5(md5($salt).$salt);
+        $pwd = md5(md5($input['password']).$salt);
         M('user_member')->where(array('stu_num' => $row['stu_num']))->save(array('password' => $pwd, 'salt' => $salt));
         M('email_verify')->where(array('email' => $row['email']))->save(array('status' => 0));
         $this->success('修改成功', U('Login/index'));
