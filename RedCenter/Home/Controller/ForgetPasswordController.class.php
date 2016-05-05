@@ -40,7 +40,7 @@ class ForgetPasswordController extends Controller {
             $this->error('无此学号');
         } else {
             if($this->mail($email, $data['stunum'])){
-                $this->success('邮件发送成功, 请前往邮箱收取检查(默认为)', '', 10);
+                $this->success('邮件发送成功, 请12小时内前往邮箱('.$email.')收取检查', '', 10);
             } else {
                 $this->error('邮件发送发生错误, 请联系红岩网校工作站或稍后再试!');
             }
@@ -50,8 +50,46 @@ class ForgetPasswordController extends Controller {
 
     //重置密码页面
     public function reset(){
-        $token = I('get.token');
+        $token = I('get.token', '');
+        $row = M('email_verify')->where(array('verify_code' => $token))->find();
+        if(!$row) {
+            $this->error('无效链接');
+        }
+        if($row['status'] != 1) {
+            $this->error('已经激活');
+        }
+        if((time() - $row['time']) > (12*3600) ) {
+            $this->error('验证超时');
+        }
+        $this->assign('token', $token);
+        $this->display();
+    }
 
+    //
+    public function resetPwd(){
+        $input = I('post.');
+        if(!$input['token']){
+            $this->error('参数错误');
+        }
+        $row = M('email_verify')->where(array('verify_code' => $input['token']))->find();
+        if(!$row) {
+            $this->error('无效链接');
+        }
+        if($row['status'] != 1) {
+            $this->error('已经激活');
+        }
+        if((time() - $row['time']) > (12*3600) ) {
+            $this->error('验证超时');
+        }
+        if($input['password'] !== $input['repeat']){
+            $this->error('两次密码不一致');
+        }
+        $str = new String();
+        $salt = $str->randString(6);
+        $pwd = md5(md5($salt).$salt);
+        M('user_member')->where(array('stu_num' => $row['stu_num']))->save(array('password' => $pwd, 'salt' => $salt));
+        M('email_verify')->where(array('email' => $row['email']))->save(array('status' => 0));
+        $this->success('修改成功', U('Login/index'));
     }
 
     private function mail($email, $stunum){
