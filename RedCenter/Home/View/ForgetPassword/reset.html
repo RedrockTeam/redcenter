@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="__PUBLIC__/js/jquery-1.11.1.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+    <title>重置密码</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                重置密码
+            </a>
+        </div>
+    </div>
+</nav><div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-6 col-md-offset-1">
+
+            <form action="{:U('ForgetPassword/resetPwd')}" method="post">
+                <div class="row text-center h2">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-5">重置密码</div>
+                    <div class="col-md-4"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-2 text-center h4">新密码:</div>
+                                <div class="col-md-8">
+                                    <input type="password" class="form-control" required placeholder="新密码" aria-describedby="basic-addon2" name="password">
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-2 text-center h4">重复密码:</div>
+                                <div class="col-md-8">
+                                    <input type="password" class="form-control" required placeholder="重复密码" aria-describedby="basic-addon2" name="repeat">
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" value="{$token}" name="token">
+                <div class="row text-center">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-5">
+                        <button type="submit" class="btn btn-success">Reset, GO !</button>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+</body>
+</html>
