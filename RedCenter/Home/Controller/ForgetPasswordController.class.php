@@ -70,6 +70,9 @@ class ForgetPasswordController extends Controller {
             'gender'    => '',
             'status' => 1
         );
+        $subject = '=?UTF-8?B?'.base64_encode('重置密码').'?=';
+        $url = 'http://'.$_SERVER['HTTP_HOST'].U('ForgetPassword/reset')."?code=".$verify_code;
+        $content = "link: \r\n$url";
         $return = $this->curl_api('hongyan.cqupt.edu.cn/phpmail/test.php', array('subject' => $subject, 'content' => $content, 'email' => $email));
 
         if($return->status == 200) {
