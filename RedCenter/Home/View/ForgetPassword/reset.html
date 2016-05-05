@@ -38,7 +38,7 @@
                             <div class="row">
                                 <div class="col-md-2 text-center h4">新密码:</div>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" required placeholder="新密码" aria-describedby="basic-addon2" name="password">
+                                    <input type="password" class="form-control" required placeholder="新密码" aria-describedby="basic-addon2" name="password">
                                 </div>
                                 <div class="col-md-2"></div>
                             </div>
@@ -51,14 +51,14 @@
                             <div class="row">
                                 <div class="col-md-2 text-center h4">重复密码:</div>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" required placeholder="重复密码" aria-describedby="basic-addon2" name="repeat">
+                                    <input type="password" class="form-control" required placeholder="重复密码" aria-describedby="basic-addon2" name="repeat">
                                 </div>
                                 <div class="col-md-2"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <input type="hidden" value="{$csrf_token}" name="csrf_token">
+                <input type="hidden" value="{$token}" name="token">
                 <div class="row text-center">
                     <div class="col-md-3"></div>
                     <div class="col-md-5">
