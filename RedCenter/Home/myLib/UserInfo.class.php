@@ -327,7 +327,8 @@ class UserInfo {
         $link[] = 10;
         $where['pro_id'] = array('IN',$link);
         $total = M('help_center')->where($where)->count();
-        $read_help = M('user_member')->where(array('stu_num'=>$this->stunum))->find()['read_help'];
+        $tmp =M('user_member')->where(array('stu_num'=>$this->stunum))->find();
+        $read_help = $tmp['read_help'];
         $num = $total - $read_help;
         return $num;
     }
