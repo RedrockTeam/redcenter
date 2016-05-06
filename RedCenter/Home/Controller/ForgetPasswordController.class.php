@@ -30,19 +30,35 @@ class ForgetPasswordController extends Controller {
         $data = I('post.');
         $verify = new Verify();
         if(!$verify->check($data['code'])){
-            $this->error('验证码错误');
+            $this->ajaxReturn(array(
+                'status' => 403,
+                'info' => '验证码错误'
+            ));
         }
         if(mb_strlen($data['stunum'], 'utf-8') != 10) {
-            $this->error('学号错误');
+            $this->ajaxReturn(array(
+                'status' => 403,
+                'info' => '学号/教师一卡通号错误'
+            ));
         }
         $email = M('user_member')->where(array('stu_num' => $data['stunum']))->getField('email');
         if (!$email) {
-            $this->error('无此学号');
+            $this->ajaxReturn(array(
+                'status' => 403,
+                'info' => '无此学号/教师一卡通号'
+            ));
         } else {
             if($this->mail($email, $data['stunum'])){
-                $this->success('邮件发送成功, 请12小时内前往邮箱('.$email.')收取检查', '', 10);
+                $this->ajaxReturn(array(
+                    'status' => 200,
+                    'info' => $email
+                ));
+//                $this->success('邮件发送成功, 请12小时内前往邮箱('.$email.')收取检查', '', 10);
             } else {
-                $this->error('邮件发送发生错误, 请联系红岩网校工作站或稍后再试!');
+                $this->ajaxReturn(array(
+                    'status' => 500,
+                    'info' => '邮件发送发生错误, 请联系红岩网校工作站或稍后再试!'
+                ));
             }
         }
 
