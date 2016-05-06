@@ -2,7 +2,7 @@
 .idea
 RedCenter/Runtime
 #ThinkPHP
-
+RedCenter/Common/Conf/config.php
 *log
 forget/node_modules
 RedCenter/Home/Conf/config.php
