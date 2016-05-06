@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>会员中心——找回密码</title>
-    <script src="./build/style.js"></script>
+    <script src="/build/style.js"></script>
 </head>
 <body>
-    <div id="react-container"></div>
     <header class="header">
         <div class="bg"></div>
     </header>
-    <div class="container">
+    <div id="vue-container" class="container">
         <h1 class="title">RedCenter</h1>
         <div class="container-top">
             <h1 class="iconfont">&#xe632;</h1>
@@ -19,13 +18,13 @@
             <form action="">
                 <h2>找回密码</h2>
                 <div class="stuID">
-                    <input name="stuID" type="text" placeholder="请输入您的学号">        
+                    <input name="stuID" v-model="stuID" type="text" placeholder="请输入您的学号">        
                 </div>
                 <div class="code">
-                    <img id="code" src="http://hongyan.cqupt.edu.cn/RedCenter/index.php/Home/ForgetPassword/getCode.html" alt="">    
-                    <input name="code" type="text" placeholder="请输入验证码">  
+                    <img id="code" src="http://hongyan.cqupt.edu.cn/RedCenter/index.php/Home/ForgetPassword/getCode.html" alt="点击更换验证码">    
+                    <input name="code" v-model="code" type="text" placeholder="请输入验证码">  
                 </div>
-                <div class="button">重置密码</div>
+                <div class="button" v-on:click="post">重置密码</div>
             </form>    
         </div>
     </div>
@@ -38,6 +37,6 @@
         </p>
         <p>copyright © 2016 红岩网校</p>
     </footer>
-    <script src="build/js.js"></script>
+    <script src="/build/js.js"></script>
 </body>
 </html>
