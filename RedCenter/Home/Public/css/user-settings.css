@@ -157,3 +157,7 @@ p {
 .safe-btn {
   margin-top: 46px;
 }
+.add {
+  color: red;
+  font-size: 12px;
+}
