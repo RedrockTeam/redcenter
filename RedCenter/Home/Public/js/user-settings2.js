@@ -4,9 +4,12 @@ $(function(){
     var name = $('.basic-massage input').eq(0);
     var input_massage = $('.basic .basic-massage input');
     var input_password = $('.input-password');
+    var face_photo = $('.basic-face-hover');
     // var password_btn = $('.set-info p button');
 
-
+    // face_photo.click(function(){
+    //   alert(1);
+    // })
     //滑动导航切换
     Li.mouseover(function(){
         var liindex = Li.index(this);
@@ -22,9 +25,9 @@ $(function(){
     //判断昵称长度
     
     name.blur(function(){
+        $('.set-info p').remove();
         if(name.val().length >6 ){
-            $('.set-info p').remove();
-            $(this).after('<p style ="color:red;font-size:12px;">昵称不可以超过6个字哦!</p>');
+            $(this).after('<p class="add" ">昵称不可以超过6个字哦!</p>');
         }
     })
 
@@ -33,7 +36,7 @@ $(function(){
     input_password.eq(1).blur(function(){
         $('.set-info  p').remove();
         if($(this).val() === input_password.eq(0).val() && $(this).val() !==''){
-           $(this).after('<p style ="color:red;font-size:12px;">密码不可以和原密码相同哦!</p>');
+           $(this).after('<p class="add" ">密码不可以和原密码相同哦!</p>');
         }
 
     }) 
@@ -41,24 +44,24 @@ $(function(){
     input_password.eq(2).blur(function(){
         $('.set-info  p').remove();
         if($(this).val() !== input_password.eq(1).val()){
-           $(this).after('<p style ="color:red;font-size:12px;">两次输入密码不一致哦!</p>');
+           $(this).after('<p class="add" ">两次输入密码不一致哦!</p>');
         }
 
     })
 
-    $('.basic-btn').click(function(){
-       $('.set-info span').remove();
-     if( input_massage.val()===''){
-        $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请输入信息哦!</sapn>');
-      }
-    })
+    // $('.basic-btn').click(function(){
+    //    $('.set-info span').remove();
+    //  if( input_massage.val()===''){
+    //     $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请输入信息哦!</sapn>');
+    //   }
+    // })
 
-    $('.safe-btn').click(function(){
-       $('.set-info span').remove();
-     if( input_password.val()===''){
-        $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请输入信息哦!</sapn>');
-      }
-    })
+    // $('.safe-btn').click(function(){
+    //    $('.set-info span').remove();
+    //  if( input_password.val()===''){
+    //     $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请输入信息哦!</sapn>');
+    //   }
+    // })
 
    // //交互
    // $('.basic-btn').click(function(){
