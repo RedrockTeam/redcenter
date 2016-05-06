@@ -1,78 +1,49 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh_CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet">
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="__PUBLIC__/js/jquery-1.11.1.min.js"></script>
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
-    <title>忘记密码</title>
+    <title>会员中心——找回密码</title>
+    <script src="__PUBLIC__/build/style.js"></script>
+    <!--[if lt IE 9]>
+    <script type="text/javascript">
+        alert("为了你的浏览体验，请升级您的IE或者使用其他现代浏览器。\n现在为你跳转到红岩官网");
+        location.href = "http://hongyan.cqupt.edu.cn/";
+    </script>
+    <![endif]-->
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-                忘记密码
-            </a>
+    <header class="header">
+        <div class="bg"></div>
+    </header>
+    <div id="vue-container" class="container">
+        <h1 class="title">RedCenter</h1>
+        <div class="container-top">
+            <h1 class="iconfont">&#xe632;</h1>
+        </div>
+        <div class="container-body">
+            <form action="">
+                <h2>找回密码</h2>
+                <div class="stuID">
+                    <input name="stuID" v-model="stuID" type="text" placeholder="请输入您的学号">        
+                </div>
+                <div class="code">
+                    <img id="code" src="http://hongyan.cqupt.edu.cn/RedCenter/index.php/Home/ForgetPassword/getCode.html" v-on:click="change" alt="点击更换验证码">    
+                    <input name="code" v-model="code" type="text" placeholder="请输入验证码">  
+                </div>
+                <div class="button" v-on:click="post">重置密码</div>
+                <p class="info" v-bind:class="status"><i class="iconfont">&#xe653; </i>{{ info }}</p>
+            </form>    
         </div>
     </div>
-</nav><div class="container-fluid">
-
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-6 col-md-offset-1">
-
-            <form action="{:U('ForgetPassword/accept')}" method="post">
-                <div class="row text-center h2">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-5">忘记密码</div>
-                    <div class="col-md-4"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-2 text-center h4">学号:</div>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" required placeholder="学号" aria-describedby="basic-addon2" name="stunum">
-                                </div>
-                                <div class="col-md-2"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-2 text-center h4">验证码:</div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" required placeholder="验证码" aria-describedby="basic-addon2" name="code">
-                                </div>
-                                <div class="col-md-2">
-                                    <img src="{:U('ForgetPassword/getCode')}" alt="code">
-                                </div>
-                                <div class="col-md-2"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <input type="hidden" value="{$csrf_token}" name="csrf_token">
-                <div class="row text-center">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-5">
-                        <button type="submit" class="btn btn-success">Reset, GO !</button>
-                    </div>
-                    <div class="col-md-4"></div>
-                </div>
-            </form>
-        </div>
-        <div class="col-md-4"></div>
-    </div>
-</div>
+    <footer class="footer">
+        <p>
+            <a href="http://hongyan.cqupt.edu.cn/aboutus/">关于我们</a>|
+            <a href="https://redrock.cqupt.edu.cn/jsns/">锦瑟南山</a>|
+            <a href="http://hongyan.cqupt.edu.cn/RedCenter/">会员中心</a>|
+            <a href="http://hongyan.cqupt.edu.cn/web/">网址大全</a>
+        </p>
+        <p>copyright © 2016 红岩网校</p>
+    </footer>
+    <script src="__PUBLIC__/build/js.js"></script>
 </body>
 </html>
