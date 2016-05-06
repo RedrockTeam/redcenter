@@ -97,6 +97,9 @@ class ForgetPasswordController extends Controller {
         if((time() - $row['time']) > (12*3600) ) {
             $this->error('验证超时');
         }
+        if(mb_strlen($input['password'], 'utf-8')<6){
+            $this->error('密码太短');
+        }
         if($input['password'] !== $input['repeat']){
             $this->error('两次密码不一致');
         }
