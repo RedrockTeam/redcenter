@@ -23,7 +23,8 @@ class IndexController extends CommonController {
                 break;
 
             case 'linkNum' :
-                $this->ajaxReturn(count($this->uinfo->getLink()['linked']));
+                $data = $this->uinfo->getLink();
+                $this->ajaxReturn(count($data['linked']));
                 break;
 
             case 'changeLink' :

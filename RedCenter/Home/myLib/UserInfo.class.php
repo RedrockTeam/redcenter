@@ -327,7 +327,8 @@ class UserInfo {
         $link[] = 10;
         $where['pro_id'] = array('IN',$link);
         $total = M('help_center')->where($where)->count();
-        $read_help = M('user_member')->where(array('stu_num'=>$this->stunum))->find()['read_help'];
+        $tmp = M('user_member')->where(array('stu_num'=>$this->stunum))->find();
+        $read_help = $tmp['read_help'];
         $num = $total - $read_help;
         return $num;
     }
@@ -338,7 +339,8 @@ class UserInfo {
         $link[] = 10;
         $where['pro_id'] = array('IN',$link);
         $total = M('new_center')->where($where)->count('id');
-        $read_news = M('user_member')->where(array('stu_num'=>$this->stunum))->find()['read_news'];
+        $tmp = M('user_member')->where(array('stu_num'=>$this->stunum))->find();
+        $read_news = $tmp['read_news'];
         $num = $total - $read_news;
         return $num;
     }
@@ -353,7 +355,8 @@ class UserInfo {
     public function logTime(){
         $ZSCY = M('user_log')->where(array('project'=>'掌上重邮','action'=>'第一次登陆掌上重邮','user_id'=>$this->uid))->count('id');
         $cyxbs = M('user_log')->where(array('project'=>'微信','action'=>'当天第一次使用','user_id'=>$this->uid))->count('id');
-        $visit_time = M('user_member')->where(array('stu_num'=>$this->stunum))->find()['weixin_visit_num'];
+        $tmp = M('user_member')->where(array('stu_num'=>$this->stunum))->find();
+        $visit_time = $tmp['weixin_visit_num'];
         return array('zscy'=>$ZSCY,'cyxbs'=>$cyxbs,'hyzx'=>$visit_time);
     }
 }
