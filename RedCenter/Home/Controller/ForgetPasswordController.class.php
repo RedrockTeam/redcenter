@@ -93,7 +93,7 @@ class ForgetPasswordController extends Controller {
             $this->error('无效链接');
         }
         if($row['status'] != 1) {
-            $this->error('已经激活');
+            $this->error('已经重置');
         }
         if((time() - $row['time']) > (12*3600) ) {
             $this->error('验证超时');
