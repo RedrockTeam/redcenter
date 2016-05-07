@@ -51,7 +51,8 @@ class ForgetPasswordController extends Controller {
             if($this->mail($email, $data['stunum'])){
                 $this->ajaxReturn(array(
                     'status' => 200,
-                    'info' => $email
+                    'info' => '成功',
+                    'data' => $email
                 ));
 //                $this->success('邮件发送成功, 请12小时内前往邮箱('.$email.')收取检查', '', 10);
             } else {
