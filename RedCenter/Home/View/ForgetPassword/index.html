@@ -12,19 +12,19 @@
     <![endif]-->
 </head>
 <body>
-    <header class="header">
-        <div class="bg"></div>
+    <header class="header" style="background: url(__PUBLIC__/build/images/bg.jpg) no-repeat center;">
+        <div class="bg" style="background: url(__PUBLIC__/build/images/bg.jpg) no-repeat center;"></div>
     </header>
     <div id="vue-container" class="container">
         <h1 class="title">RedCenter</h1>
-        <div class="container-top">
+        <div class="container-top" style="background: url(__PUBLIC__/build/images/bg.jpg) no-repeat center;">
             <h1 class="iconfont">&#xe632;</h1>
         </div>
         <div class="container-body">
             <form action="">
                 <h2>找回密码</h2>
                 <div class="stuID">
-                    <input name="stuID" v-model="stuID" type="text" placeholder="请输入您的学号">        
+                    <input name="stuID" v-model="stuID" type="text" placeholder="请输入您的学号"> 
                 </div>
                 <div class="code">
                     <img id="code" src="http://hongyan.cqupt.edu.cn/RedCenter/index.php/Home/ForgetPassword/getCode.html" v-on:click="change" alt="点击更换验证码">    
