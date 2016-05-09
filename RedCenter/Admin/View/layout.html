@@ -2,10 +2,9 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="__PUBLIC__/v2/less/common.css"/>
-    <link rel="stylesheet" href="__PUBLIC__/v2/less/userCenter.css"/>
-    {$resource}
-    <script type="text/javascript" src="__PUBLIC__/v2/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/v2/css/common-admin.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/v2/css/user-manage.css">
+    <link rel="stylesheet" href="__PUBLIC__/v2/css/helper-publish.css">
     <title>会员中心</title>
 </head>
 <body>
@@ -22,7 +21,7 @@
             <div class="header-user-face">
                 <img src="__PUBLIC__/v2/img/face.jpg" alt="face">
             </div>
-            <span>{$user_name}</span>
+            <span>{$Think.session.username}</span>
             <button class="header-user-show" type="button"></button>
             <ul class="header-user-detail">
                 <a href="#">
@@ -31,7 +30,7 @@
                         <span class="header-set-img"></span>
                     </li>
                 </a>
-                <a href="#">
+                <a href="__MODULE__/Login/logout">
                     <li class="header-user-select header-user-out">
                         退出登录
                         <span class="header-out-img"></span>
@@ -45,7 +44,7 @@
 </div>
 <div class="content">
     <ul class="content-left">
-        <a href="__CONTROLLER__/userManager">
+        <a href="__CONTROLLER__/userManage">
             <li class="content-left-li">
                 <div class="content-li-bar"></div>
                 <span class="content-li-img"></span>
@@ -59,14 +58,14 @@
                 <span>消息发布</span>
             </li>
         </a>
-        <a href="#">
+        <a href="">
             <li class="content-left-li">
                 <div class="content-li-bar"></div>
                 <span class="content-li-img"></span>
                 <span>数据查询</span>
             </li>
         </a>
-        <a href="#">
+        <a href="__CONTROLLER__/publishHelp">
             <li class="content-left-li">
                 <div class="content-li-bar"></div>
                 <span class="content-li-img"></span>
@@ -74,18 +73,17 @@
             </li>
         </a>
     </ul>
-
-            {__CONTENT__}
-<footer>
-    <p>
-        <a href="##" class="link">关于红岩网校</a> |
-        <a href="##" class="link">开发团队</a> |
-        <a href="##" class="link">指出错误</a> |
-        <a href="##" class="link">管理入口</a>
-    </p>
-    <p>地址:重庆市南岸区南山街道崇文路2号重庆邮电大学 联系电话:62461084 / 62487910</p>
-    <p>本网站由红岩网校工作站负责开发管理,不经红岩网校委员会书面同意,不得进行转载</p>
-</footer>
+    {__CONTENT__}
+    <div id="footer">
+        <p>
+            <a href="##" class="link">关于红岩网校</a> |
+            <a href="##" class="link">开发团队</a> |
+            <a href="##" class="link">指出错误</a> |
+            <a href="##" class="link">管理入口</a>
+        </p>
+        <p>地址:重庆市南岸区南山街道崇文路2号重庆邮电大学 联系电话:62461084 / 62487910</p>
+        <p>本网站由红岩网校工作站负责开发管理,不经红岩网校委员会书面同意,不得进行转载</p>
+    </div>
 </div>
 </body>
 <script type="text/javascript" src="__PUBLIC__/v2/js/common.js"></script>

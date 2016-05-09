@@ -10,7 +10,9 @@ class LoginController extends Controller {
         $this->display();
     }
 
-    //登录验证
+    /*
+     * 先从统一验证登录那里检查是否有此用户，然后再在管理员表里面查看此用户是否有管理员权限
+     */
     public function login(){
     	if(!IS_POST){
     		$this->error('页面不存在');
@@ -27,11 +29,19 @@ class LoginController extends Controller {
         $re = $this->curl($data, $uri);
         switch ($re['status']) {
             case '200':
-                $user = M('admin_user')->where(array('stu_num' => $username))->find();
-                if($user){
-                    $this->successHandle($user);
+                //超级管理员识别
+                if ($re['userInfo']['real_name'] == C('RBAC_SUPERADMIN')) { //Dev模式记得改回true
+                    session(C('ADMIN_AUTH_KEY'), true);
+                    session('real_name', "超级管理员");
+                    $this->successHandle($re['userInfo']);
+//                    $this->success("登陆成功", U('Admin/Index/userManage'));
                 }else{
-                    $this->error('你不是管理员');
+                    $user = M('admin_user')->where(array('stu_num' => $username))->find();
+                    if ($user) {
+                        $this->successHandle($user);
+                    } else {
+                        $this->error('你不是管理员');
+                    }
                 }
                 break;
             case '408':
@@ -45,8 +55,14 @@ class LoginController extends Controller {
         }
     }
 
+    public function logout(){
+        session_unset();
+        session_destroy();
+        $this->redirect('Admin/Login/index');
+    }
+
     private function successHandle($user){
-        $condition = array('stu_num' => $user['stu_num'],'is_lock' => '0');
+        $condition = array('stu_num' => $user['stu_num']); //is_lock API返回貌似没有 'is_lock' => '0'
         $data = array(
             'last_login_time' => time(),
             'last_login_ip' => get_client_ip(),
@@ -59,10 +75,6 @@ class LoginController extends Controller {
         session('user_login_time', date('Y-m-d H:i:s', $user['last_login_time']));
         session('user_login_ip', $user['last_login_ip']);
 
-        //超级管理员识别
-        if ($user['real_name'] == C('RBAC_SUPERADMIN')) {
-            session(C('ADMIN_AUTH_KEY'), true);
-        }
         //读取用户权限
         //$Rbac = new \Org\Util\Rbac();
         //$Rbac->saveAccessList();
