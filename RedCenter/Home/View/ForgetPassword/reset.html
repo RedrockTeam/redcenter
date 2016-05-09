@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <title>会员中心——重置密码</title>
+    <script src="__PUBLIC__/build/style.js"></script>
+    <!--[if lt IE 9]>
+    <script type="text/javascript">
+        alert("为了你的浏览体验，请升级您的IE或者使用其他现代浏览器。\n现在为你跳转到红岩官网");
+        location.href = "http://hongyan.cqupt.edu.cn/";
+    </script>
+    <![endif]-->
+</head>
+<body>
+    <header class="header">
+        <div class="bg"></div>
+    </header>
+    <div class="container">
+        <h1 class="title">RedCenter</h1>
+        <div class="container-top">
+            <h1 class="iconfont">&#xe632;</h1>
+        </div>
+        <div class="container-body">
+            <form action="http://hongyan.cqupt.edu.cn/RedCenter/index.php/Home/ForgetPassword/resetPwd.html" method="POST">
+                <h2>重置密码</h2>
+                <div class="stuID">
+                    <input name="password" type="password" placeholder="新密码">        
+                </div>
+                <div class="code">
+                    <input name="repeat" type="password" placeholder="重复密码">
+                    <input type="hidden" name="token" value="{$token}">
+                </div>
+                <div>
+                    <input type="submit" class="submit" value="确认">
+                </div>
+            </form>    
+        </div>
+    </div>
+    <footer class="footer">
+        <p>
+            <a href="http://hongyan.cqupt.edu.cn/aboutus/">关于我们</a>|
+            <a href="https://redrock.cqupt.edu.cn/jsns/">锦瑟南山</a>|
+            <a href="http://hongyan.cqupt.edu.cn/RedCenter/">会员中心</a>|
+            <a href="http://hongyan.cqupt.edu.cn/web/">网址大全</a>
+        </p>
+        <p>copyright © 2016 红岩网校</p>
+    </footer>
+</body>
+</html>

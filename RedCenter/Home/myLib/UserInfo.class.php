@@ -36,6 +36,15 @@ class UserInfo {
         return $this->info;
     }
 
+    public function basicInfo(){
+        return array(
+            'nickname' => $this->info['nickname'],
+            'hedimg' => $this->getHeadImg(),
+            'myshop' => $this->myshop,
+            'mysign' => $this->mysign
+        );
+    }
+
     //获取积分
     public function getAllScore(){
         //$projects = array('weixin'=>'微信','BTdown'=>'BTdown铺','market'=>'拾货','jsns'=>'锦瑟南山','zscy'=>'掌上重邮');
@@ -318,7 +327,8 @@ class UserInfo {
         $link[] = 10;
         $where['pro_id'] = array('IN',$link);
         $total = M('help_center')->where($where)->count();
-        $read_help = M('user_member')->where(array('stu_num'=>$this->stunum))->find()['read_help'];
+        $tmp = M('user_member')->where(array('stu_num'=>$this->stunum))->find();
+        $read_help = $tmp['read_help'];
         $num = $total - $read_help;
         return $num;
     }
@@ -329,14 +339,24 @@ class UserInfo {
         $link[] = 10;
         $where['pro_id'] = array('IN',$link);
         $total = M('new_center')->where($where)->count('id');
-        $read_news = M('user_member')->where(array('stu_num'=>$this->stunum))->find()['read_news'];
+        $tmp = M('user_member')->where(array('stu_num'=>$this->stunum))->find();
+        $read_news = $tmp['read_news'];
         $num = $total - $read_news;
         return $num;
     }
 
     //获取网校产品链接情况
-    public function getLink(){
+    public function linkInfo(){
         $res = D('Link')->getLink();
         return $res;
+    }
+
+    //在个产品上的登录次数
+    public function logTime(){
+        $ZSCY = M('user_log')->where(array('project'=>'掌上重邮','action'=>'第一次登陆掌上重邮','user_id'=>$this->uid))->count('id');
+        $cyxbs = M('user_log')->where(array('project'=>'微信','action'=>'当天第一次使用','user_id'=>$this->uid))->count('id');
+        $tmp = M('user_member')->where(array('stu_num'=>$this->stunum))->find();
+        $visit_time = $tmp['weixin_visit_num'];
+        return array('zscy'=>$ZSCY,'cyxbs'=>$cyxbs,'hyzx'=>$visit_time);
     }
 }

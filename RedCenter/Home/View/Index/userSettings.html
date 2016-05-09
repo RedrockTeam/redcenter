@@ -101,7 +101,7 @@
                            <td class="basic-face-bar">头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像</td>
                            <td class="basic-face-info">
                             <div class="face">
-                                 <img src="/__PUBLIC__/img/basic-face.png" alt="basic-face-pic" >
+                                 <img src="__PUBLIC__/img/basic-face.png" alt="basic-face-pic" >
                                 <div class="basic-face-hover">点击上传
                                 </div>   
                             </div>
@@ -158,7 +158,7 @@
                 <button class="set-btn safe-btn">确定修改</button>
             </div>
        </div>
-        <footer>
+        <div id="footer">
             <p>
                 <a href="http://hongyan.cqupt.edu.cn/" class="link">关于红岩网校</a> |
                 <a href="##" class="link">开发团队</a> |
@@ -167,7 +167,7 @@
             </p>
             <p>地址:重庆市南岸区南山街道崇文路2号重庆邮电大学 联系电话:62461084 / 62487910</p>
             <p>本网站由红岩网校工作站负责开发管理,不经红岩网校委员会书面同意,不得进行转载</p>
-        </footer>
+        </div>
     </div>
    
 </body>
@@ -178,17 +178,27 @@
 $(function(){
 
     var input_password = $('.input-password'),
-        input_massage = $('.basic .basic-massage input');
+        input_massage = $('.basic .basic-massage input'),
+        face_pic = $('face img');
+     // 交互
+     $.post("{:U('Home/Index/Return')}",'dataType=basicInfo',function(res){
+        var res = res;
+        input_password.eq(0).val() = nickname;
+        input_password.eq(1).val() = myshop;
+        input_password.eq(2).val() = mysign;
+        face_pic.scr = headimg;
 
-     //交互
+     })
+
+
    $('.basic-btn').click(function(){      
       $('.set-info span').remove();
       if( input_massage.val()===''){
-        $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;昵称不能为空!</sapn>');
+        $(this).after('<span class ="add" >&nbsp;&nbsp;&nbsp;昵称不能为空!</sapn>');
         return false;
       }else{
-        $.post("{:U('Homde/Index/returnData')}", 'dataType=changeInfo&' + $('.basic-info').serialize(),function(){
-           $(this).after('<span style ="color:green;font-size:12px;">&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
+        $.post("{:U('Home/Index/Return')}", 'dataType=chnageInfo&' + $('.basic-info').serialize(), function(){
+           $(this).after('<span style ="color:green;" class="add" >&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
         })
       }      
    })
@@ -196,27 +206,30 @@ $(function(){
    //验证密码是否正确
     input_password.eq(0).blur(function(){
         $('.set-info  p').remove();
-        $.post("{:U('Homde/Index/returnData')}"),$(this).val(),function(date,status){
-            if(this.value !== old_pass){
-                 $(this).after('<p style ="color:red;font-size:12px;">密码错误!</p>');
+        $.post("{:U('Home/Index/Return')}"),'dataType=basicInfo&' + $(this).val(), function(date,status){
+            if($(this).val() !== old_pass){
+                 $(this).after('<p class="add" >密码错误!</p>');
                 }
         }    
     })
 
     $('.safe-btn').click(function(){
+
         var i=0;
         $('.safe-info input').map(function(){
             var a = $(this).val();
+    
             if(a===''){
                 i++;
             }
         })
         $('.set-info span').remove();
-        if( i===3){
-            $(this).after('<span style ="color:red;font-size:12px;">&nbsp;&nbsp;&nbsp;请输入信息哦!</sapn>');
+      
+        if( i != 0){
+            $(this).after('<span class="add" >&nbsp;&nbsp;&nbsp;请输入完整信息哦!</sapn>');
          }else{
-            $.post("{:U('Homde/Index/returnData')}", 'dataType=changePass&' + $('.safe-info').serialize(),function(){
-            $(this).after('<span style ="color:green;font-size:12px;">&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
+            $.post("{:U('Home/Index/Return')}", 'dataType=changePass&' + $('.safe-info').serialize(),function(){
+                $(this).after('<span style="color:green;" class="add" >&nbsp;&nbsp;&nbsp;密码修改成功!</sapn>');
             })
         }
     })
