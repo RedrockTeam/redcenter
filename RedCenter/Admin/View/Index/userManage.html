@@ -24,12 +24,12 @@
             </select>
         </ul>
 
-        <input name="search" type="text" placeholder="输入用户信息搜索">
+        <input name="search" id="search-value" type="text" placeholder="输入用户信息搜索">
         <span id="add-user"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAMAAADqmnyMAAAAaVBMVEUAAABGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkeqXCAkvAAAAInRSTlMA6nSPZ/bBBftqPC4M1biuq6Kbi4Z7XVgU4tnSxrKAT0YZGP87cQAAAIlJREFUGNNtj9kSgyAMRdlxwaW2Wruq/P9HGgiOZMb7lDlzwg0sZjX81deMpNYeojuXw4fHPHN4S1DkUF6ZCllBqtpkKpitpUW6gnkcD/V79tzlAZcCWOOYk8OnGWR21AQPlsIYUSbYAfwzsj6rsK7VHM6Lnp1a7jG8r9DaDALy05+nie6b0wR1B7zMEKHTufN5AAAAAElFTkSuQmCC" alt="">新增用户</span>
-        <button type="submit">搜索</button>
+        <button id="search-btn" type="submit">搜索</button>
     </form>
     <div class="search-contain">
-        <!-- <table id="search-result">
+        <table id="search-result">
             <thead>
                 <tr>
                     <th>姓名</th>
@@ -41,8 +41,8 @@
                     <th>操作</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
+            <tbody class="search-result-tbody">
+                <!-- <tr>
                     <td>冯秋明</td>
                     <td>男</td>
                     <td>62461084</td>
@@ -53,21 +53,9 @@
                         <img class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAANlBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+t8Ac9AAAAEXRSTlMAtB7u3fQP4dvJmIh3YFQ3S4Jl9n8AAABWSURBVBjTvc45DoAwDETRScDZF3z/y0JsKYQCiYpXjX41UJaYqWPV+XJAhW2gkUhmQCT2++SZImDYYrJs8JpcrkDN7k6yZPyWXGlAK3ri+/uVpPRMCSfttAbPZox/fgAAAABJRU5ErkJggg==">
                         <img  class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAVFBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+uAXCOAAAAG3RSTlMA+SDxqtJJUk4VD8u+tTsmBtyui19G7ddbMAnz5jM8AAAAdElEQVQY01XJWQKCMBRD0RSr0pHK4JT971MetMi7fzmBbhkL4Cbb6nAzTAWRNXMXIS0M527LrbI/vKDWREiLkBZ3UL9Jj088aNzFP6+VFl+SCDo2isF/0yp/cobBA2ea+ZoGTVm2JkAT84neQg/qLJC1hQE/MiUMK+A/fBQAAAAASUVORK5CYII=" >
                     </td>
-                </tr>
-                <tr>
-                    <td>冯秋明</td>
-                    <td>男</td>
-                    <td>62461084</td>
-                    <td>i@zeroling.com</td>
-                    <td>1323775468</td>
-                    <td>416841651351635146</td>
-                    <td>
-                        <img class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAANlBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+t8Ac9AAAAEXRSTlMAtB7u3fQP4dvJmIh3YFQ3S4Jl9n8AAABWSURBVBjTvc45DoAwDETRScDZF3z/y0JsKYQCiYpXjX41UJaYqWPV+XJAhW2gkUhmQCT2++SZImDYYrJs8JpcrkDN7k6yZPyWXGlAK3ri+/uVpPRMCSfttAbPZox/fgAAAABJRU5ErkJggg==">
-                        <img  class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAVFBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+uAXCOAAAAG3RSTlMA+SDxqtJJUk4VD8u+tTsmBtyui19G7ddbMAnz5jM8AAAAdElEQVQY01XJWQKCMBRD0RSr0pHK4JT971MetMi7fzmBbhkL4Cbb6nAzTAWRNXMXIS0M527LrbI/vKDWREiLkBZ3UL9Jj088aNzFP6+VFl+SCDo2isF/0yp/cobBA2ea+ZoGTVm2JkAT84neQg/qLJC1hQE/MiUMK+A/fBQAAAAASUVORK5CYII=" >
-                    </td>
-                </tr>
+                </tr> -->
             </tbody>
-        </table> -->
+        </table>
         <div id="not-yet-search">
             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE8AAABMCAMAAAAbfhoaAAAAhFBMVEUAAADd3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d0OruX3AAAAK3RSTlMA4OkE01sH1s2SSwvJ2fgZLuQm87x+58J5ZDYR7pRQsIs9qZpsRR+2VYZxVLLO9wAAAmFJREFUWMPt1tmSojAUBuCfDuJCI7IIuOG+tHn/9xulTFj6MN0nmaq58b+yTPGRhFMngX1mxXYUZU5eXGyUmkvkK9Ee9gkDqRPZz9BPZSMba28um1mHtl6ctsASnv+I92OEjufX2grwD01vhzx4ZfgtLpmgEIqbODdAbBpeikwyk650pazl9NTeQxcOk/vU3KV6dA5gMVWjDtcbhnrvRrLKUQDlWlUg04tixXlX9d/WB5aRrJLxvPUSKkepk4dA7FY/TyxvetbcV2sTZkCYPtcOlnfT3Kk9kO2rQkwFyztp7tYdSkpAzC/geHPN7ZPvW6FeVnvZuCebKve6432Qr+t6OaPjEVl0vc/fcauc5O4w88SW5HYw9I4kd4ChNye51DP0FiTnrmDmldOeJmHm7ZOeJmHmxRHZJCYw80K3p47NPD8luQJmnjiQ3BiG3pjktsLQK0gu99XeeoTHr+NQcdsVyzuTdZypOhZpJjjefk1xyb4+nIbEeke93iSh6rhUwwPJ8/RxTZ9Oy4TnLWJ1XDfz1Wj/LM/PnOdxnbe5o67zq+R5Z31cN3LV33MnGZ56ILkBYkxd2gaS6fmB6iJ1rw8u9bfgesvHSOfe+DFrfAuGp5bbuTfWtyz/KrmeGMruvXFQ17lke0tZJ788C7EA5YmfPfre6MPGE6P2UTYBSM/9pTfr3O7vRh7dlpND6cHAo5cbFDEASy+evnrdtvQBvkcvN5jPoGLn5Y+pXW9qatbeTDq7emr23nmxAiw8Im/v7fV4rvjf8zv/1XMG3OxIzyJv7+1ZepENQ9xfRh//Iqny/gAKLsfAQfUbHwAAAABJRU5ErkJggg==" alt="">
             <p>请输入信息</p>
@@ -75,8 +63,26 @@
     </div>
 
 </div>
-<script type="text/javascript" src="../public/js/common.js"></script>
+<script type="text/template" id="search-result-template">
+    <tr>
+        <td class="search-result-real_name"></td>
+        <td class="search-result-gender"></td>
+        <td class="search-result-stu_num"></td>
+        <td class="search-result-email"></td>
+        <td class="search-result-phone"></td>
+        <td class="search-result-stu_idcard"></td>
+        <td>
+            <img class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAANlBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+t8Ac9AAAAEXRSTlMAtB7u3fQP4dvJmIh3YFQ3S4Jl9n8AAABWSURBVBjTvc45DoAwDETRScDZF3z/y0JsKYQCiYpXjX41UJaYqWPV+XJAhW2gkUhmQCT2++SZImDYYrJs8JpcrkDN7k6yZPyWXGlAK3ri+/uVpPRMCSfttAbPZox/fgAAAABJRU5ErkJggg==">
+            <img  class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAVFBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+uAXCOAAAAG3RSTlMA+SDxqtJJUk4VD8u+tTsmBtyui19G7ddbMAnz5jM8AAAAdElEQVQY01XJWQKCMBRD0RSr0pHK4JT971MetMi7fzmBbhkL4Cbb6nAzTAWRNXMXIS0M527LrbI/vKDWREiLkBZ3UL9Jj088aNzFP6+VFl+SCDo2isF/0yp/cobBA2ea+ZoGTVm2JkAT84neQg/qLJC1hQE/MiUMK+A/fBQAAAAASUVORK5CYII=" >
+        </td>
+    </tr>
+</script>
+<script type="text/javascript" src="__PUBLIC__/v2/js/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="__PUBLIC__/v2/js/common.js"></script>
+<script type="text/javascript" src=""></script>
 <script>
+(function(){
+
     //搜索栏动画
     var stu = document.querySelector('#search-stu>input');
     stu.onfocus = function(e){
@@ -116,4 +122,37 @@
             }
         }
     }
+}());
+
+(function() {
+    $('#search-result').hide();
+    var MAP = {
+        '按姓名'   : 'name',
+        '按学号'   : 'stuid',
+        '联系方式' : 'phone',
+        '身份证号' : 'identity',
+    }
+    $('#search-stu').on('submit', function() {
+        var temp = $('.search-sel-first').html();
+        var type = MAP[temp];
+        var searchVal = $('#search-value').val();
+        console.log(type);
+        $.post('{:U("Admin/Rbac/searchUser")}',{type: type, search: searchVal} ,function(res){
+            var obj = res[0]
+            if(obj===undefined) {
+                alert('查无此人');
+                return false;
+            }
+            console.log(obj);
+            $('#not-yet-search').hide();
+            $('#search-result').show();
+            var $row = $($('#search-result-template').html());
+            for(var key in obj) {
+                $row.children('.search-result-' + key).html(obj[key]);
+            }
+            $('.search-result-tbody').append($row);
+        });
+        return false;
+    })
+}());
 </script>
