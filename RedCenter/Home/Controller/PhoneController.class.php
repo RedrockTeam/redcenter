@@ -48,7 +48,7 @@ class PhoneController extends Controller {
 
         //月度积分排行榜（前10）  本期新需求
         $rankList_month = $userInfo->getRankList_month(10);
-        
+
         //排名变化
         $rankchange = $userInfo->rankChange();
 
@@ -75,11 +75,11 @@ class PhoneController extends Controller {
             $this->assign('all_scores',$all_scores);
             $this->display();
             
-            //var_dump($headImage);
-            //var_dump($rankList_month);
-            //var_dump($info);
-            //var_dump($rankchange);
-            //var_dump($userInfo->getAllScore());
+//            var_dump($headImage);
+//            var_dump($rankList_month);
+//            var_dump($info);
+//            var_dump($rankchange);
+//            var_dump($userInfo->getAllScore());
         }
     }
 

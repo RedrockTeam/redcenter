@@ -166,10 +166,11 @@ class UserInfo {
 
     //获取年度积分排行    本期暂时没用到
     public function getRankList($num = null){
+        $need_fields = 'stu_num,nickname,real_name,month_rank,score_month,last_month_rank';
         if(is_null($num)){
-            $rankList = M('user_member')->order('score desc,score_update_time ')->select();
+            $rankList = M('user_member')->field($need_fields)->where(array('score'=>array('GT',0)))->order('score desc,score_update_time ')->limit(10)->select();
         }else{
-            $rankList = M('user_member')->order('score desc,score_update_time ')->limit($num)->select();
+            $rankList = M('user_member')->field($need_fields)->where(array('score'=>array('GT',0)))->order('score desc,score_update_time ')->limit($num)->select();
         }
         $re = array();
         foreach($rankList as $key => $each){
@@ -178,7 +179,7 @@ class UserInfo {
             else{
                 $level = $this->getLevel($each['experience']);
                 $each['level'] = $level;
-                $each['num'] = $key + 1; 
+                $each['num'] = $key + 1;
                 array_push($re, $each);
             }
         }
@@ -188,24 +189,25 @@ class UserInfo {
 
     //获取每月积分排行   本期的新需求
     public function getRankList_month($num = null){
+        $need_fields = 'stu_num,nickname,real_name,month_rank,score_month,last_month_rank';
         if(is_null($num)){
-            $result = M('user_member')->order('score_month desc,score_update_time ')->select();
+            $result = M('user_member')->field($need_fields)->where(array('score_month'=>array('GT',0)))->order('score_month desc,score_update_time ')->limit(10)->select();
         }else{
-            $result = M('user_member')->order('score_month desc,score_update_time ')->limit($num)->select();
+            $result = M('user_member')->field($need_fields)->where(array('score_month'=>array('GT',0)))->order('score_month desc,score_update_time ')->limit($num)->select();
         }
-        $rankList_month = array();
-        foreach ($result as $key => $each) {
-            if($each['score_month'] == 0 || $each['score_month'] < 0)
-                unset($result["$key"]);
-            else{
-                $level = $this->getLevel($each['experience']);
-                $each['level'] = $level;
-                $each['num'] = $key + 1; 
-                array_push($rankList_month, $each);
-            }
-        }
+//        $rankList_month = array();
+//        foreach ($result as $key => $each) {
+//            if($each['score_month'] == 0 || $each['score_month'] < 0)
+//                unset($result["$key"]);
+//            else{
+//                $level = $this->getLevel($each['experience']);
+//                $each['level'] = $level;
+//                $each['num'] = $key + 1;
+//                array_push($rankList_month, $each);
+//            }
+//        }
 
-        return $rankList_month;
+        return $result;
     }  
 
     //同于PC端头像
@@ -224,7 +226,7 @@ class UserInfo {
     public function getLog($num = null, $project = null){
         if(is_null($project)){
             if(is_null($num)){
-                $log = M('user_log')->where(array('user_id' => $this->uid))->order('id desc')->select();
+                $log = M('user_log')->where(array('user_id' => $this->uid))->order('id desc')->limit(10)->select();
             }else{
                 $log = M('user_log')->where(array('user_id' => $this->uid))->order('id desc')->limit($num)->select();
             }
