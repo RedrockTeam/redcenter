@@ -46,16 +46,16 @@ body {
   border-collapse: collapse;
   margin-bottom: 0.625rem;
 }
-.prize > tbody {
+tbody {
   margin: 0;
   padding: 0;
   border: 0;
 }
-.prize tr {
+tr {
   margin: 0;
   height: 1.04688rem;
 }
-.prize td {
+td {
   margin: 0;
   border: 1px solid #ccc;
   border-spacing: 0;
