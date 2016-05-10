@@ -4,23 +4,29 @@ use Think\Controller;
 class IndexController extends CommonController {
 
     public function index(){
-        $this->assign('user_name', session(user_name));
+        $content = $this->fetch('userManage');
+        $this->assign('content', $content);
         $this->display();
     }
 
-    public function logout(){
-        session_unset();
-        session_destroy();
-        $this->redirect('Admin/Login/index');
+    public function publishMessage(){
+        $this->display();
     }
 
+    public function publishHelp(){
+        $this->display();
+    }
 
     public function userManager(){
-        $this->assign('resource',"<link rel=\"stylesheet\" href=\"".C('TMPL_PARSE_STRING.__PUBLIC__')."/v2/less/user-manage.css\">");
         $this->display();
+    }
+
+    public function queryData(){
+
     }
 
     public function test(){
+        $this->show('<html><form action="'.U('Publish/upload').'" method="post" enctype="multipart/form-data"><input name="a" type="file"><input type="submit" value="上传"></form>','utf-8');
     }
 }
 
