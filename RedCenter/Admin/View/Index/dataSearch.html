@@ -23,6 +23,7 @@
 
             </select>
         </ul>
+
         <input name="search" id="search-value" type="text" placeholder="输入用户信息搜索">
         <span id="add-user"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAMAAADqmnyMAAAAaVBMVEUAAABGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkeqXCAkvAAAAInRSTlMA6nSPZ/bBBftqPC4M1biuq6Kbi4Z7XVgU4tnSxrKAT0YZGP87cQAAAIlJREFUGNNtj9kSgyAMRdlxwaW2Wruq/P9HGgiOZMb7lDlzwg0sZjX81deMpNYeojuXw4fHPHN4S1DkUF6ZCllBqtpkKpitpUW6gnkcD/V79tzlAZcCWOOYk8OnGWR21AQPlsIYUSbYAfwzsj6rsK7VHM6Lnp1a7jG8r9DaDALy05+nie6b0wR1B7zMEKHTufN5AAAAAElFTkSuQmCC" alt="">新增用户</span>
         <button id="search-btn" type="submit">搜索</button>
@@ -123,12 +124,14 @@
         var temp = $('.search-sel-first').html();
         var type = MAP[temp];
         var searchVal = $('#search-value').val();
+        console.log(type);
         $.post('{:U("Admin/Rbac/searchUser")}',{type: type, search: searchVal} ,function(res){
             var obj = res[0]
             if(obj===undefined) {
                 alert('查无此人');
                 return false;
             }
+            console.log(obj);
             $('#not-yet-search').hide();
             $('#search-result').show();
             var $row = $($('#search-result-template').html());
