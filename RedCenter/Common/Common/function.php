@@ -24,3 +24,7 @@ function dd($var, $echo=true, $label=null, $strict=false) {
     }else
         return die($output);
 }
+
+function checkSuperUser(){
+    return I('session.ADMIN_AUTH_KEY',false);
+}

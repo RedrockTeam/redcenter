@@ -94,10 +94,9 @@ p {
   position: relative;
   overflow: hidden;
 }
-.basic-info .basic-face .basic-face-info .face img {
-  height: 90px;
-}
 .basic-info .basic-face .basic-face-hover {
+  cursor: pointer;
+  border: 0;
   width: 90px;
   height: 90px;
   line-height: 90px;

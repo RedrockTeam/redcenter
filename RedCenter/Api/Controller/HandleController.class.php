@@ -44,8 +44,8 @@ class HandleController extends Controller {
         }else{
             send_http_status('403');
             $this->ajaxReturn(array(
-                'error' => 'token error',
-                'status' => 403
+                'error' => 'no this student',
+                'status' => 401
             ),'json');
         }
         //验证type是否选择查询分数
@@ -54,8 +54,8 @@ class HandleController extends Controller {
             if(is_null($score)){
                 send_http_status('403');
                 $this->ajaxReturn(array(
-                    'error' => 'token error',
-                    'status' => 403
+                    'error' => 'no this student',
+                    'status' => 401
                 ),'json');
             }else{
                 $this->ajaxReturn(array(
@@ -69,8 +69,8 @@ class HandleController extends Controller {
             if(!$act){
                 send_http_status('403');
                 $this->ajaxReturn(array(
-                    'error' => 'token error',
-                    'status' => 403
+                    'error' => 'no this action',
+                    'status' => 402
                 ),'json');
             }
         }
@@ -80,7 +80,7 @@ class HandleController extends Controller {
         if(!$pro){
             send_http_status('403');
             $this->ajaxReturn(array(
-                'error' => 'token error',
+                'error' => 'no this project_id',
                 'status' => 403
             ),'json');
         }
@@ -98,14 +98,14 @@ class HandleController extends Controller {
             send_http_status(403);
             $this->ajaxReturn(array(
                 'error' => 'token error',
-                'status' => 403
+                'status' => 404
             ),'json');
         }
         if(isFull($stu_num, $act, $pro)){
             send_http_status('403');
             $this->ajaxReturn(array(
                 'error' => '加分已达今日上限',
-                'status' => 403
+                'status' => 405
             ),'json');
         }else{
            /* $last_log_time = M('user_log')->where(array('user_id' => $this->userinfo['id']))->order('id desc')->find()['create_time'];

@@ -1,7 +1,7 @@
 <?php
 return array(
     //权限验证
-    'RBAC_SUPERADMIN'   => '王金鹏',         //超级管理员账号
+    'RBAC_SUPERADMIN'   => '冯秋明',         //超级管理员账号
     'ADMIN_AUTH_KEY'    => 'superadmin',    //超级管理员识别
     'USER_AUTH_ON'      => true,            //是否开启验证
     'USER_AUTH_TYPE'    => 1,               //验证类型(1:登录验证 2:实时验证)

@@ -15,7 +15,17 @@ class RbacController extends CommonController {
         $users = M('user_member');
         $user_count = $users->count();
         $result = $users->page($page,10)->select();
-        $result = array('count' => $user_count, 'every_page_num' => 10) + $result;
+        $filter = array();
+        $resultFiltered = array();
+        if(checkSuperUser()){
+            $filter = array('real_name', 'gender', 'email', 'stu_num', 'stu_idcard', 'phone');//phone 字段数据库没有，待添加。
+        }else{
+            $filter = array('real_name', 'gender', 'email', 'stu_num');
+        }
+        foreach ($result as $key => $value){
+            $resultFiltered[$key] = $this->arrayFilter($value, $filter, false);
+        }
+        $result = array('count' => $user_count, 'every_page_num' => 10) + $resultFiltered;
         $this->ajaxReturn(json_encode($result));
 
     }
@@ -35,7 +45,13 @@ class RbacController extends CommonController {
         $users = M('admin_user');
         $user_count = $users->count();
         $result = $users->page($page,10)->select();
-        $result = array('count' => $user_count, 'every_page_num' => 10) + $result;
+        $filter = array();
+        $resultFiltered = array();
+        $filter = array('real_name', 'gender', 'email', 'stu_num', 'stu_idcard', 'phone');//phone 字段数据库没有，待添加。
+        foreach ($result as $key => $value){
+            $resultFiltered[$key] = $this->arrayFilter($value, $filter, false);
+        }
+        $result = array('count' => $user_count, 'every_page_num' => 10) + $resultFiltered;
         $this->ajaxReturn(json_encode($result));
     }
 
@@ -61,7 +77,7 @@ class RbacController extends CommonController {
 		}
 
 		$user = M('user_member');
-		$result = $user->where(array('stu_num' => $data['stu_num']))->find();
+		$result = $user->where(array('stu_num' => $data['stu_num']))->find();// 是否需要属于user_member里的数据
 		if(!$result){
 			$this->ajaxReturn('nouser');
 			return;
@@ -126,7 +142,7 @@ class RbacController extends CommonController {
 			//'phone' => $phone, //当前数据表中无此字段
 			'email' => $email
 		);
-
+		$user = M('user_member');
 		$result = $user->add($data);
 		if ($result) {
 			$this->ajaxReturn('ok');
@@ -206,12 +222,12 @@ class RbacController extends CommonController {
 	 */
 	public function searchUser(){
 		$type = I('post.type','name');
-		$search_content = I('post.content','');
+		$search_content = I('post.search','');
 		if(empty($search_content)){
 			$this->ajaxReturn("请输入内容!");
 			return;
 		}
-		$type_array = array('name','stuid','phone');
+		$type_array = array('name','stuid','phone','identity');
 		if(!in_array($type,$type_array))
 			$type = 'name';
 
@@ -226,6 +242,9 @@ class RbacController extends CommonController {
 			case 'phone':
 				$type = 'phone';
 				break;
+            case 'identity':
+                $type = 'stu_idcard';
+                break;
 			default:
 				$type = 'name';
 				break;
@@ -233,9 +252,30 @@ class RbacController extends CommonController {
 
 		$condition = array($type => array('like','%'.$search_content.'%'));
 		$result = $user->where($condition)->select();
-		//header("Content-Type:text/html;charset=utf-8");
-		//var_dump($result);
+        $filter = array();
+        $resultFiltered = array();
+        if(checkSuperUser()){
+            $filter = array('real_name', 'gender', 'email', 'stu_num', 'stu_idcard', 'phone');//phone 字段数据库没有，待添加。
+        }else{
+            $filter = array('real_name', 'gender', 'email', 'stu_num');
+        }
+        foreach ($result as $key => $value){
+            $resultFiltered[$key] = $this->arrayFilter($value, $filter, false);
+        }
+        $this->ajaxReturn($resultFiltered);
 	}
+
+    private function arrayFilter($arrayData, $filter, $mode = true){
+        $arrayResult = array();
+        foreach ($arrayData as $key => $value){
+            if(!in_array($key, $filter))
+                continue;
+            if($mode && empty($value))
+                continue;
+            $arrayResult[$key] = $value;
+        }
+        return $arrayResult;
+    }
 
 }
 ?>

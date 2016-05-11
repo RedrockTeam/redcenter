@@ -1,0 +1,99 @@
+<layout name="layout" />
+<div id="helper-publish-content">
+    <h2 class="content-title"><span class="content-title-bar"></span>帮助发布</h2>
+    <form id="helper-content" method="POST">
+        <div class="row">
+            <label for="title">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题</label>
+            <input id="helper-title" name="title" type="text">
+        </div>
+        <div class="row">
+            <label for="visible-range">可见范围</label>
+                    <span class="select">
+                        <span class="dot-border dot-border-choosed">
+                            <span class="dot"></span>
+                        </span>
+                        <span>所有人可见</span>
+                    </span>
+
+                    <span class="select">
+                        <span class="dot-border">
+                            <span class="dot"></span>
+                        </span>
+                        <span>部分人可见</span>
+                    </span>
+            <ul id="select-product">
+                <li>
+                    <a href="##" id="choosed-product">重邮小帮手</a>
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAICAMAAAD+zz7+AAAATlBMVEUAAACZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZlpQKrPAAAAGXRSTlMAw9cH9lME7iPpZmA+ODAZ8t/NubGvbUZDvKFPHgAAAEhJREFUCNctyEcCgCAMBdGExAIi9vLvf1ENYXZviLmQJ1O4SLGXJsVG3YAwm5KCM4lbboDHf/fmnFzVEatWuZ8IHIvD/IbT9QHBjgNDalAkIwAAAABJRU5ErkJggg==" alt="">
+                <li>
+                    <ul id="sec-product-wrap" style="display: none;">
+                        <li class="sec-product-list">
+                            <a href="##">掌上重邮</a>
+                        </li>
+                        <li class="sec-product-list">
+                            <a href="##">重邮小帮手</a>
+                        </li>
+                        <li class="sec-product-list">
+                            <a href="##">拾货</a>
+                        </li>
+                        <li class="sec-product-list">
+                            <a href="##">大红页</a>
+                        </li>
+                    </ul>
+                </li>
+                </li>
+            </ul>
+        </div>
+        <script id="container" name="content" type="text/plain">输入发布内容</script>
+        <button id="helper-submit" type="submit">发布</button>
+    </form>
+    <!-- UEditor配置 -->
+    <script type="text/javascript" src="__PUBLIC__/v2/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/v2/ueditor/ueditor.all.js"></script>
+    <!-- something -->
+    <script type="text/javascript" src="__PUBLIC__/v2/js/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/v2/js/common.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/v2/js/helper-publish.js"></script>
+
+    <!-- 初始化ueditor -->
+    <script type="text/javascript">
+    ;(function (exports) {
+         exports.ue = UE.getEditor('container', {
+            toolbars: [
+                ['bold', 'simpleupload','link','fontsize']
+            ],
+        });
+    }(window));
+    </script>
+
+    <!-- 数据提交 -->
+    <script type="text/javascript">
+    ;(function(exports){
+        var MAP = {
+            '部分人可见': 'all',
+            '所有人可见': 'someone'
+        }
+        $('#helper-content').on('submit', function() {
+            var title = $('#helper-title').val();
+            var text = $('.dot-border-choosed~span').html();
+            var type = MAP[text];
+            console.log(text);
+            console.log(type);
+            var data = {
+                title: title,
+                type: type,
+                content: ue.getContent();
+            }
+            $.post('{:U("Admin/Rbac/")}', data, function(res) {
+                //success
+                if(res.msg == 'success') {
+                    alert('success');
+                }
+            })
+            return false;
+        });
+    }(window));
+    </script>
+    <script>
+    </script>
+</div>

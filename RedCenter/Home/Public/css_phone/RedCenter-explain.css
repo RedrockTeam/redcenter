@@ -40,33 +40,33 @@ body {
   /*px*/
   margin-bottom: 0.625rem;
 }
-#prize {
+.prize {
   padding: 0;
   text-align: center;
   border-collapse: collapse;
   margin-bottom: 0.625rem;
 }
-#prize > tbody {
+tbody {
   margin: 0;
   padding: 0;
   border: 0;
 }
-#prize tr {
+tr {
   margin: 0;
   height: 1.04688rem;
 }
-#prize td {
+td {
   margin: 0;
   border: 1px solid #ccc;
   border-spacing: 0;
 }
-#prize .col-1 {
+.prize .col-1 {
   width: 2.32813rem;
 }
-#prize .col-2 {
+.prize .col-2 {
   width: 4.40625rem;
 }
-#prize .col-3 {
+.prize .col-3 {
   width: 2.23438rem;
 }
 footer {

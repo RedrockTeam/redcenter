@@ -1,137 +1,143 @@
 <layout name="layout" />
-<div class="content-right">
-    <div class="content-linkG">
-        <a href="#">
-            <div class="content-link content-link-help">
-                <img src="__PUBLIC__/v2/img/help.png" alt="新的帮助">
-                <div class="content-link-detail">
-                    <span>新的帮助</span>
-                    <em>36524</em>
-                </div>
-
-            </div>
-        </a>
-        <a href="#">
-            <div class="content-link content-link-project">
-                <img src="__PUBLIC__/v2/img/project.png" alt="新的帮助">
-                <div class="content-link-detail">
-                    <span>产品数量</span>
-                    <em>3</em>
-                </div>
-
-            </div>
-        </a>
-        <a href="#">
-            <div class="content-link content-link-score">
-                <img src="__PUBLIC__/v2/img/score.png" alt="新的帮助">
-                <div class="content-link-detail">
-                    <span>我的积分</span>
-                    <em>365</em>
-                </div>
-
-            </div>
-        </a>
-    </div>
-
-
+<div id="user-manage-content">
     <h2 class="content-title">
-        <div class="content-title-bar"></div>
-        我的消息
+        <span class="content-title-bar"></span>
+        用户管理
     </h2>
-    <div class="content-contain">
-        <ul class="contain-newG">
-            <a href="#">
-                <li class="contain-new">
-                    <img src="__PUBLIC__/v2/img/helper.png" alt="图标">
-                    <div class="contain-new-detail">
-                        <h3>BTdown铺我是标题
-                            <span class="new-unread">未读</span>
-                        </h3>
-                        <span class="new-time">昨天22:19<img src="__PUBLIC__/v2/img/time.png" alt="时间"></span>
-                        <p class="new-text">我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容</p>
-                    </div>
-                </li>
-            </a>
-            <a href="#">
-                <li class="contain-new">
-                    <img src="__PUBLIC__/v2/img/helper.png" alt="图标">
-                    <div class="contain-new-detail">
-                        <h3>BTdown铺我是标题
-                            <span class="new-unread">未读</span>
-                        </h3>
-                        <span class="new-time">昨天22:19<img src="__PUBLIC__/v2/img/time.png" alt="时间"></span>
-                        <p class="new-text">我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容</p>
-                    </div>
-                </li>
-            </a>
-            <a href="#">
-                <li class="contain-new">
-                    <img src="__PUBLIC__/v2/img/helper.png" alt="图标">
-                    <div class="contain-new-detail">
-                        <h3>BTdown铺我是标题
-                            <span class="new-unread">未读</span>
-                        </h3>
-                        <span class="new-time">昨天22:19<img src="__PUBLIC__/v2/img/time.png" alt="时间"></span>
-                        <p class="new-text">我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容</p>
-                    </div>
-                </li>
-            </a>
-            <a href="#">
-                <li class="contain-new">
-                    <img src="__PUBLIC__/v2/img/helper.png" alt="图标">
-                    <div class="contain-new-detail">
-                        <h3>BTdown铺我是标题
-                            <span class="new-unread">未读</span>
-                        </h3>
-                        <span class="new-time">昨天22:19<img src="__PUBLIC__/v2/img/time.png" alt="时间"></span>
-                        <p class="new-text">我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容</p>
-                    </div>
-                </li>
-            </a>
-            <a href="#">
-                <li class="contain-new">
-                    <img src="__PUBLIC__/v2/img/helper.png" alt="图标">
-                    <div class="contain-new-detail">
-                        <h3>BTdown铺我是标题
-                            <span class="new-unread">未读</span>
-                        </h3>
-                        <span class="new-time">11-09 22:09<img src="__PUBLIC__/v2/img/time.png" alt="时间"></span>
-                        <p class="new-text">我是内容我是内容我是内容我是内容我是内容我是内容</p>
-                    </div>
-                </li>
-            </a>
 
+    <form id="search-stu" action="##" method="POST">
+        <ul class="search-sel">
+            <div class="search-sel-butt">
+                <span></span>
+            </div>
+            <div class="search-sel-li search-sel-first">按姓名</div>
+            <li class="search-sel-li">按姓名</li>
+            <li class="search-sel-li">按学号</li>
+            <li class="search-sel-li">联系方式</li>
+            <li class="search-sel-li">身份证号</li>
+            <select name="type">
+                <option value="name">按姓名</option>
+                <option value="stuId">按学号</option>
+                <option value="phone">联系方式</option>
+                <option value="identity">身份证号</option>
+
+            </select>
         </ul>
-        <ol class="contain-pageG">
-            <a href="#">
-                <li class="contain-page">
-                    <img src="__PUBLIC__/v2/img/front.png" alt="上一页">
-                </li>
-            </a>
-            <a href="#">
-                <li class="contain-page">1</li>
-            </a>
-            <a href="#">
-                <li class="contain-page">2</li>
-            </a>
-            <a href="#">
-                <li class="contain-page">3</li>
-            </a>
-            <a href="#">
-                <li class="contain-page">4</li>
-            </a>
-            <a href="#">
-                <li class="contain-page">5</li>
-            </a>
-            <li class="contain-page contain-page-more">...</li>
-            <a href="#">
-                <li class="contain-page">12</li>
-            </a>
-            <a href="#">
-                <li class="contain-page">
-                    <img src="__PUBLIC__/v2/img/next.png" alt="下一页">
-                </li>
-            </a>
-        </ol>
+        <input name="search" id="search-value" type="text" placeholder="输入用户信息搜索">
+        <span id="add-user"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAMAAADqmnyMAAAAaVBMVEUAAABGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkepGkeqXCAkvAAAAInRSTlMA6nSPZ/bBBftqPC4M1biuq6Kbi4Z7XVgU4tnSxrKAT0YZGP87cQAAAIlJREFUGNNtj9kSgyAMRdlxwaW2Wruq/P9HGgiOZMb7lDlzwg0sZjX81deMpNYeojuXw4fHPHN4S1DkUF6ZCllBqtpkKpitpUW6gnkcD/V79tzlAZcCWOOYk8OnGWR21AQPlsIYUSbYAfwzsj6rsK7VHM6Lnp1a7jG8r9DaDALy05+nie6b0wR1B7zMEKHTufN5AAAAAElFTkSuQmCC" alt="">新增用户</span>
+        <button id="search-btn" type="submit">搜索</button>
+    </form>
+    <div class="search-contain">
+        <table id="search-result">
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>学号</th>
+                    <th>邮箱</th>
+                    <th>联系方式</th>
+                    <th>身份证号</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody class="search-result-tbody">
+            </tbody>
+        </table>
+        <div id="not-yet-search">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE8AAABMCAMAAAAbfhoaAAAAhFBMVEUAAADd3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d0OruX3AAAAK3RSTlMA4OkE01sH1s2SSwvJ2fgZLuQm87x+58J5ZDYR7pRQsIs9qZpsRR+2VYZxVLLO9wAAAmFJREFUWMPt1tmSojAUBuCfDuJCI7IIuOG+tHn/9xulTFj6MN0nmaq58b+yTPGRhFMngX1mxXYUZU5eXGyUmkvkK9Ee9gkDqRPZz9BPZSMba28um1mHtl6ctsASnv+I92OEjufX2grwD01vhzx4ZfgtLpmgEIqbODdAbBpeikwyk650pazl9NTeQxcOk/vU3KV6dA5gMVWjDtcbhnrvRrLKUQDlWlUg04tixXlX9d/WB5aRrJLxvPUSKkepk4dA7FY/TyxvetbcV2sTZkCYPtcOlnfT3Kk9kO2rQkwFyztp7tYdSkpAzC/geHPN7ZPvW6FeVnvZuCebKve6432Qr+t6OaPjEVl0vc/fcauc5O4w88SW5HYw9I4kd4ChNye51DP0FiTnrmDmldOeJmHm7ZOeJmHmxRHZJCYw80K3p47NPD8luQJmnjiQ3BiG3pjktsLQK0gu99XeeoTHr+NQcdsVyzuTdZypOhZpJjjefk1xyb4+nIbEeke93iSh6rhUwwPJ8/RxTZ9Oy4TnLWJ1XDfz1Wj/LM/PnOdxnbe5o67zq+R5Z31cN3LV33MnGZ56ILkBYkxd2gaS6fmB6iJ1rw8u9bfgesvHSOfe+DFrfAuGp5bbuTfWtyz/KrmeGMruvXFQ17lke0tZJ788C7EA5YmfPfre6MPGE6P2UTYBSM/9pTfr3O7vRh7dlpND6cHAo5cbFDEASy+evnrdtvQBvkcvN5jPoGLn5Y+pXW9qatbeTDq7emr23nmxAiw8Im/v7fV4rvjf8zv/1XMG3OxIzyJv7+1ZepENQ9xfRh//Iqny/gAKLsfAQfUbHwAAAABJRU5ErkJggg==" alt="">
+            <p>请输入信息</p>
+        </div>
     </div>
+
 </div>
+<script type="text/template" id="search-result-template">
+    <tr>
+        <td class="search-result-real_name"></td>
+        <td class="search-result-gender"></td>
+        <td class="search-result-stu_num"></td>
+        <td class="search-result-email"></td>
+        <td class="search-result-phone"></td>
+        <td class="search-result-stu_idcard"></td>
+        <td>
+            <img class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAANlBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+t8Ac9AAAAEXRSTlMAtB7u3fQP4dvJmIh3YFQ3S4Jl9n8AAABWSURBVBjTvc45DoAwDETRScDZF3z/y0JsKYQCiYpXjX41UJaYqWPV+XJAhW2gkUhmQCT2++SZImDYYrJs8JpcrkDN7k6yZPyWXGlAK3ri+/uVpPRMCSfttAbPZox/fgAAAABJRU5ErkJggg==">
+            <img  class="result-operation" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAVFBMVEUAAACfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+uAXCOAAAAG3RSTlMA+SDxqtJJUk4VD8u+tTsmBtyui19G7ddbMAnz5jM8AAAAdElEQVQY01XJWQKCMBRD0RSr0pHK4JT971MetMi7fzmBbhkL4Cbb6nAzTAWRNXMXIS0M527LrbI/vKDWREiLkBZ3UL9Jj088aNzFP6+VFl+SCDo2isF/0yp/cobBA2ea+ZoGTVm2JkAT84neQg/qLJC1hQE/MiUMK+A/fBQAAAAASUVORK5CYII=" >
+        </td>
+    </tr>
+</script>
+<script type="text/javascript" src="__PUBLIC__/v2/js/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="__PUBLIC__/v2/js/common.js"></script>
+<script type="text/javascript" src=""></script>
+<script>
+(function(){
+
+    //搜索栏动画
+    var stu = document.querySelector('#search-stu>input');
+    stu.onfocus = function(e){
+        this.style.width = '342px';
+        this.style.borderColor = '#C0C0C0';
+    };
+    stu.onblur = function(e){
+        this.style.cssText = '';
+    };
+
+    //select控制
+    var select = document.getElementsByTagName('select')[0],
+            selUl = document.querySelector('.search-sel'),
+            selLi = document.querySelectorAll('.search-sel-li'),
+            selOp = document.getElementsByTagName('option'),
+            selLiFirst = document.querySelector('.search-sel-first');
+    selUl.onclick = function(e){
+        e = e||window.event;
+        var target = e.target||e.srcElement,
+                i;
+        if(target.tagName.toLowerCase() === 'li'){
+            selLiFirst.innerHTML = target.innerHTML;
+            for(i = 1;i<5;i++){
+                selLi[i].style.display = 'none';
+                if(target.innerHTML === selOp[i-1].innerHTML)select.value = selOp[i-1].value;
+            }
+        }else {
+            var liDis = window.getComputedStyle?window.getComputedStyle(selLi[1],null).display:selLi[1].currentStyle.display;
+            if(liDis === 'none'){
+                for(i = 1;i<5;i++){
+                    selLi[i].style.display = 'block';
+                }
+            }else {
+                for(i = 1;i<5;i++){
+                    selLi[i].style.display = 'none';
+                }
+            }
+        }
+    }
+}());
+
+(function() {
+    $('#search-result').hide();
+    var MAP = {
+        '按姓名'   : 'name',
+        '按学号'   : 'stuid',
+        '联系方式' : 'phone',
+        '身份证号' : 'identity',
+    }
+    $('#search-stu').on('submit', function() {
+        var temp = $('.search-sel-first').html();
+        var type = MAP[temp];
+        var searchVal = $('#search-value').val();
+        $.post('{:U("Admin/Rbac/searchUser")}',{type: type, search: searchVal} ,function(res){
+            var obj = res[0]
+            if(obj===undefined) {
+                alert('查无此人');
+                return false;
+            }
+            $('#not-yet-search').hide();
+            $('#search-result').show();
+            var $row = $($('#search-result-template').html());
+            for(var key in obj) {
+                $row.children('.search-result-' + key).html(obj[key]);
+            }
+            $('.search-result-tbody').append($row);
+        });
+        return false;
+    })
+}());
+</script>

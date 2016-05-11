@@ -128,10 +128,14 @@ class ForgetPasswordController extends Controller {
             'gender'    => '',
             'status' => 1
         );
-        $subject = '=?UTF-8?B?'.base64_encode('重置密码').'?=';
+        $data['subject'] = '=?UTF-8?B?'.base64_encode('重置密码').'?=';
         $url = 'http://'.$_SERVER['HTTP_HOST'].U('ForgetPassword/reset')."?code=".$verify_code;
-        $content = "link: \r\n$url";
-        $return = $this->curl_api('http://hongyan.cqupt.edu.cn/phpmail/test.php', array('subject' => $subject, 'content' => $content, 'email' => $email));
+        $data['content'] = "link: \r\n$url";
+        $data['email'] = $email;
+        $data['string'] = 'er4g7d';
+        $data['secret'] = sha1('redrock'.md5($data['string']));
+        $return = $this->curl_api('http://hongyan.cqupt.edu.cn/phpmail/test.php', $data);
+        //array('subject' => $subject, 'content' => $content, 'email' => $email)
 
         if($return->status == 200) {
             M('email_verify')->add($row);
