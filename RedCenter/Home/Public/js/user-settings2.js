@@ -1,10 +1,10 @@
 $(function(){
 
-    var Li = $('.set-title');
-    var name = $('.basic-massage input').eq(0);
-    var input_massage = $('.basic .basic-massage input');
-    var input_password = $('.input-password');
-    var face_photo = $('.basic-face-hover');
+    var Li = $('.set-title'),
+      name = $('.basic-massage input').eq(0),
+      input_massage = $('.basic .basic-massage input'),
+      input_password = $('.input-password');
+    
     // var password_btn = $('.set-info p button');
 
     // face_photo.click(function(){
