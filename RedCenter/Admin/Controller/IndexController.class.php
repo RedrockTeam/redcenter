@@ -26,7 +26,12 @@ class IndexController extends CommonController {
     }
 
     public function test(){
-        $this->show('<html><form action="'.U('Publish/upload').'" method="post" enctype="multipart/form-data"><input name="a" type="file"><input type="submit" value="上传"></form>','utf-8');
+//        $this->show('<html><form action="'.U('Publish/upload').'" method="post" enctype="multipart/form-data"><input name="a" type="file"><input type="submit" value="上传"></form>','utf-8');
+        var_dump(I('session.'));
+        if(checkSuperUser())
+            echo 'true';
+        else
+            echo 'false';
     }
 }
 

@@ -26,5 +26,5 @@ function dd($var, $echo=true, $label=null, $strict=false) {
 }
 
 function checkSuperUser(){
-    return I('session.ADMIN_AUTH_KEY',false);
+    return I("session.".C('ADMIN_AUTH_KEY'),false);
 }
