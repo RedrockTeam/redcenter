@@ -179,14 +179,22 @@ $(function(){
     var input_password = $('.input-password'),
         input_massage = $('.basic .basic-massage input'),
         face_pic = $('face img');
+
      // 交互
+
+     //初始数据
+     
+
+     
      $.post("{:U('Home/Index/Return')}",'dataType=basicInfo',function(res){
         var res = res;
         input_password.eq(0).val() = nickname;
         input_password.eq(1).val() = myshop;
         input_password.eq(2).val() = mysign;
-        face_pic.scr = headimg;
+        face_pic.attr('src',hedimg);
      })
+
+   //修改基本资料
    $('.basic-btn').click(function(){      
       $('.set-info span').remove();
       if( input_massage.val()===''){
@@ -198,6 +206,7 @@ $(function(){
         })
       }      
    })
+
    //验证密码是否正确
     input_password.eq(0).blur(function(){
         $('.set-info  p').remove();
@@ -207,6 +216,8 @@ $(function(){
                 }
         }    
     })
+
+    //修改密码
     $('.safe-btn').click(function(){
         var i=0;
         $('.safe-info input').map(function(){
@@ -216,8 +227,7 @@ $(function(){
                 i++;
             }
         })
-        $('.set-info span').remove();
-      
+        $('.set-info span').remove();     
         if( i != 0){
             $(this).after('<span class="add" >&nbsp;&nbsp;&nbsp;请输入完整信息哦!</sapn>');
          }else{
