@@ -103,26 +103,26 @@
                             <div class="face">
                                 <img src="__PUBLIC__/img/basic-face.png" alt="basic-face-pic" >
                                 <label class="basic-face-hover" for="upload-image">点击上传</label>>
-                                <input style="display: none" type="file" id="upload-image"  name="head"></input>
+                                <input style="display: none" type="file" id="upload-image"  name="hedimg"></input>
                             </div>
                            </td>
                         </tr>
                         <tr class="basic">
                            <td class="basic-bar" >昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</td>
                            <td class="basic-massage"> 
-                            <input type="text" name="nickname" placeholder="最多六个字啊">
+                            <input type="text" name="nickname" placeholder="最多六个字啊" >
                             </td>
                         </tr>
                         <tr class="basic">
                             <td class="basic-bar">我的店铺</td>
                             <td class ="basic-massage">
-                                <input type="text" name="myshop" placeholder="小铺纸">
+                                <input type="text" name="myshop" placeholder="小铺纸" >
                             </td>
                         </tr>
                         <tr>
                             <td class="basic-bar">个性签名</td>
                             <td class ="basic-massage">
-                                <input type="text" name="mysign" placeholder="我不做大哥好多年!!">
+                                <input type="text" name="mysign" placeholder="我不做大哥好多年!!" >
                             </td>
                         </tr>
                    </table>
@@ -178,44 +178,77 @@
 $(function(){
     var input_password = $('.input-password'),
         input_massage = $('.basic .basic-massage input'),
-        face_pic = $('face img');
+        face_pic = $('.face img');
 
-     // 交互
-
+     // 交互     
      //初始数据
-     
-
-     
-     $.post("{:U('Home/Index/Return')}",'dataType=basicInfo',function(res){
+    $.post("{:U('Home/Index/returnData')}",'dataType=basicInfo',function(res){
         var res = res;
-        input_password.eq(0).val() = nickname;
-        input_password.eq(1).val() = myshop;
-        input_password.eq(2).val() = mysign;
-        face_pic.attr('src',hedimg);
-     })
+        input_massage.eq(0).val(res.nickname)
+        input_massage.eq(1).val(res.myshop) 
+        input_massage.eq(2).val(res.mysign)
+        face_pic.attr('src',res.hedimg);
+    })
+
+    //上传头像
+    $('#upload-image').change(function(){
+        $('.set-info span').remove();
+        window.URL = window.URL || window.webkitURL ; 
+        if(window.URL)
+        {
+            var img = document.getElementById("upload-image") ;
+            var face = window.URL.createObjectURL(img.files[0]) ;
+            var path = $("#upload-image").val() ;
+            console.log(path);
+            var format = path.substring(path.lastIndexOf(".") + 1).toLowerCase() ;
+            var canCrop = false ;
+
+            switch(format)
+            {
+                case "jpg" :
+                case "gif" :
+                case "png" :
+                case "jpeg" : 
+                {
+                    canCrop = true ;    
+                    break ;
+                }
+                default : 
+                {
+                    face = "__PUBLIC__/img/error.png" ;
+                    $('.face').after('<span class="add" >&nbsp;&nbsp;&nbsp;请上传jpg,png,gif,jpeg格式的图片!</sapn>');
+                }
+            }
+            $(".face img").attr("src",face) ;
+        }
+    })
 
    //修改基本资料
-   $('.basic-btn').click(function(){      
-      $('.set-info span').remove();
-      if( input_massage.val()===''){
+   $('.basic-btn').click(function(){
+        $('.set-info span').remove();
+        if( input_massage.eq(0).val()==' '){
         $(this).after('<span class ="add" >&nbsp;&nbsp;&nbsp;昵称不能为空!</sapn>');
         return false;
-      }else{
-        $.post("{:U('Home/Index/Return')}", 'dataType=chnageInfo&' + $('.basic-info').serialize(), function(){
-           $(this).after('<span style ="color:green;" class="add" >&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
+       }else{
+
+            $.post("{:U('Home/Index/returnData')}", 'dataType=chnageInfo&' + $('.basic-info').serialize(), function(res){
+            $('.basic-btn').after('<span style ="color:green;" class="add" >&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
         })
       }      
    })
 
-   //验证密码是否正确
-    input_password.eq(0).blur(function(){
-        $('.set-info  p').remove();
-        $.post("{:U('Home/Index/Return')}"),'dataType=basicInfo&' + $(this).val(), function(date,status){
-            if($(this).val() !== old_pass){
-                 $(this).after('<p class="add" >密码错误!</p>');
-                }
-        }    
-    })
+   // //验证密码是否正确
+   //  input_password.eq(0).blur(function(){
+   //      console.log( input_password.eq(0).val());
+   //      $('.set-info  p').remove();
+   //      $.post("{:U('Home/Index/returnData')}"),'dataType=changePass&', function(res){
+   //          console.log("old_pass"+res);
+   //          if(input_password.eq(0).val() != res.old_pass){
+   //               input_password.eq(0).after('<p class="add" >密码错误!</p>');
+   //              }
+   //      }    
+   //  })
+
 
     //修改密码
     $('.safe-btn').click(function(){
@@ -231,12 +264,14 @@ $(function(){
         if( i != 0){
             $(this).after('<span class="add" >&nbsp;&nbsp;&nbsp;请输入完整信息哦!</sapn>');
          }else{
-            $.post("{:U('Home/Index/Return')}", 'dataType=changePass&' + $('.safe-info').serialize(),function(){
-                $(this).after('<span style="color:green;" class="add" >&nbsp;&nbsp;&nbsp;密码修改成功!</sapn>');
+            $.post("{:U('Home/Index/returnData')}", 'dataType=changePass&' + $('.safe-info').serialize(),function(res){
+                // console.log($('.safe-info').serialize());
+                $('.safe-btn').after('<span style="color:green;" class="add" >&nbsp;&nbsp;&nbsp;密码修改成功!</sapn>');
             })
         }
     })
    
 });
+
 </script>
 </html>
