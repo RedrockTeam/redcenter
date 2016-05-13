@@ -20,7 +20,7 @@
                 <div class="header-user-face">
                     <img src="__PUBLIC__/img/face.jpg" alt="face">
                 </div>
-                <span>最多六个字啊</span>
+                <span>loading</span>
                 <button class="header-user-show" type="button"></button>
                 <ul class="header-user-detail">
                     <a href="{:U('Home/Index/userSettings')}">
@@ -239,7 +239,6 @@
             for(var key in obj) {
                 $('.score-list').eq(i++).children('.product-name').html(MAP[key]);
                 $('.score-list').eq(i).children('.data-data').html(obj[key]);
-                console.log(obj[key]);
             }
         });
     })();
