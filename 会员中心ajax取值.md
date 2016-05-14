@@ -219,3 +219,60 @@ array(
     'cyxbs' => 45
 )
 </pre>
+
+  
+`------------------------------------------`
+
+
+##发布文章:
+URL: Admin/Publish/addArticle
+
+方式:POST  
+
+参数:
+
+type = 'new(发布的是消息)或help(发布的是帮助文章)'
+
+title = '标题'
+
+content = '内容'
+
+pro_id  = '为哪个项目写的'
+
+pro_name = '为哪个项目写的'
+
+
+
+.
+
+		pro_id=1时pro_name=微信
+
+.
+
+		pro_id=2时pro_name=BTdown铺
+
+.
+
+		pro_id=3时pro_name=拾货
+
+		
+.
+
+        pro_id=4时pro_name=锦瑟南山
+
+
+.
+
+        pro_id=5时pro_name=掌上重邮
+
+
+.
+
+        pro_id=6时pro_name=云盘
+
+
+.
+
+        pro_id=7时pro_name=BBS
+
+
