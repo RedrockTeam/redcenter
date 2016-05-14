@@ -294,7 +294,7 @@ class UserInfo {
     //获取帮助中心的文章
     public function getHelp($page){
         $link = json_decode($this->info['link_id']);
-        $link[] = 10;
+        $link[] = 0;  //pro_id = 0,表示文章所有人可见,
         $where['pro_id'] = array('IN',$link);
         $total = M('help_center')->where($where)->count();
         $begin = $page ? ($page-1)*6 : 0;
@@ -310,7 +310,7 @@ class UserInfo {
     //获取消息
     public function getNew($page){
         $link = json_decode($this->info['link_id']);
-        $link[] = 10;
+        $link[] = 0;//pro_id = 0,表示文章所有人可见,
         $where['pro_id'] = array('IN',$link);
         $total = M('new_center')->where($where)->count();
         $begin = $page ? ($page-1)*5 : 0;
