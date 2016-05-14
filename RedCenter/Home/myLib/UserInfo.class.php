@@ -326,7 +326,7 @@ class UserInfo {
     //新发布的未读的帮助文章数目
     public function newHelpNum(){
         $link = json_decode($this->info['link_id']);
-        $link[] = 10;
+        $link[] = 0;
         $where['pro_id'] = array('IN',$link);
         $total = M('help_center')->where($where)->count();
         $tmp = M('user_member')->where(array('stu_num'=>$this->stunum))->find();
@@ -338,7 +338,7 @@ class UserInfo {
     //新发布的未读的消息数目
     public function newNewsNum(){
         $link = json_decode($this->info['link_id']);
-        $link[] = 10;
+        $link[] = 0;
         $where['pro_id'] = array('IN',$link);
         $total = M('new_center')->where($where)->count('id');
         $tmp = M('user_member')->where(array('stu_num'=>$this->stunum))->find();
