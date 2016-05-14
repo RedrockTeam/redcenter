@@ -59,15 +59,13 @@ function removeClass(ele, className) {
     });
 })();
 
-
-/*
-$.post("basicInfo", function(res) {
+$.post("/redcenter/index.php/Home/Index/returnData.html", 'dataType=getSelfInfo',function(res) {
     var res = res;
-    $('#user-header').attr('src', res.headimg);
+    $('#user-header').attr('src', '/redcenter/RedCenter/Home/Public/' +res.headImage);
     $('#user-name').text(res.nickname);
 });
 
-$.post("newNewsNum", function(res) {
+$.post("/redcenter/index.php/Home/Index/returnData.html", 'dataType=newNewsNum',function(res) {
     var res = JSON.parse(res);
-    $('user-message').text('您有'+ res + '条消息');
-})*/
+    $('#user-message').text('您有'+ res + '条消息');
+})
