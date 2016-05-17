@@ -23,6 +23,7 @@
 参数：dataType = 'basicInfo';
 
 返回：数组
+
 <pre>
 Array
 (
@@ -39,6 +40,7 @@ Array
 参数：dataType = 'getSelfInfo';
 
 返回：数组
+
 <pre>
 Array
 (
@@ -84,6 +86,7 @@ Array
 参数：dataType = 'linkInfo'
 
 返回：数组
+
 <pre>
 Array
 (
@@ -158,7 +161,7 @@ Array
 返回：true  false
 ##修改个人信息（昵称，店铺。。）：
 	
-参数：type = 'chnageInfo';nickname='（网名）';myshop='（店铺）';mysign='（个性签名）'
+参数：type = 'chnageInfo';nickname='（网名）';myshop='（店铺）';mysign='（个性签名）';photo = '(上传的心头像)'
 
 返回：true|false
 ##未读新帮助个数
@@ -171,6 +174,78 @@ Array
 参数：dataType = 'newNewsNum'
 
 返回：0 单个数字
+
+##获取一页6篇文章
+
+参数:dataType = 'getHelp';page = 1,2,3...
+
+返回:数组
+
+<pre>
+array(
+	['total'] => 35,    //数据库存的所有帮助的总条数
+	['article'] => array(     //一页上有六篇文章
+		[0] => array(
+			['id'] => 1,
+			['title'] => '小帮手帮助文章',
+			['pro_id'] => 1,
+			['pro_name'] => '重邮小帮手',
+			['content'] => 'bla bla bla ...',
+			['writer'] => '管理员吧',
+			['time'] => 2016-03-09 22:25:56;
+		)
+		
+		[1]
+		[2]
+		...
+		[5] =>array(
+			['id'] => 1,
+			['title'] => '小帮手帮助文章',
+			['pro_id'] => 1,
+			['pro_name'] => '重邮小帮手',
+			['content'] => 'bla bla bla ...',
+			['writer'] => '管理员吧',
+			['time'] => 2016-03-09 22:25:56;
+		)
+	)
+)
+</pre>
+
+##获取一页5篇消息
+
+参数:dataType = 'getNew';page = 1,2,3...
+
+返回:数组
+
+<pre>
+array(
+	['total'] => 35,    //数据库存的所有帮助的总条数
+	['article'] => array(     //一页上有六篇文章
+		[0] => array(
+			['id'] => 1,
+			['title'] => '小帮手帮助文章',
+			['pro_id'] => 1,
+			['pro_name'] => '重邮小帮手',
+			['content'] => 'bla bla bla ...',
+			['writer'] => '管理员吧',
+			['time'] => 2016-03-09 22:25:56;
+		)
+		
+		[1]
+		[2]
+		...
+		[5] =>array(
+			['id'] => 1,
+			['title'] => '小帮手帮助文章',
+			['pro_id'] => 1,
+			['pro_name'] => '重邮小帮手',
+			['content'] => 'bla bla bla ...',
+			['writer'] => '管理员吧',
+			['time'] => 2016-03-09 22:25:56;
+		)
+	)
+)
+</pre>
 
 ##各种积分
 	
@@ -229,6 +304,8 @@ URL: Admin/Publish/addArticle
 
 方式:POST  
 
+返回:true | false
+
 参数:
 
 type = 'new(发布的是消息)或help(发布的是帮助文章)'
@@ -249,7 +326,7 @@ pro_name = '为哪个项目写的'
 
 .
 
-		pro_id=1时pro_name=微信
+		pro_id=1时pro_name=重邮小帮手
 
 .
 
@@ -278,5 +355,6 @@ pro_name = '为哪个项目写的'
 .
 
         pro_id=7时pro_name=BBS
+        
 
 
