@@ -199,7 +199,6 @@ $(function(){
             var img = document.getElementById("upload-image") ;
             var face = window.URL.createObjectURL(img.files[0]) ;
             var path = $("#upload-image").val() ;
-            console.log(path);
             var format = path.substring(path.lastIndexOf(".") + 1).toLowerCase() ;
             var canCrop = false ;
 
@@ -262,12 +261,10 @@ $(function(){
         })
         $('.set-info span').remove();     
         if( i != 0){
+
             $(this).after('<span class="add" >&nbsp;&nbsp;&nbsp;请输入完整信息哦!</sapn>');
          }else{
             $.post("{:U('Home/Index/returnData')}", 'dataType=changePass&' + $('.safe-info').serialize(),function(res){
-                var res = res;
-                console.log("后台返回值"+res);
-                console.log("前端传送值:"+'dataType=changePass&'+$('.safe-info').serialize());
                 $('.safe-btn').after('<span style="color:green;" class="add" >&nbsp;&nbsp;&nbsp;密码修改成功!</sapn>');
             })
         }
