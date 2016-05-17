@@ -14,7 +14,7 @@ class PublishController extends CommonController {
         $data['content'] = I('post.content');
         $data['pro_id'] = I('post.pro_id');
         $data['pro_name'] = I('post.pro_name');
-        $data['time'] = data('Y-m-d H:i:s',time());
+        $data['time'] = date('Y-m-d H:i:s',time());
         $data['writer'] = I('session.real_name');
         //$data['view'] = 0; //访问量
         $table = I('post.type').'_center';
