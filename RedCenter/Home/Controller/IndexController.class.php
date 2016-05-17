@@ -17,6 +17,7 @@ class IndexController extends CommonController {
 
     public function returnData(){
         $type = I('post.dataType');
+        $page = I('post.page');
         switch($type){
             case '' :
                 $this->ajaxReturn(array('errorInfo'=>'bad request'));
@@ -41,7 +42,7 @@ class IndexController extends CommonController {
             default :
                 if(!method_exists($this->uinfo,$type))
                     $this->ajaxReturn(array('errorInfo'=>'this function does not exist'));
-                $this->ajaxReturn($this->uinfo->$type());
+                $this->ajaxReturn($this->uinfo->$type($page));
                 break;
         }
 
