@@ -161,7 +161,7 @@ Array
 返回：true  false
 ##修改个人信息（昵称，店铺。。）：
 	
-参数：type = 'chnageInfo';nickname='（网名）';myshop='（店铺）';mysign='（个性签名）';photo = '(上传的心头像)'
+参数：dataType = 'chnageInfo';nickname='（网名）';myshop='（店铺）';mysign='（个性签名）';photo = '(上传的心头像)'
 
 返回：true|false
 ##未读新帮助个数
