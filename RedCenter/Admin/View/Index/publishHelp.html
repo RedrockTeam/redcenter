@@ -70,22 +70,42 @@
     <script type="text/javascript">
     ;(function(exports){
         var MAP = {
-            '部分人可见': 'all',
-            '所有人可见': 'someone'
+            '部分人可见': 'someone',
+            '所有人可见': 'all'
+        }
+        var PRO = {
+            '所有人可见': 0,
+            '微信': 1,
+            'BTdown铺': 2,
+            '拾货': 3,
+            '锦瑟南山': 4,
+            '掌上重邮': 5,
+            '云盘': 6,
+            'BBS': 7
         }
         $('#helper-content').on('submit', function() {
             var title = $('#helper-title').val();
             var text = $('.dot-border-choosed~span').html();
             var type = MAP[text];
-            console.log(text);
-            console.log(type);
-            var data = {
-                title: title,
-                type: type,
-                content: ue.getContent();
+            var choosedPro = $('#choosed-product').html();
+            var pro_id = 0;
+            var pro_name = '所有人可见';
+            var data = {};
+
+            if(type === 'someone') {
+                pro_id = PRO[choosedPro] || 0;
+                pro_name = choosedPro;
             }
-            $.post('{:U("Admin/Rbac/")}', data, function(res) {
-                //success
+            data = {
+                title: title,
+                type: 'help',
+                content: ue.getContent(),
+                pro_name: pro_name,
+                pro_id: pro_id,
+            }
+
+            $.post('{:U("Admin/Publish/addArticle")}', data, function(res) {
+                document.write(res);
                 if(res.msg == 'success') {
                     alert('success');
                 }
