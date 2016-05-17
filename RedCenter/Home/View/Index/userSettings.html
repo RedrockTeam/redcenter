@@ -18,9 +18,9 @@
                 </a>
             <div class="header-right-user">
                 <div class="header-user-face">
-                    <img src="__PUBLIC__/img/face.jpg" alt="face">
+                    <img id="user-header" src="__PUBLIC__/img/face.jpg" alt="face">
                 </div>
-                <span>最多六个字啊</span>
+                <span id="user-name">loading</span>
                 <button class="header-user-show" type="button"></button>
                 <ul class="header-user-detail">
                     <a href="{:U('Home/Index/userSettings')}">
@@ -110,7 +110,7 @@
                         <tr class="basic">
                            <td class="basic-bar" >昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</td>
                            <td class="basic-massage"> 
-                            <input type="text" name="nickname" placeholder="最多六个字啊" >
+                            <input type="text" name="nickname" placeholder="loading" >
                             </td>
                         </tr>
                         <tr class="basic">
@@ -171,9 +171,9 @@
     </div>
    
 </body>
-<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
 <script src="__PUBLIC__/js/jquery.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/user-settings2.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
 <script type="text/javascript">
 $(function(){
     var input_password = $('.input-password'),

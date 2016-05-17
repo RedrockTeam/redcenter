@@ -7,24 +7,22 @@ class PublishController extends CommonController {
 
     public function addArticle(){
         if(!IS_POST) {
-            $this->error('似乎出了一点问题');
+            $this->ajaxReturn('false');
         }
 
         $data['title'] = I('post.title');
-        $data['visible'] = I('post.is_public',1) == 1?0:I('post.visible_product',1);//先判断是否所有人可见，是 0 否 具体产品 1-n
         $data['content'] = I('post.content');
-        $data = I('post.type') == 'notice'?'notice':'help';    //分消息发布type=notice 帮助发布type=help
-
-        $data['create_time'] = time();
-        $data['author'] = I('session.user_name');
+        $data['pro_id'] = I('post.pro_id');
+        $data['pro_name'] = I('post.pro_name');
+        $data['time'] = data('Y-m-d H:i:s',time());
+        $data['writer'] = I('session.real_name');
         //$data['view'] = 0; //访问量
-        $data['is_delete'] = 0;
-
-        $result = M('news')->add($data);
+        $table = I('post.type').'_center';
+        $result = M($table)->add($data);
         if($result){
-            $this->ajaxReturn('ok');
+            $this->ajaxReturn(true);
         }else{
-            $this->ajaxReturn('fail');
+            $this->ajaxReturn(false);
         }
 
     }
