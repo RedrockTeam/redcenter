@@ -161,7 +161,7 @@ Array
 返回：true  false
 ##修改个人信息（昵称，店铺。。）：
 	
-参数：type = 'chnageInfo';nickname='（网名）';myshop='（店铺）';mysign='（个性签名）';photo = '(上传的心头像)'
+参数：dataType = 'chnageInfo';nickname='（网名）';myshop='（店铺）';mysign='（个性签名）';photo = '(上传的心头像)'
 
 返回：true|false
 ##未读新帮助个数
@@ -234,7 +234,7 @@ array(
 		[1]
 		[2]
 		...
-		[5] =>array(
+		[4] =>array(
 			['id'] => 1,
 			['title'] => '小帮手帮助文章',
 			['pro_id'] => 1,
@@ -282,16 +282,16 @@ Array
 )
 </pre>
 
-##产品登录次数
+##在各产品上的登录次数
 	
 参数：dataType = 'logTime'
 
 返回：数组,只返回当前可用的三个产品的次数,其他为0
 <pre>
 array(
-    'zscy' => 23,
-    'hyzx' => 34,
-    'cyxbs' => 45
+    'zscy' => 23,   //掌上重邮
+    'hyzx' => 34,	//会员中心	
+    'cyxbs' => 45	//重邮小帮手
 )
 </pre>
 
