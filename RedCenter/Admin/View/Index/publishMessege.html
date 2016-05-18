@@ -1,7 +1,7 @@
 <layout name="layout" />
 <div id="helper-publish-content">
     <h2 class="content-title"><span class="content-title-bar"></span>帮助发布</h2>
-    <form id="helper-content" action="">
+    <form id="helper-content" method="POST">
         <div class="row">
             <label for="title">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题</label>
             <input id="helper-title" name="title" type="text">
@@ -12,14 +12,14 @@
                         <span class="dot-border dot-border-choosed">
                             <span class="dot"></span>
                         </span>
-                        所有人可见
+                        <span>所有人可见</span>
                     </span>
 
                     <span class="select">
                         <span class="dot-border">
                             <span class="dot"></span>
                         </span>
-                        部分人可见
+                        <span>部分人可见</span>
                     </span>
             <ul id="select-product">
                 <li>
@@ -50,11 +50,70 @@
     <!-- UEditor配置 -->
     <script type="text/javascript" src="__PUBLIC__/v2/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" src="__PUBLIC__/v2/ueditor/ueditor.all.js"></script>
+    <!-- something -->
+    <script type="text/javascript" src="__PUBLIC__/v2/js/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/v2/js/common.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/v2/js/helper-publish.js"></script>
+
+    <!-- 初始化ueditor -->
     <script type="text/javascript">
-        var ue = UE.getEditor('container', {
+    ;(function (exports) {
+         exports.ue = UE.getEditor('container', {
             toolbars: [
                 ['bold', 'simpleupload','link','fontsize']
             ],
         });
+    }(window));
+    </script>
+
+    <!-- 数据提交 -->
+    <script type="text/javascript">
+    ;(function(exports){
+        var MAP = {
+            '部分人可见': 'someone',
+            '所有人可见': 'all'
+        }
+        var PRO = {
+            '所有人可见': 0,
+            '微信': 1,
+            'BTdown铺': 2,
+            '拾货': 3,
+            '锦瑟南山': 4,
+            '掌上重邮': 5,
+            '云盘': 6,
+            'BBS': 7
+        }
+        $('#helper-content').on('submit', function() {
+            var title = $('#helper-title').val();
+            var text = $('.dot-border-choosed~span').html();
+            var type = MAP[text];
+            var choosedPro = $('#choosed-product').html();
+            var pro_id = 0;
+            var pro_name = '所有人可见';
+            var data = {};
+
+            if(type === 'someone') {
+                pro_id = PRO[choosedPro] || 0;
+                pro_name = choosedPro;
+            }
+            data = {
+                title: title,
+                type: 'new',
+                content: ue.getContent(),
+                pro_name: pro_name,
+                pro_id: pro_id,
+            }
+
+            console.log(data.content);
+            $.post('{:U("Admin/Publish/addArticle")}', data, function(res) {
+                if(res == true) {
+                    alert('发布成功');
+                }
+            })
+            return false;
+        });
+    }(window));
+    </script>
+    <script>
     </script>
 </div>

@@ -5,6 +5,11 @@
     <link rel="stylesheet" href="__PUBLIC__/css/common.css"/>
     <link rel="stylesheet" href="__PUBLIC__/css/userCenter.css"/>
     <title>会员中心</title>
+    <style type="text/css">
+        .new-text p{
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
 <div class="header">
@@ -212,6 +217,20 @@
     </div>
 </div>
 </body>
+<script type="text/template" id="msgTemplate">
+    <a href="#">
+        <li class="contain-new">
+            <img class="pro_img" src="__PUBLIC__/img/helper.png" alt="图标">
+            <div class="contain-new-detail">
+                <h3>
+                    <!-- <span style="display: none" class="new-unread" id="unread-label">未读</span> -->
+                </h3>
+                <span class="new-time"><img src="__PUBLIC__/img/time.png" alt="时间"></span>
+                <p class="new-text"></p>
+            </div>
+        </li>
+    </a>
+</script>
 <script src="__PUBLIC__/js/jquery.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
 <!--<script src="__PUBLIC__/js/userCenter.js"></script>-->
@@ -248,18 +267,43 @@
             $('.contain-pageG').append($page_sub_fragment);
         }
         res.article.forEach(function(item, index, arr) {
-            $('.contain-newG').append('<a href="##">' +
-                    '<li class="contain-new">' +
-                    '<img src="__PUBLIC__/img/'+item.pro_id + '.png" alt="图标">' +
-                    '<div class="contain-new-detail">' +
-                    '<h3>[' + item.pro_name + ']' + item.title +
-                    '<span class="new-unread" id="unread-label" style="display:none">未读</span>' +
-                    '</h3>'+
-                    '<span class="new-time">'+ item.time + '<img src="__PUBLIC__/img/time.png" alt="时间"></span>' +
-                    '<p class="new-text">'+ item.content + '</p>'+
-                    '</div>'+
-                    '</li>'+
-                    '</a>');
+            var content = (item.content).replace(/&lt;/g, '<').replace(/&gt;/g,'>');
+            var $msg = $($('#msgTemplate').html())[0];
+            // $msg.children('.pro_img').attr('src', '_PUBLIC__/img/'+ item.pro_id+'.png');
+            // $msg.children('h3').html('[' + item.pro_name + ']' + item.title +'<span class="new-unread" id="unread-label" style="display:none">未读</span>' );
+            // $msg.children('.new-time').html(item.time + '<img src="__PUBLIC__/img/time.png" alt="时间">');
+            // $msg.children('.new-text').html(content);
+            // 
+            // 
+            // 
+            console.log($msg.querySelector('.pro_img'));
+            $msg.querySelector('.pro_img').setAttribute('src', '__PUBLIC__/img/'+item.pro_id+'.png');
+            $msg.querySelector('h3').innerHTML = '[' + item.pro_name + ']' + item.title +'<span class="new-unread" id="unread-label" style="display:none">未读</span>';
+
+            $msg.querySelector('.new-time').innerHTML = item.time + '<img src="__PUBLIC__/img/time.png" alt="时间">';
+            $msg.querySelector('.new-text').innerHTML = content;
+            console.log($msg);
+            // console.log($msg.children('.pro_img').html());
+            // var $html = $('<a href="##">' +
+            //         '<li class="contain-new">' +
+            //         '<img src="__PUBLIC__/img/'+item.pro_id + '.png" alt="图标">' +
+            //         '<div class="contain-new-detail">' +
+            //         '<h3>[' + item.pro_name + ']' + item.title +
+            //         '<span class="new-unread" id="unread-label" style="display:none">未读</span>' +
+            //         '</h3>'+
+            //         '<span class="new-time">'+ item.time + '<img src="__PUBLIC__/img/time.png" alt="时间"></span>' +
+            //         '<p class="new-text">'+ 
+
+            //         '</p>'+
+            //         '</div>'+
+            //         '</li>'+
+            //         '</a>');
+                
+            // $html.children('.new-text').append(content);
+            // console.log($html.children('p.new-text'));
+            //     // console.log($html.html());
+            $('.contain-newG').append($msg);
+       
         });
 
         var unread_num = parseInt($('user-message').text().match(/\d+/));
