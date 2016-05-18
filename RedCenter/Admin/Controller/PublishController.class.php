@@ -11,7 +11,7 @@ class PublishController extends CommonController {
         }
 
         $data['title'] = I('post.title');
-        $data['content'] = I('post.content');
+        $data['content'] = I('post.content','','');//$data['content'] = I('post.content','',flase)拒绝使用默认的htmlspecialchars过滤方法
         $data['pro_id'] = I('post.pro_id');
         $data['pro_name'] = I('post.pro_name');
         $data['time'] = date('Y-m-d H:i:s',time());
