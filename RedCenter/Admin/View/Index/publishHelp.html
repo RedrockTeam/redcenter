@@ -104,10 +104,10 @@
                 pro_id: pro_id,
             }
 
+            console.log(data.content);
             $.post('{:U("Admin/Publish/addArticle")}', data, function(res) {
-                document.write(res);
-                if(res.msg == 'success') {
-                    alert('success');
+                if(res == true) {
+                    alert('发布成功');
                 }
             })
             return false;
