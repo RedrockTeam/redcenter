@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="__PUBLIC__/css/help-center.css">
     <link rel="stylesheet" href="__PUBLIC__/css/userNews.css"/>
     <title>帮助中心</title>
+    <style type="text/css">
+        #helper-list-wrap {
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
     <div class="header">
@@ -15,7 +20,7 @@
         <div class="header-right">
                 <a class="header-right-tips" href="{:U('Home/Index/userNews')}">
                     <img src="__PUBLIC__/img/helper.png" alt="tipImg">
-                    <span>重邮小帮手：您的账号有一条新的消息~</span>
+                    <span id="user-message">您有0条新的消息~</span>
                 </a>
             <div class="header-right-user">
                 <div class="header-user-face">
@@ -85,34 +90,9 @@
                 帮助中心
             </h2>
             <ul id="helper-list-wrap">
-
-              <!--   <li class="help-list">
-                    <a href="">
-                        <h3 class="helper-title" title="我是标题标题是我我是标题标题是我"><span class="helper-product-name">[掌上重邮]</span>我是标题标题是我我是标题标题是我</h3>
-                        <div class="helper-content">
-                            <p >BTdown铺资源更新下载资源更新下载资源快去下载种子免费资源，BTdown铺资源更新下载资源更新下载资源快去下载种子免费资源，BTdown铺资源更新下载资源更新下载资源BTdown铺资源更新下载资源更新下载资源快去下载种子免费资源，BTdown铺资源更新下载资源更新下载资源快去下载种子免费资源，BTdown铺资源更新下载资源更新下载资源快去下载种子免费资源，BTdown铺资源更新下载资。</p>
-                        </div>
-                    </a>
-                </li> -->
                 
             </ul>
             <ol class="contain-pageG">
-                <a href="#">
-                    <li class="contain-page">
-                        <img class="pre-page" src="__PUBLIC__/img/front.png" alt="上一页">
-                    </li>
-                </a>
-
-
-                <a class="page-sub" href="#">
-                    <li class="contain-page">1</li>
-                </a>
-                
-                <a href="#" id="user-new-next-page">
-                    <li class="contain-page">
-                        <img class="next-page" src="__PUBLIC__/img/next.png" alt="下一页">
-                    </li>
-                </a>
             </ol>
         </div>
         <div id="footer">
@@ -129,74 +109,94 @@
 </body>
 <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script src="__PUBLIC__/js/underscore.min.js"></script>
+<script src="__PUBLIC__/js/Backbone-min.js"></script>
+
+<script type="text/template" id="sub-page">
+    <a href="<%= src %>" id="user-new-next-page">
+        <li class="contain-page">
+            <%= page %>
+        </li>
+    </a>
+</script>
+<script type="text/template" id="helper-item">
+  <li class="help-list">
+      <a href="##">
+          <h3 class="helper-title" title="我是标题标题是我我是标题标题是我"><span class="helper-product-name">[<%= pro_name %>]</span><%= title %></h3>
+          <div class="helper-content">
+              <p ><%= content %></p>
+          </div>
+      </a>
+  </li>
+</script>
 <script type="text/javascript">
-function renderItem(item, index,arr) {
-    $('#helper-list-wrap').append(
-        '<li class="help-list">'
-            +'<a href="##">'
-                +'<h3 class="helper-title"+ title="我是标题">' 
-            + '<span class="helper-product-name">['+  item.pro_name  +']</span>'+ item.title +'</h3>'
-            +'<div class="helper-content">'
-            //+'<img class="helper-img" src="../public/img/helper-img.png" alt="">'
-            //+'<p >'+ item.content +'</p>'
-            + item.content.replace(/&lt;/g, '<').replace(/&gt;/g,'>')
-            +       '</div>'
-            +   '</a>'
-        +'</li>');
-};
-function getPage(pageIndex) {
-    $.post('{:U("Home/Index/returnData")}', "dataType=getHelp&page=" + pageIndex, function(res){
-        if(res.article)
-            res.article.forEach(renderItem);
+
+
+var renderOneHelper = _.template($('#helper-item').html());
+
+var renderSubPage= _.template($('#sub-page').html());
+
+
+var renderHelpers = function(article) {
+    var helpers = '';
+
+    article.forEach(function(item,index) {
+        item.content = item.content.replace(/&lt;/g, '<').replace(/&gt;/, '>');
+        helpers += renderOneHelper(item);
     });
+    $('#helper-list-wrap').html(helpers);
 }
 
-
-
-var totle = 0;
-var pageIndex = 1;
-var pageNum = 
-    $.post('{:U("Home/Index/returnData")}', "dataType=getHelp", function(res){
-        // console.log('test');
-        var res = res;
-        totle = res.total;
-        page_num = parseInt(res.total) / 6;
-        var $page_sub_fragment = $('.page-sub').eq(0);
-        var $next_page_fragment = $('#user-new-next-page');
-
-        $next_page_fragment.remove();
-        for(var i = 0; i < page_num; i ++) {
-            $page_sub_fragment.find(i).text(i+1);
-            $('.contain-pageG').append($page_sub_fragment);
+var subPageRouter = Backbone.Router.extend({
+    routes: {
+        'page/:id': 'toPage',
+        'nextPage': 'toNextPage',
+        'prevPage': 'toPrevPage'
+    },
+    initialize: function(page_num) {
+            this.pageNum = page_num;
+            $('.contain-pageG').append(renderSubPage({src: '#/prevPage', page: '<img src="__PUBLIC__/img/front.png" alt="上一页">'}));
+            var page = '';
+            for(var i = 1; i < page_num+1; i++) {
+                page += renderSubPage({src: '#/page/'+i, page: i});
+            }
+            $('.contain-pageG').append(page);
+            $('.contain-pageG').append(renderSubPage({src: '#/nextPage', page: '<img src="__PUBLIC__/img/next.png" alt="下一页">'}));
+        },
+    pageId: 1,
+    toPage: function(index) {
+        if(this.pageId === +index) {
+            return
         }
-        if(res.article)
-            res.article.forEach(renderItem);
-    });
+        this.pageId = index;
+        console.log('pageId',this.pageId);
+        $.post('{:U("Home/Index/returnData")}', "dataType=getHelp"+'&page='+this.pageId, function(res) {
+            renderHelpers(res.article);
+        });
+    },
+    toNextPage: function() {
+        this.pageId = ++this.pageId > this.pageNum ? --this.pageId : this.pageId;
+        this.navigate("#/page/"+this.pageId, {trigger: true});
+    },
+    toPrevPage: function() {
+        this.pageId = -- this.pageId < 1 ? ++this.pageId: this.pageId;
+        this.navigate("#/page/"+this.pageId, {trigger: true});
+    }
 
-    $('.contain-pageG').on('click', function(events) {
-        var target = events.target;
-        if(target.className === 'pre-page') {
-            var prePageIndex = pageIndex;
-            pageIndex = --pageIndex < 1 ? 1 : pageIndex;
-            if(prePageIndex === pageIndex) return;
-            getPage(pageIndex);
-        }
-        if(target.className === 'next-page') {
-            var prePageIndex = pageIndex;
-            pageIndex = ++pageIndex > pageNum ? pageNum : pageIndex;
-            if(prePageIndex === pageIndex) return;
-            getPage(pageIndex);
-        }
-        if((parseInt(target.innerHTML)) !== NaN) {
-            getPage(parseInt(target.innerHTML));
-        }
-    });
+});
 
 
-    $('#helper-list-wrap').delegate('.help-list', 'click', function(e) {
-       
-        console.log($(this).find('.helper-content').html());
-    });
+$.post('{:U("Home/Index/returnData")}', "dataType=getHelp&page=1", function(res){
+    var page_num = ~~(res.total/6)+1;
+    if(res.article === null) {
+        return;
+    }
+    renderHelpers(res.article.slice(0,6));
+    var  pageRouter = new subPageRouter(page_num);
+    Backbone.history.start();
+    pageRouter.navigate("#/page/1", {trigger: true, replace: true}); 
+});
+
 </script>
 </html>
 
