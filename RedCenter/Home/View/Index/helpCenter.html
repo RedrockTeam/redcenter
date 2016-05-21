@@ -165,9 +165,6 @@ var subPageRouter = Backbone.Router.extend({
         },
     pageId: 1,
     toPage: function(index) {
-        if(this.pageId === +index) {
-            return
-        }
         this.pageId = index;
         console.log('pageId',this.pageId);
         $.post('{:U("Home/Index/returnData")}', "dataType=getHelp"+'&page='+this.pageId, function(res) {

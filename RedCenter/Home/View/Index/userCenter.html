@@ -172,15 +172,13 @@
 
 
 <script type="text/template" id="msgTemplate">
-    <a href="#">
+    <a href="##">
         <li class="contain-new">
-            <img class="pro_img" src="__PUBLIC__/img/helper.png" alt="图标">
+            <img class="pro_img" src="/redcenter/RedCenter/Home/Public/img/<%= pro_id %>.png" alt="图标">
             <div class="contain-new-detail">
-                <h3>
-                    <!-- <span style="display: none" class="new-unread" id="unread-label">未读</span> -->
-                </h3>
-                <span class="new-time"><img src="__PUBLIC__/img/time.png" alt="时间"></span>
-                <p class="new-text"></p>
+                <h3>[<%= pro_name %>]<%= title %><span class="new-unread" id="unread-label" style="display:none">未读</span></h3>
+                <span class="new-time"><%= time %><img src="/redcenter/RedCenter/Home/Public/img/time.png" alt="时间"></span>
+                <p class="new-text"><%= content %></p>
             </div>
         </li>
     </a>
@@ -244,13 +242,13 @@ var PageRouter = Backbone.Router.extend({
             this.pageNum = page_num;
             $('.contain-pageG').append(renderSubPage({src: '#/prevPage', page: '<img src="__PUBLIC__/img/front.png" alt="上一页">'}));
             var page = '';
-            for(var i = 0; i < page_num; i++) {
-                page += renderSubPage({src: '#/page/'+(i+1), page: i+1});
+            for(var i = 1; i < page_num+1; i++) {
+                page += renderSubPage({src: '#/page/'+i, page: i});
             }
             $('.contain-pageG').append(page);
             $('.contain-pageG').append(renderSubPage({src: '#/nextPage', page: '<img src="__PUBLIC__/img/next.png" alt="下一页">'}));
         },
-        pageId: 0,
+        pageId: 1,
         toPage: function(index) {
             this.pageId = index;
             $.post('{:U("Home/Index/returnData")}', 'dataType=getNew&page='+this.pageId, function(res) {
@@ -281,25 +279,13 @@ function renderNewPage(articles) {
 
 
 
-function getNews(res) {
-
-    res.article.forEach(function(item, index, arr) {
-        var $msg = renderOneArticle(item);
-        $('.contain-newG').append($msg);
-    });
-
-    var unread_num = ~~$('user-message').text().match(/\d+/);
-    console.log(unread_num);
-
-    for(var i= 0; i < unread_num; i++) {
-        $('.new-unread').eq(i).show();
-    }
-}
-
-
     // 获取文章
     $.post('{:U("Home/Index/returnData")}', 'dataType=getNew', function(res) {
         var page_num = ~~(res.total/5)+1;
+        if(res.article === null) {
+            return;
+        }
+        renderNewPage(res.article);
         var  pageRouter = new PageRouter(page_num);
         Backbone.history.start();
         pageRouter.navigate("#/page/1", {trigger: true, replace: true});
