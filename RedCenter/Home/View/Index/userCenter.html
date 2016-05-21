@@ -135,58 +135,10 @@
                             <p class="new-text">我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容</p>
                         </div>
                     </li>
-                </a>
-                <a href="#">
-                    <li class="contain-new">
-                        <img src="__PUBLIC__/img/helper.png" alt="图标">
-                        <div class="contain-new-detail">
-                            <h3>BTdown铺我是标题
-                                <span class="new-unread">未读</span>
-                            </h3>
-                            <span class="new-time">昨天22:19<img src="__PUBLIC__/img/time.png" alt="时间"></span>
-                            <p class="new-text">我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容</p>
-                        </div>
-                    </li>
-                </a>
-                <a href="#">
-                    <li class="contain-new">
-                        <img src="__PUBLIC__/img/helper.png" alt="图标">
-                        <div class="contain-new-detail">
-                            <h3>BTdown铺我是标题
-                                <span class="new-unread">未读</span>
-                            </h3>
-                            <span class="new-time">昨天22:19<img src="__PUBLIC__/img/time.png" alt="时间"></span>
-                            <p class="new-text">我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容</p>
-                        </div>
-                    </li>
-                </a>
-                <a href="#">
-                    <li class="contain-new">
-                        <img src="__PUBLIC__/img/helper.png" alt="图标">
-                        <div class="contain-new-detail">
-                            <h3>BTdown铺我是标题
-                                <span class="new-unread">未读</span>
-                            </h3>
-                            <span class="new-time">昨天22:19<img src="__PUBLIC__/img/time.png" alt="时间"></span>
-                            <p class="new-text">我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容</p>
-                        </div>
-                    </li>
-                </a>
-                <a href="#">
-                    <li class="contain-new">
-                        <img src="__PUBLIC__/img/helper.png" alt="图标">
-                                <div class="contain-new-detail">
-                                    <h3>BTdown铺我是标题
-                                        <span class="new-unread">未读</span>
-                                    </h3>
-                                    <span class="new-time">11-09 22:09<img src="__PUBLIC__/img/time.png" alt="时间"></span>
-                            <p class="new-text">我是内容我是内容我是内容我是内容我是内容我是内容</p>
-                        </div>
-                    </li>
                 </a> -->
             </ul>
             <ol class="contain-pageG">
-                <a href="#">
+<!--                 <a href="#">
                     <li class="contain-page">
                         <img src="__PUBLIC__/img/front.png" alt="上一页">
                     </li>
@@ -201,7 +153,7 @@
                     <li class="contain-page">
                         <img src="__PUBLIC__/img/next.png" alt="下一页">
                     </li>
-                </a>
+                </a> -->
             </ol>
         </div>
     </div>
@@ -217,6 +169,8 @@
     </div>
 </div>
 </body>
+
+
 <script type="text/template" id="msgTemplate">
     <a href="#">
         <li class="contain-new">
@@ -233,95 +187,123 @@
 </script>
 <script src="__PUBLIC__/js/jquery.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
-<!--<script src="__PUBLIC__/js/userCenter.js"></script>-->
+<script src="__PUBLIC__/js/underscore.min.js"></script>
+<script src="__PUBLIC__/js/backbone-min.js"></script>
 <script >
-    $.post('{:U("Home/Index/returnData")}', 'dataType=newHelpNum',function(res) {
-        var res = JSON.parse(res);
-        $('#new-helper').text(res);
-    });
-    $.post('{:U("Home/Index/returnData")}', 'dataType=linkNum',function(res) {
-        var res = JSON.parse(res);
-        $('#product-num').text(res);
-    });
+    // 初始化页面, h获取帮助数量,产品数量,和个人积分
+    (function initPage() {
 
-
-    $.post('{:U("Home/Index/returnData")}', 'dataType=getSelfInfo',function(res) {
-        var res = res;
-        $('#my-score').text(res.score);
-    });
-
-
-    $.post('{:U("Home/Index/returnData")}', 'dataType=newNewsNum',function(res) {
-        var res = JSON.parse(res);
-        $('#user-message').text('重邮小帮手:您的账号有'+ res + '条新消息~');
-    })
-    $.post('{:U("Home/Index/returnData")}', 'dataType=getNew',function(res) {
-        var res = res;
-        var page_num = parseInt(res.total) / 5;
-
-        var $page_sub_fragment = $('.page-sub').eq(0);
-        var $next_page_fragment = $('#user-new-next-page');
-        $next_page_fragment.remove();
-        for(var i = 0; i < page_num; i ++) {
-            $page_sub_fragment.find(i).text(i+1);
-            $('.contain-pageG').append($page_sub_fragment);
-        }
-        res.article.forEach(function(item, index, arr) {
-            var content = (item.content).replace(/&lt;/g, '<').replace(/&gt;/g,'>');
-            var $msg = $($('#msgTemplate').html())[0];
-            // $msg.children('.pro_img').attr('src', '_PUBLIC__/img/'+ item.pro_id+'.png');
-            // $msg.children('h3').html('[' + item.pro_name + ']' + item.title +'<span class="new-unread" id="unread-label" style="display:none">未读</span>' );
-            // $msg.children('.new-time').html(item.time + '<img src="__PUBLIC__/img/time.png" alt="时间">');
-            // $msg.children('.new-text').html(content);
-            // 
-            // 
-            // 
-            console.log($msg.querySelector('.pro_img'));
-            $msg.querySelector('.pro_img').setAttribute('src', '__PUBLIC__/img/'+item.pro_id+'.png');
-            $msg.querySelector('h3').innerHTML = '[' + item.pro_name + ']' + item.title +'<span class="new-unread" id="unread-label" style="display:none">未读</span>';
-
-            $msg.querySelector('.new-time').innerHTML = item.time + '<img src="__PUBLIC__/img/time.png" alt="时间">';
-            $msg.querySelector('.new-text').innerHTML = content;
-            console.log($msg);
-            // console.log($msg.children('.pro_img').html());
-            // var $html = $('<a href="##">' +
-            //         '<li class="contain-new">' +
-            //         '<img src="__PUBLIC__/img/'+item.pro_id + '.png" alt="图标">' +
-            //         '<div class="contain-new-detail">' +
-            //         '<h3>[' + item.pro_name + ']' + item.title +
-            //         '<span class="new-unread" id="unread-label" style="display:none">未读</span>' +
-            //         '</h3>'+
-            //         '<span class="new-time">'+ item.time + '<img src="__PUBLIC__/img/time.png" alt="时间"></span>' +
-            //         '<p class="new-text">'+ 
-
-            //         '</p>'+
-            //         '</div>'+
-            //         '</li>'+
-            //         '</a>');
-                
-            // $html.children('.new-text').append(content);
-            // console.log($html.children('p.new-text'));
-            //     // console.log($html.html());
-            $('.contain-newG').append($msg);
-       
+        $.post('{:U("Home/Index/returnData")}', 'dataType=newHelpNum',function(res) {
+            var res = JSON.parse(res);
+            $('#new-helper').text(res);
         });
 
-        var unread_num = parseInt($('user-message').text().match(/\d+/));
+        $.post('{:U("Home/Index/returnData")}', 'dataType=linkNum',function(res) {
+            $('#product-num').text(res);
+        });
 
-        for(var i= 0; i < unread_num; i++) {
-            $('.new-unread').eq(i).show();
+
+        $.post('{:U("Home/Index/returnData")}', 'dataType=getSelfInfo',function(res) {
+            var res = res;
+            $('#my-score').text(res.score);
+        }); 
+    }());
+
+
+
+// 渲染单条消息,返回dom片段
+function renderOneArticle(item) {
+    var content = (item.content).replace(/&lt;/g, '<').replace(/&gt;/g,'>');
+    var $msg = $($('#msgTemplate').html())[0];
+    $msg.querySelector('.pro_img').setAttribute('src', '__PUBLIC__/img/'+item.pro_id+'.png');
+    $msg.querySelector('h3').innerHTML = '[' + item.pro_name + ']' + item.title +'<span class="new-unread" id="unread-label" style="display:none">未读</span>';
+    $msg.querySelector('.new-time').innerHTML = item.time + '<img src="__PUBLIC__/img/time.png" alt="时间">';
+    $msg.querySelector('.new-text').innerHTML = content;
+    return $msg;
+}
+    
+
+    
+
+var renderSubPage = _.template( '<a href="<%= src %>">'+
+                                    '<li class="contain-page">'+
+                                        '<%= page %>'+
+                                    '</li>'+
+                                '</a>');
+
+
+
+
+var PageRouter = Backbone.Router.extend({
+        routes: {
+            'page/:id': 'toPage',
+            'nextPage': 'toNextPage',
+            'prevPage': 'toPrevPage'
+        },
+        initialize: function(page_num) {
+            this.pageNum = page_num;
+            $('.contain-pageG').append(renderSubPage({src: '#/prevPage', page: '<img src="__PUBLIC__/img/front.png" alt="上一页">'}));
+            var page = '';
+            for(var i = 0; i < page_num; i++) {
+                page += renderSubPage({src: '#/page/'+(i+1), page: i+1});
+            }
+            $('.contain-pageG').append(page);
+            $('.contain-pageG').append(renderSubPage({src: '#/nextPage', page: '<img src="__PUBLIC__/img/next.png" alt="下一页">'}));
+        },
+        pageId: 0,
+        toPage: function(index) {
+            this.pageId = index;
+            $.post('{:U("Home/Index/returnData")}', 'dataType=getNew&page='+this.pageId, function(res) {
+                if(res.article === null) return;
+                renderNewPage(res.article);
+            });
+        },
+        toNextPage: function() {
+            this.pageId = ++this.pageId > this.pageNum-1 ? --this.pageId : this.pageId;
+            this.navigate("#/page/"+this.pageId, {trigger: true});
+        },
+        toPrevPage: function() {
+            this.pageId = -- this.pageId < 1 ? ++this.pageId: this.pageId;
+            this.navigate("#/page/"+this.pageId, {trigger: true});
         }
+   });
+
+
+
+
+function renderNewPage(articles) {
+    $('.contain-newG').html('');
+    articles.forEach(function(item, index) {
+        var $msg = renderOneArticle(item);
+        $('.contain-newG').append($msg);
+    });
+}
+
+
+
+function getNews(res) {
+
+    res.article.forEach(function(item, index, arr) {
+        var $msg = renderOneArticle(item);
+        $('.contain-newG').append($msg);
+    });
+
+    var unread_num = ~~$('user-message').text().match(/\d+/);
+    console.log(unread_num);
+
+    for(var i= 0; i < unread_num; i++) {
+        $('.new-unread').eq(i).show();
+    }
+}
+
+
+    // 获取文章
+    $.post('{:U("Home/Index/returnData")}', 'dataType=getNew', function(res) {
+        var page_num = ~~(res.total/5)+1;
+        var  pageRouter = new PageRouter(page_num);
+        Backbone.history.start();
+        pageRouter.navigate("#/page/1", {trigger: true, replace: true});
 
     });
-    $.post("{:U('Home/Index/returnData')}", 'dataType=getSelfInfo',function(res) {
-        var res = res;
-        $('#user-header').attr('src', '__PUBLIC__/' +res.headImage);
-        $('#user-name').text(res.nickname);
-    });
-
-    $.post("{:U('Home/Index/returnData')}", 'dataType=newNewsNum',function(res) {
-        var res = JSON.parse(res);
-        $('user-message').text('您有'+ res + '条消息');
-    })
 </script>
 </html>
