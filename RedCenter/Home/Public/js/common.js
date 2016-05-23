@@ -66,6 +66,6 @@ $.post("/redcenter/index.php/Home/Index/returnData.html", 'dataType=getSelfInfo'
 });
 
 $.post("/redcenter/index.php/Home/Index/returnData.html", 'dataType=newNewsNum',function(res) {
-    var res = JSON.parse(res);
-    $('#user-message').text('您有'+ res + '条消息');
+    console.log(res);
+    $('#user-message').text('您有'+ res + '条新的消息');
 })
