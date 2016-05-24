@@ -39,7 +39,10 @@ function removeClass(ele, className) {
     var selectImg = document.querySelectorAll('.content-li-img'),
         imgLen = selectImg.length,
         list = document.querySelector('.content-left');
-    for(var i = 0;i < imgLen;i++)selectImg[i].style.backgroundPositionX = 24*i+'px';
+    
+    for(var i = 0;i < imgLen;i++){
+        selectImg[i].style.backgroundPositionX = 24*i+'px';
+    }
     
 
         var navList = document.querySelector('.content-left').querySelectorAll('a');
@@ -53,6 +56,19 @@ function removeClass(ele, className) {
             });
 
         }
+
+
+    var onNav = ['index','myProduct', 'dataCenter', 'helpCenter', 'prizes'];
+
+    var pathname = location.pathname;
+
+    for(var i = onNav.length-1; i >= 0; i --) {
+        if((new RegExp(onNav[i])).test(pathname)) {
+            document.querySelector('.content-left').querySelectorAll('a')[i].id = 'now-link';
+            break;
+        }
+    }
+
 })();
 
 $.post("/redcenter/index.php/Home/Index/returnData.html", 'dataType=getSelfInfo',function(res) {
@@ -62,6 +78,7 @@ $.post("/redcenter/index.php/Home/Index/returnData.html", 'dataType=getSelfInfo'
 });
 
 $.post("/redcenter/index.php/Home/Index/returnData.html", 'dataType=newNewsNum',function(res) {
-    console.log(res);
     $('#user-message').text('您有'+ res + '条新的消息');
-})
+});
+
+
