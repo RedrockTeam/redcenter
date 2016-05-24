@@ -95,6 +95,7 @@
             <ol class="contain-pageG">
             </ol>
         </div>
+        
         <div id="footer">
             <p>
                 <a href="http://hongyan.cqupt.edu.cn/" class="link">关于红岩网校</a> |
@@ -191,7 +192,7 @@ $.post('{:U("Home/Index/returnData")}', "dataType=getHelp&page=1", function(res)
     renderHelpers(res.article.slice(0,6));
     var  pageRouter = new subPageRouter(page_num);
     Backbone.history.start();
-    pageRouter.navigate("#/page/1", {trigger: true, replace: true}); 
+    // pageRouter.navigate("#/page/1", {trigger: true, replace: true}); 
 });
 
 </script>
