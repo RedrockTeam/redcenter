@@ -41,22 +41,18 @@ function removeClass(ele, className) {
         list = document.querySelector('.content-left');
     for(var i = 0;i < imgLen;i++)selectImg[i].style.backgroundPositionX = 24*i+'px';
     
-    addEven(list,'click',function(e){
-        e = e||window.event;
-        var target = e.target || e.srcElement;
-        if(target.nodeName.toLowerCase() === 'ul')return;
-        if(target.nodeName.toLowerCase() !== 'li')target = target.parentElement;
-        var checked = document.querySelector('.content-li-clicked'),
-            img = target.querySelector('.content-li-img');
-        if(checked){
-            checked.querySelector('.content-li-img').style.backgroundPositionY = 0;
-            checked.querySelector('.content-li-bar').style.width = 0;
-            checked.className = "content-left-li";
+
+        var navList = document.querySelector('.content-left').querySelectorAll('a');
+
+        for(var i = 0, len = navList.length; i < len; i++) {
+            navList[i].addEventListener('mouseover', function() {
+                this.className = 'nav-check';
+            });
+            navList[i].addEventListener('mouseout', function() {
+                this.className = '';
+            });
+
         }
-        target.className = "content-left-li content-li-clicked";
-        img.style.backgroundPositionY = 24+'px';
-        target.querySelector('.content-li-bar').style.width = '4px';
-    });
 })();
 
 $.post("/redcenter/index.php/Home/Index/returnData.html", 'dataType=getSelfInfo',function(res) {
