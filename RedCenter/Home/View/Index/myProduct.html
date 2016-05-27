@@ -191,7 +191,6 @@
             var id = event.target.getAttribute('data-id');
             console.log(id);
             $.post('{:U("Home/Index/returnData")}','dataType=changeLink&changeType=add&linkId=' + id, function(res) {
-                alert(res);
                 $.post('{:U("Home/Index/returnData")}','dataType=linkInfo', function(res) {
                     location.reload();
                 });
