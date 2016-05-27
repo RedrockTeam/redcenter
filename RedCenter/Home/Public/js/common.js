@@ -5,7 +5,6 @@
 /**
  * add addClass removeClass
  * 冯秋明
- * 
  */
 function addEven(target,event_name,handler,useCapture){
     useCapture = useCapture||false;
@@ -71,13 +70,13 @@ function removeClass(ele, className) {
 
 })();
 
-$.post("/redcenter/index.php/Home/Index/returnData.html", 'dataType=getSelfInfo',function(res) {
+$.post("/RedCenter/index.php/Home/Index/returnData.html", 'dataType=getSelfInfo',function(res) {
     var res = res;
-    $('#user-header').attr('src', '/redcenter/RedCenter/Home/Public/' +res.headImage);
+    $('#user-header').attr('src', '/RedCenter/RedCenter/Home/Public/' +res.headImage);
     $('#user-name').text(res.nickname);
 });
 
-$.post("/redcenter/index.php/Home/Index/returnData.html", 'dataType=newNewsNum',function(res) {
+$.post("/RedCenter/index.php/Home/Index/returnData.html", 'dataType=newNewsNum',function(res) {
     $('#user-message').text('您有'+ res + '条新的消息');
 });
 
