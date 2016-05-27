@@ -129,7 +129,7 @@ class IndexController extends CommonController {
             $this->ajaxReturn(false);
     }
 
-    private function savePic(){
+    public function savePic(){
         $upload = new Upload();                                          // 实例化上传类
         $upload->maxSize = 3145728;                                      // 设置附件上传大小
         $upload->exts = array('jpg', 'gif', 'png', 'jpeg');              // 设置附件上传类型
@@ -142,7 +142,7 @@ class IndexController extends CommonController {
         if (!$info) {                                                    // 上传错误提示错误信息
                 $this->error($upload->getError());
         } else {                                                         // 上传成功 获取上传文件信息
-            var_dump($info);
+//            var_dump($info);
             return $info['savename'];
         }
 
@@ -179,8 +179,6 @@ class IndexController extends CommonController {
     }
 
     public function changeLink(){
-        $_POST['chengeType'] ='add';
-        $_POST['linkId'] = 3;
         $res = D('Link')->changLink(I('post.changeType'),I('post.linkId'));
         if($res)
             $this->ajaxReturn(true);

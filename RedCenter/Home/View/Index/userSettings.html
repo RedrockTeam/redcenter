@@ -95,7 +95,7 @@
                 </a> 
             </ul>
             <div class="set-info set-show">
-                <form class="basic-info" name="changeInfo">
+                <form class="basic-info" name="changeInfo" enctype="multipart/form-data" >
                    <table>
                         <tr class="basic-face">
                            <td class="basic-face-bar">头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像</td>
@@ -103,7 +103,7 @@
                             <div class="face">
                                 <img src="__PUBLIC__/img/basic-face.png" alt="basic-face-pic" >
                                 <label class="basic-face-hover" for="upload-image">点击上传</label>>
-                                <input style="display: none" type="file" id="upload-image"  name="hedimg"></input>
+                                <input style="display: none" type="file" id="upload-image"  name="photo">
                             </div>
                            </td>
                         </tr>
@@ -126,8 +126,9 @@
                             </td>
                         </tr>
                    </table>
+                    <input type="submit" class="set-btn basic-btn" value="确定修改">
                 </form>
-                <button class="set-btn basic-btn">确定修改</button>
+                <!--<button class="set-btn basic-btn">确定修改</button>-->
             </div>
             <div class="set-info ">
                 <form class="safe-info " name="changePass">
@@ -223,19 +224,28 @@ $(function(){
         }
     })
 
-   //修改基本资料
-   $('.basic-btn').click(function(){
-        $('.set-info span').remove();
-        if( input_massage.eq(0).val()==' '){
-        $(this).after('<span class ="add" >&nbsp;&nbsp;&nbsp;昵称不能为空!</sapn>');
-        return false;
-       }else{
-
-            $.post("{:U('Home/Index/returnData')}", 'dataType=chnageInfo&' + $('.basic-info').serialize(), function(res){
+    //长传头像传文件,要multipart/form-data
+    //采用form默认的提交行为
+    var haspost = 0;
+    $('.basic-btn').click(function(){
+        if(haspost == 0){
+            haspost = 1;
             $('.basic-btn').after('<span style ="color:green;" class="add" >&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
-        })
-      }      
-   })
+        }
+    })
+   //修改基本资料
+//   $('.basic-btn').click(function(){
+//        $('.set-info span').remove();
+//        if( input_massage.eq(0).val()==' '){
+//        $(this).after('<span class ="add" >&nbsp;&nbsp;&nbsp;昵称不能为空!</sapn>');
+//        return false;
+//       }else{
+//
+//            $.post("{:U('Home/Index/returnData')}", 'dataType=changeInfo&' + $('.basic-info').serialize(), function(res){
+//            $('.basic-btn').after('<span style ="color:green;" class="add" >&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
+//        })
+//      }
+//   })
 
    // //验证密码是否正确
    //  input_password.eq(0).blur(function(){
