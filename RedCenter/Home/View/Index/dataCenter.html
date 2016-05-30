@@ -245,7 +245,7 @@
 
     (function(){
         $.post('{:U("Home/Index/returnData")}', 'dataType=getSelfInfo', function(res) {
-            var last_login_time = new Date((~~res.score_update_time)*1000);
+            var last_login_time = new Date((~~res.last_login_time)*1000);
             var timeArr = last_login_time.toString().split(' ');
             var time = timeArr[3] + '/' + timeArr[1] + '/' + timeArr[2]
             if(~~res.score_update_time===0) {

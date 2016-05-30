@@ -47,9 +47,11 @@ class PhoneController extends Controller {
         //$rankList = $userInfo->getRankList(10);
 
         //月度积分排行榜（前10）  本期新需求
+//        $rankList_month  = array();
         $rankList_month = $userInfo->getRankList_month(10);
 
         //排名变化
+//        $rankchange = array();
         $rankchange = $userInfo->rankChange();
 
         //获取头像
@@ -57,7 +59,8 @@ class PhoneController extends Controller {
         //$headImage = $userInfo->getHeadImg();
 
         //各种积分
-        $all_scores = $userInfo->getAllScore();
+//        $all_scores=array();
+        $all_scores = $userInfo->socre_test();
 
         if(IS_POST){
             $this->ajaxReturn(array(
