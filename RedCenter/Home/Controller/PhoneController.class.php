@@ -60,7 +60,7 @@ class PhoneController extends Controller {
 
         //各种积分
 //        $all_scores=array();
-        $all_scores = $userInfo->getAllScore();
+        $all_scores = $userInfo->socre_test();
 
         if(IS_POST){
             $this->ajaxReturn(array(

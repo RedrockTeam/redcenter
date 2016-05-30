@@ -90,6 +90,60 @@ class UserInfo {
          return $all_scores;
     }
 
+    public function socre_test(){
+        $project_token = M('project_token')->select();
+        $projects = array();
+        foreach ($project_token as $value) {
+            $projects[$value['project_id']] = $value['project'];
+        }
+        $thisMonth = date('m');
+        $thisYear = date('Y');
+        $month_days = date('t',strtotime($thisYear.'-'.$thisMonth.'-01'));    //本月的最后一天是几号
+        $month_start =  mktime(0,0,0,$thisMonth,1,$thisYear);
+        $month_end = mktime(23,59,59,$thisMonth,$month_days,$thisYear);
+        $year_start = mktime(0,0,0,1,1,$thisYear);
+        $year_end = mktime(23,59,59,12,31,$thisYear);
+        $all_scores = array();
+        //月度积分
+        $time['create_time'] = array('BETWEEN',"$month_start,$month_end");
+        $all_scores['byMonth']['total'] = 0;
+//        foreach ($projects as $key => $value) {
+//            $logs = M('user_log')->where(array('user_id' => $this->info['id'], 'project' => "$value"))->where($time)->select();
+//            $all_scores['byMonth']["$key"] = 0;
+//            foreach ($logs as $once) {
+//                $all_scores['byMonth']["$key"] += $once['score'];
+//                if($all_scores['byMonth']["$key"] <0 )    $all_scores['byMonth']["$key"] = 0;
+//            }
+//            $all_scores['byMonth']['total'] += $all_scores['byMonth']["$key"];
+//        }
+        foreach($projects as $key => $value) {
+            $one_score = M('user_log')->filed('SUM(score) as total')->where()->find();
+            $all_scores['byMonth']["$key"]  = $one_score['total'] ? $one_score['total'] : 0;
+            $all_scores['byMonth']['total'] += $all_scores['byMonth']["$key"];
+        }
+
+
+        //年度积分
+        $time['create_time'] = array('BETWEEN',"$year_start,$year_end");
+        $all_scores['byYear']['total'] = 0;
+//        foreach ($projects as $key => $value) {
+//            $logs = M('user_log')->where(array('user_id' => $this->info['id'], 'project' => "$value"))->where($time)->select();
+//            $all_scores['byYear']["$key"] = 0;
+//            foreach ($logs as $once) {
+//                $all_scores['byYear']["$key"] += $once['score'];
+//                if($all_scores['byYear']["$key"] <0 )     $all_scores['byYear']["$key"] = 0;
+//            }
+//            $all_scores['byYear']['total'] += $all_scores['byYear']["$key"];
+//
+//        }
+        foreach($projects as $key => $value) {
+            $one_score = M('user_log')->filed('SUM(score) as total')->where()->find();
+            $all_scores['byYear']["$key"]  = $one_score['total'] ? $one_score['total'] : 0;
+            $all_scores['byYear']['total'] += $all_scores['byYear']["$key"];
+        }
+
+        return $all_scores;
+    }
 
     //在首页展示排名时,此次排名与上次的可能发生变化.应先通过比较分数获取新排名,更新到数据库
     public function updateRank(){
