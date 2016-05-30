@@ -264,9 +264,12 @@
         $.post('{:U("Home/Index/returnData")}', 'dataType=logTime', function(res) {
             var $list = $('#user-data-show').find('li');
             var i = 1;
+            console.log(res);
             for(var key in res) {
-                $list.eq(i++).children('.data-describe').html(MAP[key]);
+                console.log(MAP[key], res[key]);
+                $list.eq(i).children('.data-describe').html(MAP[key]);
                 $list.eq(i).children('.data-data').html(res[key]);
+                i++;
             }
         });
     }())
