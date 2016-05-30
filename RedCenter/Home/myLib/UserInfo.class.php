@@ -29,7 +29,7 @@ class UserInfo {
 
     public function getSelfInfo(){
 //      $this->info['level'] = $this->getLevel($this->info['experience']);
-        $this->info['last_time']= date('Y/m/d',$this->info['last_login_time']);
+        $this->info['last_time']= date('Y/m/d',(int)$this->info['last_login_time'] );
         $this->info['headImage'] = $this->getHeadImg();
         unset($this->info['stu_idcard']);
         unset($this->info['password']);
@@ -117,11 +117,10 @@ class UserInfo {
 //            $all_scores['byMonth']['total'] += $all_scores['byMonth']["$key"];
 //        }   //array('user_id' => $this->info['id'], 'project' => "$value",'create_time'=>array('BETWEEN',"$month_start,$month_end") )
         foreach($projects as $key => $value) {
-            $one_score = M('user_log')->field('SUM(score) as total')->where(array('user_id' => $this->info['id'], 'project' => "$value",'create_time'=>array('BETWEEN',"$month_start,$month_end")))->find();
+            $one_score = M('user_log')->where(array('user_id' => $this->info['id'], 'project' => "$value",'create_time'=>array('BETWEEN',"$month_start,$month_end")))->sum('score');
             $all_scores['byMonth']["$key"]  = $one_score['total']>0 ? $one_score['total'] : 0;
             $all_scores['byMonth']['total'] += $all_scores['byMonth']["$key"];
         }
-
 
         //年度积分
         $time['create_time'] = array('BETWEEN',"$year_start,$year_end");
@@ -138,7 +137,7 @@ class UserInfo {
 //        }
         //array('user_id' => $this->info['id'], 'project' => "$value", 'create_time'=>array('BETWEEN',"$year_start,$year_end"))
         foreach($projects as $key => $value) {
-            $one_score = M('user_log')->field('SUM(score) as total')->where(array('user_id' => $this->info['id'], 'project' => "$value", 'create_time'=>array('BETWEEN',"$year_start,$year_end")))->sum('score');
+            $one_score = M('user_log')->where(array('user_id' => $this->info['id'], 'project' => "$value", 'create_time'=>array('BETWEEN',"$year_start,$year_end")))->sum('score');
             $all_scores['byYear']["$key"]  = $one_score['total']>0 ? $one_score['total'] : 0;
             $all_scores['byYear']['total'] += $all_scores['byYear']["$key"];
         }
