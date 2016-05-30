@@ -51,16 +51,16 @@ class PhoneController extends Controller {
         $rankList_month = $userInfo->getRankList_month(10);
 
         //排名变化
-        $rankchange = array();
-//        $rankchange = $userInfo->rankChange();
+//        $rankchange = array();
+        $rankchange = $userInfo->rankChange();
 
         //获取头像
         $headImage = $info['headimg'] ? 'head_img/'.$info['headimg'] : "img_phone/head.jpg";
         //$headImage = $userInfo->getHeadImg();
 
         //各种积分
-//        $all_scores=array();
-        $all_scores = $userInfo->getAllScore();
+        $all_scores=array();
+//        $all_scores = $userInfo->getAllScore();
 
         if(IS_POST){
             $this->ajaxReturn(array(
