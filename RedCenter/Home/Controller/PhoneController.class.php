@@ -59,8 +59,8 @@ class PhoneController extends Controller {
         //$headImage = $userInfo->getHeadImg();
 
         //各种积分
-        $all_scores=array();
-//        $all_scores = $userInfo->getAllScore();
+//        $all_scores=array();
+        $all_scores = $userInfo->getAllScore();
 
         if(IS_POST){
             $this->ajaxReturn(array(
