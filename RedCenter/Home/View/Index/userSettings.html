@@ -95,7 +95,7 @@
                 </a> 
             </ul>
             <div class="set-info set-show">
-                <form class="basic-info" name="changeInfo">
+                <form class="basic-info" name="changeInfo" >
                    <table>
                         <tr class="basic-face">
                            <td class="basic-face-bar">头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像</td>
@@ -103,7 +103,7 @@
                             <div class="face">
                                 <img src="__PUBLIC__/img/basic-face.png" alt="basic-face-pic" >
                                 <label class="basic-face-hover" for="upload-image">点击上传</label>>
-                                <input style="display: none" type="file" id="upload-image"  name="hedimg"></input>
+                                <input style="display: none" type="file" id="upload-image"  name="photo" ></input>
                             </div>
                            </td>
                         </tr>
@@ -194,31 +194,29 @@ $(function(){
     $('#upload-image').change(function(){
         $('.set-info span').remove();
         window.URL = window.URL || window.webkitURL ; 
-        if(window.URL)
-        {
+        if(window.URL){
             var img = document.getElementById("upload-image") ;
             var face = window.URL.createObjectURL(img.files[0]) ;
             var path = $("#upload-image").val() ;
             var format = path.substring(path.lastIndexOf(".") + 1).toLowerCase() ;
             var canCrop = false ;
-
-            switch(format)
-            {
+            // var data = new FormData();
+            // data.append('file', $('#upload-image')[0].files[0]);
+            // console.log(data);
+            switch(format){
                 case "jpg" :
                 case "gif" :
                 case "png" :
-                case "jpeg" : 
-                {
-                    canCrop = true ;    
+                case "jpeg" : {
+                    canCrop = true ;
                     break ;
-                }
-                default : 
-                {
+                     
+                }default : {
                     face = "__PUBLIC__/img/error.png" ;
                     $('.face').after('<span class="add" >&nbsp;&nbsp;&nbsp;请上传jpg,png,gif,jpeg格式的图片!</sapn>');
                 }
             }
-            $(".face img").attr("src",face) ;
+            $(".face img").attr("src",face); 
         }
     })
 
@@ -229,10 +227,41 @@ $(function(){
         $(this).after('<span class ="add" >&nbsp;&nbsp;&nbsp;昵称不能为空!</sapn>');
         return false;
        }else{
-
-            $.post("{:U('Home/Index/returnData')}", 'dataType=chnageInfo&' + $('.basic-info').serialize(), function(res){
-            $('.basic-btn').after('<span style ="color:green;" class="add" >&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
+            var name = input_massage.eq(0).val(),
+                shop = input_massage.eq(1).val(),
+                sign = input_massage.eq(2).val();
+                // window.URL = window.URL || window.webkitURL ; 
+                // if(window.URL){
+                //     var img = document.getElementById("upload-image") ,
+                //         face = window.URL.createObjectURL(img.files[0]) ;
+                // }
+             //    var face = new FormData();
+             //    $.each($('#upload-image')[0].files, function(i, file) {
+             //     face.append('upload-image', '#upload-image')[0].files);
+             // });
+                // myface = 
+            $.post("{:U('Home/Index/returnData')}",  { dataType:'changeInfo', nickname:name,myshop:shop,mysign:sign}, function(res){
+                if(res==true){
+                    $('.basic-btn').after('<span style ="color:green;" class="add" >&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
+                }else{
+                    $('.basic-btn').after('<span class="add" >&nbsp;&nbsp;&nbsp;提交失败!</sapn>')
+                }
+            
         })
+            // var data = new FormData();
+            // $.ajax({=
+            //             url:"{:U('Home/Index/returnData')}",
+            //             type:'POST',
+            //             data:{dataType:'changeInfo'},
+            //             cache: false,
+            //             contentType: false,
+            //             processData: false,
+            //             success:function(data){
+            //             // $(".face img").attr("src",face);  
+            //             console.log(data);
+            //             }
+            //             })
+
       }      
    })
 
@@ -261,11 +290,19 @@ $(function(){
         })
         $('.set-info span').remove();     
         if( i != 0){
-
             $(this).after('<span class="add" >&nbsp;&nbsp;&nbsp;请输入完整信息哦!</sapn>');
          }else{
-            $.post("{:U('Home/Index/returnData')}", 'dataType=changePass&' + $('.safe-info').serialize(),function(res){
-                $('.safe-btn').after('<span style="color:green;" class="add" >&nbsp;&nbsp;&nbsp;密码修改成功!</sapn>');
+            // var old_pass = input_password.eq(0).val(),
+            //     new_pass = input_password.eq(1).val(),
+            //     conf_pass =input_password.eq(2).val();
+            // console.log(old_pass);
+             // {dataType:'changePass',old_pass:old_pass,new_pass:new_pass,conf_pass:conf_pass}
+            $.post("{:U('Home/Index/returnData')}",'dataType=changePass&' + $('.safe-info').serialize() ,function(res){
+                if(res == true){
+                    $('.safe-btn').after('<span style="color:green;" class="add" >&nbsp;&nbsp;&nbsp;密码修改成功!</sapn>');
+                }else{
+                    $('.safe-btn').after('<span class="add" >&nbsp;&nbsp;&nbsp;密码修改失败!</sapn>');
+                }
             })
         }
     })
