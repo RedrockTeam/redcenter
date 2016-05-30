@@ -117,7 +117,7 @@ class UserInfo {
 //            $all_scores['byMonth']['total'] += $all_scores['byMonth']["$key"];
 //        }   //,'create_time'=>array('BETWEEN',"$month_start,$month_end")
         foreach($projects as $key => $value) {
-            $one_score = M('user_log')->where(array('user_id' => $this->info['id'], 'project' => "$value" ))->sum('score');
+            $one_score = M('user_log')->where(array('user_id' => $this->info['id'], 'project' => "$value",'create_time'=>array('BETWEEN',"$month_start,$month_end") ))->sum('score');
             $all_scores['byMonth']["$key"]  = $one_score ? $one_score : 0;
             $all_scores['byMonth']['total'] += $all_scores['byMonth']["$key"];
         }
@@ -137,8 +137,8 @@ class UserInfo {
 //
 //        }
         foreach($projects as $key => $value) {
-            $one_score = M('user_log')->field('SUM(score) as total')->where(array('user_id' => $this->info['id'], 'project' => "$value", 'create_time'=>array('BETWEEN',"$year_start,$year_end")))->find();
-            $all_scores['byYear']["$key"]  = $one_score['total'] ? $one_score['total'] : 0;
+            $one_score = M('user_log')->where(array('user_id' => $this->info['id'], 'project' => "$value", 'create_time'=>array('BETWEEN',"$year_start,$year_end")))->sum('score');
+            $all_scores['byYear']["$key"]  = $one_score ? $one_score : 0;
             $all_scores['byYear']['total'] += $all_scores['byYear']["$key"];
         }
 
