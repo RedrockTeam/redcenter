@@ -69,8 +69,8 @@ class UserInfo {
             $all_scores['byMonth']["$key"] = 0;
             foreach ($logs as $once) {
                 $all_scores['byMonth']["$key"] += $once['score'];
-                if($all_scores['byMonth']["$key"] <0 )    $all_scores['byMonth']["$key"] = 0;
             }
+            $all_scores['byMonth']["$key"] = $all_scores['byMonth']["$key"]>0 ? $all_scores['byMonth']["$key"] : 0;
             $all_scores['byMonth']['total'] += $all_scores['byMonth']["$key"]; 
         }
     //年度积分
@@ -81,8 +81,8 @@ class UserInfo {
             $all_scores['byYear']["$key"] = 0;
             foreach ($logs as $once) {
                 $all_scores['byYear']["$key"] += $once['score'];
-                if($all_scores['byYear']["$key"] <0 )     $all_scores['byYear']["$key"] = 0;
             }
+            $all_scores['byYear']["$key"] = $all_scores['byYear']["$key"]>0 ? $all_scores['byYear']["$key"] : 0;
             $all_scores['byYear']['total'] += $all_scores['byYear']["$key"];
 
         }
@@ -118,7 +118,7 @@ class UserInfo {
 //        }   //array('user_id' => $this->info['id'], 'project' => "$value",'create_time'=>array('BETWEEN',"$month_start,$month_end") )
         foreach($projects as $key => $value) {
             $one_score = M('user_log')->where(array('user_id' => $this->info['id'], 'project' => "$value",'create_time'=>array('BETWEEN',"$month_start,$month_end") ))->sum('score');
-            $all_scores['byMonth']["$key"]  = $one_score ? $one_score : 0;
+            $all_scores['byMonth']["$key"]  = $one_score>0 ? $one_score : 0;
             $all_scores['byMonth']['total'] += $all_scores['byMonth']["$key"];
         }
 
@@ -139,7 +139,7 @@ class UserInfo {
         //array('user_id' => $this->info['id'], 'project' => "$value", 'create_time'=>array('BETWEEN',"$year_start,$year_end"))
         foreach($projects as $key => $value) {
             $one_score = M('user_log')->where(array('user_id' => $this->info['id'], 'project' => "$value", 'create_time'=>array('BETWEEN',"$year_start,$year_end")))->sum('score');
-            $all_scores['byYear']["$key"]  = $one_score ? $one_score : 0;
+            $all_scores['byYear']["$key"]  = $one_score>0 ? $one_score : 0;
             $all_scores['byYear']['total'] += $all_scores['byYear']["$key"];
         }
 
