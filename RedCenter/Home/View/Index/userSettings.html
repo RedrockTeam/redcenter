@@ -95,7 +95,8 @@
                 </a> 
             </ul>
             <div class="set-info set-show">
-                <form class="basic-info" name="changeInfo" >
+
+                <form class="basic-info" name="changeInfo" enctype="multipart/form-data" >
                    <table>
                         <tr class="basic-face">
                            <td class="basic-face-bar">头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像</td>
@@ -104,7 +105,6 @@
                                 <img src="__PUBLIC__/img/basic-face.png" alt="basic-face-pic" >
                                 <label class="basic-face-hover" for="upload-image">点击上传</label>>
                                 <input style="display: none" type="file" id="upload-image"  name="photo" ></input>
-                            </div>
                            </td>
                         </tr>
                         <tr class="basic">
@@ -126,8 +126,9 @@
                             </td>
                         </tr>
                    </table>
+                    <input type="submit" class="set-btn basic-btn" value="确定修改">
                 </form>
-                <button class="set-btn basic-btn">确定修改</button>
+                <!--<button class="set-btn basic-btn">确定修改</button>-->
             </div>
             <div class="set-info ">
                 <form class="safe-info " name="changePass">
@@ -209,8 +210,7 @@ $(function(){
                 case "png" :
                 case "jpeg" : {
                     canCrop = true ;
-                    break ;
-                     
+                    break ;    
                 }default : {
                     face = "__PUBLIC__/img/error.png" ;
                     $('.face').after('<span class="add" >&nbsp;&nbsp;&nbsp;请上传jpg,png,gif,jpeg格式的图片!</sapn>');
@@ -220,50 +220,75 @@ $(function(){
         }
     })
 
-   //修改基本资料
-   $('.basic-btn').click(function(){
-        $('.set-info span').remove();
-        if( input_massage.eq(0).val()==' '){
-        $(this).after('<span class ="add" >&nbsp;&nbsp;&nbsp;昵称不能为空!</sapn>');
-        return false;
-       }else{
-            var name = input_massage.eq(0).val(),
-                shop = input_massage.eq(1).val(),
-                sign = input_massage.eq(2).val();
-                // window.URL = window.URL || window.webkitURL ; 
-                // if(window.URL){
-                //     var img = document.getElementById("upload-image") ,
-                //         face = window.URL.createObjectURL(img.files[0]) ;
-                // }
-             //    var face = new FormData();
-             //    $.each($('#upload-image')[0].files, function(i, file) {
-             //     face.append('upload-image', '#upload-image')[0].files);
-             // });
-                // myface = 
-            $.post("{:U('Home/Index/returnData')}",  { dataType:'changeInfo', nickname:name,myshop:shop,mysign:sign}, function(res){
-                if(res==true){
-                    $('.basic-btn').after('<span style ="color:green;" class="add" >&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
-                }else{
-                    $('.basic-btn').after('<span class="add" >&nbsp;&nbsp;&nbsp;提交失败!</sapn>')
-                }
-            
-        })
-            // var data = new FormData();
-            // $.ajax({=
-            //             url:"{:U('Home/Index/returnData')}",
-            //             type:'POST',
-            //             data:{dataType:'changeInfo'},
-            //             cache: false,
-            //             contentType: false,
-            //             processData: false,
-            //             success:function(data){
-            //             // $(".face img").attr("src",face);  
-            //             console.log(data);
-            //             }
-            //             })
 
-      }      
-   })
+   //修改基本资料
+   // $('.basic-btn').click(function(){
+   //      $('.set-info span').remove();
+   //      if( input_massage.eq(0).val()==' '){
+   //      $(this).after('<span class ="add" >&nbsp;&nbsp;&nbsp;昵称不能为空!</sapn>');
+   //      return false;
+   //     }else{
+   //          var name = input_massage.eq(0).val(),
+   //              shop = input_massage.eq(1).val(),
+   //              sign = input_massage.eq(2).val();
+   //              // window.URL = window.URL || window.webkitURL ; 
+   //              // if(window.URL){
+   //              //     var img = document.getElementById("upload-image") ,
+   //              //         face = window.URL.createObjectURL(img.files[0]) ;
+   //              // }
+   //           //    var face = new FormData();
+   //           //    $.each($('#upload-image')[0].files, function(i, file) {
+   //           //     face.append('upload-image', '#upload-image')[0].files);
+   //           // });
+   //              // myface = 
+   //          $.post("{:U('Home/Index/returnData')}",  { dataType:'changeInfo', nickname:name,myshop:shop,mysign:sign}, function(res){
+   //              if(res==true){
+   //                  $('.basic-btn').after('<span style ="color:green;" class="add" >&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
+   //              }else{
+   //                  $('.basic-btn').after('<span class="add" >&nbsp;&nbsp;&nbsp;提交失败!</sapn>')
+   //              }
+            
+   //      })
+   //          // var data = new FormData();
+   //          // $.ajax({=
+   //          //             url:"{:U('Home/Index/returnData')}",
+   //          //             type:'POST',
+   //          //             data:{dataType:'changeInfo'},
+   //          //             cache: false,
+   //          //             contentType: false,
+   //          //             processData: false,
+   //          //             success:function(data){
+   //          //             // $(".face img").attr("src",face);  
+   //          //             console.log(data);
+   //          //             }
+   //          //             })
+
+   //    }      
+   // })
+
+    //长传头像传文件,要multipart/form-data
+    //采用form默认的提交行为
+    var haspost = 0;
+    $('.basic-btn').click(function(){
+        if(haspost == 0){
+            haspost = 1;
+            $('.basic-btn').after('<span style ="color:green;" class="add" >&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
+        }
+    })
+   //修改基本资料
+//   $('.basic-btn').click(function(){
+//        $('.set-info span').remove();
+//        if( input_massage.eq(0).val()==' '){
+//        $(this).after('<span class ="add" >&nbsp;&nbsp;&nbsp;昵称不能为空!</sapn>');
+//        return false;
+//       }else{
+//
+//            $.post("{:U('Home/Index/returnData')}", 'dataType=changeInfo&' + $('.basic-info').serialize(), function(res){
+//            $('.basic-btn').after('<span style ="color:green;" class="add" >&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');
+//        })
+//      }
+//   })
+
 
    // //验证密码是否正确
    //  input_password.eq(0).blur(function(){

@@ -13,7 +13,7 @@ class LinkModel extends Model{
     {
         $where['stu_num'] = session('stunum');
         $res = M('user_member')->where($where)->find();
-        $link_array = json_decode($res['link_id']);
+        $link_array = array_unique(json_decode($res['link_id']));
         $notIN['id'] = array('NOT IN',$link_array);
         $in['id'] = array('IN',$link_array);
         if(!$link_array) {

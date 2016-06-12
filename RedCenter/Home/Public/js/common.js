@@ -5,7 +5,6 @@
 /**
  * add addClass removeClass
  * 冯秋明
- * 
  */
 function addEven(target,event_name,handler,useCapture){
     useCapture = useCapture||false;
@@ -39,33 +38,46 @@ function removeClass(ele, className) {
     var selectImg = document.querySelectorAll('.content-li-img'),
         imgLen = selectImg.length,
         list = document.querySelector('.content-left');
-    for(var i = 0;i < imgLen;i++)selectImg[i].style.backgroundPositionX = 24*i+'px';
     
-    addEven(list,'click',function(e){
-        e = e||window.event;
-        var target = e.target || e.srcElement;
-        if(target.nodeName.toLowerCase() === 'ul')return;
-        if(target.nodeName.toLowerCase() !== 'li')target = target.parentElement;
-        var checked = document.querySelector('.content-li-clicked'),
-            img = target.querySelector('.content-li-img');
-        if(checked){
-            checked.querySelector('.content-li-img').style.backgroundPositionY = 0;
-            checked.querySelector('.content-li-bar').style.width = 0;
-            checked.className = "content-left-li";
+    for(var i = 0;i < imgLen;i++){
+        selectImg[i].style.backgroundPositionX = 24*i+'px';
+    }
+    
+
+        var navList = document.querySelector('.content-left').querySelectorAll('a');
+
+        for(var i = 0, len = navList.length; i < len; i++) {
+            navList[i].addEventListener('mouseover', function() {
+                this.className = 'nav-check';
+            });
+            navList[i].addEventListener('mouseout', function() {
+                this.className = '';
+            });
+
         }
-        target.className = "content-left-li content-li-clicked";
-        img.style.backgroundPositionY = 24+'px';
-        target.querySelector('.content-li-bar').style.width = '4px';
-    });
+
+
+    var onNav = ['index','myProduct', 'dataCenter', 'helpCenter', 'prizes'];
+
+    var pathname = location.pathname;
+
+    for(var i = onNav.length-1; i >= 0; i --) {
+        if((new RegExp(onNav[i])).test(pathname)) {
+            document.querySelector('.content-left').querySelectorAll('a')[i].id = 'now-link';
+            break;
+        }
+    }
+
 })();
 
-$.post("/redcenter/index.php/Home/Index/returnData.html", 'dataType=getSelfInfo',function(res) {
+$.post("/RedCenter/index.php/Home/Index/returnData.html", 'dataType=getSelfInfo',function(res) {
     var res = res;
-    $('#user-header').attr('src', '/redcenter/RedCenter/Home/Public/' +res.headImage);
+    $('#user-header').attr('src', '/RedCenter/RedCenter/Home/Public/' +res.headImage);
     $('#user-name').text(res.nickname);
 });
 
-$.post("/redcenter/index.php/Home/Index/returnData.html", 'dataType=newNewsNum',function(res) {
-    console.log(res);
+$.post("/RedCenter/index.php/Home/Index/returnData.html", 'dataType=newNewsNum',function(res) {
     $('#user-message').text('您有'+ res + '条新的消息');
-})
+});
+
+

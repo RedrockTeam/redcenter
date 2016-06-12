@@ -95,6 +95,7 @@
             <ol class="contain-pageG">
             </ol>
         </div>
+        <div class="content-right"></div>
         <div id="footer">
             <p>
                 <a href="http://hongyan.cqupt.edu.cn/" class="link">关于红岩网校</a> |
@@ -112,6 +113,20 @@
 <script src="__PUBLIC__/js/underscore.min.js"></script>
 <script src="__PUBLIC__/js/Backbone-min.js"></script>
 
+<script type="text/template" id="look-helper">
+    <h2 class="content-title">
+        <div class="content-title-bar"></div>
+        我的帮助
+    </h2>
+    <div class="content-contain">
+        <h3 class="contain-title"><%= title %>
+            <span><%= time %></span>
+            <span style="display: none" class="contain-title-from">发布人：loading</span>
+        </h3>
+        <%= content %>
+    </div>
+</script>
+
 <script type="text/template" id="sub-page">
     <a href="<%= src %>" id="user-new-next-page">
         <li class="contain-page">
@@ -122,9 +137,10 @@
 <script type="text/template" id="helper-item">
   <li class="help-list">
       <a href="##">
-          <h3 class="helper-title" title="我是标题标题是我我是标题标题是我"><span class="helper-product-name">[<%= pro_name %>]</span><%= title %></h3>
+          <h3 class="helper-title" title="我是标题标题是我我是标题标题是我"><span class="helper-product-name">[<%= pro_name %>]</span>
+          <span class="is-a-title"><%= title %></span></h3>
           <div class="helper-content">
-              <p ><%= content %></p>
+              <p><%= content %></p>
           </div>
       </a>
   </li>
@@ -166,7 +182,8 @@ var subPageRouter = Backbone.Router.extend({
     pageId: 1,
     toPage: function(index) {
         this.pageId = index;
-        console.log('pageId',this.pageId);
+        $('#helper-content').show();
+        $('.content-right').hide();
         $.post('{:U("Home/Index/returnData")}', "dataType=getHelp"+'&page='+this.pageId, function(res) {
             renderHelpers(res.article);
         });
@@ -192,6 +209,18 @@ $.post('{:U("Home/Index/returnData")}', "dataType=getHelp&page=1", function(res)
     var  pageRouter = new subPageRouter(page_num);
     Backbone.history.start();
     pageRouter.navigate("#/page/1", {trigger: true, replace: true}); 
+});
+
+
+var renderHelperPage = _.template($('#look-helper').html());
+
+
+$('#helper-list-wrap').delegate('.help-list', 'click', function() {
+    var title = $(this).find('.is-a-title').html();
+    var content = $(this).find('.helper-content').html();
+    $('#helper-content').hide();
+    $('.content-right').show();
+    $('.content-right').html(renderHelperPage({title: title, content: content,time: undefined}));
 });
 
 </script>

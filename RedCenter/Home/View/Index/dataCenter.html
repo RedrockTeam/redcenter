@@ -89,7 +89,7 @@
                 <ul>
                     <li>
                         <span class="data-describe">最后登录会员中心时间</span>
-                        <span class="data-data">2015/02/03</span>
+                        <span class="data-data">...</span>
                     </li>
                     <li>
                         <span class="data-describe">登录会员中心次数</span>
@@ -247,7 +247,11 @@
         $.post('{:U("Home/Index/returnData")}', 'dataType=getSelfInfo', function(res) {
             var last_login_time = new Date((~~res.score_update_time)*1000);
             var timeArr = last_login_time.toString().split(' ');
-            $('.data-data').eq(0).html(timeArr[3] + '/' + timeArr[1] + '/' + timeArr[2]);
+            var time = timeArr[3] + '/' + timeArr[1] + '/' + timeArr[2]
+            if(~~res.score_update_time===0) {
+                time = '无';
+            }
+            $('.data-data').eq(0).html(time);
         });
     }());
     // 登录产品次数那栏

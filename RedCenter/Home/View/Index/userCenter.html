@@ -4,11 +4,53 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="__PUBLIC__/css/common.css"/>
     <link rel="stylesheet" href="__PUBLIC__/css/userCenter.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/userNews.css">
     <title>会员中心</title>
     <style type="text/css">
         .new-text p{
             margin: 0;
         }
+        #msg-content-wrap {
+            width: 745px;
+            padding: 5px 0;
+        }
+        .content-contain p{
+            margin: 0;
+            font-size: 12px;
+            font-family: SimSun, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+            color: #666666;
+            text-indent: 2em;
+            line-height: 21px;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+        .new-text img {
+            display: none;
+        }
+        .nav-check .content-left-li {
+            font-size: 18px;
+            background-color: #2d3455;
+            color: #3bd1b9;
+        }
+        .nav-check .content-li-bar {
+            width: 4px;
+        }
+        .nav-check .content-li-img {
+            background-position-y: 24px; 
+        }
+        
+        #now-link .content-left-li {
+            font-size: 18px;
+            background-color: #2d3455;
+            color: #3bd1b9;
+        }
+        #now-link .content-li-bar {
+            width: 4px;
+        }
+        #now-link .content-li-img {
+            background-position-y: 24px; 
+        }
+
     </style>
 </head>
 <body>
@@ -122,40 +164,15 @@
             <div class="content-title-bar"></div>
             我的消息
         </h2>
-        <div class="content-contain">
+        <div  id="msg-content-wrap" class="content-contain">
             <ul class="contain-newG">
-                <!-- <a href="#">
-                    <li class="contain-new">
-                        <img src="__PUBLIC__/img/helper.png" alt="图标">
-                        <div class="contain-new-detail">
-                            <h3>BTdown铺我是标题
-                                <span class="new-unread" id="unread-label">未读</span>
-                            </h3>
-                            <span class="new-time">昨天22:19<img src="__PUBLIC__/img/time.png" alt="时间"></span>
-                            <p class="new-text">我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容</p>
-                        </div>
-                    </li>
-                </a> -->
             </ul>
             <ol class="contain-pageG">
-<!--                 <a href="#">
-                    <li class="contain-page">
-                        <img src="__PUBLIC__/img/front.png" alt="上一页">
-                    </li>
-                </a>
-
-
-                <a class="page-sub" href="#">
-                    <li class="contain-page">1</li>
-                </a>
-
-                <a href="#" id="user-new-next-page">
-                    <li class="contain-page">
-                        <img src="__PUBLIC__/img/next.png" alt="下一页">
-                    </li>
-                </a> -->
             </ol>
         </div>
+    </div>
+    <div class="content-right" style="display: none">
+        
     </div>
     <div id="footer">
         <p>
@@ -170,14 +187,27 @@
 </div>
 </body>
 
+<script id="look-msg" type="text/template" >
+    <h2 class="content-title">
+        <div class="content-title-bar"></div>
+        我的消息
+    </h2>
+    <div class="content-contain">
+        <h3 class="contain-title"><%= title %>
+            <span><%= time %></span>
+            <span style="display: none" class="contain-title-from">发布人：loading</span>
+        </h3>
+        <%= content %>
+    </div>
+</script>
 
 <script type="text/template" id="msgTemplate">
-    <a href="##">
+    <a class="msg-item" href="##">
         <li class="contain-new">
-            <img class="pro_img" src="/redcenter/RedCenter/Home/Public/img/<%= pro_id %>.png" alt="图标">
+            <img class="pro_img" src="/RedCenter/RedCenter/Home/Public/img/<%= pro_id %>.png" alt="图标">
             <div class="contain-new-detail">
                 <h3>[<%= pro_name %>]<%= title %><span class="new-unread" id="unread-label" style="display:none">未读</span></h3>
-                <span class="new-time"><%= time %><img src="/redcenter/RedCenter/Home/Public/img/time.png" alt="时间"></span>
+                <span class="new-time"><%= time %><img src="/RedCenter/RedCenter/Home/Public/img/time.png" alt="时间"></span>
                 <p class="new-text"><%= content %></p>
             </div>
         </li>
@@ -207,12 +237,14 @@
         }); 
     }());
 
+;(function(){
 
 
 // 渲染单条消息,返回dom片段
-function renderOneArticle(item) {
+function renderOneArticle(item, index) {
     var content = (item.content).replace(/&lt;/g, '<').replace(/&gt;/g,'>');
     var $msg = $($('#msgTemplate').html())[0];
+    $msg.href = '#/msg/'+index;
     $msg.querySelector('.pro_img').setAttribute('src', '__PUBLIC__/img/'+item.pro_id+'.png');
     $msg.querySelector('h3').innerHTML = '[' + item.pro_name + ']' + item.title +'<span class="new-unread" id="unread-label" style="display:none">未读</span>';
     $msg.querySelector('.new-time').innerHTML = item.time + '<img src="__PUBLIC__/img/time.png" alt="时间">';
@@ -232,6 +264,7 @@ var renderSubPage = _.template( '<a href="<%= src %>">'+
 
 
 
+// 路由 分页
 var PageRouter = Backbone.Router.extend({
         routes: {
             'page/:id': 'toPage',
@@ -250,6 +283,8 @@ var PageRouter = Backbone.Router.extend({
         },
         pageId: 1,
         toPage: function(index) {
+            $('.content-right').eq(1).hide();
+            $('.content-right').eq(0).show();
             this.pageId = index;
             $.post('{:U("Home/Index/returnData")}', 'dataType=getNew&page='+this.pageId, function(res) {
                 if(res.article === null) return;
@@ -264,20 +299,15 @@ var PageRouter = Backbone.Router.extend({
             this.pageId = -- this.pageId < 1 ? ++this.pageId: this.pageId;
             this.navigate("#/page/"+this.pageId, {trigger: true});
         }
-   });
-
-
-
-
-function renderNewPage(articles) {
-    $('.contain-newG').html('');
-    articles.forEach(function(item, index) {
-        var $msg = renderOneArticle(item);
-        $('.contain-newG').append($msg);
     });
-}
 
-
+    function renderNewPage(articles) {
+        $('.contain-newG').html('');
+        articles.forEach(function(item, index) {
+            var $msg = renderOneArticle(item,index);
+            $('.contain-newG').append($msg);
+        });
+    }
 
     // 获取文章
     $.post('{:U("Home/Index/returnData")}', 'dataType=getNew', function(res) {
@@ -287,9 +317,24 @@ function renderNewPage(articles) {
         }
         renderNewPage(res.article);
         var  pageRouter = new PageRouter(page_num);
+
         Backbone.history.start();
         pageRouter.navigate("#/page/1", {trigger: true, replace: true});
 
     });
+}());
+var template = $('#look-msg').html();
+renderMsgLook = _.template(template);
+
+$('.contain-newG').delegate('.msg-item', 'click', function(e) {
+    var title = $(this).find('h3').html();
+    var content = $(this).find('.new-text').html();
+    var time = $(this).find('.new-time').html();
+    $('.content-right').eq(0).hide();
+    $('.content-right').eq(1).show();
+    $('.content-right').eq(1).html(renderMsgLook({title: title, content: content, time: time}));
+
+});
+
 </script>
 </html>
