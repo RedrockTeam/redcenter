@@ -29,7 +29,7 @@ class UserInfo {
 
     public function getSelfInfo(){
 //      $this->info['level'] = $this->getLevel($this->info['experience']);
-        $this->info['last_time']= date('Y/m/d',$this->info['last_login_time']);
+        $this->info['last_time']= date('Y/m/d',(int)$this->info['last_login_time'] );
         $this->info['headImage'] = $this->getHeadImg();
         unset($this->info['stu_idcard']);
         unset($this->info['password']);
@@ -69,8 +69,8 @@ class UserInfo {
             $all_scores['byMonth']["$key"] = 0;
             foreach ($logs as $once) {
                 $all_scores['byMonth']["$key"] += $once['score'];
-                if($all_scores['byMonth']["$key"] <0 )    $all_scores['byMonth']["$key"] = 0;
             }
+            $all_scores['byMonth']["$key"] = $all_scores['byMonth']["$key"]>0 ? $all_scores['byMonth']["$key"] : 0;
             $all_scores['byMonth']['total'] += $all_scores['byMonth']["$key"]; 
         }
     //年度积分
@@ -81,8 +81,8 @@ class UserInfo {
             $all_scores['byYear']["$key"] = 0;
             foreach ($logs as $once) {
                 $all_scores['byYear']["$key"] += $once['score'];
-                if($all_scores['byYear']["$key"] <0 )     $all_scores['byYear']["$key"] = 0;
             }
+            $all_scores['byYear']["$key"] = $all_scores['byYear']["$key"]>0 ? $all_scores['byYear']["$key"] : 0;
             $all_scores['byYear']['total'] += $all_scores['byYear']["$key"];
 
         }
@@ -90,12 +90,17 @@ class UserInfo {
          return $all_scores;
     }
 
-    public function socre_test(){
-        $project_token = M('project_token')->select();
-        $projects = array();
-        foreach ($project_token as $value) {
-            $projects[$value['project_id']] = $value['project'];
+    public function socre_test($all=false){
+        if($all == true){
+            $project_token = M('project_token')->select();
+            $projects = array();
+            foreach ($project_token as $value) {
+                $projects[$value['project_id']] = $value['project'];
+            }
+        }else {     //目前就只有这一个项目可以积分
+            $projects['cyxbs'] = "微信";
         }
+
         $thisMonth = date('m');
         $thisYear = date('Y');
         $month_days = date('t',strtotime($thisYear.'-'.$thisMonth.'-01'));    //本月的最后一天是几号
@@ -107,38 +112,18 @@ class UserInfo {
         //月度积分
         $time['create_time'] = array('BETWEEN',"$month_start,$month_end");
         $all_scores['byMonth']['total'] = 0;
-//        foreach ($projects as $key => $value) {
-//            $logs = M('user_log')->where(array('user_id' => $this->info['id'], 'project' => "$value"))->where($time)->select();
-//            $all_scores['byMonth']["$key"] = 0;
-//            foreach ($logs as $once) {
-//                $all_scores['byMonth']["$key"] += $once['score'];
-//                if($all_scores['byMonth']["$key"] <0 )    $all_scores['byMonth']["$key"] = 0;
-//            }
-//            $all_scores['byMonth']['total'] += $all_scores['byMonth']["$key"];
-//        }   //,'create_time'=>array('BETWEEN',"$month_start,$month_end")
         foreach($projects as $key => $value) {
-            $one_score = M('user_log')->where(array('user_id' => $this->info['id'], 'project' => "$value",'create_time'=>array('BETWEEN',"$month_start,$month_end") ))->sum('score');
-            $all_scores['byMonth']["$key"]  = $one_score ? $one_score : 0;
+            $one_score = M('user_log')->where(array('user_id' => $this->info['id'], 'project' => "$value",'create_time'=>array('BETWEEN',"$month_start,$month_end")))->sum('score');
+            $all_scores['byMonth']["$key"]  = $one_score > 0 ? $one_score : 0;
             $all_scores['byMonth']['total'] += $all_scores['byMonth']["$key"];
         }
-
 
         //年度积分
         $time['create_time'] = array('BETWEEN',"$year_start,$year_end");
         $all_scores['byYear']['total'] = 0;
-//        foreach ($projects as $key => $value) {
-//            $logs = M('user_log')->where(array('user_id' => $this->info['id'], 'project' => "$value"))->where($time)->select();
-//            $all_scores['byYear']["$key"] = 0;
-//            foreach ($logs as $once) {
-//                $all_scores['byYear']["$key"] += $once['score'];
-//                if($all_scores['byYear']["$key"] <0 )     $all_scores['byYear']["$key"] = 0;
-//            }
-//            $all_scores['byYear']['total'] += $all_scores['byYear']["$key"];
-//
-//        }
         foreach($projects as $key => $value) {
             $one_score = M('user_log')->where(array('user_id' => $this->info['id'], 'project' => "$value", 'create_time'=>array('BETWEEN',"$year_start,$year_end")))->sum('score');
-            $all_scores['byYear']["$key"]  = $one_score ? $one_score : 0;
+            $all_scores['byYear']["$key"]  = $one_score > 0 ? $one_score : 0;
             $all_scores['byYear']['total'] += $all_scores['byYear']["$key"];
         }
 

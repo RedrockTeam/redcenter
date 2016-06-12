@@ -144,6 +144,9 @@ class HandleController extends Controller {
             $save['score_month'] = $this->userinfo['score_month']+$act['once'] < 0 ? 0 : $this->userinfo['score_month']+$act['once'];
             $save['score_update_time'] = $now;//最后1次更新积分的时间
             $save['id'] = $this->userinfo['id'];
+            $save['weixin_visit_num'] = $this->userinfo['weixin_visit_num'] + 1;
+            $save['last_login_time'] = time();
+            $save['last_login_ip'] = $this->getIp();
             M('user_member')->save($save);
             unset($save);
             //user_member更新,分数改变后，月排名和年排名可能会变化 ，通过userinfo类的构造方法跟新排名
@@ -217,5 +220,18 @@ class HandleController extends Controller {
             }
         }
         return $this->ajaxReturn($raw);
+    }
+
+    private function getIp(){
+        if (getenv("HTTP_CLIENT_IP"))
+            $ip = getenv("HTTP_CLIENT_IP");
+	    else if(getenv("HTTP_X_FORWARDED_FOR"))
+            $ip = getenv("HTTP_X_FORWARDED_FOR");
+        else if(getenv("REMOTE_ADDR"))
+            $ip = getenv("REMOTE_ADDR");
+	    else
+	        $ip = "";
+
+	    return $ip;
     }
 }
