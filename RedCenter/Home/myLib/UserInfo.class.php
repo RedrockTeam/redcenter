@@ -136,8 +136,9 @@ class UserInfo {
 
     //在首页展示排名时,此次排名与上次的可能发生变化.应先通过比较分数获取新排名,更新到数据库
     public function updateRank(){
-        $year_rank = M('user_member')->where(("score>".$this->info['score']) or("score=".$this->info['score'] ."and score_update_time<=".$this->info['score_update_time']))->count("id");
+        $year_rank = M('user_member')->where("(score>".$this->info['score'] .") or (score=".$this->info['score'] ." and score_update_time<=".$this->info['score_update_time'] .")" )->count("id");
         $save['year_rank'] = $this->info['year_rank'] = $year_rank;
+
 /*
         $M = new \Think\Model(); $res = $M->query("select stu_num from user_member where score >=".$this->info['score']." ORDER BY score DESC ,score_update_time ASC ");
         $i = 1;
@@ -150,8 +151,8 @@ class UserInfo {
         $save['year_rank'] = $i;
 */
 
-        $month_rank = M('user_member')->where(("score_month>".$this->info['score_month']) or("score_month=".$this->info['score_month'] ."and score_update_time<=".$this->info['score_update_time']))->count("id");
-        $save['month_rank'] = $this->info['month_rank']=$month_rank;
+        $month_rank = M('user_member')->where("(score_month>".$this->info['score_month'] .") or (score_month=".$this->info['score_month'] ." and score_update_time<=".$this->info['score_update_time'] .")" )->count("id");
+        $save['month_rank'] = $this->info['month_rank'] = $month_rank;
 /*
          $M = new \Think\Model(); $res = $M->query("select stu_num from user_member where score_month >=".$this->info['score_month']." ORDER BY score_month DESC ,score_update_time ASC ");
         $i = 1;

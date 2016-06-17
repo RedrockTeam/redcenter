@@ -25,8 +25,8 @@ class PhoneController extends Controller {
             $data['weixin_visit_num'] = $info['weixin_visit_num']+1;
             M('user_member')->save($data);
         }
-
-       /* if(date('Y/m',$info['score_update_time']) != date('Y/m')){  //该月第一次使用
+        
+        /* if(date('Y/m',$info['score_update_time']) != date('Y/m')){  //该月第一次使用
             $this->firstUse($stunum);
             $userInfo = new UserInfo($stunum);
             $info = $userInfo->getSelfInfo();
