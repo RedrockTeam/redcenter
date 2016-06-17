@@ -23,16 +23,15 @@ class UserInfo {
         $this->info = M('user_member')->where(array('stu_num' => $this->stunum))->find();
         $this->uid = $this->info['id'];
         $this->updateRank();
-        $this->info = M('user_member')->where(array('stu_num' => $this->stunum))->find();
+//        $this->info = M('user_member')->where(array('stu_num' => $this->stunum))->find();
         $this->info['level'] = $this->getLevel();
-    }
-
-    public function getSelfInfo(){
-//      $this->info['level'] = $this->getLevel($this->info['experience']);
         $this->info['last_time']= date('Y/m/d',(int)$this->info['last_login_time'] );
         $this->info['headImage'] = $this->getHeadImg();
         unset($this->info['stu_idcard']);
         unset($this->info['password']);
+    }
+
+    public function getSelfInfo(){
         return $this->info;
     }
 
@@ -45,6 +44,8 @@ class UserInfo {
         );
     }
 
+
+/*
     //获取积分
     public function getAllScore(){
         //$projects = array('weixin'=>'微信','BTdown'=>'BTdown铺','market'=>'拾货','jsns'=>'锦瑟南山','zscy'=>'掌上重邮');
@@ -130,10 +131,14 @@ class UserInfo {
         return $all_scores;
     }
 
+*/
+
+
     //在首页展示排名时,此次排名与上次的可能发生变化.应先通过比较分数获取新排名,更新到数据库
     public function updateRank(){
-        //$where['score'] = array('EGT',$this->info['score']);
-        //$res = M('user_member')->where($where)->order('score desc,score_update_time ')->select();
+        $year_rank = M('user_member')->where(("score>".$this->info['score']) or("score=".$this->info['score'] ."and score_update_time<=".$this->info['score_update_time']))->count("id");
+        $save['year_rank'] = $this->info['year_rank'] = $year_rank;
+/*
         $M = new \Think\Model(); $res = $M->query("select stu_num from user_member where score >=".$this->info['score']." ORDER BY score DESC ,score_update_time ASC ");
         $i = 1;
         foreach ($res as $value) {
@@ -143,10 +148,12 @@ class UserInfo {
                 break;
         }
         $save['year_rank'] = $i;
+*/
 
-        //$where['score_month'] = array('EGT',$this->info['score_month']);
-        //$res = M('user_member')->where($where)->order('score_month desc,score_update_time ')->select();
-        $M = new \Think\Model(); $res = $M->query("select stu_num from user_member where score_month >=".$this->info['score_month']." ORDER BY score_month DESC ,score_update_time ASC ");
+        $month_rank = M('user_member')->where(("score_month>".$this->info['score_month']) or("score_month=".$this->info['score_month'] ."and score_update_time<=".$this->info['score_update_time']))->count("id");
+        $save['month_rank'] = $this->info['month_rank']=$month_rank;
+/*
+         $M = new \Think\Model(); $res = $M->query("select stu_num from user_member where score_month >=".$this->info['score_month']." ORDER BY score_month DESC ,score_update_time ASC ");
         $i = 1;
         //echo "本人学号:".$this->stunum."foreach前排名:".$this->info['month_rank']."\n";
         foreach ($res as $value) {
@@ -158,6 +165,7 @@ class UserInfo {
             //echo "执行一次后:".$i."\n";
         }
         $save['month_rank'] = $i;
+*/
         $save['id'] = $this->uid;
         M('user_member')->save($save);
         //echo "最后排名:".$i."=".$save['month_rank'];
@@ -165,7 +173,7 @@ class UserInfo {
 
     //获取该年排名
     public function getSelfRank(){
-        $where['score'] = array('EGT',$this->info['score']);
+        /*$where['score'] = array('EGT',$this->info['score']);
         $res = M('user_member')->where($where)->order('score desc,score_update_time ')->select();
         $i = 1;
         foreach ($res as $value) {
@@ -174,12 +182,13 @@ class UserInfo {
             else
                 break;
         }
-        return $i;   
+        return $i;   */
+        return $this->info['year_rank'];
     }
 
     //获取该月排名
     public function getSelfRank_month(){
-        $where['score_month'] = array('EGT',$this->info['score_month']);
+        /*$where['score_month'] = array('EGT',$this->info['score_month']);
         $res = M('user_member')->where($where)->order('score_month desc,score_update_time ')->select();
         $i = 1;
         foreach ($res as $value) {
@@ -188,7 +197,8 @@ class UserInfo {
             else
                 break;
         }
-        return $i;   
+        return $i;   */
+        return $this->info['month_rank'];
     }
 
     //获取排名变化
@@ -211,19 +221,19 @@ class UserInfo {
         }else{
             $rankList = M('user_member')->field($need_fields)->where(array('score'=>array('GT',0)))->order('score desc,score_update_time ')->limit($num)->select();
         }
-        $re = array();
-        foreach($rankList as $key => $each){
-            if($each['score'] == 0 || $each['score'] < 0)
-                unset($rankList["$key"]);
-            else{
-                $level = $this->getLevel($each['experience']);
-                $each['level'] = $level;
-                $each['num'] = $key + 1;
-                array_push($re, $each);
-            }
-        }
+//        $re = array();
+//        foreach($rankList as $key => $each){
+//            if($each['score'] == 0 || $each['score'] < 0)
+//                unset($rankList["$key"]);
+//            else{
+//                $level = $this->getLevel($each['experience']);
+//                $each['level'] = $level;
+//                $each['num'] = $key + 1;
+//                array_push($re, $each);
+//            }
+//        }
 
-        return $re;
+        return $rankList;
     }
 
     //获取每月积分排行   本期的新需求
@@ -326,7 +336,6 @@ class UserInfo {
     //获取等级明细
     public function getLevelRule(){
         $levelRule = M('user_level')->select();
-
         return $levelRule;
     }
 
@@ -392,7 +401,7 @@ class UserInfo {
         return $res;
     }
 
-    //在个产品上的登录次数
+    //在各产品上的登录次数
     public function logTime(){
         $ZSCY = M('user_log')->where(array('project'=>'掌上重邮','action'=>'第一次登陆掌上重邮','user_id'=>$this->uid))->count('id');
         $cyxbs = M('user_log')->where(array('project'=>'微信','action'=>'当天第一次使用','user_id'=>$this->uid))->count('id');
