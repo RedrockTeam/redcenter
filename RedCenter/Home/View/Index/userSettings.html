@@ -95,7 +95,7 @@
                 </a> 
             </ul>
             <div class="set-info set-show">
-                <form class="basic-info" name="changeInfo" enctype="multipart/form-data" >
+                <form class="basic-info" name="changeInfo" enctype="multipart/form-data" method="post" action="./returnData.html">
                    <table>
                         <tr class="basic-face">
                            <td class="basic-face-bar">头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像</td>
@@ -126,6 +126,7 @@
                             </td>
                         </tr>
                    </table>
+                    <input type="hidden" name="dataType" value="changeInfo">
                     <input type="submit" class="set-btn basic-btn" value="确定修改">
                 </form>
                 <!--<button class="set-btn basic-btn">确定修改</button>-->

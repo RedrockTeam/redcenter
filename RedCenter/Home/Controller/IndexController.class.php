@@ -116,7 +116,9 @@ class IndexController extends CommonController {
     public function changeInfo(){
         if(IS_POST){
             $where['stu_num'] = session('stunum');
-            $info['headimg'] = $this->savePic();
+            $img_name = $this->savePic();
+            if($img_name)
+                $info['headimg'] = $img_name;
             $info['myshop'] = I('post.myshop');
             $info['mysign'] = I('post.mysign');
             $info['nickname'] = I('post.nickname');
@@ -139,6 +141,8 @@ class IndexController extends CommonController {
         $upload->savePath = '';
         $upload->saveName = 'head_'.session('stunum');                   // 设置上传文件名
         $info = $upload->uploadOne($_FILES['photo']);                    //执行上传方法
+        if($upload->getError() == "没有文件被上传！")
+            return false;                                                //没有头像上传就不修改头像
         if (!$info) {                                                    // 上传错误提示错误信息
                 $this->error($upload->getError());
         } else {                                                         // 上传成功 获取上传文件信息
