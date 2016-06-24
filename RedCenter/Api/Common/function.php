@@ -24,6 +24,7 @@ function isFull($stu_num, $act, $pro){
     if(!$todayLog){
         return false;
     }
+    $todayScore = 0;
     foreach($todayLog as $each){
         foreach($each as $key => $value){
             if($key == 'score') $todayScore += $value;

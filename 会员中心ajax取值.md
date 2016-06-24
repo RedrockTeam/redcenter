@@ -55,8 +55,8 @@ Array
     [last_month_rank] => 0
     [last_year_rank] => 0
     [month_rank] => 6
-    [score_update_time] => 1451487521
     [year_rank] => 257
+    [score_update_time] => 1451487521
     [score] => 109
     [score_month] => 9
     [experience] => 9
