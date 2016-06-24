@@ -96,7 +96,7 @@
             </ul>
             <div class="set-info set-show">
 
-                <form class="basic-info" name="changeInfo" enctype="multipart/form-data" >
+                <form class="basic-info" name="changeInfo" method="post" enctype="multipart/form-data" action="{:U('Home/Index/returnData')}" >
                    <table>
                         <tr class="basic-face">
                            <td class="basic-face-bar">头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像</td>
@@ -131,7 +131,7 @@
                 <!--<button class="set-btn basic-btn">确定修改</button>-->
             </div>
             <div class="set-info ">
-                <form class="safe-info " name="changePass">
+                <form class="safe-info " name="changePass" >
                     <table>
                         <tr>
                             <td class = "safe-title">
@@ -154,8 +154,9 @@
                             </td>
                         </tr>
                     </table>
+                     <!-- <input type="submit" class="set-btn safe-btn" value="确定修改"> -->
                 </form>
-                <div class="div"></div>
+                <!-- <div class="div"></div> -->
                 <button class="set-btn safe-btn">确定修改</button>
             </div>
        </div>
@@ -191,6 +192,7 @@ $(function(){
         face_pic.attr('src','__PUBLIC__/' + res.hedimg);
     })
 
+
     //上传头像
     $('#upload-image').change(function(){
         $('.set-info span').remove();
@@ -201,9 +203,6 @@ $(function(){
             var path = $("#upload-image").val() ;
             var format = path.substring(path.lastIndexOf(".") + 1).toLowerCase() ;
             var canCrop = false ;
-            // var data = new FormData();
-            // data.append('file', $('#upload-image')[0].files[0]);
-            // console.log(data);
             switch(format){
                 case "jpg" :
                 case "gif" :
