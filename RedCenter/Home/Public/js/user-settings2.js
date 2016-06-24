@@ -3,13 +3,10 @@ $(function(){
     var Li = $('.set-title'),
       name = $('.basic-massage input').eq(0),
       input_massage = $('.basic .basic-massage input'),
-      input_password = $('.input-password');
+      input_password = $('.input-password'),
+      haspost = 0;
     
-    // var password_btn = $('.set-info p button');
-
-    // face_photo.click(function(){
-    //   alert(1);
-    // })
+  
     //滑动导航切换
     Li.mouseover(function(){
         var liindex = Li.index(this);
@@ -22,32 +19,48 @@ $(function(){
         $('.set-info').eq(liindex).addClass('set-show');
     })  
 
-    //判断昵称长度
-    
-    name.blur(function(){
-        $('.set-info p').remove();
-        if(name.val().length >6 ){
-            $(this).after('<p class="add" ">昵称不可以超过6个字哦!</p>');
-        }
-    })
+    // //判断昵称长度
+
+    // name.blur(function(){
+    //     $('.set-info p').remove();
+    //     if(name.val().length >6 ){
+    //         $(this).after('<p class="add" ">昵称不可以超过6个字哦!</p>');
+    //         hospost = 0; 
+    //     }else{
+    //       hopost = 1;
+    //     }
+    // })
 
     //表单验证
-
-    input_password.eq(1).blur(function(){
-        $('.set-info  p').remove();
-        if($(this).val() === input_password.eq(0).val() && $(this).val() !==''){
-           $(this).after('<p class="add" ">密码不可以和原密码相同哦!</p>');
+    $('.basic-btn').click(function(){
+       $('.set-info span').remove();
+        if( input_massage.eq(0).val()==' '){
+          //判断昵称非空
+          $(this).after('<span class ="add" >&nbsp;&nbsp;&nbsp;昵称不能为空!</sapn>');
+          hospost =0;
+        }else if(name.val().length >6){
+          //判断昵称长度
+          name.after('<p class="add" ">昵称不可以超过6个字哦!</p>');
+          hospost = 0;
+        }else{
+          hospost =  1;
         }
-
-    }) 
-
-    input_password.eq(2).blur(function(){
-        $('.set-info  p').remove();
-        if($(this).val() !== input_password.eq(1).val()){
-           $(this).after('<p class="add" ">两次输入密码不一致哦!</p>');
+        if(hospost == 1){
+           $('.basic-btn').after('<span style ="color:green;" class="add" >&nbsp;&nbsp;&nbsp;提交成功哦!</sapn>');        
+        }else{
+           $('.basic-btn').after('<span class="add" >&nbsp;&nbsp;&nbsp;请按要求填写哦!</sapn>');
         }
-
     })
+
+    // //表单验证
+
+    // input_password.eq(2).blur(function(){
+    //     $('.set-info  p').remove();
+    //     if($(this).val() !== input_password.eq(1).val()){
+    //        $(this).after('<p class="add" ">两次输入密码不一致哦!</p>');
+    //     }
+
+    // })
 
     // $('.basic-btn').click(function(){
     //    $('.set-info span').remove();
