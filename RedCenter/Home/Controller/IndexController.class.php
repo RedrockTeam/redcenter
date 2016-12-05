@@ -123,10 +123,11 @@ class IndexController extends CommonController {
             $info['mysign'] = I('post.mysign');
             $info['nickname'] = I('post.nickname');
             $res = M('user_member')->where($where)->save($info);
-            if($res)
-                $this->ajaxReturn(true);
-            else
-                $this->ajaxReturn(false);
+            $this->redirect('userSettings');
+//            if($res)
+//                $this->ajaxReturn(true);
+//            else
+//                $this->ajaxReturn(false);
         }else
             $this->ajaxReturn(false);
     }
