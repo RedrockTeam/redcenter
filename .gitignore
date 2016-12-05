@@ -1,9 +1,10 @@
 .DS_Store
 .idea
 RedCenter/Runtime
-#ThinkPHP
+RedCenter/Home/Conf/config.php
 RedCenter/Common/Conf/config.php
+#ThinkPHP
 *log
 forget/node_modules
 forget_bak
-RedCenter/Home/Conf/config.php
+
