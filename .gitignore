@@ -1,8 +1,8 @@
 .DS_Store
 .idea
 RedCenter/Runtime
-RedCenter/Home/Conf/config.php
-RedCenter/Common/Conf/config.php
+/RedCenter/Home/Conf/config.php
+/RedCenter/Common/Conf/config.php
 #ThinkPHP
 *log
 forget/node_modules
