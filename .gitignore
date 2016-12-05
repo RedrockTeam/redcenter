@@ -3,6 +3,7 @@
 RedCenter/Runtime
 /RedCenter/Home/Conf/config.php
 /RedCenter/Common/Conf/config.php
+/RedCenter/Admin/Conf/config.php
 #ThinkPHP
 *log
 forget/node_modules
